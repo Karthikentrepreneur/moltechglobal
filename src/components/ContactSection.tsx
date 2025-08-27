@@ -58,23 +58,28 @@ const ContactSection = () => {
       {/* Content */}
       <div className="section-padding bg-muted/30">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
-          {/* Countries list — footer palette ONLY here */}
+          {/* Countries list — footer palette ONLY here, and styled like the CTA button */}
           <Card className="bg-deep-navy/90 text-white border border-royal-blue/20 lg:col-span-1 rounded-2xl">
             <CardHeader className="pb-2">
               <CardTitle className="text-white">Countries</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="divide-y divide-white/10">
+              <ul className="space-y-3">
                 {OFFICES.map((o) => {
                   const isActive = o.country === selected;
                   return (
                     <li key={o.country}>
                       <button
                         onClick={() => setSelected(o.country)}
-                        className={`w-full text-left py-5 sm:py-6 px-4 sm:px-6 uppercase tracking-wide font-semibold transition-colors rounded-md
-                          ${isActive
-                            ? "bg-royal-blue/30 ring-1 ring-royal-blue/40 text-white"
-                            : "text-white/90 hover:bg-royal-blue/20"}`}
+                        className={[
+                          "w-full text-left px-5 py-3",
+                          "uppercase tracking-wide font-semibold",
+                          "rounded-full border transition-all",
+                          // ✨ CTA-like pill styling
+                          isActive
+                            ? "bg-royal-blue text-white border-royal-blue shadow-sm"
+                            : "bg-white text-royal-blue border-royal-blue/40 hover:bg-white/90 hover:shadow"
+                        ].join(" ")}
                         aria-current={isActive ? "true" : "false"}
                       >
                         {o.country}
@@ -140,7 +145,7 @@ const ContactSection = () => {
                 {/* Actions (unchanged style) */}
                 <div className="flex flex-wrap gap-3 pt-2">
                   {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" && (
-                    <Button asChild className="btn-hero">
+                    <Button className="btn-hero" asChild>
                       <a href={activeOffice.mapUrl} target="_blank" rel="noreferrer">
                         Open in Maps
                       </a>
@@ -157,9 +162,8 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            {/* CTA Banner — updated to footer style */}
+            {/* CTA Banner — keep card style, but DO NOT change CTA button color */}
             <Card className="relative overflow-hidden rounded-2xl border border-royal-blue/30 bg-deep-navy">
-              {/* subtle royal→electric gradient sweep */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-royal-blue/20 via-transparent to-electric-blue/20" />
               <div className="relative p-8">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -170,13 +174,10 @@ const ContactSection = () => {
                     </p>
                   </div>
                   <div className="flex gap-3">
-                    <Button className="bg-royal-blue hover:bg-royal-blue/90 text-white px-6 py-3 rounded-full font-semibold">
+                    {/* ⬇️ Kept original CTA button color/style */}
+                    <Button className="bg-white text-royal-blue hover:bg-white/90 px-6 py-3 rounded-full font-semibold">
                       Ask for Regional Contact
                     </Button>
-                    {/* Optional secondary button — remove if not needed */}
-                    {/* <Button variant="outline" className="border-royal-blue/40 text-white hover:bg-royal-blue/20 rounded-full">
-                      See All Offices
-                    </Button> */}
                   </div>
                 </div>
               </div>
