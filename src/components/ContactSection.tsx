@@ -26,6 +26,7 @@ const OFFICES: Office[] = [
 
 const ContactSection = () => {
   const [selected, setSelected] = useState<string>("Singapore"); // default highlight
+
   const activeOffice = useMemo(
     () => OFFICES.find((o) => o.country.toLowerCase() === selected.toLowerCase()),
     [selected]
@@ -42,25 +43,24 @@ const ContactSection = () => {
           loading="eager"
           decoding="async"
         />
-        {/* tint with footer-style blues */}
-        <div className="absolute inset-0 bg-gradient-to-b from-deep-navy/40 via-deep-navy/30 to-deep-navy/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="px-6 text-center text-white">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
               Contact by Location
             </h2>
-            <p className="mt-3 max-w-2xl mx-auto text-blue-200">
+            <p className="mt-3 max-w-2xl mx-auto text-white/85">
               Reach the nearest Moltech office. Select a country to view our local location details.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Content area uses footer colors */}
-      <div className="section-padding bg-deep-navy text-white">
+      {/* Content */}
+      <div className="section-padding bg-muted/30">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
-          {/* Countries list */}
-          <Card className="bg-deep-navy/80 text-white border border-royal-blue/20 lg:col-span-1">
+          {/* Countries list — ✅ footer palette ONLY here */}
+          <Card className="bg-deep-navy/90 text-white border border-royal-blue/20 lg:col-span-1 rounded-2xl">
             <CardHeader className="pb-2">
               <CardTitle className="text-white">Countries</CardTitle>
             </CardHeader>
@@ -72,11 +72,10 @@ const ContactSection = () => {
                     <li key={o.country}>
                       <button
                         onClick={() => setSelected(o.country)}
-                        className={`w-full text-left py-5 sm:py-6 px-4 sm:px-6 uppercase tracking-wide font-semibold transition-colors ${
-                          isActive
+                        className={`w-full text-left py-5 sm:py-6 px-4 sm:px-6 uppercase tracking-wide font-semibold transition-colors rounded-md
+                          ${isActive
                             ? "bg-royal-blue/30 ring-1 ring-royal-blue/40 text-white"
-                            : "text-white/90 hover:bg-royal-blue/20"
-                        }`}
+                            : "text-white/90 hover:bg-royal-blue/20"}`}
                         aria-current={isActive ? "true" : "false"}
                       >
                         {o.country}
@@ -88,35 +87,35 @@ const ContactSection = () => {
             </CardContent>
           </Card>
 
-          {/* Office detail + map/preview */}
+          {/* Office detail + map/preview — ⬅️ stays in your OLD style */}
           <div className="lg:col-span-2 space-y-6">
-            <Card className="bg-deep-navy/70 border border-royal-blue/20">
+            <Card className="glass-card border-none">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-electric-blue">
+                <CardTitle className="flex items-center gap-2 text-royal-blue">
                   <MapPin className="w-6 h-6" />
                   {activeOffice?.country || "Location"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-6">
-                  <div className="space-y-1">
-                    <p className="text-xs uppercase tracking-wide text-blue-200">City</p>
-                    <p className="text-lg font-semibold text-white">
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">City</p>
+                    <p className="text-lg font-semibold">
                       {activeOffice?.city ?? "—"}
                     </p>
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-xs uppercase tracking-wide text-blue-200">Address</p>
-                    <p className="text-lg font-medium leading-relaxed text-white">
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Address</p>
+                    <p className="text-lg font-medium leading-relaxed">
                       {activeOffice?.address ?? "To be updated"}
                     </p>
                   </div>
                 </div>
 
-                {/* Map */}
+                {/* Map slot (optional): replace with your real Google Maps embed or link */}
                 <div className="mt-4">
                   {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" ? (
-                    <div className="aspect-video w-full overflow-hidden rounded-2xl border border-royal-blue/30">
+                    <div className="aspect-video w-full overflow-hidden rounded-2xl border border-border">
                       <iframe
                         src={activeOffice.mapUrl}
                         className="h-full w-full"
@@ -126,10 +125,12 @@ const ContactSection = () => {
                       />
                     </div>
                   ) : (
-                    <div className="aspect-video w-full rounded-2xl border border-dashed border-royal-blue/30 grid place-items-center bg-deep-navy/60">
+                    <div className="aspect-video w-full rounded-2xl border border-dashed border-border grid place-items-center bg-white/50">
                       <div className="text-center px-6">
-                        <p className="font-semibold text-white">Map preview placeholder</p>
-                        <p className="text-sm text-blue-200">
+                        <p className="font-semibold text-foreground">
+                          Map preview placeholder
+                        </p>
+                        <p className="text-sm text-muted-foreground">
                           Add your Google Maps embed or link in <code>OFFICES.mapUrl</code>.
                         </p>
                       </div>
@@ -140,7 +141,7 @@ const ContactSection = () => {
                 {/* Actions */}
                 <div className="flex flex-wrap gap-3 pt-2">
                   {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" && (
-                    <Button asChild className="bg-royal-blue hover:bg-royal-blue/90 text-white">
+                    <Button asChild className="btn-hero">
                       <a href={activeOffice.mapUrl} target="_blank" rel="noreferrer">
                         Open in Maps
                       </a>
@@ -148,7 +149,7 @@ const ContactSection = () => {
                   )}
                   <Button
                     variant="outline"
-                    className="border-royal-blue/40 text-white hover:bg-royal-blue/20"
+                    className="btn-ghost"
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                   >
                     Back to Top
@@ -157,7 +158,7 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            {/* CTA banner — already in footer style */}
+            {/* CTA Banner — unchanged */}
             <Card className="p-8 bg-royal-gradient text-white border-none rounded-2xl">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
