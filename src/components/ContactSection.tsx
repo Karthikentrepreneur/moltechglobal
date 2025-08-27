@@ -26,7 +26,6 @@ const OFFICES: Office[] = [
 
 const ContactSection = () => {
   const [selected, setSelected] = useState<string>("Singapore"); // default highlight
-
   const activeOffice = useMemo(
     () => OFFICES.find((o) => o.country.toLowerCase() === selected.toLowerCase()),
     [selected]
@@ -37,7 +36,7 @@ const ContactSection = () => {
       {/* Hero: non-copyright 3D globe image */}
       <div className="relative h-[46vh] min-h-[320px] w-full overflow-hidden">
         <img
-          src="/images/3d-globe.jpg"
+          src="/images/3d-globe.jpg" /* place a royalty-free 3D globe image here */
           alt="3D global network backdrop"
           className="h-full w-full object-cover"
           loading="eager"
@@ -59,7 +58,7 @@ const ContactSection = () => {
       {/* Content */}
       <div className="section-padding bg-muted/30">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
-          {/* Countries list — ✅ footer palette ONLY here */}
+          {/* Countries list — footer palette ONLY here */}
           <Card className="bg-deep-navy/90 text-white border border-royal-blue/20 lg:col-span-1 rounded-2xl">
             <CardHeader className="pb-2">
               <CardTitle className="text-white">Countries</CardTitle>
@@ -87,7 +86,7 @@ const ContactSection = () => {
             </CardContent>
           </Card>
 
-          {/* Office detail + map/preview — ⬅️ stays in your OLD style */}
+          {/* Office detail + map/preview — stays in your OLD style */}
           <div className="lg:col-span-2 space-y-6">
             <Card className="glass-card border-none">
               <CardHeader className="pb-2">
@@ -138,7 +137,7 @@ const ContactSection = () => {
                   )}
                 </div>
 
-                {/* Actions */}
+                {/* Actions (unchanged style) */}
                 <div className="flex flex-wrap gap-3 pt-2">
                   {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" && (
                     <Button asChild className="btn-hero">
@@ -158,18 +157,28 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            {/* CTA Banner — unchanged */}
-            <Card className="p-8 bg-royal-gradient text-white border-none rounded-2xl">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div>
-                  <h3 className="text-xl font-semibold">Need a different region?</h3>
-                  <p className="text-white/85">
-                    Tell us your location and we’ll route you to the nearest Moltech team.
-                  </p>
+            {/* CTA Banner — updated to footer style */}
+            <Card className="relative overflow-hidden rounded-2xl border border-royal-blue/30 bg-deep-navy">
+              {/* subtle royal→electric gradient sweep */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-royal-blue/20 via-transparent to-electric-blue/20" />
+              <div className="relative p-8">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">Need a different region?</h3>
+                    <p className="text-blue-200">
+                      Tell us your location and we’ll route you to the nearest Moltech team.
+                    </p>
+                  </div>
+                  <div className="flex gap-3">
+                    <Button className="bg-royal-blue hover:bg-royal-blue/90 text-white px-6 py-3 rounded-full font-semibold">
+                      Ask for Regional Contact
+                    </Button>
+                    {/* Optional secondary button — remove if not needed */}
+                    {/* <Button variant="outline" className="border-royal-blue/40 text-white hover:bg-royal-blue/20 rounded-full">
+                      See All Offices
+                    </Button> */}
+                  </div>
                 </div>
-                <Button className="bg-white text-royal-blue hover:bg-white/90 px-6 py-3 rounded-full font-semibold">
-                  Ask for Regional Contact
-                </Button>
               </div>
             </Card>
           </div>
