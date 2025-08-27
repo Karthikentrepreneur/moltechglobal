@@ -81,7 +81,7 @@ const ContactSection = () => {
       <div className="section-padding bg-muted/30">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
           {/* Countries list — footer palette ONLY here, and styled like the CTA button */}
-          <Card className="bg-deep-navy/90 text-white border border-royal-blue/20 lg:col-span-1 rounded-2xl">
+          <Card className="bg-bg-royal-gradient text-white border border-royal-blue/20 lg:col-span-1 rounded-2xl">
             <CardHeader className="pb-2">
               <CardTitle className="text-white">Countries</CardTitle>
             </CardHeader>
