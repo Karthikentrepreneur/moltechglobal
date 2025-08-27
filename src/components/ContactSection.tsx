@@ -1,7 +1,6 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { MapPin, Copy, ExternalLink } from "lucide-react";
 
 /** Country data — fill real addresses / map links when ready */
@@ -23,7 +22,7 @@ const OFFICES: Office[] = [
   { country: "USA",        city: "Houston",     address: "Moltech USA, Energy Corridor, Houston, TX",           mapUrl: "#" },
 ];
 
-/** Flag emoji (simple, lightweight) */
+/** Simple flag emoji map */
 const FLAG: Record<string, string> = {
   Australia: "🇦🇺",
   Indonesia: "🇮🇩",
@@ -38,40 +37,22 @@ const FLAG: Record<string, string> = {
 
 const ContactSection = () => {
   const [selected, setSelected] = useState<string>("Singapore");
-  const [query, setQuery] = useState("");
 
-  // sort then filter for a clean, modern nav
+  // sort alphabetically for a clean nav
   const officesSorted = useMemo(
     () => [...OFFICES].sort((a, b) => a.country.localeCompare(b.country)),
     []
   );
-  const filtered = useMemo(
-    () =>
-      officesSorted.filter((o) =>
-        o.country.toLowerCase().includes(query.trim().toLowerCase())
-      ),
-    [officesSorted, query]
-  );
-
   const activeOffice = useMemo(
     () => officesSorted.find((o) => o.country.toLowerCase() === selected.toLowerCase()),
     [officesSorted, selected]
   );
 
-  // auto-scroll selected pill into view
-  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  useEffect(() => {
-    const el = itemRefs.current[selected];
-    if (el) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }, [selected]);
-
   const copyAddress = async () => {
     if (!activeOffice?.address) return;
     try {
       await navigator.clipboard.writeText(activeOffice.address);
-    } catch {
-      // no-op (avoid noisy alerts)
-    }
+    } catch { /* silent */ }
   };
 
   return (
@@ -99,41 +80,33 @@ const ContactSection = () => {
       {/* Content */}
       <div className="section-padding bg-muted/30">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[420px,1fr] gap-8">
-          {/* ==== Sidebar (centered card, trendy glass/gradient) ==== */}
+          {/* ==== Sidebar (centered, no search, no scroll) ==== */}
           <Card
             className="mx-auto w-full max-w-[420px] rounded-3xl
                        border border-royal-blue/25 bg-gradient-to-b from-deep-navy to-deep-navy/90
-                       text-white shadow-xl lg:sticky lg:top-24 self-start"
+                       text-white shadow-xl self-start lg:sticky lg:top-24 text-center"
           >
-            <CardHeader className="pb-3">
+            <CardHeader className="py-4">
               <CardTitle className="text-white/95 text-lg">Countries</CardTitle>
-              <div className="mt-3">
-                <Input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search country…"
-                  className="bg-white text-foreground placeholder:text-muted-foreground/70 border-royal-blue/30"
-                />
-              </div>
             </CardHeader>
 
-            <CardContent className="pt-0 max-h-[62vh] overflow-y-auto pr-1">
+            {/* No max-height, no overflow: scroll removed */}
+            <CardContent className="pt-0">
               <ul className="space-y-2">
-                {filtered.map((o) => {
+                {officesSorted.map((o) => {
                   const isActive = o.country === selected;
                   return (
                     <li key={o.country}>
                       <button
-                        ref={(node) => (itemRefs.current[o.country] = node)}
                         onClick={() => setSelected(o.country)}
                         className={[
                           "mx-auto block w-full text-left px-5 py-2.5 text-sm",
-                          "rounded-full border transition-all will-change-transform",
+                          "rounded-full border transition-all",
                           "uppercase tracking-wide font-semibold shadow-sm",
                           "focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-blue/60",
                           isActive
-                            ? "bg-royal-blue text-white border-royal-blue translate-x-0"
-                            : "bg-white text-royal-blue border-royal-blue/40 hover:bg-white/90 hover:shadow",
+                            ? "bg-royal-blue text-white border-royal-blue"
+                            : "bg-white text-royal-blue border-royal-blue/40 hover:bg-white/90 hover:shadow"
                         ].join(" ")}
                         aria-current={isActive ? "true" : "false"}
                         aria-pressed={isActive}
@@ -144,14 +117,11 @@ const ContactSection = () => {
                     </li>
                   );
                 })}
-                {filtered.length === 0 && (
-                  <li className="text-center text-blue-200 py-4">No matches</li>
-                )}
               </ul>
             </CardContent>
           </Card>
 
-          {/* ==== Details Panel (clean, airy card) ==== */}
+          {/* ==== Details Panel ==== */}
           <Card className="glass-card border border-border/60 rounded-3xl">
             <CardHeader className="pb-1">
               <CardTitle className="flex items-center gap-3 text-royal-blue text-2xl sm:text-3xl">
@@ -217,7 +187,7 @@ const ContactSection = () => {
                 )}
               </div>
 
-              {/* Back to top (kept minimal) */}
+              {/* Back to top */}
               <div className="flex gap-3">
                 <Button
                   variant="outline"
