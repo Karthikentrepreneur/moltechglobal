@@ -1,15 +1,18 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Copy, ExternalLink } from "lucide-react";
 
-/** Country data — fill real addresses / map links when ready */
+/* ---------- Office data ---------- */
 type Office = {
   country: string;
   city?: string;
   address?: string;
-  mapUrl?: string; // optional Google Maps link
+  mapUrl?: string;
 };
+
 const OFFICES: Office[] = [
   { country: "Australia",  city: "Melbourne",   address: "Moltech Pty Ltd, Level 10, Collins St, Melbourne VIC", mapUrl: "#" },
   { country: "Indonesia",  city: "Jakarta",     address: "Moltech Indonesia, SCBD District, Jl. Jend. Sudirman, Jakarta", mapUrl: "#" },
@@ -22,7 +25,7 @@ const OFFICES: Office[] = [
   { country: "USA",        city: "Houston",     address: "Moltech USA, Energy Corridor, Houston, TX",           mapUrl: "#" },
 ];
 
-/** Simple flag emoji map */
+/* Small emoji flags (lightweight, optional flair) */
 const FLAG: Record<string, string> = {
   Australia: "🇦🇺",
   Indonesia: "🇮🇩",
@@ -35,14 +38,74 @@ const FLAG: Record<string, string> = {
   USA: "🇺🇸",
 };
 
-const ContactSection = () => {
+/* ---------- Get in touch form (inline component) ---------- */
+function GetInTouchCard() {
+  const LOCATIONS = OFFICES.map(o => o.country);
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+    console.log("Contact form:", data);
+    alert("Thanks! We’ll be in touch.");
+    e.currentTarget.reset();
+  };
+
+  return (
+    <section className="relative py-10">
+      <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-[0_20px_45px_rgba(0,0,0,0.12)] px-6 sm:px-10 py-8 sm:py-10">
+        <h3 className="text-center text-3xl sm:text-[34px] font-semibold text-foreground mb-8">
+          Get in touch
+        </h3>
+
+        <form onSubmit={onSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Row 1 */}
+          <Input name="name" placeholder="Type your name" required className="h-11" />
+          <Input name="email" type="email" placeholder="Type your email" required className="h-11" />
+
+          {/* Row 2 */}
+          <Input name="phone" placeholder="Phone" className="h-11" />
+          <select
+            name="location"
+            defaultValue=""
+            className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm text-muted-foreground
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-blue"
+          >
+            <option value="" disabled>Select Location</option>
+            {LOCATIONS.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+
+          {/* Row 3 */}
+          <Input name="purpose" placeholder="Purpose" className="h-11" />
+          <Input name="transportation" placeholder="Transportation Method" className="h-11" />
+
+          {/* Comment full width */}
+          <div className="sm:col-span-2">
+            <Textarea name="comment" placeholder="Comment" rows={6} />
+          </div>
+
+          {/* Submit (left aligned) */}
+          <div className="sm:col-span-2">
+            <Button type="submit" className="bg-royal-blue hover:bg-royal-blue/90 text-white px-6">
+              Submit
+            </Button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Main Contact Section ---------- */
+export default function ContactSection() {
   const [selected, setSelected] = useState<string>("Singapore");
 
-  // sort alphabetically for a clean nav
   const officesSorted = useMemo(
     () => [...OFFICES].sort((a, b) => a.country.localeCompare(b.country)),
     []
   );
+
   const activeOffice = useMemo(
     () => officesSorted.find((o) => o.country.toLowerCase() === selected.toLowerCase()),
     [officesSorted, selected]
@@ -52,7 +115,7 @@ const ContactSection = () => {
     if (!activeOffice?.address) return;
     try {
       await navigator.clipboard.writeText(activeOffice.address);
-    } catch { /* silent */ }
+    } catch {/* silent */}
   };
 
   return (
@@ -80,17 +143,16 @@ const ContactSection = () => {
       {/* Content */}
       <div className="section-padding bg-muted/30">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[420px,1fr] gap-8">
-          {/* ==== Sidebar (centered, no search, no scroll) ==== */}
+          {/* Countries box (centered, no search, no scroll) */}
           <Card
             className="mx-auto w-full max-w-[420px] rounded-3xl
                        border border-royal-blue/25 bg-gradient-to-b from-deep-navy to-deep-navy/90
-                       text-white shadow-xl self-start lg:sticky lg:top-24 text-center"
+                       text-white shadow-xl self-start text-center"
           >
             <CardHeader className="py-4">
               <CardTitle className="text-white/95 text-lg">Countries</CardTitle>
             </CardHeader>
 
-            {/* No max-height, no overflow: scroll removed */}
             <CardContent className="pt-0">
               <ul className="space-y-2">
                 {officesSorted.map((o) => {
@@ -121,7 +183,7 @@ const ContactSection = () => {
             </CardContent>
           </Card>
 
-          {/* ==== Details Panel ==== */}
+          {/* Details panel */}
           <Card className="glass-card border border-border/60 rounded-3xl">
             <CardHeader className="pb-1">
               <CardTitle className="flex items-center gap-3 text-royal-blue text-2xl sm:text-3xl">
@@ -201,8 +263,9 @@ const ContactSection = () => {
           </Card>
         </div>
       </div>
+
+      {/* Get in touch form card */}
+      <GetInTouchCard />
     </section>
   );
-};
-
-export default ContactSection;
+}
