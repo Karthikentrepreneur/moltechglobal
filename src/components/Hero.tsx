@@ -1,0 +1,77 @@
+// src/components/Hero.tsx
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Play } from "lucide-react";
+import { useEffect, useState } from "react";
+const Hero = () => {
+  const images = ["/Trust.jpg", "/Biodieselfeedbook.jpg", "/Drivingsustainability.jpg"];
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex(i => (i + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [images.length]);
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background slider */}
+      {images.map((src, i) => <img key={src} src={src} alt={`Hero slide ${i + 1}`} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`} draggable={false} />)}
+
+      {/* Gradient overlays */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 via-transparent to-green-800/40 bg-transparent" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left Content */}
+        <div className="text-white space-y-8">
+          <div className="space-y-6">
+            {/* ✅ Headline with drop shadow (no glow) */}
+            <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight">
+              <span className="text-white drop-shadow-lg">
+                Driving the Circular Economy
+              </span>
+            </h1>
+
+            <p className="text-lg text-blue-100 max-w-2xl">
+              Sustainable products and clean initiatives across Asia, Middle East, UK, and USA.
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button className="btn-hero group">
+              Explore Products
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button variant="outline" className="btn-ghost group bg-green-600 hover:bg-green-500">
+              <Play className="mr-2 h-5 w-5" />
+              Talk to Us
+            </Button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
+            <div className="text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-white">4+</div>
+              <div className="text-sm text-blue-200">Continents</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-white">15+</div>
+              <div className="text-sm text-blue-200">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl lg:text-3xl font-bold text-white">100%</div>
+              <div className="text-sm text-blue-200">Sustainable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Dots navigation */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
+        {images.map((_, i) => <button key={i} aria-label={`Go to slide ${i + 1}`} onClick={() => setIndex(i)} className={`h-3 w-3 rounded-full border border-white ${i === index ? "bg-white" : "bg-white/30"}`} />)}
+      </div>
+    </section>;
+};
+export default Hero;
