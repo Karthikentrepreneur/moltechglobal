@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
@@ -27,10 +27,26 @@ const OFFICES: Office[] = [
 const ContactSection = () => {
   const [selected, setSelected] = useState<string>("Singapore"); // default highlight
 
-  const activeOffice = useMemo(
-    () => OFFICES.find((o) => o.country.toLowerCase() === selected.toLowerCase()),
-    [selected]
+  // Alphabetical list for neat arrangement
+  const officesSorted = useMemo(
+    () => [...OFFICES].sort((a, b) => a.country.localeCompare(b.country)),
+    []
   );
+
+  const activeOffice = useMemo(
+    () => officesSorted.find((o) => o.country.toLowerCase() === selected.toLowerCase()),
+    [officesSorted, selected]
+  );
+
+  // Keep refs for auto-scrolling the selected item into view
+  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  useEffect(() => {
+    const el = itemRefs.current[selected];
+    if (el) {
+      el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  }, [selected]);
 
   return (
     <section className="relative">
@@ -59,36 +75,44 @@ const ContactSection = () => {
       {/* Content */}
       <div className="section-padding bg-muted/30">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
-          {/* Countries list — footer palette, compact height */}
-          <Card className="bg-deep-navy/90 text-white border border-royal-blue/20 lg:col-span-1 rounded-2xl self-start">
+          {/* Countries list — footer palette, compact, sticky & neatly arranged */}
+          <Card
+            className="bg-deep-navy/90 text-white border border-royal-blue/20 lg:col-span-1 rounded-2xl self-start
+                       lg:sticky lg:top-24" /* adjust top to your fixed header height */
+          >
             <CardHeader className="py-3">
               <CardTitle className="text-white text-base">Countries</CardTitle>
             </CardHeader>
-            {/* Cap height and scroll the list to reduce overall height */}
-            <CardContent className="pt-0 max-h-[420px] overflow-y-auto">
-              <ul className="space-y-2">
-                {OFFICES.map((o) => {
-                  const isActive = o.country === selected;
-                  return (
-                    <li key={o.country}>
-                      <button
-                        onClick={() => setSelected(o.country)}
-                        className={[
-                          "w-full text-left px-4 py-2 text-sm",
-                          "uppercase tracking-wide font-semibold",
-                          "rounded-full border transition-all",
-                          isActive
-                            ? "bg-royal-blue text-white border-royal-blue shadow-sm"
-                            : "bg-white text-royal-blue border-royal-blue/40 hover:bg-white/90 hover:shadow"
-                        ].join(" ")}
-                        aria-current={isActive ? "true" : "false"}
-                      >
-                        {o.country}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
+
+            {/* Cap height relative to viewport; scroll inside the list */}
+            <CardContent className="pt-0 max-h-[60vh] md:max-h-[70vh] overflow-y-auto pr-1">
+              <nav aria-label="Office countries">
+                <ul className="space-y-2">
+                  {officesSorted.map((o) => {
+                    const isActive = o.country === selected;
+                    return (
+                      <li key={o.country}>
+                        <button
+                          ref={(node) => (itemRefs.current[o.country] = node)}
+                          onClick={() => setSelected(o.country)}
+                          className={[
+                            "w-full text-left px-4 py-2.5 text-sm",
+                            "uppercase tracking-wide font-semibold",
+                            "rounded-full border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-blue/50",
+                            isActive
+                              ? "bg-royal-blue text-white border-royal-blue shadow-sm"
+                              : "bg-white text-royal-blue border-royal-blue/40 hover:bg-white/90 hover:shadow"
+                          ].join(" ")}
+                          aria-current={isActive ? "true" : "false"}
+                          aria-pressed={isActive}
+                        >
+                          {o.country}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
             </CardContent>
           </Card>
 
@@ -163,7 +187,7 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            {/* ⛔ CTA banner removed as requested */}
+            {/* CTA banner removed */}
           </div>
         </div>
       </div>
