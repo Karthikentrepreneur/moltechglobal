@@ -160,7 +160,7 @@ const ContactSection = () => {
             </Card>
 
             {/* CTA Banner — keep card style, but DO NOT change CTA button color */}
-            <Card className="relative overflow-hidden rounded-2xl border border-royal-blue/30 bg-deep-navy">
+            <Card className="relative overflow-hidden rounded-2xl border border-royal-blue/30 bg-royal-gradient">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-royal-blue/20 via-transparent to-electric-blue/20" />
               <div className="relative p-8">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4">
