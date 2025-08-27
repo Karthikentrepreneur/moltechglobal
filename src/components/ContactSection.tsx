@@ -1,204 +1,178 @@
+import { useState, useMemo } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { MapPin } from "lucide-react";
+
+/** ⚙️ Country data — fill real addresses / map links when ready */
+type Office = {
+  country: string;
+  city?: string;
+  address?: string;
+  mapUrl?: string; // optional Google Maps link
+  note?: string;
+};
+
+const OFFICES: Office[] = [
+  { country: "Australia", city: "Melbourne", address: "Moltech Pty Ltd, Level 10, Collins St, Melbourne VIC", mapUrl: "#" },
+  { country: "Indonesia", city: "Jakarta", address: "Moltech Indonesia, SCBD District, Jl. Jend. Sudirman, Jakarta", mapUrl: "#" },
+  { country: "Malaysia", city: "Kuala Lumpur", address: "Moltech Malaysia, Bangsar South, KL", mapUrl: "#" },
+  { country: "Saudi Arabia", city: "Riyadh", address: "Moltech KSA, King Fahd Rd, Riyadh", mapUrl: "#" },
+  { country: "Singapore", city: "Singapore", address: "Moltech HQ, 1 North Bridge Rd, Singapore", mapUrl: "#" },
+  { country: "Thailand", city: "Bangkok", address: "Moltech Thailand, Rama IV Rd, Bangkok", mapUrl: "#" },
+  { country: "UAE", city: "Dubai", address: "Moltech MENA, JLT Cluster, Dubai", mapUrl: "#" },
+  { country: "UK", city: "London", address: "Moltech UK, Canary Wharf, London", mapUrl: "#" },
+  { country: "USA", city: "Houston", address: "Moltech USA, Energy Corridor, Houston, TX", mapUrl: "#" },
+];
 
 const ContactSection = () => {
+  const [selected, setSelected] = useState<string>("Singapore"); // default highlight
+
+  const activeOffice = useMemo(
+    () => OFFICES.find((o) => o.country.toLowerCase() === selected.toLowerCase()),
+    [selected]
+  );
+
   return (
-    <section className="section-padding bg-muted/30">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center space-y-6 mb-16">
-          <h2 className="heading-lg text-royal-blue">Contact Us</h2>
-          <p className="body-lg text-muted-foreground max-w-3xl mx-auto">
-            Let's build a sustainable future together. Get in touch with our team of experts.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Contact Info */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="glass-card p-6">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-royal-gradient rounded-xl flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Email Us</h3>
-                  <p className="text-sm text-muted-foreground">info@moltech.com</p>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Send us an email and we'll respond within 24 hours
-              </p>
-            </div>
-
-            <div className="glass-card p-6">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-sustainability-gradient rounded-xl flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Call Us</h3>
-                  <p className="text-sm text-muted-foreground">+65 6123 4567</p>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Speak directly with our sustainability experts
-              </p>
-            </div>
-
-            <div className="glass-card p-6">
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Visit Us</h3>
-                  <p className="text-sm text-muted-foreground">Singapore HQ</p>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Meet us at our global headquarters in Singapore
-              </p>
-            </div>
-
-            {/* Quick Stats */}
-            <div className="glass-card p-6">
-              <h3 className="font-semibold text-lg mb-4 text-royal-blue">Response Time</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-sustainability-green">&lt; 1h</div>
-                  <div className="text-xs text-muted-foreground">Phone</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-royal-blue">&lt; 24h</div>
-                  <div className="text-xs text-muted-foreground">Email</div>
-                </div>
-              </div>
-            </div>
+    <section className="relative">
+      {/* Hero: non-copyright 3D globe image */}
+      <div className="relative h-[46vh] min-h-[320px] w-full overflow-hidden">
+        <img
+          src="/images/3d-globe.jpg" /* ⬅️ place a royalty-free 3D globe image here */
+          alt="3D global network backdrop"
+          className="h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="px-6 text-center text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+              Contact by Location
+            </h2>
+            <p className="mt-3 max-w-2xl mx-auto text-white/85">
+              Reach the nearest Moltech office. Select a country to view our local location details.
+            </p>
           </div>
+        </div>
+      </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
+      {/* Content */}
+      <div className="section-padding bg-muted/30">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
+          {/* Countries list */}
+          <Card className="bg-[#252a33] text-white border-none lg:col-span-1">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-white/95">Countries</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="divide-y divide-white/10">
+                {OFFICES.map((o) => {
+                  const isActive = o.country === selected;
+                  return (
+                    <li key={o.country}>
+                      <button
+                        onClick={() => setSelected(o.country)}
+                        className={`w-full text-left py-5 sm:py-6 px-4 sm:px-6 uppercase tracking-wide font-semibold transition-colors ${
+                          isActive
+                            ? "bg-white/10 text-white"
+                            : "text-white/90 hover:bg-white/5"
+                        }`}
+                        aria-current={isActive ? "true" : "false"}
+                      >
+                        {o.country}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* Office detail + map/preview */}
+          <div className="lg:col-span-2 space-y-6">
             <Card className="glass-card border-none">
-              <CardHeader className="pb-6">
-                <CardTitle className="text-2xl text-royal-blue flex items-center">
-                  <MessageCircle className="w-8 h-8 mr-3" />
-                  Let's Start a Conversation
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-royal-blue">
+                  <MapPin className="w-6 h-6" />
+                  {activeOffice?.country || "Location"}
                 </CardTitle>
-                <CardDescription className="text-base">
-                  Tell us about your sustainability goals and how we can help achieve them
-                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <CardContent className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="firstName" className="text-sm font-medium text-foreground">
-                      First Name *
-                    </label>
-                    <Input 
-                      id="firstName" 
-                      placeholder="John" 
-                      className="bg-white/50 backdrop-blur-sm border-white/30 focus:border-royal-blue"
-                    />
+                    <p className="text-sm text-muted-foreground">City</p>
+                    <p className="text-lg font-semibold">
+                      {activeOffice?.city ?? "—"}
+                    </p>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="lastName" className="text-sm font-medium text-foreground">
-                      Last Name *
-                    </label>
-                    <Input 
-                      id="lastName" 
-                      placeholder="Doe" 
-                      className="bg-white/50 backdrop-blur-sm border-white/30 focus:border-royal-blue"
-                    />
+                    <p className="text-sm text-muted-foreground">Address</p>
+                    <p className="text-lg font-medium leading-relaxed">
+                      {activeOffice?.address ?? "To be updated"}
+                    </p>
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-foreground">
-                      Email Address *
-                    </label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="john@company.com" 
-                      className="bg-white/50 backdrop-blur-sm border-white/30 focus:border-royal-blue"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="company" className="text-sm font-medium text-foreground">
-                      Company
-                    </label>
-                    <Input 
-                      id="company" 
-                      placeholder="Your Company" 
-                      className="bg-white/50 backdrop-blur-sm border-white/30 focus:border-royal-blue"
-                    />
-                  </div>
+                {/* Map slot (optional): replace with your real Google Maps embed or link */}
+                <div className="mt-4">
+                  {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" ? (
+                    <div className="aspect-video w-full overflow-hidden rounded-2xl border border-border">
+                      <iframe
+                        src={activeOffice.mapUrl}
+                        className="h-full w-full"
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        aria-label={`${activeOffice.country} office map`}
+                      />
+                    </div>
+                  ) : (
+                    <div className="aspect-video w-full rounded-2xl border border-dashed border-border grid place-items-center bg-white/50">
+                      <div className="text-center px-6">
+                        <p className="font-semibold text-foreground">
+                          Map preview placeholder
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Add your Google Maps embed or link in <code>OFFICES.mapUrl</code>.
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-foreground">
-                    Subject *
-                  </label>
-                  <Input 
-                    id="subject" 
-                    placeholder="Partnership Inquiry" 
-                    className="bg-white/50 backdrop-blur-sm border-white/30 focus:border-royal-blue"
-                  />
+                {/* Actions */}
+                <div className="flex flex-wrap gap-3 pt-2">
+                  {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" && (
+                    <Button asChild className="btn-hero">
+                      <a href={activeOffice.mapUrl} target="_blank" rel="noreferrer">
+                        Open in Maps
+                      </a>
+                    </Button>
+                  )}
+                  <Button
+                    variant="outline"
+                    className="btn-ghost"
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  >
+                    Back to Top
+                  </Button>
                 </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-foreground">
-                    Message *
-                  </label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Tell us about your sustainability goals and how we can collaborate..."
-                    rows={6}
-                    className="bg-white/50 backdrop-blur-sm border-white/30 focus:border-royal-blue resize-none"
-                  />
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input 
-                    type="checkbox" 
-                    id="newsletter" 
-                    className="rounded border-white/30 text-royal-blue focus:ring-royal-blue"
-                  />
-                  <label htmlFor="newsletter" className="text-sm text-muted-foreground">
-                    Subscribe to our newsletter for sustainability insights
-                  </label>
-                </div>
-
-                <Button className="btn-hero w-full group">
-                  <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                  Contact Moltech
-                </Button>
-
-                <p className="text-xs text-muted-foreground text-center">
-                  By submitting this form, you agree to our privacy policy and terms of service.
-                </p>
               </CardContent>
             </Card>
-          </div>
-        </div>
 
-        {/* CTA Banner */}
-        <div className="mt-20 glass-card p-12 text-center bg-royal-gradient text-white">
-          <h3 className="heading-sm mb-4">Ready to Drive Sustainability?</h3>
-          <p className="body-md mb-8 max-w-2xl mx-auto opacity-90">
-            Partner with Moltech to accelerate your journey towards a circular economy and sustainable future.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="outline" className="btn-ghost">
-              Download Brochure
-            </Button>
-            <Button className="bg-white text-royal-blue hover:bg-white/90 px-8 py-4 rounded-full font-semibold">
-              Schedule Meeting
-            </Button>
+            {/* Optional CTA banner (kept, but simplified and neutral) */}
+            <Card className="p-8 bg-royal-gradient text-white border-none rounded-2xl">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-xl font-semibold">Need a different region?</h3>
+                  <p className="text-white/85">
+                    Tell us your location and we’ll route you to the nearest Moltech team.
+                  </p>
+                </div>
+                <Button className="bg-white text-royal-blue hover:bg-white/90 px-6 py-3 rounded-full font-semibold">
+                  Ask for Regional Contact
+                </Button>
+              </div>
+            </Card>
           </div>
         </div>
       </div>
