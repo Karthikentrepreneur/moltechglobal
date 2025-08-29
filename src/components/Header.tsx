@@ -26,6 +26,7 @@ const Header = () => {
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Careers", to: "/careers" },
+    { name: "Contact", to: "/contact" },
   ];
 
   const pillClasses = [
@@ -78,14 +79,6 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-
-            {/* ✅ Blog button (white pill style) */}
-            <Link
-              to="/blog"
-              className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-3 text-xs shadow-md hover:shadow-lg flex items-center"
-            >
-              Blog
-            </Link>
           </div>
 
           {/* Mobile Nav */}
@@ -111,15 +104,6 @@ const Header = () => {
                       {item.name}
                     </Link>
                   ))}
-
-                  {/* ✅ Blog button for mobile */}
-                  <Link
-                    to="/blog"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="mt-4 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full flex items-center justify-center"
-                  >
-                    Blog
-                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
