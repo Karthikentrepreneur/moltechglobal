@@ -26,7 +26,6 @@ const Header = () => {
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Careers", to: "/careers" },
-    { name: "Contact", to: "/contact" },
   ];
 
   const pillClasses = [
@@ -48,7 +47,7 @@ const Header = () => {
     <header className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-full">
       <div className={pillClasses}>
         <nav className="flex items-center justify-between w-full">
-          {/* Logo + Tagline */}
+          {/* Logo */}
           <button
             onClick={() => {
               if (isHome) scrollToSection("home", offset);
@@ -80,18 +79,10 @@ const Header = () => {
               </Link>
             ))}
 
-            {/* Contact = white pill */}
-            <Link
-              to="/contact"
-              className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-3 text-xs shadow-md hover:shadow-lg flex items-center"
-            >
-              Contact
-            </Link>
-
-            {/* Blog = translucent (no white) */}
+            {/* ✅ Blog button (white pill style) */}
             <Link
               to="/blog"
-              className="rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/15 h-8 px-3 text-xs shadow-md hover:shadow-lg flex items-center"
+              className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-3 text-xs shadow-md hover:shadow-lg flex items-center"
             >
               Blog
             </Link>
@@ -121,18 +112,11 @@ const Header = () => {
                     </Link>
                   ))}
 
-                  {/* Contact / Blog */}
-                  <Link
-                    to="/contact"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="mt-4 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full flex items-center justify-center"
-                  >
-                    Contact
-                  </Link>
+                  {/* ✅ Blog button for mobile */}
                   <Link
                     to="/blog"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="mt-2 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/15 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full flex items-center justify-center"
+                    className="mt-4 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full flex items-center justify-center"
                   >
                     Blog
                   </Link>
