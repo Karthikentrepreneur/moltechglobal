@@ -26,7 +26,7 @@ const Header = () => {
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Careers", to: "/careers" },
-    { name: "Contact", to: "/contact" },
+    { name: "Contact", to: "/contact" }, // ✅ will highlight this one
   ];
 
   const pillClasses = [
@@ -74,11 +74,21 @@ const Header = () => {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-6">
-            {navItems.map((item) => (
-              <Link key={item.to} to={item.to} className={linkClasses}>
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.name === "Contact" ? (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-4 text-xs font-medium shadow-md hover:shadow-lg flex items-center"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <Link key={item.to} to={item.to} className={linkClasses}>
+                  {item.name}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Mobile Nav */}
@@ -94,16 +104,27 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent className="bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 text-white border-white/10">
                 <div className="flex flex-col gap-4 mt-8">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-base text-blue-100 hover:text-white transition-all duration-300"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  {navItems.map((item) =>
+                    item.name === "Contact" ? (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="mt-2 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm font-medium shadow-md hover:shadow-lg w-full flex items-center justify-center"
+                      >
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-base text-blue-100 hover:text-white transition-all duration-300"
+                      >
+                        {item.name}
+                      </Link>
+                    )
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
