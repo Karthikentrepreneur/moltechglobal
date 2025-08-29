@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
@@ -10,21 +11,10 @@ function scrollToSection(id: string, offset = 80) {
   window.scrollTo({ top: y, behavior: "smooth" });
 }
 
-function scrollToFooter(offset = 80) {
-  const el =
-    (document.getElementById("footer") as HTMLElement | null) ||
-    (document.querySelector("footer") as HTMLElement | null);
-  if (el) {
-    const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  } else {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-  }
-}
-
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 8);
@@ -32,12 +22,13 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Map header tabs to routes
   const navItems = [
-    { name: "About", id: "about" },
-    { name: "Products", id: "products" },
-    { name: "Global Presence", id: "global" },
-    { name: "Careers", id: "careers" },
-    { name: "Contact", id: "contact" },
+    { name: "About", to: "/about" },
+    { name: "Products", to: "/products" },
+    { name: "Global Presence", to: "/global" },
+    { name: "Careers", to: "/careers" },
+    { name: "Contact", to: "/contact" }, // still in tabs if you want; you also have a CTA button
   ];
 
   const pillClasses = [
@@ -54,13 +45,21 @@ const Header = () => {
 
   const offset = isScrolled ? 72 : 88;
 
+  const isHome = location.pathname === "/" || location.pathname === "/home";
+
   return (
     <header className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-full">
       <div className={pillClasses}>
         <nav className="flex items-center justify-between w-full">
-          {/* ✅ Brand Logo + Text + Tagline */}
+          {/* Brand Logo + Tagline (scrolls to top on home, goes to / otherwise) */}
           <button
-            onClick={() => scrollToSection("home", offset)}
+            onClick={() => {
+              if (isHome) {
+                scrollToSection("home", offset);
+              } else {
+                window.location.href = "/";
+              }
+            }}
             aria-label="Go to top"
             className={[
               "flex flex-col items-start select-none transition-transform duration-300",
@@ -69,11 +68,10 @@ const Header = () => {
           >
             <div className="flex items-center gap-2">
               <img
-                src="/Moltechlogo.png" // your logo in public/Moltechlogo.png
+                src="/Moltechlogo.png"
                 alt="Moltech Logo"
                 className="h-8 w-auto object-contain"
               />
-            
             </div>
             <span className="text-[11px] font-medium tracking-widest uppercase text-gray-200 drop-shadow">
               Driving Sustainability
@@ -83,21 +81,31 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id, offset)}
-                className={linkClasses}
-              >
+              <Link key={item.to} to={item.to} className={linkClasses}>
                 {item.name}
-              </button>
+              </Link>
             ))}
-            <Button
-              size="sm"
-              className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-3 text-xs shadow-md hover:shadow-lg"
-              onClick={() => scrollToFooter(offset)}
-            >
-              Blog
-            </Button>
+
+            {/* Contact button (white pill like your current Blog) */}
+            <Link to="/contact">
+              <Button
+                size="sm"
+                className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-3 text-xs shadow-md hover:shadow-lg"
+              >
+                Contact
+              </Button>
+            </Link>
+
+            {/* Blog button (NO white bg) */}
+            <Link to="/blog">
+              <Button
+                size="sm"
+                variant="outline"
+                className="rounded-full border-white/20 bg-white/10 text-white hover:bg-white/15 h-8 px-3 text-xs shadow-md hover:shadow-lg"
+              >
+                Blog
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Navigation */}
@@ -116,26 +124,29 @@ const Header = () => {
               <SheetContent className="bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 text-white border-white/10">
                 <div className="flex flex-col gap-4 mt-8">
                   {navItems.map((item) => (
-                    <button
-                      key={item.id}
-                      onClick={() => {
-                        scrollToSection(item.id, offset);
-                        setIsMobileMenuOpen(false);
-                      }}
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className="text-base text-blue-100 hover:text-white transition-all duration-300"
                     >
                       {item.name}
-                    </button>
+                    </Link>
                   ))}
-                  <Button
-                    className="mt-4 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow-md hover:shadow-lg"
-                    onClick={() => {
-                      scrollToFooter(offset);
-                      setIsMobileMenuOpen(false);
-                    }}
-                  >
-                    Blog
-                  </Button>
+
+                  {/* Contact (white pill) */}
+                  <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button className="mt-4 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full">
+                      Contact
+                    </Button>
+                  </Link>
+
+                  {/* Blog (no white) */}
+                  <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button className="mt-2 rounded-full border-white/20 bg-white/10 text-white hover:bg-white/15 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full">
+                      Blog
+                    </Button>
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
