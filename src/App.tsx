@@ -1,28 +1,41 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Index from "@/pages/Index";
-import ProductsGrid from "@/pages/ProductsGrid";
-import BiodieselFeedstocks from "@/pages/BiodieselFeedstocks";
-import FattyAcids from "@/pages/FattyAcids";
-import SoapNoodles from "@/pages/SoapNoodles";
-import AnimalFeedFats from "@/pages/AnimalFeedFats";
-import Glycerin from "@/pages/Glycerin";
-import FeedAdditives from "@/pages/FeedAdditives";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import ScrollToTop from "./routes/ScrollToTop";
 
-const App = () => {
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Products from "./pages/Products";
+import Global from "./pages/Global";
+import Careers from "./pages/Careers";
+import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
+
+export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/products" element={<ProductsGrid />} />
-        <Route path="/products/biodiesel-feedstocks" element={<BiodieselFeedstocks />} />
-        <Route path="/products/fatty-acids" element={<FattyAcids />} />
-        <Route path="/products/soap-noodles" element={<SoapNoodles />} />
-        <Route path="/products/animal-feed-fats" element={<AnimalFeedFats />} />
-        <Route path="/products/glycerin" element={<Glycerin />} />
-        <Route path="/products/feed-additives" element={<FeedAdditives />} />
-      </Routes>
-    </Router>
+    <div
+      className="min-h-screen text-white"
+      style={{
+        // subtle accents + dark gradient
+        background:
+          "radial-gradient(1200px 600px at 30% -10%, rgba(99, 179, 237, 0.25), transparent 60%), radial-gradient(900px 500px at 90% 20%, rgba(99, 102, 241, 0.18), transparent 60%), linear-gradient(180deg, #0b0c10 0%, #141421 100%)",
+      }}
+    >
+      <Header />
+      <ScrollToTop />
+      {/* space for your fixed header pill */}
+      <main className="pt-24">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/global" element={<Global />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
+      {/* optional footer */}
+      {/* <footer id="footer" className="mt-20 py-10 text-white/60">…</footer> */}
+    </div>
   );
-};
-
-export default App;
+}
