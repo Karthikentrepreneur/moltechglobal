@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 function scrollToSection(id: string, offset = 80) {
@@ -22,13 +21,12 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Map header tabs to routes
   const navItems = [
     { name: "About", to: "/about" },
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Careers", to: "/careers" },
-    { name: "Contact", to: "/contact" }, // still in tabs if you want; you also have a CTA button
+    { name: "Contact", to: "/contact" },
   ];
 
   const pillClasses = [
@@ -44,21 +42,17 @@ const Header = () => {
     "text-sm text-blue-100 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] transition-all duration-300";
 
   const offset = isScrolled ? 72 : 88;
-
   const isHome = location.pathname === "/" || location.pathname === "/home";
 
   return (
     <header className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-full">
       <div className={pillClasses}>
         <nav className="flex items-center justify-between w-full">
-          {/* Brand Logo + Tagline (scrolls to top on home, goes to / otherwise) */}
+          {/* Logo + Tagline */}
           <button
             onClick={() => {
-              if (isHome) {
-                scrollToSection("home", offset);
-              } else {
-                window.location.href = "/";
-              }
+              if (isHome) scrollToSection("home", offset);
+              else window.location.href = "/";
             }}
             aria-label="Go to top"
             className={[
@@ -78,7 +72,7 @@ const Header = () => {
             </span>
           </button>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => (
               <Link key={item.to} to={item.to} className={linkClasses}>
@@ -86,40 +80,33 @@ const Header = () => {
               </Link>
             ))}
 
-            {/* Contact button (white pill like your current Blog) */}
-            <Link to="/contact">
-              <Button
-                size="sm"
-                className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-3 text-xs shadow-md hover:shadow-lg"
-              >
-                Contact
-              </Button>
+            {/* Contact = white pill */}
+            <Link
+              to="/contact"
+              className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-3 text-xs shadow-md hover:shadow-lg flex items-center"
+            >
+              Contact
             </Link>
 
-            {/* Blog button (NO white bg) */}
-            <Link to="/blog">
-              <Button
-                size="sm"
-                variant="outline"
-                className="rounded-full border-white/20 bg-white/10 text-white hover:bg-white/15 h-8 px-3 text-xs shadow-md hover:shadow-lg"
-              >
-                Blog
-              </Button>
+            {/* Blog = translucent (no white) */}
+            <Link
+              to="/blog"
+              className="rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/15 h-8 px-3 text-xs shadow-md hover:shadow-lg flex items-center"
+            >
+              Blog
             </Link>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Nav */}
           <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20 h-8 w-8"
+                <button
+                  className="rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 h-8 w-8 grid place-items-center"
                   aria-label="Open menu"
                 >
                   <Menu className="h-4 w-4" />
-                </Button>
+                </button>
               </SheetTrigger>
               <SheetContent className="bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 text-white border-white/10">
                 <div className="flex flex-col gap-4 mt-8">
@@ -134,18 +121,20 @@ const Header = () => {
                     </Link>
                   ))}
 
-                  {/* Contact (white pill) */}
-                  <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button className="mt-4 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full">
-                      Contact
-                    </Button>
+                  {/* Contact / Blog */}
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="mt-4 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full flex items-center justify-center"
+                  >
+                    Contact
                   </Link>
-
-                  {/* Blog (no white) */}
-                  <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button className="mt-2 rounded-full border-white/20 bg-white/10 text-white hover:bg-white/15 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full">
-                      Blog
-                    </Button>
+                  <Link
+                    to="/blog"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="mt-2 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/15 h-9 px-4 text-sm shadow-md hover:shadow-lg w-full flex items-center justify-center"
+                  >
+                    Blog
                   </Link>
                 </div>
               </SheetContent>
