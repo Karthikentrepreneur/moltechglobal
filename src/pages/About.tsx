@@ -162,8 +162,8 @@ const About: React.FC = () => {
             become one of the most reliable partners on a global scale.
           </p>
 
-          {/* Certification as LARGE headline with blue highlight */}
-          <h2 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
+          {/* Certification headline — smaller size, with blue highlight */}
+          <h2 className="mt-6 text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
             Moltech is certified by{" "}
             <span className="text-sky-700">
               International Sustainability &amp; Carbon Certification (ISCC)
