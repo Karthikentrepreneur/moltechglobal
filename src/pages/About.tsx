@@ -104,7 +104,7 @@ const About: React.FC = () => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/images/about-hero.jpg')",
+            backgroundImage: "url('/images/about-hero.jpg')", // swap to your local image if desired
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -162,8 +162,8 @@ const About: React.FC = () => {
             become one of the most reliable partners on a global scale.
           </p>
 
-          {/* 🔹 Certification as LARGE headline, no highlight color */}
-          <h2 className="mt-8 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
+          {/* Certification as LARGE headline, NO highlight */}
+          <h2 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
             Moltech is certified by International Sustainability &amp; Carbon Certification (ISCC), European Union.
           </h2>
         </div>
