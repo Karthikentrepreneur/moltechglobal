@@ -15,9 +15,10 @@ const About: React.FC = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
+          aria-hidden
         />
         {/* Readability fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" aria-hidden />
 
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
           <div className="relative inline-block max-w-3xl p-4 sm:p-6 md:p-8">
@@ -107,7 +108,8 @@ const About: React.FC = () => {
               <Box className="h-8 w-8 text-sky-500" />
             </div>
             <div>
-              <div className="text-4xl font-extrabold">10+</</div>
+              {/* FIX: closed the div correctly */}
+              <div className="text-4xl font-extrabold">10+</div>
               <div className="text-gray-600">Products</div>
             </div>
           </div>
