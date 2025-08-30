@@ -1,91 +1,99 @@
-// src/components/GrowWithMoltech.tsx
+// src/pages/About.tsx
 import React from "react";
-import { Users, Heart, Zap, Award } from "lucide-react";
 
-type Item = {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  title: string;
-  desc: string;
-};
-
-const items: Item[] = [
-  {
-    icon: Users,
-    title: "Inclusive Culture",
-    desc: "Diverse teams working together towards sustainability goals",
-  },
-  {
-    icon: Heart,
-    title: "Work-Life Balance",
-    desc: "Healthy workspace that supports your personal growth",
-  },
-  {
-    icon: Zap,
-    title: "Innovation",
-    desc: "Cutting-edge technology in renewable energy solutions",
-  },
-  {
-    icon: Award,
-    title: "Recognition",
-    desc: "Your contributions to a sustainable future are valued",
-  },
-];
-
-const GrowWithMoltech: React.FC = () => {
+const About: React.FC = () => {
   return (
-    <section className="relative overflow-hidden">
-      {/* Soft blue page background */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(1200px 500px at 10% -20%, rgba(59,130,246,0.08), transparent 60%), radial-gradient(900px 400px at 90% 0%, rgba(99,102,241,0.08), transparent 60%), linear-gradient(180deg,#ffffff 0%,#f4f8ff 100%)",
-        }}
-      />
+    <main className="pt-20 min-h-screen bg-gray-50">
+      <section className="mx-auto w-full max-w-7xl px-6 py-10">
+        {/* White content card so text is always visible */}
+        <div className="rounded-2xl bg-white p-8 shadow-xl ring-1 ring-gray-200">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+            About Us - Chemical Solutions for Sustainable Industries
+          </h1>
 
-      {/* Subtle glow blobs */}
-      <div className="pointer-events-none absolute -left-24 top-1/3 h-64 w-64 -z-10 rounded-full bg-blue-200/30 blur-3xl" />
-      <div className="pointer-events-none absolute right-0 top-10 h-56 w-56 -z-10 rounded-full bg-indigo-200/30 blur-3xl" />
+          {/* Overview */}
+          <div className="mt-6 space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              Moltech strides in the bio space working on clean initiatives and products
+              that drives the circular economy. With its strategic presence in Asia, Middle
+              East, United Kingdom and United States of America, Moltech is positioned to
+              cater and harness cross continental potential of renewable and sustainable
+              products on a global platform.
+            </p>
+            <p>
+              Headquartered in Singapore, Moltech operates its renewable business units
+              from Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger
+              group with it's presence in more than 15 countries, Moltech takes further
+              leverage of cross functional support from its allied offices which makes its
+              network more robust and potential to expand.
+            </p>
+            <p>
+              Moltech operates collection and processing of feedstock for renewable diesel
+              at its own locations catering to the biodiesel industry. Products like Used
+              cooking oil, Tyre derived oils, Acid oils and POME are few of them. The Feed
+              division works on vegetable oil based specially formulated feed fats both
+              liquid and dry forms. The industrial application sector is catered through
+              products like Fatty alcohols, Fatty acid esters and glycerol.
+            </p>
+            <p>
+              Equipped with a global team of highly trained employees and with effective
+              use of technology, Moltech operates with high standards of ethics, operational
+              excellence, quality control and transparency which paved the way for Moltech
+              to become one of the most reliable partners on a global scale.
+            </p>
+            <p className="font-medium text-gray-900">
+              Moltech is certified by International Sustainability &amp; Carbon
+              Certification, European Union.
+            </p>
+          </div>
 
-      <div className="mx-auto w-full max-w-7xl px-6 py-16 md:py-20 lg:px-8">
-        <header className="text-center">
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-blue-800">
-            Grow with Moltech
-          </h2>
-          <p className="mt-4 text-lg md:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto">
-            Join our team and discover opportunities to grow your talent in a healthy,
-            innovative workspace. We’re building the future of sustainable energy together.
-          </p>
-        </header>
-
-        {/* Cards */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {items.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="group rounded-3xl bg-white/90 backdrop-blur-sm p-6 shadow-[0_12px_40px_rgba(23,65,158,0.10)] ring-1 ring-blue-100 hover:shadow-[0_18px_60px_rgba(23,65,158,0.18)] transition-shadow"
-            >
-              <div className="flex items-start gap-4">
-                {/* Icon Tile */}
-                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/20">
-                  <Icon className="h-7 w-7" />
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold text-blue-800">{title}</h3>
-                  <p className="mt-1 text-slate-600">{desc}</p>
-                </div>
+          {/* Stats */}
+          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {[
+              { value: "5+", label: "Years of Experience" },
+              { value: "10+", label: "Products" },
+              { value: "100+", label: "Happy Employees" },
+              { value: "1000+", label: "Satisfied Clients" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center"
+              >
+                <div className="text-3xl font-extrabold text-gray-900">{s.value}</div>
+                <div className="mt-1 text-sm text-gray-600">{s.label}</div>
               </div>
+            ))}
+          </div>
 
-              {/* Hover underline accent */}
-              <span className="mt-5 block h-1 w-0 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 transition-all duration-300 group-hover:w-24" />
+          {/* Vision & Mission */}
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border border-gray-200 p-6">
+              <h2 className="text-xl font-semibold text-gray-900">Vision</h2>
+              <p className="mt-3 text-gray-700">
+                To engage in business and services in the bio-space which contribute to
+                reduction in carbon footprint and environmental care
+              </p>
             </div>
-          ))}
+
+            <div className="rounded-xl border border-gray-200 p-6">
+              <h2 className="text-xl font-semibold text-gray-900">Mission</h2>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-gray-700">
+                <li>
+                  To scale up the collection and processing of sustainable feedstock for
+                  production of clean energy across different continents.
+                </li>
+                <li>
+                  To operate businesses with high standards of ethics and good governance .
+                </li>
+                <li>To care about the community and the environment .</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 
-export default GrowWithMoltech;
-export { GrowWithMoltech };
+export default About;
+export { About };
