@@ -1,146 +1,91 @@
-// src/pages/About.tsx
+// src/components/GrowWithMoltech.tsx
 import React from "react";
-import { Award, Globe2, Recycle, CheckCircle, Leaf } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Users, Heart, Zap, Award } from "lucide-react";
 
-const About: React.FC = () => {
+type Item = {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  desc: string;
+};
+
+const items: Item[] = [
+  {
+    icon: Users,
+    title: "Inclusive Culture",
+    desc: "Diverse teams working together towards sustainability goals",
+  },
+  {
+    icon: Heart,
+    title: "Work-Life Balance",
+    desc: "Healthy workspace that supports your personal growth",
+  },
+  {
+    icon: Zap,
+    title: "Innovation",
+    desc: "Cutting-edge technology in renewable energy solutions",
+  },
+  {
+    icon: Award,
+    title: "Recognition",
+    desc: "Your contributions to a sustainable future are valued",
+  },
+];
+
+const GrowWithMoltech: React.FC = () => {
   return (
-    <main className="pt-20">
-      {/* Header */}
-      <section className="mx-auto w-full max-w-7xl px-6 py-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-white">
-          About Us — Chemical Solutions for Sustainable Industries
-        </h1>
-        <p className="mt-3 max-w-4xl text-white/80">
-          Moltech strides in the bio space working on clean initiatives and products that
-          drives the circular economy. With its strategic presence in Asia, Middle East,
-          United Kingdom and United States of America, Moltech is positioned to cater and
-          harness cross continental potential of renewable and sustainable products on a
-          global platform.
-        </p>
-      </section>
+    <section className="relative overflow-hidden">
+      {/* Soft blue page background */}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(1200px 500px at 10% -20%, rgba(59,130,246,0.08), transparent 60%), radial-gradient(900px 400px at 90% 0%, rgba(99,102,241,0.08), transparent 60%), linear-gradient(180deg,#ffffff 0%,#f4f8ff 100%)",
+        }}
+      />
 
-      {/* Company Overview */}
-      <section className="mx-auto w-full max-w-7xl px-6 py-6">
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div className="flex items-center gap-3 text-white">
-              <Globe2 className="h-5 w-5 text-emerald-300" />
-              <h2 className="text-xl font-semibold">Global Operations</h2>
-            </div>
-            <p className="mt-3 text-white/80">
-              Headquartered in Singapore, Moltech operates its renewable business units
-              from Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger
-              group with its presence in more than 15 countries, Moltech takes further
-              leverage of cross functional support from its allied offices which makes
-              its network more robust and potential to expand.
-            </p>
-          </div>
+      {/* Subtle glow blobs */}
+      <div className="pointer-events-none absolute -left-24 top-1/3 h-64 w-64 -z-10 rounded-full bg-blue-200/30 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 top-10 h-56 w-56 -z-10 rounded-full bg-indigo-200/30 blur-3xl" />
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div className="flex items-center gap-3 text-white">
-              <Recycle className="h-5 w-5 text-emerald-300" />
-              <h2 className="text-xl font-semibold">Renewable Feedstock & Products</h2>
-            </div>
-            <p className="mt-3 text-white/80">
-              Moltech operates collection and processing of feedstock for renewable diesel
-              at its own locations catering to the biodiesel industry. Products like Used
-              Cooking Oil (UCO), Tyre derived oils (TDO), Acid oils and POME are few of them.
-              The Feed division works on vegetable oil based specially formulated feed fats
-              both liquid and dry forms. The industrial application sector is catered through
-              products like Fatty alcohols, Fatty acid esters and glycerol.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
-          <div className="flex items-center gap-3 text-white">
-            <Leaf className="h-5 w-5 text-emerald-300" />
-            <h2 className="text-xl font-semibold">Standards & Culture</h2>
-          </div>
-          <p className="mt-3 text-white/80">
-            Equipped with a global team of highly trained employees and with effective use
-            of technology, Moltech operates with high standards of ethics, operational
-            excellence, quality control and transparency which paved the way for Moltech to
-            become one of the most reliable partners on a global scale.
+      <div className="mx-auto w-full max-w-7xl px-6 py-16 md:py-20 lg:px-8">
+        <header className="text-center">
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-blue-800">
+            Grow with Moltech
+          </h2>
+          <p className="mt-4 text-lg md:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto">
+            Join our team and discover opportunities to grow your talent in a healthy,
+            innovative workspace. We’re building the future of sustainable energy together.
           </p>
+        </header>
 
-          <div className="mt-4 flex items-start gap-3 rounded-xl border border-emerald-400/20 bg-emerald-400/10 p-4">
-            <Award className="mt-0.5 h-5 w-5 text-emerald-300" />
-            <p className="text-white/85">
-              <span className="font-semibold">Certification:</span> Moltech is certified by
-              International Sustainability &amp; Carbon Certification (ISCC), European Union.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="mx-auto w-full max-w-7xl px-6 py-8">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {[
-            { label: "Years of Experience", value: "5+" },
-            { label: "Products", value: "10+" },
-            { label: "Happy Employees", value: "100+" },
-            { label: "Satisfied Clients", value: "1000+" },
-          ].map((s) => (
+        {/* Cards */}
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {items.map(({ icon: Icon, title, desc }) => (
             <div
-              key={s.label}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center"
+              key={title}
+              className="group rounded-3xl bg-white/90 backdrop-blur-sm p-6 shadow-[0_12px_40px_rgba(23,65,158,0.10)] ring-1 ring-blue-100 hover:shadow-[0_18px_60px_rgba(23,65,158,0.18)] transition-shadow"
             >
-              <div className="text-3xl font-extrabold text-white">{s.value}</div>
-              <div className="mt-1 text-sm text-white/70">{s.label}</div>
+              <div className="flex items-start gap-4">
+                {/* Icon Tile */}
+                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/20">
+                  <Icon className="h-7 w-7" />
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-blue-800">{title}</h3>
+                  <p className="mt-1 text-slate-600">{desc}</p>
+                </div>
+              </div>
+
+              {/* Hover underline accent */}
+              <span className="mt-5 block h-1 w-0 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 transition-all duration-300 group-hover:w-24" />
             </div>
           ))}
         </div>
-      </section>
-
-      {/* Vision & Mission */}
-      <section className="mx-auto w-full max-w-7xl px-6 pb-16">
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-semibold text-white">Vision</h3>
-            <p className="mt-3 text-white/80">
-              To engage in business and services in the bio-space which contribute to
-              reduction in carbon footprint and environmental care
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-semibold text-white">Mission</h3>
-            <ul className="mt-3 space-y-3 text-white/80">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="mt-0.5 h-5 w-5 text-emerald-300" />
-                <span>
-                  To scale up the collection and processing of sustainable feedstock for
-                  production of clean energy across different continents.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="mt-0.5 h-5 w-5 text-emerald-300" />
-                <span>
-                  To operate businesses with high standards of ethics and good governance .
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="mt-0.5 h-5 w-5 text-emerald-300" />
-                <span>To care about the community and the environment .</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Optional CTA */}
-        <div className="mt-10 flex flex-wrap items-center gap-3">
-          <Button className="bg-emerald-500 hover:bg-emerald-400">Explore Products</Button>
-          <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
-            Contact Us
-          </Button>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };
 
-export default About;
-export { About };
+export default GrowWithMoltech;
+export { GrowWithMoltech };
