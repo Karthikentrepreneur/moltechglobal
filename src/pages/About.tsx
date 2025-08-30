@@ -1,213 +1,209 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Star, 
-  Shield, 
-  Truck, 
-  Award, 
-  Users, 
-  Clock, 
-  CheckCircle, 
-  Heart,
-  MessageCircle
-} from "lucide-react";
-import warehouseImg from "@/assets/warehouse.jpg";
+import { Users, Target, Award, CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const About = () => {
-  const stats = [
-    { icon: <Clock className="h-6 w-6" />, value: "5+", label: "Years of Excellence" },
-    { icon: <Users className="h-6 w-6" />, value: "10,000+", label: "Happy Customers" },
-    { icon: <Award className="h-6 w-6" />, value: "500+", label: "Product Varieties" },
-    { icon: <Star className="h-6 w-6" />, value: "4.9", label: "Customer Rating" }
-  ];
-
-  const features = [
+  const teamMembers = [
     {
-      icon: <Shield className="h-8 w-8 text-festive-gold" />,
-      title: "Premium Quality",
-      description: "All our crackers are sourced from certified manufacturers in Sivakasi and undergo strict quality testing."
+      name: 'Sarah Johnson',
+      role: 'CEO & Founder',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b6b6e2f7?auto=format&fit=crop&w=400&h=400',
+      bio: 'Visionary leader with 10+ years in digital strategy'
     },
     {
-      icon: <Truck className="h-8 w-8 text-festive-gold" />,
-      title: "Safe Delivery",
-      description: "Specialized packaging and trained delivery partners ensure your crackers reach you safely."
+      name: 'Mike Chen',
+      role: 'Lead Developer',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400',
+      bio: 'Full-stack expert specializing in modern web technologies'
     },
     {
-      icon: <Star className="h-8 w-8 text-festive-gold" />,
-      title: "Best Prices",
-      description: "Direct sourcing from manufacturers allows us to offer competitive prices without compromising quality."
+      name: 'Emily Rodriguez',
+      role: 'Marketing Director',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&h=400',
+      bio: 'Data-driven marketer with expertise in growth strategies'
     },
     {
-      icon: <Heart className="h-8 w-8 text-festive-gold" />,
-      title: "Customer First",
-      description: "Your satisfaction is our priority. We provide excellent customer service and support."
+      name: 'David Park',
+      role: 'Design Lead',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400',
+      bio: 'Creative designer focused on user experience and branding'
     }
   ];
 
-  const values = [
-    "Safety and quality in every product",
-    "Transparent pricing with no hidden costs",
-    "Timely delivery across India",
-    "Expert guidance for your celebrations",
-    "Eco-friendly cracker options",
-    "24/7 customer support"
+  const milestones = [
+    { year: '2019', event: 'Company Founded', description: 'Started with a vision to transform digital marketing' },
+    { year: '2020', event: 'First 50 Clients', description: 'Reached our first major milestone during challenging times' },
+    { year: '2021', event: 'Team Expansion', description: 'Grew our team to 15+ talented professionals' },
+    { year: '2022', event: 'Award Recognition', description: 'Won "Best Digital Agency" award from TechCrunch' },
+    { year: '2023', event: '100+ Projects', description: 'Successfully completed over 100 client projects' },
+    { year: '2024', event: 'Global Reach', description: 'Expanded operations to serve clients worldwide' }
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            About Sri Venkateshwara Crackers
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lighting up celebrations across India for 5 years with premium quality crackers 
-            from the heart of Sivakasi, Tamil Nadu.
+    <div className="pt-16">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-hero text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">About Us</h1>
+          <p className="text-xl md:text-2xl max-w-3xl mx-auto">
+            We're a passionate team of digital innovators, strategists, and creators 
+            dedicated to building exceptional digital experiences that drive real results.
           </p>
         </div>
+      </section>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {stats.map((stat, index) => (
-            <Card key={index} className="text-center shadow-festive hover-glow transition-all duration-300">
-              <CardContent className="p-6">
-                <div className="flex justify-center mb-3 text-festive-gold">
-                  {stat.icon}
-                </div>
-                <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Story Section */}
-          <div className="space-y-6">
+      {/* Mission & Vision */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="bg-festive-gold text-primary mb-4">Our Story</Badge>
-              <h2 className="text-3xl font-bold text-primary mb-6">
-                From Sivakasi to Your Celebrations
-              </h2>
-              <div className="prose prose-gray max-w-none">
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Sri Venkateshwara Crackers was born from a passion to bring joy and sparkle to every celebration. 
-                  Founded 5 years ago in Sivakasi, the fireworks capital of India, we started with a simple mission: 
-                  to provide high-quality, safe crackers at affordable prices.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  What began as a small family business has grown into a trusted name among customers across India. 
-                  Our deep roots in Sivakasi give us direct access to the best manufacturers, ensuring that every 
-                  product we sell meets the highest standards of quality and safety.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Today, we're proud to have served over 10,000 happy customers, lighting up Diwali celebrations, 
-                  weddings, corporate events, and countless special moments across the country.
-                </p>
+              <h2 className="text-4xl font-bold text-primary mb-6">Our Mission</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                To empower businesses with innovative digital strategies and cutting-edge web solutions 
+                that drive growth, enhance user experiences, and create lasting impact in the digital landscape.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-6 w-6 text-accent" />
+                  <span>Strategic digital transformation</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-6 w-6 text-accent" />
+                  <span>Data-driven marketing solutions</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-6 w-6 text-accent" />
+                  <span>Custom web development</span>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* Image */}
-          <div className="relative">
-            <img 
-              src={warehouseImg} 
-              alt="Our warehouse in Sivakasi"
-              className="w-full h-96 object-cover rounded-lg shadow-festive"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-lg" />
-            <div className="absolute bottom-4 left-4 right-4">
-              <Badge className="bg-festive-gold text-primary mb-2">Our Facility</Badge>
-              <p className="text-white font-semibold">
-                State-of-the-art warehouse in Sivakasi ensuring quality storage and distribution
-              </p>
+            <div className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&h=600" 
+                alt="Team collaboration"
+                className="rounded-2xl shadow-card"
+              />
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Features Grid */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Why Choose Us?</h2>
-            <p className="text-lg text-muted-foreground">
-              We're committed to making your celebrations memorable and safe
+      {/* Team Section */}
+      <section className="py-20 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Meet Our Team</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              The creative minds and strategic thinkers behind our success
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Card key={index} className="text-center shadow-festive hover-glow transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex justify-center mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-primary mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="glass-card p-6 text-center group hover:scale-105 transition-transform duration-300">
+                <div className="relative mb-6">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-24 h-24 rounded-full mx-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-accent rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                </div>
+                <h3 className="text-xl font-bold text-primary mb-2">{member.name}</h3>
+                <p className="text-accent font-medium mb-3">{member.role}</p>
+                <p className="text-muted-foreground text-sm">{member.bio}</p>
+              </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Values Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          <div>
-            <h2 className="text-3xl font-bold text-primary mb-6">Our Commitment</h2>
-            <div className="space-y-4">
-              {values.map((value, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-festive-gold flex-shrink-0" />
-                  <span className="text-muted-foreground">{value}</span>
+      {/* Timeline */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Our Journey</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Key milestones that shaped our growth and success
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-accent"></div>
+              
+              {milestones.map((milestone, index) => (
+                <div key={index} className={`relative flex items-center mb-12 ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}>
+                  {/* Timeline dot */}
+                  <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-white shadow-md z-10"></div>
+                  
+                  {/* Content */}
+                  <div className={`ml-16 md:ml-0 md:w-5/12 ${
+                    index % 2 === 0 ? '' : 'md:text-right'
+                  }`}>
+                    <div className="glass-card p-6">
+                      <div className="text-2xl font-bold text-accent mb-2">{milestone.year}</div>
+                      <h3 className="text-xl font-bold text-primary mb-2">{milestone.event}</h3>
+                      <p className="text-muted-foreground">{milestone.description}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="bg-gradient-festive p-8 rounded-lg">
-            <h3 className="text-2xl font-bold text-white mb-4">Our Mission</h3>
-            <p className="text-gray-200 leading-relaxed mb-6">
-              To be India's most trusted cracker retailer by providing premium quality products, 
-              exceptional customer service, and making every celebration brighter, safer, and more memorable. 
-              We believe in responsible celebrations that bring families together while respecting our environment.
+      {/* Values Section */}
+      <section className="py-20 bg-primary text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Values</h2>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              The principles that guide everything we do
             </p>
-            <Badge className="bg-white/20 text-white">
-              Celebrating Responsibly Since 2019
-            </Badge>
           </div>
-        </div>
 
-        {/* Call to Action */}
-        <div className="text-center p-8 bg-card rounded-lg shadow-festive">
-          <h3 className="text-2xl font-bold text-primary mb-4">
-            Ready to Light Up Your Celebration?
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who trust Sri Venkateshwara Crackers for their special moments. 
-            Experience the difference that quality and care can make.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => window.location.href = '/products'}
-              className="bg-primary hover:bg-primary/90 font-semibold"
-            >
-              Explore Our Products
-            </Button>
-            <Button 
-              onClick={() => window.open('https://wa.me/919876543210?text=Hi! I would like to know more about your crackers and services.', '_blank')}
-              variant="outline"
-              className="font-semibold"
-            >
-              <MessageCircle className="h-4 w-4 mr-2" />
-              Contact Us
-            </Button>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <Users className="h-16 w-16 text-accent mx-auto mb-6" />
+              <h3 className="text-2xl font-bold mb-4">Collaboration</h3>
+              <p className="text-white/80">
+                We believe in the power of teamwork and partnership with our clients to achieve extraordinary results.
+              </p>
+            </div>
+            <div className="text-center">
+              <Target className="h-16 w-16 text-accent mx-auto mb-6" />
+              <h3 className="text-2xl font-bold mb-4">Innovation</h3>
+              <p className="text-white/80">
+                We stay ahead of trends and technologies to deliver cutting-edge solutions that drive success.
+              </p>
+            </div>
+            <div className="text-center">
+              <Award className="h-16 w-16 text-accent mx-auto mb-6" />
+              <h3 className="text-2xl font-bold mb-4">Excellence</h3>
+              <p className="text-white/80">
+                We maintain the highest standards in everything we do, from strategy to execution and beyond.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-accent to-secondary text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Work Together?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Let's discuss how we can help transform your digital presence and drive your business forward.
+          </p>
+          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+            Start Your Project
+          </Button>
+        </div>
+      </section>
     </div>
   );
 };
