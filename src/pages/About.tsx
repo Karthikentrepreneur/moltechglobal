@@ -1,3 +1,4 @@
+// src/pages/About.tsx
 import React from "react";
 import { Users, Box, PartyPopper, Handshake } from "lucide-react";
 
@@ -10,7 +11,7 @@ const About: React.FC = () => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/images/about-hero.jpg')", // put a file here or leave as is
+            backgroundImage: "url('/images/about-hero.jpg')", // replace or keep
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -43,22 +44,22 @@ const About: React.FC = () => {
 
       {/* ---------- INTRO 2-COLUMN (YOUR EXACT CONTENT) ---------- */}
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 md:grid-cols-2 lg:px-8">
-        <div className="prose prose-lg max-w-none text-gray-700">
-          <p>
+        <div className="max-w-none">
+          <p className="text-base md:text-lg text-gray-700 leading-relaxed">
             Moltech strides in the bio space working on clean initiatives and products that
             drives the circular economy. With its strategic presence in Asia, Middle East,
             United Kingdom and United States of America, Moltech is positioned to cater and
             harness cross continental potential of renewable and sustainable products on a
             global platform.
           </p>
-          <p>
+          <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
             Headquartered in Singapore, Moltech operates its renewable business units from
             Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
             with it's presence in more than 15 countries, Moltech takes further leverage of
             cross functional support from its allied offices which makes its network more
             robust and potential to expand.
           </p>
-          <p>
+          <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
             Moltech operates collection and processing of feedstock for renewable diesel at
             its own locations catering to the biodiesel industry. Products like Used cooking
             oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
@@ -66,13 +67,13 @@ const About: React.FC = () => {
             forms. The industrial application sector is catered through products like Fatty
             alcohols, Fatty acid esters and glycerol.
           </p>
-          <p>
+          <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
             Equipped with a global team of highly trained employees and with effective use
             of technology, Moltech operates with high standards of ethics, operational
             excellence, quality control and transparency which paved the way for Moltech to
             become one of the most reliable partners on a global scale.
           </p>
-          <p className="font-medium text-gray-900">
+          <p className="mt-4 text-base md:text-lg text-gray-900 leading-relaxed font-medium">
             Moltech is certified by International Sustainability &amp; Carbon Certification,
             European Union.
           </p>
@@ -106,7 +107,7 @@ const About: React.FC = () => {
               <Box className="h-8 w-8 text-sky-500" />
             </div>
             <div>
-              <div className="text-4xl font-extrabold">10+</div>
+              <div className="text-4xl font-extrabold">10+</</div>
               <div className="text-gray-600">Products</div>
             </div>
           </div>
@@ -147,7 +148,7 @@ const About: React.FC = () => {
             <div className="relative p-8 sm:p-10 md:p-12 text-white">
               <h3 className="text-2xl tracking-[0.35em] font-semibold">VISION</h3>
               <div className="mt-6 h-px w-10 bg-white/70" />
-              <p className="mt-6 max-w-xl text-white/95 text-lg leading-relaxed">
+              <p className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-white/95">
                 To engage in business and services in the bio-space which contribute to
                 reduction in carbon footprint and environmental care
               </p>
@@ -165,7 +166,7 @@ const About: React.FC = () => {
             <div className="relative p-8 sm:p-10 md:p-12 text-white">
               <h3 className="text-2xl tracking-[0.35em] font-semibold">MISSION</h3>
               <div className="mt-6 h-px w-10 bg-white/70" />
-              <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 text-white/95 text-lg leading-relaxed">
+              <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 text-base md:text-lg leading-relaxed text-white/95">
                 <li>
                   To scale up the collection and processing of sustainable feedstock for
                   production of clean energy across different continents.
@@ -181,5 +182,5 @@ const About: React.FC = () => {
   );
 };
 
-export default About;  // ✅ default export fixes the build error
+export default About;
 export { About };
