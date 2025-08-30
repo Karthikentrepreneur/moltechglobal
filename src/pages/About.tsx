@@ -162,9 +162,13 @@ const About: React.FC = () => {
             become one of the most reliable partners on a global scale.
           </p>
 
-          {/* Certification as LARGE headline, NO highlight */}
+          {/* Certification as LARGE headline with blue highlight */}
           <h2 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-gray-900">
-            Moltech is certified by International Sustainability &amp; Carbon Certification (ISCC), European Union.
+            Moltech is certified by{" "}
+            <span className="text-sky-700">
+              International Sustainability &amp; Carbon Certification (ISCC)
+            </span>
+            , European Union.
           </h2>
         </div>
 
