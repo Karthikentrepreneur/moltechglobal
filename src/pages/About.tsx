@@ -1,4 +1,6 @@
-export default function About() {
+import React from "react"; // ✅ Import React (needed in some setups)
+
+const About: React.FC = () => {
   return (
     <section className="mx-auto w-full max-w-7xl px-6 py-14">
       <h1 className="text-3xl font-semibold text-white/90">About Us</h1>
@@ -8,4 +10,7 @@ export default function About() {
       </p>
     </section>
   );
-}
+};
+
+export default About;       // ✅ Default export
+export { About };           // ✅ Named export
