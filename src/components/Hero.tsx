@@ -29,17 +29,18 @@ const Hero = () => {
         />
       ))}
 
-      {/* ✅ No gradient overlays at all */}
+      {/* ✅ Subtle black gradient only for readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
         <div className="text-white space-y-8">
           <div className="space-y-6">
-            <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight drop-shadow-md">
+            <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight">
               Driving the Circular Economy
             </h1>
 
-            <p className="text-lg max-w-2xl drop-shadow-sm">
+            <p className="text-lg max-w-2xl">
               Sustainable products and clean initiatives across Asia, Middle East, UK, and USA.
             </p>
           </div>
@@ -55,19 +56,19 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Stats without gradient borders */}
+          {/* Stats */}
           <div className="grid grid-cols-3 gap-8 pt-8">
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">4+</div>
-              <div className="text-sm text-white">Continents</div>
+              <div className="text-sm text-gray-200">Continents</div>
             </div>
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">15+</div>
-              <div className="text-sm text-white">Years Experience</div>
+              <div className="text-sm text-gray-200">Years Experience</div>
             </div>
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">100%</div>
-              <div className="text-sm text-white">Sustainable</div>
+              <div className="text-sm text-gray-200">Sustainable</div>
             </div>
           </div>
         </div>
