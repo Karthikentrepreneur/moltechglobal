@@ -29,7 +29,7 @@ const Hero = () => {
         />
       ))}
 
-      {/* 🚀 Gradient overlays completely removed */}
+      {/* ✅ No gradient overlays at all */}
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
@@ -39,7 +39,7 @@ const Hero = () => {
               Driving the Circular Economy
             </h1>
 
-            <p className="text-lg text-blue-100 max-w-2xl drop-shadow-sm">
+            <p className="text-lg max-w-2xl drop-shadow-sm">
               Sustainable products and clean initiatives across Asia, Middle East, UK, and USA.
             </p>
           </div>
@@ -55,18 +55,19 @@ const Hero = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
+          {/* Stats without gradient borders */}
+          <div className="grid grid-cols-3 gap-8 pt-8">
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">4+</div>
-              <div className="text-sm text-blue-200">Continents</div>
+              <div className="text-sm text-white">Continents</div>
             </div>
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">15+</div>
-              <div className="text-sm text-blue-200">Years Experience</div>
+              <div className="text-sm text-white">Years Experience</div>
             </div>
             <div className="text-center">
               <div className="text-2xl lg:text-3xl font-bold text-white">100%</div>
-              <div className="text-sm text-blue-200">Sustainable</div>
+              <div className="text-sm text-white">Sustainable</div>
             </div>
           </div>
         </div>
