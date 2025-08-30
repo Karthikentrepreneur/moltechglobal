@@ -14,7 +14,6 @@ function usePrefersReducedMotion() {
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onChange = () => setPrefers(mql.matches);
     onChange();
-    // Support older browsers
     if ("addEventListener" in mql) mql.addEventListener("change", onChange);
     else (mql as any).addListener?.(onChange);
     return () => {
@@ -163,13 +162,9 @@ const About: React.FC = () => {
             become one of the most reliable partners on a global scale.
           </p>
 
-          {/* Certification headline */}
-          <h2 className="mt-8 text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
-            Moltech is certified by{" "}
-            <span className="text-sky-700">
-              International Sustainability &amp; Carbon Certification (ISCC)
-            </span>
-            , European Union.
+          {/* 🔹 Certification as LARGE headline, no highlight color */}
+          <h2 className="mt-8 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
+            Moltech is certified by International Sustainability &amp; Carbon Certification (ISCC), European Union.
           </h2>
         </div>
 
