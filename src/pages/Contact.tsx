@@ -10,10 +10,8 @@ import {
   Globe,
   Headset,
   ShieldCheck,
+  MessageCircle,
 } from "lucide-react";
-
-/* If you later want count-ups here, you can import your CountUp utilities
-   from About.tsx. For this contact page we keep it simple and snappy. */
 
 const Contact: React.FC = () => {
   const [form, setForm] = useState({
@@ -38,9 +36,11 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setSubmitting(true);
     setStatus(null);
+
     try {
-      // Replace this with your real submit (API, email service, Supabase, etc.)
-      await new Promise((r) => setTimeout(r, 800));
+      // TODO: Replace with your real submit (API route, Supabase, Formspree, etc.)
+      // Example: await fetch("/api/contact", { method: "POST", body: JSON.stringify(form) })
+      await new Promise((r) => setTimeout(r, 700));
       console.log("Contact form payload:", form);
       setStatus({ ok: true, msg: "Thanks! We’ll get back to you shortly." });
       setForm({
@@ -51,7 +51,7 @@ const Contact: React.FC = () => {
         subject: "",
         message: "",
       });
-    } catch (err) {
+    } catch {
       setStatus({ ok: false, msg: "Something went wrong. Please try again." });
     } finally {
       setSubmitting(false);
@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/images/contact-hero.jpg')", // swap to your local asset
+            backgroundImage: "url('/images/contact-hero.jpg')", // swap to your asset
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
             <span className="pointer-events-none absolute -bottom-4 -right-4 h-10 w-10 border-b-4 border-r-4 border-white" />
             <img
               src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop"
-              alt="Moltech contact"
+              alt="Contact Moltech"
               className="mb-4 h-16 w-auto rounded-md border border-white/50 shadow-lg"
               draggable={false}
             />
@@ -124,14 +124,14 @@ const Contact: React.FC = () => {
         <div className="overflow-hidden rounded-2xl bg-gray-100">
           <img
             src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?q=80&w=1600&auto=format&fit=crop"
-            alt="Contact collaboration"
+            alt="Team collaboration"
             className="h-full w-full object-cover"
             draggable={false}
           />
         </div>
       </section>
 
-      {/* ---------- CONTACT CHANNELS / STATS ROW ---------- */}
+      {/* ---------- CHANNELS ROW ---------- */}
       <section className="border-y border-gray-200 bg-white">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 md:grid-cols-4 lg:px-8">
           <div className="flex items-center gap-5">
@@ -140,7 +140,12 @@ const Contact: React.FC = () => {
             </div>
             <div>
               <div className="text-2xl font-extrabold">Email</div>
-              <div className="text-gray-600">hello@moltechglobal.com</div>
+              <a
+                href="mailto:hello@moltechglobal.com"
+                className="text-gray-600 hover:text-gray-900"
+              >
+                hello@moltechglobal.com
+              </a>
             </div>
           </div>
 
@@ -150,7 +155,9 @@ const Contact: React.FC = () => {
             </div>
             <div>
               <div className="text-2xl font-extrabold">Call</div>
-              <div className="text-gray-600">+65 6000 0000</div>
+              <a href="tel:+6560000000" className="text-gray-600 hover:text-gray-900">
+                +65 6000 0000
+              </a>
             </div>
           </div>
 
@@ -237,18 +244,21 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           {/* Form */}
           <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h3 className="text-xl font-semibold text-gray-900">Send us a message</h3>
+            <h3 id="contact-form" className="text-xl font-semibold text-gray-900">
+              Send us a message
+            </h3>
             <p className="mt-2 text-sm text-gray-600">
               Tell us about your requirements. We typically respond within one business day.
             </p>
 
-            <form className="mt-6 space-y-4" onSubmit={onSubmit}>
+            <form className="mt-6 space-y-4" onSubmit={onSubmit} aria-labelledby="contact-form">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700" htmlFor="name">
                     Name
                   </label>
                   <input
+                    id="name"
                     type="text"
                     name="name"
                     required
@@ -259,10 +269,11 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700" htmlFor="company">
                     Company
                   </label>
                   <input
+                    id="company"
                     type="text"
                     name="company"
                     value={form.company}
@@ -275,10 +286,11 @@ const Contact: React.FC = () => {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700" htmlFor="email">
                     Email
                   </label>
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     required
@@ -289,14 +301,16 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700" htmlFor="phone">
                     Phone
                   </label>
                   <input
+                    id="phone"
                     type="tel"
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
+                    pattern="^[0-9+()\-.\s]{6,}$"
                     className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 outline-none focus:ring-2 focus:ring-sky-400"
                     placeholder="+65 6000 0000"
                   />
@@ -304,10 +318,11 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700" htmlFor="subject">
                   Subject
                 </label>
                 <input
+                  id="subject"
                   type="text"
                   name="subject"
                   required
@@ -319,10 +334,11 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700" htmlFor="message">
                   Message
                 </label>
                 <textarea
+                  id="message"
                   name="message"
                   required
                   rows={5}
@@ -333,8 +349,22 @@ const Contact: React.FC = () => {
                 />
               </div>
 
+              {/* WhatsApp quick-contact */}
+              <a
+                href={`https://wa.me/6560000000?text=${encodeURIComponent(
+                  "Hi Moltech team, I’d like to discuss a requirement."
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-900 hover:bg-emerald-100"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Prefer WhatsApp? Chat with us
+              </a>
+
               {status && (
                 <div
+                  role="status"
                   className={`rounded-xl px-4 py-3 text-sm ${
                     status.ok
                       ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
@@ -390,7 +420,6 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-              {/* Replace the src with your preferred embedded map link */}
               <iframe
                 title="HQ Map"
                 src="https://maps.google.com/maps?q=keppel%20distripark%20singapore&t=&z=13&ie=UTF8&iwloc=&output=embed"
@@ -448,12 +477,11 @@ const Contact: React.FC = () => {
             Send us your brief and a regional specialist will reach out with next steps.
           </p>
           <a
-            href="#"
+            href="#contact-form"
             onClick={(e) => {
+              // ensure smooth scroll to the form anchor
               e.preventDefault();
-              // Smooth scroll to form
-              const el = document.querySelector("form");
-              el?.scrollIntoView({ behavior: "smooth" });
+              document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
             }}
             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 font-semibold text-gray-900 shadow-sm transition hover:bg-gray-100"
           >
