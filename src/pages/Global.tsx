@@ -1,14 +1,14 @@
 // src/pages/Global.tsx
-import heroMap from "../assets/hero-world-map.jpg"; // <- use your image (map/gradient)
-import imgOverview from "../assets/global/overview.jpg";
-import imgSingapore from "../assets/global/singapore.jpg";
-import imgMalaysia from "../assets/global/malaysia.jpg";
-import imgUK from "../assets/global/uk.jpg";
-import imgUAE from "../assets/global/uae.jpg";
-import imgThailand from "../assets/global/thailand.jpg";
-import imgIndonesia from "../assets/global/indonesia.jpg";
-import imgUSA from "../assets/global/usa.jpg";
-import imgSaudi from "../assets/global/saudi.jpg";
+import heroMap from "../Biodieselfeedstocks01.jpg"; // <- use your image (map/gradient)
+import imgOverview from "../Biodieselfeedstocks01.jpg";
+import imgSingapore from "../Biodieselfeedstocks01.jpg";
+import imgMalaysia from "../Biodieselfeedstocks01.jpg";
+import imgUK from "../Biodieselfeedstocks01.jpg";
+import imgUAE from "../Biodieselfeedstocks01.jpg";
+import imgThailand from "../Biodieselfeedstocks01.jpg";
+import imgIndonesia from "../Biodieselfeedstocks01.jpg";
+import imgUSA from "../Biodieselfeedstocks01.jpg";
+import imgSaudi from "../Biodieselfeedstocks01.jpg";
 
 type Tile = {
   title: string;
@@ -28,14 +28,14 @@ const tiles: Tile[] = [
     copy:
       "With a strong presence in the pacific region and our trusted partners throughout the planet, our services can be experienced around the planet.",
   },
-  { title: "SINGAPORE", img: imgSingapore, align: "center" },
-  { title: "MALAYSIA", img: imgMalaysia, align: "right" },
-  { title: "UK", img: imgUK, align: "left" },
-  { title: "UAE", img: imgUAE, align: "center" },
-  { title: "THAILAND", img: imgThailand, align: "right" },
-  { title: "INDONESIA", img: imgIndonesia, align: "left" },
-  { title: "USA", img: imgUSA, align: "center" },
-  { title: "SAUDI ARABIA", img: imgSaudi, align: "right" },
+  { title: "SINGAPORE", img: Biodieselfeedstocks01, align: "center" },
+  { title: "MALAYSIA", img: Biodieselfeedstocks01, align: "right" },
+  { title: "UK", img: Biodieselfeedstocks01, align: "left" },
+  { title: "UAE", img: Biodieselfeedstocks01, align: "center" },
+  { title: "THAILAND", img: Biodieselfeedstocks01, align: "right" },
+  { title: "INDONESIA", img: Biodieselfeedstocks01, align: "left" },
+  { title: "USA", img: Biodieselfeedstocks01, align: "center" },
+  { title: "SAUDI ARABIA", img: Biodieselfeedstocks01, align: "right" },
 ];
 
 export default function Global() {
