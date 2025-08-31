@@ -1,5 +1,4 @@
-
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
+import { Mail, Phone, Linkedin, Twitter, Facebook } from "lucide-react";
 
 const Footer = () => {
   // Middle column links (2-column list like the reference)
@@ -59,7 +58,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">About Moltech</h4>
             <p className="text-white/85 leading-relaxed">
-             We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
+              We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
               We are dedicated to upholding ethical business practices and creating a 
               positive impact on the communities where we operate.
             </p>
@@ -101,7 +100,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ===== FOLLOW + CONTACT + ADDRESS ===== */}
+        {/* ===== FOLLOW + CONTACT ===== */}
         <div className="space-y-6 pb-12">
           {/* Follow bar */}
           <div className="mx-auto flex max-w-lg items-center justify-center gap-3 rounded-xl bg-white/10 px-5 py-3 ring-1 ring-white/10">
@@ -119,7 +118,7 @@ const Footer = () => {
                 aria-label="YouTube"
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
               >
-                {/* Use Twitter icon as placeholder if YouTube icon isn’t available */}
+                {/* Using Twitter icon as placeholder if YouTube icon isn’t available */}
                 <Twitter className="h-4 w-4" />
               </a>
               <a
@@ -145,15 +144,8 @@ const Footer = () => {
             </a>
           </div>
 
-          {/* Address */}
-          <div className="text-center text-white/85">
-            <div className="flex items-center justify-center gap-2">
-              <MapPin className="h-4 w-4" />
-              
-            </div>
-          </div>
+          {/* Address row removed icon (and empty row removed) */}
         </div>
-
       </div>
     </footer>
   );
