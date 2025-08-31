@@ -1,122 +1,160 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 
 const Footer = () => {
-  const footerLinks = {
-    Products: [
-      "Biodiesel Feedstocks",
-      "Fatty Acids",
-      "Soap Noodles",
-      "Animal Feed Fats",
-      "Glycerin",
-      "Feed Additives"
-    ],
-    Company: [
-      "About Us",
-      "Our Team",
-      "Careers",
-      "News & Insights",
-      "Sustainability",
-      "Global Presence"
-    ],
-    Support: [
-      "Contact Us",
-      "Technical Support",
-      "Documentation",
-      "FAQ",
-      "Quality Assurance",
-      "Certifications"
-    ]
-  };
+  // Middle column links (2-column list like the reference)
+  const quickLinks = [
+    "Home",
+    "About Us",
+    "Our Services",
+    "Our Presence",
+    "Global Privilege",
+    "Contact Us",
+    "Careers",
+    "Blog",
+    "Privacy Policy",
+  ];
+
+  // Right column buttons (grid like the reference)
+  const downloads = [
+    { label: "Android App", href: "#" },
+    { label: "iPhone App", href: "#" },
+    { label: "Corporate Presentation", href: "#" },
+    { label: "Brochure", href: "#" },
+    { label: "ICDs Map", href: "#", span: 2 }, // full width on last row
+  ];
 
   return (
-    <footer className="bg-deep-navy text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <div className="lg:col-span-1 space-y-6">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-2">Moltech</h3>
-              <p className="text-blue-200 text-sm">
-                Driving the circular economy through sustainable bio-based products and clean initiatives.
-              </p>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-electric-blue" />
-                <span className="text-sm text-blue-200">info@moltech.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-electric-blue" />
-                <span className="text-sm text-blue-200">+65 6123 4567</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-electric-blue" />
-                <span className="text-sm text-blue-200">Singapore, Malaysia, Thailand, Indonesia</span>
-              </div>
-            </div>
+    <footer className="bg-[#153a59] text-white">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-            <div className="flex space-x-4">
-              <a href="#" className="w-8 h-8 bg-royal-blue/20 rounded-full flex items-center justify-center hover:bg-royal-blue/40 transition-colors">
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-8 h-8 bg-royal-blue/20 rounded-full flex items-center justify-center hover:bg-royal-blue/40 transition-colors">
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-8 h-8 bg-royal-blue/20 rounded-full flex items-center justify-center hover:bg-royal-blue/40 transition-colors">
-                <Facebook className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Links Sections */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category} className="space-y-4">
-              <h4 className="text-lg font-semibold text-white">{category}</h4>
-              <ul className="space-y-2">
-                {links.map((link, index) => (
-                  <li key={index}>
-                    <a 
-                      href="#" 
-                      className="text-sm text-blue-200 hover:text-white transition-colors"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        {/* ===== TOP: Newsletter / Schedule Download ===== */}
+        <div className="py-8 text-center">
+          <h3 className="text-xl md:text-2xl font-semibold">
+            Download this month&apos;s Sailing Schedule
+          </h3>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="mx-auto mt-4 flex max-w-xl items-stretch overflow-hidden rounded-xl bg-white/10 ring-1 ring-white/15 focus-within:ring-white/30"
+          >
+            <input
+              type="email"
+              required
+              placeholder="Your email"
+              className="w-full bg-transparent px-4 py-3 text-white placeholder:text-white/70 focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="whitespace-nowrap bg-[#F47E2A] px-5 py-3 font-semibold text-white hover:brightness-110"
+            >
+              Subscribe
+            </button>
+          </form>
         </div>
 
-        {/* Bottom Section */}
-        <div className="py-8 border-t border-royal-blue/20">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-sm text-blue-200">
-              <span>© 2024 Moltech. All rights reserved.</span>
-              <div className="flex space-x-6">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-2 text-sm text-blue-200">
-              <div className="w-2 h-2 bg-sustainability-green rounded-full animate-pulse" />
-              <span>ISCC Certified • EU Compliant</span>
-            </div>
-          </div>
-        </div>
+        {/* ===== MAIN: 3 Columns ===== */}
+        <div className="grid grid-cols-1 gap-8 border-t border-white/10 py-12 md:grid-cols-2 lg:grid-cols-3">
 
-        {/* Sustainability Banner */}
-        <div className="pb-8">
-          <div className="glass-card p-6 text-center bg-sustainability-gradient/10 border border-sustainability-green/20">
-            <p className="text-sm text-white font-medium">
-              🌱 Committed to a sustainable future • Carbon neutral operations • Circular economy champion
+          {/* Left: About */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold">About Moltech</h4>
+            <p className="text-white/85 leading-relaxed">
+              Moltech is committed to driving the circular economy through sustainable
+              bio-based products and clean initiatives. Our teams craft reliable,
+              scalable solutions while upholding the highest standards of customer satisfaction.
             </p>
           </div>
+
+          {/* Middle: Quick Links (2 columns) */}
+          <div className="mx-auto w-full max-w-md">
+            <h4 className="text-lg text-center font-semibold">Quick Links</h4>
+            <ul className="mt-4 grid grid-cols-2 gap-x-8 gap-y-2 text-center">
+              {quickLinks.map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="inline-block text-white/85 hover:text-white transition-colors underline-offset-4 hover:underline"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right: Useful Downloads (card buttons) */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-right lg:text-left">Useful Downloads</h4>
+            <div className="grid grid-cols-2 gap-3">
+              {downloads.map((d, i) => (
+                <a
+                  key={d.label + i}
+                  href={d.href}
+                  className={`rounded-lg border border-white/15 bg-white/10 px-4 py-5 text-center font-semibold text-white/95 hover:bg-white/15 transition ${
+                    d.span === 2 ? "col-span-2" : ""
+                  }`}
+                >
+                  {d.label}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
+
+        {/* ===== FOLLOW + CONTACT + ADDRESS ===== */}
+        <div className="space-y-6 pb-12">
+          {/* Follow bar */}
+          <div className="mx-auto flex max-w-lg items-center justify-center gap-3 rounded-xl bg-white/10 px-5 py-3 ring-1 ring-white/10">
+            <span className="font-semibold">Follow Us:</span>
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                href="#"
+                aria-label="YouTube"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
+              >
+                {/* Use Twitter icon as placeholder if YouTube icon isn’t available */}
+                <Twitter className="h-4 w-4" />
+              </a>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Phone + Email */}
+          <div className="flex flex-col items-center justify-center gap-3 text-white/90 md:flex-row">
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4" />
+              <span>Telephone: +65 6123 4567</span>
+            </div>
+            <div className="hidden h-4 w-px bg-white/20 md:block" />
+            <a href="mailto:info@moltech.com" className="flex items-center gap-2 hover:text-white">
+              <Mail className="h-4 w-4" />
+              <span>E-mail: info@moltech.com</span>
+            </a>
+          </div>
+
+          {/* Address */}
+          <div className="text-center text-white/85">
+            <div className="flex items-center justify-center gap-2">
+              <MapPin className="h-4 w-4" />
+              <span>
+                Address: Moltech Global • 3rd Floor, Imperium Building, Marol Maroshi Road, Andheri East, Mumbai, Maharashtra, India 400059
+              </span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </footer>
   );
