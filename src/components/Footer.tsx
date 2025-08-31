@@ -1,203 +1,164 @@
-// src/components/AddressCarousel.tsx
-import React, { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Phone, Mail, MapPin } from "lucide-react";
 
-type Office = {
-  country: string;
-  city?: string;
-  address: string;
-  phones?: string[];
-  emails?: string[];
-};
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 
-const OFFICES: Office[] = [
-  {
-    country: "AUSTRALIA",
-    address: "Suite 5, 7-9 Mallet Road, Tullamarine, Victoria, 3043",
-    phones: ["+61 388205157"],
-    emails: ["janak@moltechglobal.com"],
-  },
-  {
-    country: "INDONESIA",
-    city: "Jakarta",
-    address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
-    phones: ["+62 815 1038 5581"],
-    emails: ["sourcing@moltechglobal.com"],
-  },
-  {
-    country: "MALAYSIA",
-    city: "PORTLANG",
-    address:
-      "18 Jalan Sungai Chandong 12, Bdr Armada Putra Pulau Indah, 42000 Pelabuhan Klang, Selangor Darul Ehsan, Malaysia.",
-    phones: ["+60 16-985 4705"],
-    emails: ["arun@moltechglobal.com"],
-  },
-  {
-    country: "MALAYSIA",
-    city: "JOHOR",
-    address:
-      "HS(D) 576585 PTD 233430 No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang, Johor",
-    phones: ["+60 16-959 4075"],
-    emails: ["linda@moltechglobal.com"],
-  },
-  {
-    country: "SAUDI ARABIA",
-    city: "DAMMAN",
-    address:
-      "2817 King Faizal Road, Dammam 9403-32233, Kingdom of Saudi Arabia.",
-    phones: ["+966 13 3430003"],
-    emails: ["james@moltechglobal.com"],
-  },
-  {
-    country: "SINGAPORE",
-    address: "Blk 511 Kampong Bahru Road, #03-01 Keppel Distripark, Singapore 099447",
-    phones: ["+65 65140868"],
-    emails: ["jenny@moltechglobal.com"],
-  },
-  {
-    country: "THAILAND",
-    city: "BANGKOK",
-    address:
-      "109 CCT Building, 3rd Floor, Rm.3, Surawong Road, Suriyawongse, Bangrak, Bangkok 10500 109",
-    phones: ["+60 16-985 4705"],
-    emails: ["info@moltechglobal.com"],
-  },
-  {
-    country: "UAE",
-    city: "DUBAI",
-    address:
-      "Plot #2430152, Al Qusais Industrial Area 2, Dubai, United Arab Emirates.",
-    phones: ["+971 509093357"],
-    emails: ["info@moltechglobal.com"],
-  },
-  {
-    country: "UK",
-    city: "LONDON",
-    address:
-      "167-169 Great Portland Street, 5th Floor, London, W1W 5PF, United Kingdom.",
-    phones: ["+44(0) 7305 856612", "+44(0) 203 393 9508"],
-  },
-  {
-    country: "USA",
-    city: "NEW YORK",
-    address:
-      "New Jersey Branch, 33 Wood Avenue South, Suite 600, Iselin, NJ 08830",
-    phones: ["+1 732 456 6780"],
-    emails: ["info@moltechglobal.com"],
-  },
-];
+const Footer = () => {
+  // Middle column links (2-column list like the reference)
+  const quickLinks = [
+    "Home",
+    "About Us",
+    "Our Services",
+    "Our Presence",
+    "Global Privilege",
+    "Contact Us",
+    "Careers",
+    "Blog",
+    "Privacy Policy",
+  ];
 
-const AUTO_MS = 5000;
-
-function telHref(v: string) {
-  return `tel:${v.replace(/[^+\d]/g, "")}`;
-}
-
-const AddressCarousel: React.FC<{
-  className?: string;
-  auto?: boolean;
-  intervalMs?: number;
-}> = ({ className = "", auto = true, intervalMs = AUTO_MS }) => {
-  const [idx, setIdx] = useState(0);
-  const total = OFFICES.length;
-  const go = (n: number) => setIdx((p) => (p + n + total) % total);
-  const goto = (n: number) => setIdx(((n % total) + total) % total);
-
-  useEffect(() => {
-    if (!auto) return;
-    const t = setInterval(() => go(1), intervalMs);
-    return () => clearInterval(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auto, intervalMs, total]);
-
-  const office = OFFICES[idx];
+  // Right column buttons (grid like the reference)
+  const downloads = [
+    { label: "Android App", href: "#" },
+    { label: "iPhone App", href: "#" },
+    { label: "Corporate Presentation", href: "#" },
+    { label: "Brochure", href: "#" },
+    { label: "ICDs Map", href: "#", span: 2 }, // full width on last row
+  ];
 
   return (
-    <section
-      className={`relative mx-auto w-full max-w-3xl ${className}`}
-      aria-label="Company offices carousel"
-    >
-      {/* Card */}
-      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="p-6 sm:p-8">
-          <div className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-sky-700">
-            <MapPin className="h-4 w-4" />
-            <span>{office.country}</span>
-            {office.city ? <span className="text-gray-400">•</span> : null}
-            {office.city ? <span className="text-gray-700">{office.city}</span> : null}
+    <footer className="bg-[#153a59] text-white">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+
+        {/* ===== TOP: Newsletter / Schedule Download ===== */}
+        <div className="py-8 text-center">
+          <h3 className="text-xl md:text-2xl font-semibold">
+            Download this month&apos;s Sailing Schedule
+          </h3>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="mx-auto mt-4 flex max-w-xl items-stretch overflow-hidden rounded-xl bg-white/10 ring-1 ring-white/15 focus-within:ring-white/30"
+          >
+            <input
+              type="email"
+              required
+              placeholder="Your email"
+              className="w-full bg-transparent px-4 py-3 text-white placeholder:text-white/70 focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="whitespace-nowrap bg-[#F47E2A] px-5 py-3 font-semibold text-white hover:brightness-110"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+        {/* ===== MAIN: 3 Columns ===== */}
+        <div className="grid grid-cols-1 gap-8 border-t border-white/10 py-12 md:grid-cols-2 lg:grid-cols-3">
+
+          {/* Left: About */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold">About Moltech</h4>
+            <p className="text-white/85 leading-relaxed">
+             We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
+              We are dedicated to upholding ethical business practices and creating a 
+              positive impact on the communities where we operate.
+            </p>
           </div>
 
-          <h3 className="text-xl font-bold text-gray-900">Office #{idx + 1} of {total}</h3>
+          {/* Middle: Quick Links (2 columns) */}
+          <div className="mx-auto w-full max-w-md">
+            <h4 className="text-lg text-center font-semibold">Quick Links</h4>
+            <ul className="mt-4 grid grid-cols-2 gap-x-8 gap-y-2 text-center">
+              {quickLinks.map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="inline-block text-white/85 hover:text-white transition-colors underline-offset-4 hover:underline"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <p className="mt-3 text-gray-700 leading-relaxed">{office.address}</p>
-
-          {/* Phones */}
-          {office.phones && office.phones.length > 0 && (
-            <div className="mt-4 space-y-1">
-              {office.phones.map((ph) => (
+          {/* Right: Useful Downloads (card buttons) */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-right lg:text-left">Useful Downloads</h4>
+            <div className="grid grid-cols-2 gap-3">
+              {downloads.map((d, i) => (
                 <a
-                  key={ph}
-                  href={telHref(ph)}
-                  className="flex items-center gap-2 text-sm text-gray-800 hover:text-sky-700"
+                  key={d.label + i}
+                  href={d.href}
+                  className={`rounded-lg border border-white/15 bg-white/10 px-4 py-5 text-center font-semibold text-white/95 hover:bg-white/15 transition ${
+                    d.span === 2 ? "col-span-2" : ""
+                  }`}
                 >
-                  <Phone className="h-4 w-4 text-sky-600" />
-                  {ph}
+                  {d.label}
                 </a>
               ))}
             </div>
-          )}
+          </div>
+        </div>
 
-          {/* Emails */}
-          {office.emails && office.emails.length > 0 && (
-            <div className="mt-2 space-y-1">
-              {office.emails.map((em) => (
-                <a
-                  key={em}
-                  href={`mailto:${em}`}
-                  className="flex items-center gap-2 text-sm text-gray-800 hover:text-sky-700"
-                >
-                  <Mail className="h-4 w-4 text-sky-600" />
-                  {em}
-                </a>
-              ))}
+        {/* ===== FOLLOW + CONTACT + ADDRESS ===== */}
+        <div className="space-y-6 pb-12">
+          {/* Follow bar */}
+          <div className="mx-auto flex max-w-lg items-center justify-center gap-3 rounded-xl bg-white/10 px-5 py-3 ring-1 ring-white/10">
+            <span className="font-semibold">Follow Us:</span>
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                href="#"
+                aria-label="YouTube"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
+              >
+                {/* Use Twitter icon as placeholder if YouTube icon isn’t available */}
+                <Twitter className="h-4 w-4" />
+              </a>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
             </div>
-          )}
+          </div>
+
+          {/* Phone + Email */}
+          <div className="flex flex-col items-center justify-center gap-3 text-white/90 md:flex-row">
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4" />
+              <span>Telephone: +65 6123 4567</span>
+            </div>
+            <div className="hidden h-4 w-px bg-white/20 md:block" />
+            <a href="mailto:info@moltech.com" className="flex items-center gap-2 hover:text-white">
+              <Mail className="h-4 w-4" />
+              <span>E-mail: Info@moltechglobal.com</span>
+            </a>
+          </div>
+
+          {/* Address */}
+          <div className="text-center text-white/85">
+            <div className="flex items-center justify-center gap-2">
+              <MapPin className="h-4 w-4" />
+              <span>
+                Address: Moltech Global • 3rd Floor, Imperium Building, Marol Maroshi Road, Andheri East, Mumbai, Maharashtra, India 400059
+              </span>
+            </div>
+          </div>
         </div>
 
-        {/* Controls */}
-        <div className="flex items-center justify-between border-t border-gray-200 bg-gray-50 px-4 py-3">
-          <div className="flex items-center gap-2">
-            {Array.from({ length: total }).map((_, i) => (
-              <button
-                key={i}
-                aria-label={`Go to office ${i + 1}`}
-                onClick={() => goto(i)}
-                className={`h-2 w-2 rounded-full transition ${
-                  i === idx ? "bg-sky-600" : "bg-gray-300 hover:bg-gray-400"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              aria-label="Previous office"
-              onClick={() => go(-1)}
-              className="grid h-9 w-9 place-items-center rounded-full border border-gray-300 bg-white hover:bg-gray-100"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              aria-label="Next office"
-              onClick={() => go(1)}
-              className="grid h-9 w-9 place-items-center rounded-full border border-gray-300 bg-white hover:bg-gray-100"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
       </div>
-    </section>
+    </footer>
   );
 };
 
-export default AddressCarousel;
+export default Footer;
