@@ -1,7 +1,7 @@
 // src/pages/GlobalPresence.tsx
 import worldMapBg from "../assets/world-map-bg.jpg";
 
-export default function GlobalPresence() {
+export default function Global() {
   const locations = [
     { city: "Singapore (HQ)", region: "Southeast Asia", note: "Keppel Distripark" },
     { city: "Malaysia", region: "Southeast Asia", note: "Klang / Port operations" },
