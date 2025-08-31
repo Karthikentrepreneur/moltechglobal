@@ -1,7 +1,4 @@
 // src/components/Footer.tsx
-// v2 — MapPin removed from imports and JSX. Address row removed.
-
-import { Mail, Phone, Linkedin, Twitter, Facebook } from "lucide-react";
 
 const Footer = () => {
   // Middle column links (2-column list like the reference)
@@ -17,19 +14,9 @@ const Footer = () => {
     "Privacy Policy",
   ];
 
-  // Right column buttons (grid like the reference)
-  const downloads = [
-    { label: "Android App", href: "#" },
-    { label: "iPhone App", href: "#" },
-    { label: "Corporate Presentation", href: "#" },
-    { label: "Brochure", href: "#" },
-    { label: "ICDs Map", href: "#", span: 2 }, // full width on last row
-  ];
-
   return (
     <footer className="bg-[#153a59] text-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
         {/* ===== TOP: Newsletter / Schedule Download ===== */}
         <div className="py-8 text-center">
           <h3 className="text-xl md:text-2xl font-semibold">
@@ -56,13 +43,12 @@ const Footer = () => {
 
         {/* ===== MAIN: 3 Columns ===== */}
         <div className="grid grid-cols-1 gap-8 border-t border-white/10 py-12 md:grid-cols-2 lg:grid-cols-3">
-
           {/* Left: About */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">About Moltech</h4>
             <p className="text-white/85 leading-relaxed">
               We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
-              We are dedicated to upholding ethical business practices and creating a 
+              We are dedicated to upholding ethical business practices and creating a
               positive impact on the communities where we operate.
             </p>
           </div>
@@ -84,72 +70,89 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Right: Useful Downloads (card buttons) */}
+          {/* Right: Global Offices */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-right lg:text-left">Useful Downloads</h4>
-            <div className="grid grid-cols-2 gap-3">
-              {downloads.map((d, i) => (
-                <a
-                  key={d.label + i}
-                  href={d.href}
-                  className={`rounded-lg border border-white/15 bg-white/10 px-4 py-5 text-center font-semibold text-white/95 hover:bg-white/15 transition ${
-                    d.span === 2 ? "col-span-2" : ""
-                  }`}
-                >
-                  {d.label}
-                </a>
-              ))}
+            <h4 className="text-lg font-semibold text-right lg:text-left">Our Global Presence</h4>
+            <div className="max-h-80 overflow-y-auto space-y-4 text-sm">
+              
+              {/* Australia */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">AUSTRALIA</h5>
+                <p className="text-white/85">Suite 5, 7-9 Mallet Road,<br />Tullamarine, Victoria, 3043</p>
+                <p className="text-white/85">+61 388205157</p>
+                <p className="text-white/85">janak@moltechglobal.com</p>
+              </div>
+
+              {/* Indonesia */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">INDONESIA</h5>
+                <p className="text-white/85">408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta</p>
+                <p className="text-white/85">+62 815 1038 5581</p>
+                <p className="text-white/85">sourcing@moltechglobal.com</p>
+              </div>
+
+              {/* Malaysia - Portlang */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">MALAYSIA - PORTLANG</h5>
+                <p className="text-white/85">18 Jalan Sungai Chandong 12, Bdr Armada Putra<br />Pulau Indah, 42000 Pelabuhan Klang,<br />Selangor Darul Ehsan, Malaysia</p>
+                <p className="text-white/85">+60 16-985 4705</p>
+                <p className="text-white/85">arun@moltechglobal.com</p>
+              </div>
+
+              {/* Malaysia - Johor */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">MALAYSIA - JOHOR</h5>
+                <p className="text-white/85">HS(D) 576585 PTD 233430 No.19A, Jalan Sagai 6,<br />Taman Pasir Putih, 81700 Pasir Gudang, Johor</p>
+                <p className="text-white/85">+60 16-959 4075</p>
+                <p className="text-white/85">linda@moltechglobal.com</p>
+              </div>
+
+              {/* Saudi Arabia */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">SAUDI ARABIA - DAMMAM</h5>
+                <p className="text-white/85">2817 King Faizal Road, Dammam 9403-32233,<br />Kingdom of Saudi Arabia</p>
+                <p className="text-white/85">+966 13 3430003</p>
+                <p className="text-white/85">james@moltechglobal.com</p>
+              </div>
+
+              {/* Singapore */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">SINGAPORE</h5>
+                <p className="text-white/85">Blk 511 Kampong Bahru Road<br />#03-01 Keppel Distripark<br />Singapore 099447</p>
+                <p className="text-white/85">+65 65140868</p>
+                <p className="text-white/85">jenny@moltechglobal.com</p>
+              </div>
+
+              {/* Thailand */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">THAILAND - BANGKOK</h5>
+                <p className="text-white/85">109 CCT Building, 3rd Floor, Rm.3,<br />Surawong Road, Suriyawongse, Bangrak,<br />Bangkok 10500</p>
+                <p className="text-white/85">+60 16-985 4705</p>
+                <p className="text-white/85">info@moltechglobal.com</p>
+              </div>
+
+              {/* UAE */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">UAE - DUBAI</h5>
+                <p className="text-white/85">Plot #2430152, Al Qusais Industrial Area 2,<br />Dubai, United Arab Emirates</p>
+                <p className="text-white/85">+971 509093357</p>
+                <p className="text-white/85">info@moltechglobal.com</p>
+              </div>
+
+              {/* UK */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">UK - LONDON</h5>
+                <p className="text-white/85">167-169 Great Portland Street, 5th Floor,<br />London, W1W 5PF, United Kingdom</p>
+                <p className="text-white/85">+44(0) 7305 856612<br />+44(0) 203 393 9508</p>
+              </div>
+
+              {/* USA */}
+              <div className="border-l-2 border-[#F47E2A] pl-3">
+                <h5 className="font-semibold text-white">USA - NEW YORK</h5>
+                <p className="text-white/85">New Jersey Branch, 33 Wood Avenue South,<br />Suite 600, Iselin, NJ 08830</p>
+                <p className="text-white/85">+1 732 456 6780</p>
+                <p className="text-white/85">info@moltechglobal.com</p>
+              </div>
+
             </div>
           </div>
-        </div>
-
-        {/* ===== FOLLOW + CONTACT (no address block) ===== */}
-        <div className="space-y-6 pb-12">
-          {/* Follow bar */}
-          <div className="mx-auto flex max-w-lg items-center justify-center gap-3 rounded-xl bg-white/10 px-5 py-3 ring-1 ring-white/10">
-            <span className="font-semibold">Follow Us:</span>
-            <div className="flex items-center gap-3">
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                aria-label="YouTube"
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
-              >
-                {/* Using Twitter icon as placeholder if YouTube icon isn’t available */}
-                <Twitter className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-white/20 transition"
-              >
-                <Facebook className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Phone + Email */}
-          <div className="flex flex-col items-center justify-center gap-3 text-white/90 md:flex-row">
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <span>Telephone: +65 6123 4567</span>
-            </div>
-            <div className="hidden h-4 w-px bg-white/20 md:block" />
-            <a href="mailto:info@moltech.com" className="flex items-center gap-2 hover:text-white">
-              <Mail className="h-4 w-4" />
-              <span>E-mail: Info@moltechglobal.com</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
