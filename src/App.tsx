@@ -9,6 +9,7 @@ import SoapNoodles from "@/pages/SoapNoodles";
 import AnimalFeedFats from "@/pages/AnimalFeedFats";
 import Glycerin from "@/pages/Glycerin";
 import FeedAdditives from "@/pages/FeedAdditives";
+import Contact from "@/pages/contact";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/products/animal-feed-fats" element={<AnimalFeedFats />} />
         <Route path="/products/glycerin" element={<Glycerin />} />
         <Route path="/products/feed-additives" element={<FeedAdditives />} />
+<Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
