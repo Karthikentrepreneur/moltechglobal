@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "@/pages/Index";
 import About from "@/pages/About";
-import Global from "@/pages/Global";
+
 import ProductsGrid from "@/pages/ProductsGrid";
 import BiodieselFeedstocks from "@/pages/BiodieselFeedstocks";
 import FattyAcids from "@/pages/FattyAcids";
@@ -16,7 +16,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
-        <Route path="/global" element={<Global />} />
         <Route path="/products" element={<ProductsGrid />} />
         <Route path="/products/biodiesel-feedstocks" element={<BiodieselFeedstocks />} />
         <Route path="/products/fatty-acids" element={<FattyAcids />} />
