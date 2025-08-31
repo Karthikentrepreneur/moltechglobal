@@ -58,9 +58,9 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">About Moltech</h4>
             <p className="text-white/85 leading-relaxed">
-              Moltech is committed to driving the circular economy through sustainable
-              bio-based products and clean initiatives. Our teams craft reliable,
-              scalable solutions while upholding the highest standards of customer satisfaction.
+             We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
+              We are dedicated to upholding ethical business practices and creating a 
+              positive impact on the communities where we operate.
             </p>
           </div>
 
@@ -140,7 +140,7 @@ const Footer = () => {
             <div className="hidden h-4 w-px bg-white/20 md:block" />
             <a href="mailto:info@moltech.com" className="flex items-center gap-2 hover:text-white">
               <Mail className="h-4 w-4" />
-              <span>E-mail: info@moltech.com</span>
+              <span>E-mail: Info@moltechglobal.com</span>
             </a>
           </div>
 
