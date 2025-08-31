@@ -1,7 +1,132 @@
 // src/components/Footer.tsx
 
+type Office = {
+  title: string;
+  addrLines: string[];
+  phones?: string[];
+  email?: string;
+};
+
+const row1: Office[] = [
+  {
+    title: "AUSTRALIA",
+    addrLines: ["Suite 5, 7-9 Mallet Road,", "Tullamarine, Victoria, 3043"],
+    phones: ["+61 388205157"],
+    email: "janak@moltechglobal.com",
+  },
+  {
+    title: "INDONESIA",
+    addrLines: ["408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta"],
+    phones: ["+62 815 1038 5581"],
+    email: "sourcing@moltechglobal.com",
+  },
+  {
+    title: "MALAYSIA - PORTLANG",
+    addrLines: [
+      "18 Jalan Sungai Chandong 12, Bdr Armada Putra",
+      "Pulau Indah, 42000 Pelabuhan Klang,",
+      "Selangor Darul Ehsan, Malaysia",
+    ],
+    phones: ["+60 16-985 4705"],
+    email: "arun@moltechglobal.com",
+  },
+  {
+    title: "MALAYSIA - JOHOR",
+    addrLines: [
+      "HS(D) 576585 PTD 233430 No.19A, Jalan Sagai 6,",
+      "Taman Pasir Putih, 81700 Pasir Gudang, Johor",
+    ],
+    phones: ["+60 16-959 4075"],
+    email: "linda@moltechglobal.com",
+  },
+  {
+    title: "SAUDI ARABIA - DAMMAM",
+    addrLines: [
+      "2817 King Faizal Road, Dammam 9403-32233,",
+      "Kingdom of Saudi Arabia",
+    ],
+    phones: ["+966 13 3430003"],
+    email: "james@moltechglobal.com",
+  },
+];
+
+const row2: Office[] = [
+  {
+    title: "SINGAPORE",
+    addrLines: [
+      "Blk 511 Kampong Bahru Road",
+      "#03-01 Keppel Distripark",
+      "Singapore 099447",
+    ],
+    phones: ["+65 65140868"],
+    email: "jenny@moltechglobal.com",
+  },
+  {
+    title: "THAILAND - BANGKOK",
+    addrLines: [
+      "109 CCT Building, 3rd Floor, Rm.3,",
+      "Surawong Road, Suriyawongse, Bangrak,",
+      "Bangkok 10500",
+    ],
+    phones: ["+60 16-985 4705"],
+    email: "info@moltechglobal.com",
+  },
+  {
+    title: "UAE - DUBAI",
+    addrLines: [
+      "Plot #2430152, Al Qusais Industrial Area 2,",
+      "Dubai, United Arab Emirates",
+    ],
+    phones: ["+971 509093357"],
+    email: "info@moltechglobal.com",
+  },
+  {
+    title: "UK - LONDON",
+    addrLines: [
+      "167-169 Great Portland Street, 5th Floor,",
+      "London, W1W 5PF, United Kingdom",
+    ],
+    phones: ["+44(0) 7305 856612", "+44(0) 203 393 9508"],
+  },
+  {
+    title: "USA - NEW YORK",
+    addrLines: [
+      "New Jersey Branch, 33 Wood Avenue South,",
+      "Suite 600, Iselin, NJ 08830",
+    ],
+    phones: ["+1 732 456 6780"],
+    email: "info@moltechglobal.com",
+  },
+];
+
+function OfficeCard({ o }: { o: Office }) {
+  return (
+    <div className="h-full rounded-r-lg border-l-2 border-[#F47E2A] bg-white/5 p-4">
+      <h5 className="mb-2 font-semibold text-white">{o.title}</h5>
+      <p className="mb-1 text-sm text-white/85">
+        {o.addrLines.map((line, i) => (
+          <span key={i}>
+            {line}
+            {i < o.addrLines.length - 1 && <><br /></>}
+          </span>
+        ))}
+      </p>
+      {o.phones && o.phones.length > 0 && (
+        <p className="mb-1 text-sm text-white/85">
+          {o.phones.map((p, i) => (
+            <span key={p}>
+              {p}
+              {i < o.phones!.length - 1 && <><br /></>}
+            </span>
+          ))}
+        </p>
+      )}
+      {o.email && <p className="text-sm text-white/85">{o.email}</p>}
+    </div>
+  );
+}
+
 const Footer = () => {
-  // Middle column links (2-column list like the reference)
   const quickLinks = [
     "Home",
     "About Us",
@@ -41,27 +166,25 @@ const Footer = () => {
           </form>
         </div>
 
-        {/* ===== MAIN: 2 Columns ===== */}
+        {/* ===== MAIN: 2 Columns (About + Quick Links) ===== */}
         <div className="grid grid-cols-1 gap-8 border-t border-white/10 py-12 md:grid-cols-2">
-          {/* Left: About */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">About Moltech</h4>
-            <p className="text-white/85 leading-relaxed">
+            <p className="leading-relaxed text-white/85">
               We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
               We are dedicated to upholding ethical business practices and creating a
               positive impact on the communities where we operate.
             </p>
           </div>
 
-          {/* Right: Quick Links (2 columns) */}
           <div className="mx-auto w-full max-w-md">
-            <h4 className="text-lg text-center font-semibold">Quick Links</h4>
+            <h4 className="text-center text-lg font-semibold">Quick Links</h4>
             <ul className="mt-4 grid grid-cols-2 gap-x-8 gap-y-2 text-center">
               {quickLinks.map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="inline-block text-white/85 hover:text-white transition-colors underline-offset-4 hover:underline"
+                    className="inline-block text-white/85 underline-offset-4 transition-colors hover:text-white hover:underline"
                   >
                     {item}
                   </a>
@@ -71,91 +194,24 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ===== GLOBAL OFFICES SECTION ===== */}
+        {/* ===== GLOBAL OFFICES (Two rows, 5 columns at xl) ===== */}
         <div className="border-t border-white/10 py-8">
-          <div className="text-center mb-8">
+          <div className="mb-8 text-center">
             <h4 className="text-xl md:text-2xl font-semibold">Our Global Presence</h4>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {/* Australia */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">AUSTRALIA</h5>
-              <p className="text-white/85 text-sm mb-1">Suite 5, 7-9 Mallet Road,<br />Tullamarine, Victoria, 3043</p>
-              <p className="text-white/85 text-sm mb-1">+61 388205157</p>
-              <p className="text-white/85 text-sm">janak@moltechglobal.com</p>
-            </div>
 
-            {/* Indonesia */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">INDONESIA</h5>
-              <p className="text-white/85 text-sm mb-1">408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta</p>
-              <p className="text-white/85 text-sm mb-1">+62 815 1038 5581</p>
-              <p className="text-white/85 text-sm">sourcing@moltechglobal.com</p>
-            </div>
+          {/* Row 1 */}
+          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {row1.map((o) => (
+              <OfficeCard key={o.title} o={o} />
+            ))}
+          </div>
 
-            {/* Malaysia - Portlang */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">MALAYSIA - PORTLANG</h5>
-              <p className="text-white/85 text-sm mb-1">18 Jalan Sungai Chandong 12, Bdr Armada Putra<br />Pulau Indah, 42000 Pelabuhan Klang,<br />Selangor Darul Ehsan, Malaysia</p>
-              <p className="text-white/85 text-sm mb-1">+60 16-985 4705</p>
-              <p className="text-white/85 text-sm">arun@moltechglobal.com</p>
-            </div>
-
-            {/* Malaysia - Johor */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">MALAYSIA - JOHOR</h5>
-              <p className="text-white/85 text-sm mb-1">HS(D) 576585 PTD 233430 No.19A, Jalan Sagai 6,<br />Taman Pasir Putih, 81700 Pasir Gudang, Johor</p>
-              <p className="text-white/85 text-sm mb-1">+60 16-959 4075</p>
-              <p className="text-white/85 text-sm">linda@moltechglobal.com</p>
-            </div>
-
-            {/* Saudi Arabia */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">SAUDI ARABIA - DAMMAM</h5>
-              <p className="text-white/85 text-sm mb-1">2817 King Faizal Road, Dammam 9403-32233,<br />Kingdom of Saudi Arabia</p>
-              <p className="text-white/85 text-sm mb-1">+966 13 3430003</p>
-              <p className="text-white/85 text-sm">james@moltechglobal.com</p>
-            </div>
-
-            {/* Singapore */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">SINGAPORE</h5>
-              <p className="text-white/85 text-sm mb-1">Blk 511 Kampong Bahru Road<br />#03-01 Keppel Distripark<br />Singapore 099447</p>
-              <p className="text-white/85 text-sm mb-1">+65 65140868</p>
-              <p className="text-white/85 text-sm">jenny@moltechglobal.com</p>
-            </div>
-
-            {/* Thailand */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">THAILAND - BANGKOK</h5>
-              <p className="text-white/85 text-sm mb-1">109 CCT Building, 3rd Floor, Rm.3,<br />Surawong Road, Suriyawongse, Bangrak,<br />Bangkok 10500</p>
-              <p className="text-white/85 text-sm mb-1">+60 16-985 4705</p>
-              <p className="text-white/85 text-sm">info@moltechglobal.com</p>
-            </div>
-
-            {/* UAE */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">UAE - DUBAI</h5>
-              <p className="text-white/85 text-sm mb-1">Plot #2430152, Al Qusais Industrial Area 2,<br />Dubai, United Arab Emirates</p>
-              <p className="text-white/85 text-sm mb-1">+971 509093357</p>
-              <p className="text-white/85 text-sm">info@moltechglobal.com</p>
-            </div>
-
-            {/* UK */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">UK - LONDON</h5>
-              <p className="text-white/85 text-sm mb-1">167-169 Great Portland Street, 5th Floor,<br />London, W1W 5PF, United Kingdom</p>
-              <p className="text-white/85 text-sm mb-1">+44(0) 7305 856612<br />+44(0) 203 393 9508</p>
-            </div>
-
-            {/* USA */}
-            <div className="border-l-2 border-[#F47E2A] pl-4 bg-white/5 p-4 rounded-r-lg">
-              <h5 className="font-semibold text-white mb-2">USA - NEW YORK</h5>
-              <p className="text-white/85 text-sm mb-1">New Jersey Branch, 33 Wood Avenue South,<br />Suite 600, Iselin, NJ 08830</p>
-              <p className="text-white/85 text-sm mb-1">+1 732 456 6780</p>
-              <p className="text-white/85 text-sm">info@moltechglobal.com</p>
-            </div>
+          {/* Row 2 */}
+          <div className="mt-6 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {row2.map((o) => (
+              <OfficeCard key={o.title} o={o} />
+            ))}
           </div>
         </div>
       </div>
