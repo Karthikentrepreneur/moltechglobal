@@ -1,14 +1,14 @@
 // src/pages/Global.tsx
-import heroMap from "../Biodieselfeedstocks01.jpg"; // <- use your image (map/gradient)
-import imgOverview from "../Biodieselfeedstocks01.jpg";
-import imgSingapore from "../Biodieselfeedstocks01.jpg";
-import imgMalaysia from "../Biodieselfeedstocks01.jpg";
-import imgUK from "../Biodieselfeedstocks01.jpg";
-import imgUAE from "../Biodieselfeedstocks01.jpg";
-import imgThailand from "../Biodieselfeedstocks01.jpg";
-import imgIndonesia from "../Biodieselfeedstocks01.jpg";
-import imgUSA from "../Biodieselfeedstocks01.jpg";
-import imgSaudi from "../Biodieselfeedstocks01.jpg";
+import heroMap from "/Biodieselfeedstocks01.jpg"; // <- use your image (map/gradient)
+import imgOverview from "/Biodieselfeedstocks01.jpg";
+import imgSingapore from "/Biodieselfeedstocks01.jpg";
+import imgMalaysia from "/Biodieselfeedstocks01.jpg";
+import imgUK from "/Biodieselfeedstocks01.jpg";
+import imgUAE from "/Biodieselfeedstocks01.jpg";
+import imgThailand from "/Biodieselfeedstocks01.jpg";
+import imgIndonesia from "/Biodieselfeedstocks01.jpg";
+import imgUSA from "/Biodieselfeedstocks01.jpg";
+import imgSaudi from "/Biodieselfeedstocks01.jpg";
 
 type Tile = {
   title: string;
