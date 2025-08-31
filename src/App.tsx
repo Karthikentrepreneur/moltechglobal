@@ -9,7 +9,7 @@ import SoapNoodles from "@/pages/SoapNoodles";
 import AnimalFeedFats from "@/pages/AnimalFeedFats";
 import Glycerin from "@/pages/Glycerin";
 import FeedAdditives from "@/pages/FeedAdditives";
-import Contact from "@/pages/contact";
+import Contact from "@/pages/Contact";
 
 const App = () => {
   return (
