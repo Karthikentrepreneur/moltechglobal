@@ -1,3 +1,6 @@
+// src/components/Footer.tsx
+// v2 — MapPin removed from imports and JSX. Address row removed.
+
 import { Mail, Phone, Linkedin, Twitter, Facebook } from "lucide-react";
 
 const Footer = () => {
@@ -100,7 +103,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ===== FOLLOW + CONTACT ===== */}
+        {/* ===== FOLLOW + CONTACT (no address block) ===== */}
         <div className="space-y-6 pb-12">
           {/* Follow bar */}
           <div className="mx-auto flex max-w-lg items-center justify-center gap-3 rounded-xl bg-white/10 px-5 py-3 ring-1 ring-white/10">
@@ -143,8 +146,6 @@ const Footer = () => {
               <span>E-mail: Info@moltechglobal.com</span>
             </a>
           </div>
-
-          {/* Address row removed icon (and empty row removed) */}
         </div>
       </div>
     </footer>
