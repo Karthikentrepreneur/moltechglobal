@@ -149,9 +149,7 @@ const Footer = () => {
           <div className="text-center text-white/85">
             <div className="flex items-center justify-center gap-2">
               <MapPin className="h-4 w-4" />
-              <span>
-                Address: Moltech Global • 3rd Floor, Imperium Building, Marol Maroshi Road, Andheri East, Mumbai, Maharashtra, India 400059
-              </span>
+              
             </div>
           </div>
         </div>
