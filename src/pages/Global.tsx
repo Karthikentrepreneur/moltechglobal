@@ -1,79 +1,148 @@
-// src/pages/GlobalPresence.tsx
-import worldMapBg from "../assets/world-map-bg.jpg";
+// src/pages/Global.tsx
+import heroMap from "../assets/hero-world-map.jpg"; // <- use your image (map/gradient)
+import imgOverview from "../assets/global/overview.jpg";
+import imgSingapore from "../assets/global/singapore.jpg";
+import imgMalaysia from "../assets/global/malaysia.jpg";
+import imgUK from "../assets/global/uk.jpg";
+import imgUAE from "../assets/global/uae.jpg";
+import imgThailand from "../assets/global/thailand.jpg";
+import imgIndonesia from "../assets/global/indonesia.jpg";
+import imgUSA from "../assets/global/usa.jpg";
+import imgSaudi from "../assets/global/saudi.jpg";
+
+type Tile = {
+  title: string;
+  img: string;
+  size?: "tall" | "wide" | "square";
+  align?: "left" | "center" | "right";
+  // optional copy (for the first “GLOBAL OVERVIEW” card)
+  copy?: string;
+};
+
+const tiles: Tile[] = [
+  {
+    title: "GLOBAL OVERVIEW",
+    img: imgOverview,
+    size: "tall",
+    align: "left",
+    copy:
+      "With a strong presence in the pacific region and our trusted partners throughout the planet, our services can be experienced around the planet.",
+  },
+  { title: "SINGAPORE", img: imgSingapore, align: "center" },
+  { title: "MALAYSIA", img: imgMalaysia, align: "right" },
+  { title: "UK", img: imgUK, align: "left" },
+  { title: "UAE", img: imgUAE, align: "center" },
+  { title: "THAILAND", img: imgThailand, align: "right" },
+  { title: "INDONESIA", img: imgIndonesia, align: "left" },
+  { title: "USA", img: imgUSA, align: "center" },
+  { title: "SAUDI ARABIA", img: imgSaudi, align: "right" },
+];
 
 export default function Global() {
-  const locations = [
-    { city: "Singapore (HQ)", region: "Southeast Asia", note: "Keppel Distripark" },
-    { city: "Malaysia", region: "Southeast Asia", note: "Klang / Port operations" },
-    { city: "Thailand", region: "Southeast Asia", note: "Bangkok gateway" },
-    { city: "Indonesia", region: "Southeast Asia", note: "Jakarta & Surabaya reach" },
-    { city: "Saudi Arabia", region: "Middle East", note: "Partnership network" },
-    { city: "United Kingdom", region: "Europe", note: "London office" },
-    { city: "United States", region: "North America", note: "Houston hub" },
-  ];
+  return (
+    <main className="bg-[#e9ebef]"> {/* light grey like your mock */}
+      {/* ===== HERO ===== */}
+      <section className="relative min-h-[46vh] flex items-center overflow-hidden">
+        {/* Background image */}
+        <img
+          src={heroMap}
+          alt="World map"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#202a44]/85 via-[#1b3a66]/70 to-[#0e6b67]/70" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16">
+          {/* Framed title like screenshot */}
+          <div className="inline-block relative px-6 py-8">
+            {/* Corners */}
+            <span className="pointer-events-none absolute -top-6 -left-6 w-14 h-14 border-t-8 border-l-8 border-white/90 rounded-sm" />
+            <span className="pointer-events-none absolute -bottom-6 -right-6 w-14 h-14 border-b-8 border-r-8 border-white/90 rounded-sm" />
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-wide text-white">
+              WHERE WE ARE
+            </h1>
+          </div>
 
-  const stats = [
-    { label: "Countries", value: "15+" },
-    { label: "Partners", value: "200+" },
-    { label: "Years", value: "15+" },
-    { label: "Locations", value: "25+" },
-  ];
+          <p className="mt-8 max-w-2xl text-white/90 text-lg leading-relaxed">
+            With a strong presence in the pacific region and our trusted partners
+            throughout the planet, our services can be experienced around the planet.
+          </p>
+        </div>
+      </section>
+
+      {/* ===== GRID ===== */}
+      <section className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 py-10 md:py-14">
+        <div className="grid gap-5 md:gap-6 lg:gap-7
+                        grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {tiles.map((t, i) => (
+            <LocationTile key={i} {...t} />
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+/* === Card Component – matches your blue overlay look === */
+function LocationTile({ title, img, copy, align = "center" }: Tile) {
+  // blue block alignment classes (left/center/right)
+  const alignCls =
+    align === "left"
+      ? "sm:ml-0 sm:mr-auto"
+      : align === "right"
+      ? "sm:ml-auto sm:mr-0"
+      : "sm:mx-auto";
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-6 py-14">
-      <h1 className="text-3xl font-semibold text-white/90">Global Presence</h1>
-      <p className="mt-3 text-white/70 max-w-3xl">
-        We operate across Southeast Asia, the Middle East, Europe, and North America to keep supply chains moving—reliably and sustainably.
-      </p>
+    <article className="relative aspect-[4/3] overflow-hidden bg-white shadow
+                        ring-1 ring-black/5">
+      {/* Background image */}
+      <img
+        src={img}
+        alt={title}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
 
-      {/* Map Banner (visual, like the image block in Products cards) */}
-      <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 overflow-hidden backdrop-blur">
-        <div className="relative h-48 sm:h-60 md:h-72">
+      {/* Inner padding to create the white gutters like your design */}
+      <div className="absolute inset-0 p-[10px]">
+        <div className="relative h-full w-full bg-white">
+          {/* Photo area again (to keep the thin gutter visible) */}
           <img
-            src={worldMapBg}
-            alt="Global presence world map"
-            className="absolute inset-0 h-full w-full object-cover opacity-70"
+            src={img}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-transparent" />
-          <div className="absolute bottom-4 left-4">
-            <span className="inline-block rounded-lg bg-white/10 px-3 py-1 text-sm text-white/80 border border-white/10">
-              Worldwide Network
-            </span>
+
+          {/* Blue overlay block */}
+          <div
+            className={`absolute ${alignBlockPosition(align)}
+                        bg-[#0b63a9] text-white px-8 sm:px-10 py-10
+                        max-w-[92%] sm:max-w-[85%]`}
+          >
+            <h3 className="text-2xl sm:text-3xl font-semibold tracking-wide">
+              {title}
+            </h3>
+
+            {copy && (
+              <p className="mt-5 text-white/95 leading-relaxed text-base sm:text-[1.05rem]">
+                {copy}
+              </p>
+            )}
           </div>
         </div>
       </div>
-
-      {/* Stats – mirrors the simple, compact style */}
-      <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {stats.map((s, i) => (
-          <div
-            key={i}
-            className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur"
-          >
-            <div className="text-2xl font-semibold text-white/90">{s.value}</div>
-            <div className="mt-1 text-xs uppercase tracking-wider text-white/60">{s.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Locations Grid — styled exactly like Products cards */}
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {locations.map((loc) => (
-          <div
-            key={loc.city}
-            className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur"
-          >
-            <div className="h-36 rounded-xl bg-white/10 flex items-center justify-center">
-              <span className="text-white/70 text-sm">Photo: {loc.city}</span>
-            </div>
-            <h3 className="mt-4 text-lg font-medium text-white/90">{loc.city}</h3>
-            <p className="mt-1 text-sm text-white/60">{loc.region}</p>
-            {loc.note && (
-              <p className="mt-1 text-xs text-white/50">{loc.note}</p>
-            )}
-          </div>
-        ))}
-      </div>
-    </section>
+    </article>
   );
+}
+
+/** Positioning helper for the blue block to resemble your mockups */
+function alignBlockPosition(align: "left" | "center" | "right" = "center") {
+  switch (align) {
+    case "left":
+      // large blue panel starting at left-middle
+      return "left-0 top-1/2 -translate-y-1/2 sm:w-[70%] w-[85%]";
+    case "right":
+      return "right-0 top-1/2 -translate-y-1/2 sm:w-[70%] w-[85%]";
+    default:
+      return "left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 sm:w-[70%] w-[85%]";
+  }
 }
