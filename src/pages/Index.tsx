@@ -9,8 +9,7 @@ import Careers from "@/components/Careers";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-// NEW
-import World3D from "@/components/World3D";
+// Keep the simple cover component and point it at your globe image
 import ContactCover from "@/components/ContactCover";
 
 /** Scroll to hash on first load/refresh */
@@ -27,6 +26,7 @@ function useScrollHashOnLoad(offset = 80) {
 
 const Index = () => {
   useScrollHashOnLoad(80);
+
   return (
     <div className="min-h-screen">
       {/* Fixed Header */}
@@ -37,11 +37,6 @@ const Index = () => {
         {/* HOME / HERO */}
         <section id="home" className="scroll-mt-24">
           <Hero />
-        </section>
-
-        {/* OPTIONAL 3D WORLD VISUAL */}
-        <section id="world" className="scroll-mt-24">
-          <World3D />
         </section>
 
         {/* ABOUT */}
@@ -64,16 +59,16 @@ const Index = () => {
           <Careers />
         </section>
 
-        {/* CONTACT COVER (by location) + CONTACT */}
+        {/* CONTACT COVER (Contact by Location) */}
         <section className="scroll-mt-24">
           <ContactCover
-            // You can swap this to any dummy image you place in /public
-            src="/contact-cover.jpg"
-            title="Find Us by Location"
-            subtitle="We’re closer than you think"
+            src="/globe-3d.jpg"                 // <-- put this image in /public
+            title="Contact by Location"          // <-- updated title
+            subtitle="Select a country to view our nearest office details and map."
           />
         </section>
 
+        {/* CONTACT */}
         <section id="contact" className="scroll-mt-24">
           <ContactSection />
         </section>
@@ -85,3 +80,4 @@ const Index = () => {
 };
 
 export default Index;
+
