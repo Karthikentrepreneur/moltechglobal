@@ -1,5 +1,5 @@
 .footer-autoscroll {
-  height: 8rem;   /* fits 3 lines: country + address + phone */
+  height: 5.5rem;   /* smaller, fits 3 lines comfortably */
   overflow: hidden;
   position: relative;
 }
@@ -7,7 +7,7 @@
 .footer-autoscroll-track {
   display: flex;
   flex-direction: column;
-  animation: footer-scroll-up 28s linear infinite;
+  animation: footer-scroll-up 26s linear infinite;
 }
 
 @keyframes footer-scroll-up {
