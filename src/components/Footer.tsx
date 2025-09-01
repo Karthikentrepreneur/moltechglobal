@@ -12,11 +12,18 @@ const quickLinks = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-// instead of one long string per office, break into address/phone/email lines
-const officeLines = [
-  "148, Narayanaguru Road, Saibaba Colony, Coimbatore.",
-  "+91 98651 20692 / +91 99441 57745",
-  "fieldapobyts@gmail.com",
+// ✅ New office list (one line per office)
+const offices = [
+  "AUSTRALIA • Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 • +61 388205157",
+  "INDONESIA • 408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta • +62 815 1038 5581",
+  "MALAYSIA - PORTLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang • +60 16-985 4705",
+  "MALAYSIA - JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang • +60 16-959 4075",
+  "SAUDI ARABIA - DAMMAM • 2817 King Faizal Road, 9403-32233 • +966 13 3430003",
+  "SINGAPORE • Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447 • +65 65140868",
+  "THAILAND - BANGKOK • 109 CCT Bldg, Surawong Rd, Bangrak, 10500 • +60 16-985 4705",
+  "UAE - DUBAI • Al Qusais Industrial Area 2 • +971 509093357",
+  "UK - LONDON • 167-169 Great Portland Street, W1W 5PF • +44 7305 856612",
+  "USA - NEW YORK • 33 Wood Ave S, Suite 600, Iselin, NJ 08830 • +1 732 456 6780",
 ];
 
 const scrollTop = () => {
@@ -37,7 +44,7 @@ const Footer: React.FC = () => {
           </p>
         </div>
 
-        {/* ===== Row 2: Quick Links + Auto-scroll Info ===== */}
+        {/* ===== Row 2: Quick Links + Auto-scroll Offices ===== */}
         <div className="py-8 border-b border-white/10 grid grid-cols-1 gap-6 md:grid-cols-[1fr_minmax(0,2fr)_1fr] items-center">
           {/* Left: Quick Links */}
           <nav className="order-2 md:order-1">
@@ -55,11 +62,11 @@ const Footer: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Center: Auto-scroll lines (address, phone, email) */}
+          {/* Center: Auto-scroll office lines */}
           <div className="order-1 md:order-2 text-center">
-            <div className="footer-autoscroll mx-auto w-full max-w-xl">
+            <div className="footer-autoscroll mx-auto w-full max-w-3xl">
               <div className="footer-autoscroll-track">
-                {[...officeLines, ...officeLines].map((line, i) => (
+                {[...offices, ...offices].map((line, i) => (
                   <div
                     key={i}
                     className="text-sm md:text-base font-medium py-1 text-[#F47E2A]"
@@ -71,7 +78,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: empty or socials */}
+          {/* Right: placeholder */}
           <div className="order-3 hidden md:flex justify-end"></div>
         </div>
 
