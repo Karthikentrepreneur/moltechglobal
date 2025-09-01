@@ -16,8 +16,11 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        {/* Main pages */}
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
+
+        {/* Products */}
         <Route path="/products" element={<ProductsGrid />} />
         <Route path="/products/biodiesel-feedstocks" element={<BiodieselFeedstocks />} />
         <Route path="/products/fatty-acids" element={<FattyAcids />} />
@@ -25,8 +28,10 @@ const App = () => {
         <Route path="/products/animal-feed-fats" element={<AnimalFeedFats />} />
         <Route path="/products/glycerin" element={<Glycerin />} />
         <Route path="/products/feed-additives" element={<FeedAdditives />} />
-<Route path="/contact" element={<Contact />} />
-  <Route path="/global" element={<Global />} />
+
+        {/* Contact & Global Presence */}
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/global" element={<Global />} />
       </Routes>
     </Router>
   );
