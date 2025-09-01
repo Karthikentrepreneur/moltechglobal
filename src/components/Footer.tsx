@@ -1,223 +1,113 @@
 // src/components/Footer.tsx
 import React from "react";
+import { ChevronUp } from "lucide-react";
+import "../styles/marquee.css";
 
-type Office = {
-  title: string;
-  addrLines: string[];
-  phones?: string[];
-  email?: string;
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Products", href: "/products" },
+  { label: "Global Presence", href: "/global" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+const offices = [
+  "AUSTRALIA • Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 • +61 388205157",
+  "INDONESIA • 408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta • +62 815 1038 5581",
+  "MALAYSIA - PORTLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang • +60 16-985 4705",
+  "MALAYSIA - JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang • +60 16-959 4075",
+  "SAUDI ARABIA - DAMMAM • 2817 King Faizal Road, 9403-32233 • +966 13 3430003",
+  "SINGAPORE • Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447 • +65 65140868",
+  "THAILAND - BANGKOK • 109 CCT Bldg, Surawong Rd, Bangrak, 10500 • +60 16-985 4705",
+  "UAE - DUBAI • Al Qusais Industrial Area 2 • +971 509093357",
+  "UK - LONDON • 167-169 Great Portland Street, W1W 5PF • +44 7305 856612",
+  "USA - NEW YORK • 33 Wood Ave S, Suite 600, Iselin, NJ 08830 • +1 732 456 6780",
+];
+
+// helper: duplicate string list for seamless loop
+const buildMarqueeText = (items: string[]) =>
+  [...items, ...items].join("     •     ");
+
+const scrollTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-const row1: Office[] = [
-  {
-    title: "AUSTRALIA",
-    addrLines: ["Suite 5, 7-9 Mallet Road,", "Tullamarine, Victoria, 3043"],
-    phones: ["+61 388205157"],
-    email: "janak@moltechglobal.com",
-  },
-  {
-    title: "INDONESIA",
-    addrLines: ["408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta"],
-    phones: ["+62 815 1038 5581"],
-    email: "sourcing@moltechglobal.com",
-  },
-  {
-    title: "MALAYSIA - PORTLANG",
-    addrLines: [
-      "18 Jalan Sungai Chandong 12, Bdr Armada Putra",
-      "Pulau Indah, 42000 Pelabuhan Klang,",
-      "Selangor Darul Ehsan, Malaysia",
-    ],
-    phones: ["+60 16-985 4705"],
-    email: "arun@moltechglobal.com",
-  },
-  {
-    title: "MALAYSIA - JOHOR",
-    addrLines: [
-      "HS(D) 576585 PTD 233430 No.19A, Jalan Sagai 6,",
-      "Taman Pasir Putih, 81700 Pasir Gudang, Johor",
-    ],
-    phones: ["+60 16-959 4075"],
-    email: "linda@moltechglobal.com",
-  },
-  {
-    title: "SAUDI ARABIA - DAMMAM",
-    addrLines: [
-      "2817 King Faizal Road, Dammam 9403-32233,",
-      "Kingdom of Saudi Arabia",
-    ],
-    phones: ["+966 13 3430003"],
-    email: "james@moltechglobal.com",
-  },
-];
-
-const row2: Office[] = [
-  {
-    title: "SINGAPORE",
-    addrLines: [
-      "Blk 511 Kampong Bahru Road",
-      "#03-01 Keppel Distripark",
-      "Singapore 099447",
-    ],
-    phones: ["+65 65140868"],
-    email: "jenny@moltechglobal.com",
-  },
-  {
-    title: "THAILAND - BANGKOK",
-    addrLines: [
-      "109 CCT Building, 3rd Floor, Rm.3,",
-      "Surawong Road, Suriyawongse, Bangrak,",
-      "Bangkok 10500",
-    ],
-    phones: ["+60 16-985 4705"],
-    email: "info@moltechglobal.com",
-  },
-  {
-    title: "UAE - DUBAI",
-    addrLines: [
-      "Plot #2430152, Al Qusais Industrial Area 2,",
-      "Dubai, United Arab Emirates",
-    ],
-    phones: ["+971 509093357"],
-    email: "info@moltechglobal.com",
-  },
-  {
-    title: "UK - LONDON",
-    addrLines: [
-      "167-169 Great Portland Street, 5th Floor,",
-      "London, W1W 5PF, United Kingdom",
-    ],
-    phones: ["+44(0) 7305 856612", "+44(0) 203 393 9508"],
-  },
-  {
-    title: "USA - NEW YORK",
-    addrLines: [
-      "New Jersey Branch, 33 Wood Avenue South,",
-      "Suite 600, Iselin, NJ 08830",
-    ],
-    phones: ["+1 732 456 6780"],
-    email: "info@moltechglobal.com",
-  },
-];
-
-function OfficeCard({ o }: { o: Office }) {
-  return (
-    <div className="min-w-[220px] rounded-r-lg border-l-2 border-[#F47E2A] bg-white/5 p-3">
-      <h5 className="mb-1 font-semibold text-white">{o.title}</h5>
-      <p className="mb-1 text-xs text-white/85 leading-snug">
-        {o.addrLines.map((line, i) => (
-          <span key={i}>
-            {line}
-            {i < o.addrLines.length - 1 && <><br /></>}
-          </span>
-        ))}
-      </p>
-      {o.phones && (
-        <p className="mb-1 text-xs text-white/85 leading-snug">
-          {o.phones.join(" / ")}
-        </p>
-      )}
-      {o.email && <p className="text-xs text-white/85">{o.email}</p>}
-    </div>
-  );
-}
-
-const Footer = () => {
-  const quickLinks = [
-    "Home",
-    "About Us",
-    "Our Services",
-    "Our Presence",
-    "Global Privilege",
-    "Contact Us",
-    "Careers",
-    "Blog",
-    "Privacy Policy",
-  ];
+const Footer: React.FC = () => {
+  const marqueeText = buildMarqueeText(offices);
 
   return (
-    <footer className="bg-[#153a59] text-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* ===== TOP: Newsletter / Schedule Download ===== */}
-        <div className="py-6 text-center">
-          <h3 className="text-lg md:text-xl font-semibold">
-            Download this month&apos;s Sailing Schedule
-          </h3>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="mx-auto mt-3 flex max-w-md items-stretch overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15 focus-within:ring-white/30"
-          >
-            <input
-              type="email"
-              required
-              placeholder="Your email"
-              className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/60 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="whitespace-nowrap bg-[#F47E2A] px-4 py-2 text-sm font-semibold text-white hover:brightness-110"
-            >
-              Subscribe
-            </button>
-          </form>
+    <footer className="bg-[#0E0E0E] text-white">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* ============ Row 1: About (center) ============ */}
+        <div className="py-8 border-b border-white/10 text-center">
+          <h4 className="text-xl font-semibold">About Moltech</h4>
+          <p className="mt-3 mx-auto max-w-3xl text-white/85 leading-relaxed">
+            We source and supply environmentally responsible products that
+            reduce carbon footprint. With a global presence and strong ethics,
+            we’re committed to performance, transparency, and community impact.
+          </p>
         </div>
 
-        {/* ===== MAIN: About + Quick Links ===== */}
-        <div className="grid grid-cols-1 gap-6 border-t border-white/10 py-8 md:grid-cols-2">
-          <div className="space-y-2">
-            <h4 className="text-base font-semibold">About Moltech</h4>
-            <p className="text-sm leading-relaxed text-white/80">
-              We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
-              We are dedicated to upholding ethical business practices and creating a
-              positive impact on the communities where we operate.
-            </p>
-          </div>
-
-          <div className="mx-auto w-full max-w-md">
-            <h4 className="text-center text-base font-semibold">Quick Links</h4>
-            <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1 text-center">
+        {/* ============ Row 2: Quick Links (left) • Address Marquee (center) ============ */}
+        <div className="py-8 border-b border-white/10 grid grid-cols-1 gap-6 md:grid-cols-[1fr_minmax(0,2fr)_1fr] items-center">
+          {/* Left: Quick Links */}
+          <nav className="order-2 md:order-1">
+            <h5 className="sr-only">Quick Links</h5>
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2 md:inline-grid md:grid-cols-1">
               {quickLinks.map((item) => (
-                <li key={item}>
+                <li key={item.label}>
                   <a
-                    href="#"
-                    className="inline-block text-sm text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
+                    href={item.href}
+                    className="text-sm text-white/85 hover:text-white transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </nav>
 
-        {/* ===== GLOBAL OFFICES (Marquee Style) ===== */}
-        <div className="border-t border-white/10 py-6 overflow-hidden">
-          <div className="mb-4 text-center">
-            <h4 className="text-lg md:text-xl font-semibold">Our Global Presence</h4>
-          </div>
-
-          {/* Row 1 → scrolls right */}
-          <div className="overflow-hidden">
-            <div className="flex animate-marquee-right gap-4 w-max">
-              {[...row1, ...row1].map((o, i) => (
-                <OfficeCard key={`${o.title}-${i}`} o={o} />
-              ))}
+          {/* Center: one-row, one-column auto-scrolling address */}
+          <div className="order-1 md:order-2 text-center">
+            <div
+              className="footer-marquee mx-auto w-full max-w-3xl"
+              style={{ ["--speed" as any]: "28s" }}
+            >
+              <div className="footer-marquee-track text-lg font-semibold tracking-wide">
+                {marqueeText}
+              </div>
             </div>
           </div>
 
-          {/* Row 2 → scrolls left */}
-          <div className="mt-4 overflow-hidden">
-            <div className="flex animate-marquee-left gap-4 w-max">
-              {[...row2, ...row2].map((o, i) => (
-                <OfficeCard key={`${o.title}-${i}`} o={o} />
-              ))}
-            </div>
+          {/* Right: placeholder (follow us or keep empty) */}
+          <div className="order-3 hidden md:flex justify-end">
+            {/* Replace with your socials if needed */}
+            {/* <div className="text-sm text-white/80">Follow Us</div> */}
           </div>
         </div>
 
-        {/* ===== Bottom bar ===== */}
-        <div className="border-t border-white/10 py-4 text-center text-xs text-white/60">
-          © {new Date().getFullYear()} Moltech. All rights reserved.
+        {/* ============ Row 3: Bottom bar ============ */}
+        <div className="py-5 flex items-center justify-between text-sm">
+          {/* Left: Back to top */}
+          <button
+            onClick={scrollTop}
+            className="group inline-flex items-center gap-2 text-white/85 hover:text-white transition-colors"
+            aria-label="Back to Top"
+          >
+            <ChevronUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+            <span>Back Top</span>
+          </button>
+
+          {/* Center: Copyright */}
+          <div className="text-center flex-1">
+            <span className="text-white/85">
+              © 2025 Moltech. All rights reserved.
+            </span>
+          </div>
+
+          {/* Right: Spacer (keeps copyright centered) */}
+          <div className="w-[96px] md:w-[140px]" aria-hidden />
         </div>
       </div>
     </footer>
