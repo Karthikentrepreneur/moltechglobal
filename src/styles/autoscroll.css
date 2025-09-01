@@ -1,5 +1,5 @@
 .footer-autoscroll {
-  height: 4rem;   /* ⬆️ increased height for bigger text & padding */
+  height: 8rem;   /* taller window for 3 lines */
   overflow: hidden;
   position: relative;
 }
@@ -7,10 +7,10 @@
 .footer-autoscroll-track {
   display: flex;
   flex-direction: column;
-  animation: footer-scroll-up 22s linear infinite; /* slower & smoother */
+  animation: footer-scroll-up 28s linear infinite; /* slower for readability */
 }
 
 @keyframes footer-scroll-up {
   0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); } /* duplicate array makes it seamless */
+  100% { transform: translateY(-50%); } /* duplicated list for infinite loop */
 }
