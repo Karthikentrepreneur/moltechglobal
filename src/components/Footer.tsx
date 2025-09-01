@@ -1,4 +1,3 @@
-// src/components/Footer.tsx
 import React from "react";
 import { ChevronUp } from "lucide-react";
 import "../styles/autoscroll.css";
@@ -12,7 +11,7 @@ const quickLinks = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-// ✅ New office list (one line per office)
+// ✅ Office list (one line per office)
 const offices = [
   "AUSTRALIA • Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 • +61 388205157",
   "INDONESIA • 408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta • +62 815 1038 5581",
@@ -69,7 +68,7 @@ const Footer: React.FC = () => {
                 {[...offices, ...offices].map((line, i) => (
                   <div
                     key={i}
-                    className="text-sm md:text-base font-medium py-1 text-[#F47E2A]"
+                    className="text-base md:text-lg font-semibold py-2 text-[#F47E2A]"
                   >
                     {line}
                   </div>
@@ -78,7 +77,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: placeholder */}
+          {/* Right: placeholder for socials */}
           <div className="order-3 hidden md:flex justify-end"></div>
         </div>
 
