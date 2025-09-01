@@ -1,151 +1,177 @@
-import React from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { MapPin, Phone } from "lucide-react";
 
-type Location = {
-  city: string;          // e.g., "Sydney"
-  country?: string;      // e.g., "Australia"
-  address?: string;      // full street address
-  phone?: string;        // phone with country code
-  image?: string;        // optional image URL
-};
-
-const Global: React.FC = () => {
-  const locations: Location[] = [
+const Global = () => {
+  const offices = [
     {
       city: "Jakarta",
       country: "Indonesia",
+      type: "Regional Office",
       address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
       phone: "+62 815 1038 5581",
-      image:
-        "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop",
+      email: "indonesia@global.com",
+      description: "Key Southeast Asia operations office.",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop"
     },
     {
       city: "Port Klang",
       country: "Malaysia",
-      address:
-        "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      type: "Branch Office",
+      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
       phone: "+60 16-985 4705",
-      image:
-        "https://images.unsplash.com/photo-1586162549366-979c3a7bba3a?w=600&h=400&fit=crop",
+      email: "portklang@global.com",
+      description: "Strategic hub for Malaysian logistics and supply chain.",
+      image: "https://images.unsplash.com/photo-1581092787769-7c54c2a7a7ad?w=600&h=400&fit=crop"
     },
     {
       city: "Johor",
       country: "Malaysia",
-      address:
-        "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+      type: "Branch Office",
+      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
       phone: "+60 16-959 4075",
-      image:
-        "https://images.unsplash.com/photo-1503264116251-35a269479413?w=600&h=400&fit=crop",
+      email: "johor@global.com",
+      description: "Supporting industrial clients across Johor region.",
+      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop"
     },
     {
       city: "Dammam",
       country: "Saudi Arabia",
+      type: "Regional Office",
       address: "2817 King Faizal Road, 9403-32233",
       phone: "+966 13 3430003",
-      image:
-        "https://images.unsplash.com/photo-1588613259608-f9d5dbb5a5a3?w=600&h=400&fit=crop",
+      email: "dammam@global.com",
+      description: "Serving Middle East operations and logistics.",
+      image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop"
     },
     {
       city: "Singapore",
       country: "Singapore",
-      address:
-        "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+      type: "Headquarters",
+      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
       phone: "+65 65140868",
-      image:
-        "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&h=400&fit=crop",
+      email: "singapore@global.com",
+      description: "Global headquarters and Asia-Pacific hub.",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop"
     },
     {
       city: "Bangkok",
       country: "Thailand",
+      type: "Regional Office",
       address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
       phone: "+60 16-985 4705",
-      image:
-        "https://images.unsplash.com/photo-1600072001391-3e18f8e8bcb2?w=600&h=400&fit=crop",
+      email: "bangkok@global.com",
+      description: "Strategic Thailand hub for operations and trading.",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
     },
     {
       city: "Dubai",
       country: "UAE",
+      type: "Regional Office",
       address: "Al Qusais Industrial Area 2",
       phone: "+971 509093357",
-      image:
-        "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=600&h=400&fit=crop",
+      email: "dubai@global.com",
+      description: "MENA regional operations and logistics hub.",
+      image: "https://images.unsplash.com/photo-1524492449090-1a065f3a9e66?w=600&h=400&fit=crop"
     },
     {
       city: "London",
-      country: "UK",
+      country: "United Kingdom",
+      type: "European Office",
       address: "167-169 Great Portland Street, W1W 5PF",
       phone: "+44 7305 856612",
-      image:
-        "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=600&h=400&fit=crop",
+      email: "london@global.com",
+      description: "European business development and client services.",
+      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop"
     },
     {
       city: "New York",
       country: "USA",
+      type: "Americas Office",
       address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
       phone: "+1 732 456 6780",
-      image:
-        "https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=600&h=400&fit=crop",
+      email: "usa@global.com",
+      description: "North American operations and client services.",
+      image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop"
     },
-    // 🇦🇺 AUSTRALIA — added entry (fill in real details)
     {
-      city: "Tullamarine",                 // TODO: change city if needed
+      city: "Sydney",
       country: "Australia",
-      address: "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043",
-      phone: "+61 388205157",
-      image:
-        "https://images.unsplash.com/photo-1506976785307-8732e854ad05?w=600&h=400&fit=crop",
-    },
+      type: "Branch Office",
+      address: "Level 10, 20 Martin Place, Sydney NSW 2000",
+      phone: "+61 2 9876 5432",
+      email: "australia@global.com",
+      description: "Supporting clients across Oceania region.",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+    }
   ];
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6">Our Global Presence</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {locations.map((loc, index) => (
-          <div
-            key={index}
-            className="rounded-2xl shadow-lg overflow-hidden border border-gray-200 bg-white"
-          >
-            {loc.image && (
-              <img
-                src={loc.image}
-                alt={`${[loc.city, loc.country].filter(Boolean).join(", ")}`}
-                className="w-full h-48 object-cover"
-              />
-            )}
-            <div className="p-4">
-              <h2 className="text-xl font-semibold">
-                {[loc.city, loc.country].filter(Boolean).join(", ")}
-              </h2>
+    <div className="min-h-screen">
+      <Header />
+      
+      <main className="pt-24 bg-background">
+        {/* Hero Section */}
+        <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Global Presence
+            </h1>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Serving customers worldwide through our strategically located offices and facilities 
+              across Asia, Middle East, Europe, Americas, and Oceania.
+            </p>
+          </div>
+        </section>
 
-              {loc.address && (
-                <p className="text-gray-600">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                      `${loc.address} ${loc.city ?? ""} ${loc.country ?? ""}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    {loc.address}
-                  </a>
-                </p>
-              )}
-
-              {loc.phone && (
-                <p className="text-gray-800 font-medium mt-2">
-                  <a
-                    href={`tel:${loc.phone.replace(/\s+/g, "")}`}
-                    className="text-blue-600 hover:underline"
-                  >
-                    {loc.phone}
-                  </a>
-                </p>
-              )}
+        {/* Offices Grid */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {offices.map((office, index) => (
+                <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                  <div className="relative h-48">
+                    <img 
+                      src={office.image} 
+                      alt={`${office.city} office location`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {office.type}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                      {office.city}
+                    </h3>
+                    <p className="text-slate-600 mb-4">{office.country}</p>
+                    
+                    <p className="text-slate-700 mb-6 leading-relaxed">
+                      {office.description}
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center text-sm text-slate-600">
+                        <MapPin className="w-4 h-4 mr-3 text-blue-600" />
+                        {office.address}
+                      </div>
+                      <div className="flex items-center text-sm text-slate-600">
+                        <Phone className="w-4 h-4 mr-3 text-blue-600" />
+                        {office.phone}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 };
