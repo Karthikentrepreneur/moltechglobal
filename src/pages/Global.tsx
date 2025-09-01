@@ -15,12 +15,12 @@ const Global = () => {
       image: "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=600&h=400&fit=crop"
     },
     {
-      city: "Chennai",
-      country: "India",
+      city: "JAKARTA",
+      country: "INDONESIA",
       type: "Operations",
-      address: "Guindy Industrial Estate",
-      phone: "+91 44 1234 5678",
-      email: "chennai@moltech.com",
+      address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
+      phone: " +62 815 1038 5581",
+      email: "indonesia@moltech.com",
       description: "Manufacturing and processing facility for biodiesel feedstocks and glycerin.",
       image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop"
     },
@@ -28,8 +28,8 @@ const Global = () => {
       city: "Dubai",
       country: "UAE",
       type: "Regional Office",
-      address: "Dubai International Financial Centre",
-      phone: "+971 4 123 4567",
+      address: "Al Qusais Industrial Area 2",
+      phone: "+971 509093357",
       email: "dubai@moltech.com",
       description: "Middle East operations hub serving the MENA region.",
       image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop"
@@ -45,21 +45,61 @@ const Global = () => {
       image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop"
     },
     {
-      city: "Houston",
+      city: "NEW YORK",
       country: "USA",
       type: "Americas Office",
       address: "Energy Corridor",
-      phone: "+1 713 123 4567",
+      phone: "+1 732 456 6780",
       email: "houston@moltech.com",
-      description: "North American operations focusing on renewable energy markets.",
+      description: "33 Wood Ave S, Suite 600, Iselin, NJ 08830.",
       image: "https://images.unsplash.com/photo-1494888427482-242d32babc0b?w=600&h=400&fit=crop"
     },
     {
-      city: "Kuala Lumpur",
+      city: "PORTLANG",
       country: "Malaysia",
       type: "Processing Facility",
-      address: "Petaling Jaya Industrial Area",
-      phone: "+60 3 1234 5678",
+      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      phone: "+60 16-985 4705",
+      email: "kl@moltech.com",
+      description: "Palm oil processing and fatty acid production facility.",
+      image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop"
+    }
+    {
+      city: "JOHOR",
+      country: "Malaysia",
+      type: "Processing Facility",
+      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+      phone: "+60 16-959 4075",
+      email: "kl@moltech.com",
+      description: "Palm oil processing and fatty acid production facility.",
+      image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop"
+    }
+ {
+      city: "Tullamarine",
+      country: "AUSTRALIA",
+      type: "Processing Facility",
+      address: "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043",
+      phone: "+61 388205157",
+      email: "kl@moltech.com",
+      description: "Palm oil processing and fatty acid production facility.",
+      image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop"
+    }
+{
+      city: " DAMMAM",
+      country: "SAUDI ARABIA",
+      type: "Processing Facility",
+      address: "2817 King Faizal Road, 9403-32233",
+      phone: "+966 13 3430003",
+      email: "kl@moltech.com",
+      description: "Palm oil processing and fatty acid production facility.",
+      image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop"
+    }
+{
+      city: " BANGKOK",
+      country: "THAILAND",
+      type: "Processing Facility",
+      address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
+      phone: "+60 16-985 4705",
       email: "kl@moltech.com",
       description: "Palm oil processing and fatty acid production facility.",
       image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop"
