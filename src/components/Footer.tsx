@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
           </p>
         </div>
 
-        {/* ===== Row 2: Quick Links + Auto-scroll Offices ===== */}
+        {/* ===== Row 2: Quick Links + Auto-scroll Offices + Email ===== */}
         <div className="py-8 border-b border-white/10 grid grid-cols-1 gap-6 md:grid-cols-[1fr_minmax(0,2fr)_1fr] items-center">
           {/* Left: Quick Links */}
           <nav className="order-2 md:order-1">
@@ -122,8 +122,15 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: placeholder */}
-          <div className="order-3 hidden md:flex justify-end"></div>
+          {/* Right: Email */}
+          <div className="order-3 text-right">
+            <a
+              href="mailto:info@moltechglobal.com"
+              className="text-sm md:text-base font-medium text-white/85 hover:text-[#F47E2A] transition-colors"
+            >
+              info@moltechglobal.com
+            </a>
+          </div>
         </div>
 
         {/* ===== Row 3: Back Top + Copyright ===== */}
