@@ -1,0 +1,21 @@
+/* Single-line marquee (no Tailwind config needed) */
+@keyframes footer-marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.footer-marquee {
+  overflow: hidden;
+  position: relative;
+}
+.footer-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  gap: 2rem;
+  animation: footer-marquee-left var(--speed, 28s) linear infinite;
+}
+.footer-marquee:hover .footer-marquee-track { animation-play-state: paused; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .footer-marquee-track { animation-duration: 0.01ms; animation-iteration-count: 1; }
+}
