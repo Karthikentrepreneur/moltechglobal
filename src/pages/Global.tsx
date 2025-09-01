@@ -1,297 +1,262 @@
-// src/pages/Global.tsx
-import React, { useEffect, useRef, useState } from "react";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-type Branch = {
-  branch: string;
-  address: string;
-  phone?: string;
-  email?: string;
-};
+const Global = () => {
+  const [malaysiaIndex, setMalaysiaIndex] = useState(0);
 
-type Office = {
-  city: string;
-  country: string;
-  type: string;
-  description?: string;
-  image?: string;
-  // either single address fields...
-  address?: string;
-  phone?: string;
-  email?: string;
-  // ...or multiple branches
-  addressList?: Branch[];
-};
-
-const offices: Office[] = [
-  {
-    city: "Singapore",
-    country: "Singapore",
-    type: "Headquarters",
-    address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
-    phone: "+65 65140868",
-    email: "singapore@global.com",
-    description: "Global headquarters and Asia-Pacific hub.",
-    image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop",
-  },
-  {
-    city: "Malaysia",
-    country: "Malaysia",
-    type: "Regional Offices",
-    addressList: [
-      {
-        branch: "Port Klang",
-        address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
-        phone: "+60 16-985 4705",
-        email: "portklang@global.com",
-      },
-      {
-        branch: "Johor",
-        address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
-        phone: "+60 16-959 4075",
-        email: "johor@global.com",
-      },
-    ],
-    description:
-      "Our Malaysia offices provide logistics, processing and supply chain support across Port Klang and Johor regions.",
-    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop",
-  },
-  {
-    city: "Dammam",
-    country: "Saudi Arabia",
-    type: "Regional Office",
-    address: "2817 King Faizal Road, 9403-32233",
-    phone: "+966 13 3430003",
-    email: "dammam@global.com",
-    description: "Serving Middle East operations and logistics.",
-    image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop",
-  },
-  {
-    city: "London",
-    country: "United Kingdom",
-    type: "European Office",
-    address: "167-169 Great Portland Street, W1W 5PF",
-    phone: "+44 7305 856612",
-    email: "london@global.com",
-    description: "European business development and client services.",
-    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop",
-  },
-  {
-    city: "New York",
-    country: "USA",
-    type: "Americas Office",
-    address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
-    phone: "+1 732 456 6780",
-    email: "usa@global.com",
-    description: "North American operations and client services.",
-    image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop",
-  },
-  {
-    city: "Sydney",
-    country: "Australia",
-    type: "Regional Office",
-    address: "Level 5, 80 Clarence Street, Sydney NSW 2000",
-    phone: "+61 2 9876 5432",
-    email: "australia@global.com",
-    description:
-      "Our Sydney office oversees operations across Australia and Oceania with a focus on renewable energy and sustainability.",
-    image: "https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=600&h=400&fit=crop",
-  },
-];
-
-const AddressScroller: React.FC<{ branches: Branch[]; speed?: number; height?: number }> = ({
-  branches,
-  speed = 30, // px per second
-  height = 160, // px container height
-}) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [isHover, setIsHover] = useState(false);
-  const rafRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number | null>(null);
-  const maxScrollRef = useRef<number>(0);
-
+  // Auto-swap Malaysia addresses every 4 seconds
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const interval = setInterval(() => {
+      setMalaysiaIndex((prev) => (prev === 0 ? 1 : 0));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
-    // We duplicate content for seamless scroll:
-    // structure: <div ref=container><div class="inner">items... items...</div></div>
-    const inner = container.firstElementChild as HTMLDivElement | null;
-    if (!inner) return;
+  const offices = [
+    {
+      city: "Singapore",
+      country: "Singapore",
+      type: "Headquarters",
+      address: "Marina Bay Financial Centre",
+      phone: "+65 6123 4567",
+      email: "singapore@moltech.com",
+      description:
+        "Regional headquarters and main operations center for Asia-Pacific region.",
+      image:
+        "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=600&h=400&fit=crop",
+    },
+    {
+      city: "Chennai",
+      country: "India",
+      type: "Operations",
+      address: "Guindy Industrial Estate",
+      phone: "+91 44 1234 5678",
+      email: "chennai@moltech.com",
+      description:
+        "Manufacturing and processing facility for biodiesel feedstocks and glycerin.",
+      image:
+        "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop",
+    },
+    {
+      city: "Dubai",
+      country: "UAE",
+      type: "Regional Office",
+      address: "Dubai International Financial Centre",
+      phone: "+971 4 123 4567",
+      email: "dubai@moltech.com",
+      description: "Middle East operations hub serving the MENA region.",
+      image:
+        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop",
+    },
+    {
+      city: "London",
+      country: "United Kingdom",
+      type: "European Office",
+      address: "Canary Wharf",
+      phone: "+44 20 1234 5678",
+      email: "london@moltech.com",
+      description: "European operations and business development center.",
+      image:
+        "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop",
+    },
+    {
+      city: "Houston",
+      country: "USA",
+      type: "Americas Office",
+      address: "Energy Corridor",
+      phone: "+1 713 123 4567",
+      email: "houston@moltech.com",
+      description:
+        "North American operations focusing on renewable energy markets.",
+      image:
+        "https://images.unsplash.com/photo-1494888427482-242d32babc0b?w=600&h=400&fit=crop",
+    },
+  ];
 
-    // compute one-copy height (half of inner.scrollHeight)
-    const totalInnerHeight = inner.scrollHeight;
-    const oneCopyHeight = totalInnerHeight / 2;
-    maxScrollRef.current = oneCopyHeight;
-
-    // If content doesn't overflow (no need to scroll), do nothing.
-    if (oneCopyHeight <= container.clientHeight) {
-      // ensure top is 0 and no animation
-      container.scrollTop = 0;
-      return;
-    }
-
-    const step = (timestamp: number) => {
-      if (isHover) {
-        lastTimeRef.current = timestamp;
-        rafRef.current = requestAnimationFrame(step);
-        return;
-      }
-      if (lastTimeRef.current == null) lastTimeRef.current = timestamp;
-      const delta = timestamp - lastTimeRef.current;
-      lastTimeRef.current = timestamp;
-      // pixels to move this frame
-      const move = (speed * delta) / 1000;
-      container.scrollTop = container.scrollTop + move;
-      // loop when reached one copy
-      if (container.scrollTop >= maxScrollRef.current) {
-        container.scrollTop = container.scrollTop - maxScrollRef.current;
-      }
-      rafRef.current = requestAnimationFrame(step);
-    };
-
-    rafRef.current = requestAnimationFrame(step);
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-      lastTimeRef.current = null;
-    };
-  }, [branches, isHover, speed]);
+  // Malaysia office with two locations that auto-swap
+  const malaysiaOffices = [
+    {
+      city: "Kuala Lumpur",
+      country: "Malaysia",
+      type: "Processing Facility",
+      address: "Petaling Jaya Industrial Area",
+      phone: "+60 3 1234 5678",
+      email: "kl@moltech.com",
+      description: "Palm oil processing and fatty acid production facility.",
+      image:
+        "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop",
+    },
+    {
+      city: "Johor",
+      country: "Malaysia",
+      type: "Processing Facility",
+      address: "Pasir Gudang Industrial Area",
+      phone: "+60 7 1234 5678",
+      email: "johor@moltech.com",
+      description: "Biodiesel refining and export facility.",
+      image:
+        "https://images.unsplash.com/photo-1503392968123-5bcfcaf1a3e0?w=600&h=400&fit=crop",
+    },
+  ];
 
   return (
-    <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      style={{ height: `${height}px` }}
-      className="overflow-hidden relative"
-    >
-      {/* inner duplicated list for smooth loop */}
-      <div ref={containerRef} className="w-full h-full overflow-hidden">
-        <div className="flex flex-col">
-          {branches.map((b, i) => (
-            <div key={`a-${i}`} className="pb-4">
-              <p className="font-semibold text-slate-800 mb-1">{b.branch}</p>
-              <div className="flex items-center text-sm text-slate-600 mb-1">
-                <MapPin className="w-4 h-4 mr-3 text-blue-600" />
-                <span>{b.address}</span>
-              </div>
-              {b.phone && (
-                <div className="flex items-center text-sm text-slate-600 mb-1">
-                  <Phone className="w-4 h-4 mr-3 text-blue-600" />
-                  <span>{b.phone}</span>
-                </div>
-              )}
-              {b.email && (
-                <div className="flex items-center text-sm text-slate-600">
-                  <Mail className="w-4 h-4 mr-3 text-blue-600" />
-                  <span>{b.email}</span>
-                </div>
-              )}
-            </div>
-          ))}
-          {/* duplicate */}
-          {branches.map((b, i) => (
-            <div key={`b-${i}`} className="pb-4">
-              <p className="font-semibold text-slate-800 mb-1">{b.branch}</p>
-              <div className="flex items-center text-sm text-slate-600 mb-1">
-                <MapPin className="w-4 h-4 mr-3 text-blue-600" />
-                <span>{b.address}</span>
-              </div>
-              {b.phone && (
-                <div className="flex items-center text-sm text-slate-600 mb-1">
-                  <Phone className="w-4 h-4 mr-3 text-blue-600" />
-                  <span>{b.phone}</span>
-                </div>
-              )}
-              {b.email && (
-                <div className="flex items-center text-sm text-slate-600">
-                  <Mail className="w-4 h-4 mr-3 text-blue-600" />
-                  <span>{b.email}</span>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Global: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen">
       <Header />
 
-      <main className="pt-24">
-        <section className="py-16 text-center">
-          <div className="max-w-4xl mx-auto px-6">
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">Global Presence</h1>
-            <p className="text-slate-600">
-              Serving customers worldwide through our strategically located offices and facilities.
+      <main className="pt-24 bg-background">
+        {/* Hero Section */}
+        <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Global Presence
+            </h1>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Serving customers worldwide through our strategically located offices
+              and facilities across Asia, Middle East, Europe, and North America.
             </p>
           </div>
         </section>
 
-        <section className="py-10">
-          <div className="max-w-7xl mx-auto px-6">
+        {/* World Map Visual */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="bg-gradient-to-r from-blue-600 to-slate-700 rounded-3xl p-12 text-white text-center mb-16">
+              <h2 className="text-3xl font-bold mb-6">
+                4 Continents, 7 Strategic Locations
+              </h2>
+              <p className="text-lg max-w-4xl mx-auto leading-relaxed">
+                Our global network ensures local expertise, efficient logistics,
+                and responsive customer service across all major markets for
+                sustainable bio-based products.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Offices Grid */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {offices.map((office, idx) => (
-                <Card
-                  key={idx}
-                  className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              {offices.map((office, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
                 >
-                  <div className="relative h-44 overflow-hidden">
-                    {office.image && (
-                      <>
-                        <img
-                          src={office.image}
-                          alt={`${office.city} Office`}
-                          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                      </>
-                    )}
-                    <div className="absolute bottom-3 left-4 text-white">
-                      <CardTitle className="text-lg md:text-xl font-bold">
-                        {office.city}
-                      </CardTitle>
-                      <p className="text-xs md:text-sm opacity-90">{office.type}</p>
+                  <div className="relative h-48">
+                    <img
+                      src={office.image}
+                      alt={`${office.city} office location`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {office.type}
+                      </span>
                     </div>
                   </div>
 
-                  <CardContent className="p-6 space-y-4">
-                    <p className="text-slate-600">{office.description}</p>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                      {office.city}
+                    </h3>
+                    <p className="text-slate-600 mb-4">{office.country}</p>
 
-                    {office.addressList ? (
-                      // use the AddressScroller for multiple branches
-                      <div className="max-h-40">
-                        <AddressScroller branches={office.addressList} speed={30} height={160} />
+                    <p className="text-slate-700 mb-6 leading-relaxed">
+                      {office.description}
+                    </p>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center text-sm text-slate-600">
+                        <MapPin className="w-4 h-4 mr-3 text-blue-600" />
+                        {office.address}
                       </div>
-                    ) : (
+                      <div className="flex items-center text-sm text-slate-600">
+                        <Phone className="w-4 h-4 mr-3 text-blue-600" />
+                        {office.phone}
+                      </div>
+                      <div className="flex items-center text-sm text-slate-600">
+                        <Mail className="w-4 h-4 mr-3 text-blue-600" />
+                        {office.email}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Malaysia auto-swap card */}
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={malaysiaIndex}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <div className="relative h-48">
+                      <img
+                        src={malaysiaOffices[malaysiaIndex].image}
+                        alt={`${malaysiaOffices[malaysiaIndex].city} office location`}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                          {malaysiaOffices[malaysiaIndex].type}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                        {malaysiaOffices[malaysiaIndex].city}
+                      </h3>
+                      <p className="text-slate-600 mb-4">
+                        {malaysiaOffices[malaysiaIndex].country}
+                      </p>
+
+                      <p className="text-slate-700 mb-6 leading-relaxed">
+                        {malaysiaOffices[malaysiaIndex].description}
+                      </p>
+
                       <div className="space-y-3">
                         <div className="flex items-center text-sm text-slate-600">
                           <MapPin className="w-4 h-4 mr-3 text-blue-600" />
-                          <span>{office.address}</span>
+                          {malaysiaOffices[malaysiaIndex].address}
                         </div>
                         <div className="flex items-center text-sm text-slate-600">
                           <Phone className="w-4 h-4 mr-3 text-blue-600" />
-                          <span>{office.phone}</span>
+                          {malaysiaOffices[malaysiaIndex].phone}
                         </div>
-                        {office.email && (
-                          <div className="flex items-center text-sm text-slate-600">
-                            <Mail className="w-4 h-4 mr-3 text-blue-600" />
-                            <span>{office.email}</span>
-                          </div>
-                        )}
+                        <div className="flex items-center text-sm text-slate-600">
+                          <Mail className="w-4 h-4 mr-3 text-blue-600" />
+                          {malaysiaOffices[malaysiaIndex].email}
+                        </div>
                       </div>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact CTA */}
+        <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div className="bg-white rounded-3xl p-12 shadow-lg">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">
+                Ready to Connect?
+              </h2>
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                Get in touch with your nearest Moltech office to discuss how we can
+                support your sustainable product needs.
+              </p>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
+                Contact Us Today
+              </button>
             </div>
           </div>
         </section>
