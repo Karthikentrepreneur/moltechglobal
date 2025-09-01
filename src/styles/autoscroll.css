@@ -1,0 +1,17 @@
+/* src/styles/autoscroll.css */
+.footer-autoscroll {
+  height: 2rem;              /* show 1 line at a time */
+  overflow: hidden;
+  position: relative;
+}
+
+.footer-autoscroll-track {
+  display: flex;
+  flex-direction: column;
+  animation: footer-scroll-up 12s linear infinite;
+}
+
+@keyframes footer-scroll-up {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); } /* half length since duplicated */
+}
