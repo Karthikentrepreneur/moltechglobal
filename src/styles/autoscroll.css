@@ -1,5 +1,5 @@
 .footer-autoscroll {
-  height: 8rem;   /* taller window for 3 lines */
+  height: 8rem;   /* fits 3 lines: country + address + phone */
   overflow: hidden;
   position: relative;
 }
@@ -7,10 +7,10 @@
 .footer-autoscroll-track {
   display: flex;
   flex-direction: column;
-  animation: footer-scroll-up 28s linear infinite; /* slower for readability */
+  animation: footer-scroll-up 28s linear infinite;
 }
 
 @keyframes footer-scroll-up {
   0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); } /* duplicated list for infinite loop */
+  100% { transform: translateY(-50%); }
 }
