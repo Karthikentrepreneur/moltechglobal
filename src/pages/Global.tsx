@@ -1,177 +1,172 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { MapPin, Phone } from "lucide-react";
+// src/pages/Global.tsx
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { MapPin, Phone, Mail } from "lucide-react";
 
-const Global = () => {
-  const offices = [
-    {
-      city: "Jakarta",
-      country: "Indonesia",
-      type: "Regional Office",
-      address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
-      phone: "+62 815 1038 5581",
-      email: "indonesia@global.com",
-      description: "Key Southeast Asia operations office.",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop"
-    },
-    {
-      city: "Port Klang",
-      country: "Malaysia",
-      type: "Branch Office",
-      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
-      phone: "+60 16-985 4705",
-      email: "portklang@global.com",
-      description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "https://images.unsplash.com/photo-1581092787769-7c54c2a7a7ad?w=600&h=400&fit=crop"
-    },
-    {
-      city: "Johor",
-      country: "Malaysia",
-      type: "Branch Office",
-      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
-      phone: "+60 16-959 4075",
-      email: "johor@global.com",
-      description: "Supporting industrial clients across Johor region.",
-      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop"
-    },
-    {
-      city: "Dammam",
-      country: "Saudi Arabia",
-      type: "Regional Office",
-      address: "2817 King Faizal Road, 9403-32233",
-      phone: "+966 13 3430003",
-      email: "dammam@global.com",
-      description: "Serving Middle East operations and logistics.",
-      image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop"
-    },
-    {
-      city: "Singapore",
-      country: "Singapore",
-      type: "Headquarters",
-      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
-      phone: "+65 65140868",
-      email: "singapore@global.com",
-      description: "Global headquarters and Asia-Pacific hub.",
-      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop"
-    },
-    {
-      city: "Bangkok",
-      country: "Thailand",
-      type: "Regional Office",
-      address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
-      phone: "+60 16-985 4705",
-      email: "bangkok@global.com",
-      description: "Strategic Thailand hub for operations and trading.",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
-    },
-    {
-      city: "Dubai",
-      country: "UAE",
-      type: "Regional Office",
-      address: "Al Qusais Industrial Area 2",
-      phone: "+971 509093357",
-      email: "dubai@global.com",
-      description: "MENA regional operations and logistics hub.",
-      image: "https://images.unsplash.com/photo-1524492449090-1a065f3a9e66?w=600&h=400&fit=crop"
-    },
-    {
-      city: "London",
-      country: "United Kingdom",
-      type: "European Office",
-      address: "167-169 Great Portland Street, W1W 5PF",
-      phone: "+44 7305 856612",
-      email: "london@global.com",
-      description: "European business development and client services.",
-      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop"
-    },
-    {
-      city: "New York",
-      country: "USA",
-      type: "Americas Office",
-      address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
-      phone: "+1 732 456 6780",
-      email: "usa@global.com",
-      description: "North American operations and client services.",
-      image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop"
-    },
-    {
-      city: "Sydney",
-      country: "Australia",
-      type: "Branch Office",
-      address: "Level 10, 20 Martin Place, Sydney NSW 2000",
-      phone: "+61 2 9876 5432",
-      email: "australia@global.com",
-      description: "Supporting clients across Oceania region.",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
-    }
-  ];
+const offices = [
+  {
+    city: "Singapore",
+    country: "Singapore",
+    type: "Headquarters",
+    address: "10 Anson Road, #10-11 International Plaza, Singapore 079903",
+    phone: "+65 6909 5705",
+    email: "info@moltech.com",
+    description:
+      "Our global headquarters in Singapore coordinates worldwide operations with cutting-edge technology and sustainability at its core.",
+    image:
+      "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&h=400&fit=crop",
+  },
+  {
+    city: "Dubai",
+    country: "UAE",
+    type: "Regional Office",
+    address: "Office 408, Tower B, Business Central Towers, Dubai, UAE",
+    phone: "+971 4 123 4567",
+    email: "dubai@moltech.com",
+    description:
+      "Our Dubai office manages Middle East operations with advanced logistics and energy solutions.",
+    image:
+      "https://images.unsplash.com/photo-1524492449090-1a065f2d4c57?w=600&h=400&fit=crop",
+  },
+  {
+    city: "India",
+    country: "India",
+    type: "Regional Office",
+    address:
+      "No. 22, 1st Floor, Industrial Estate, Ambattur, Chennai - 600058",
+    phone: "+91 44 2652 1234",
+    email: "india@moltech.com",
+    description:
+      "India operations focus on technology development, IT services, and regional logistics support.",
+    image:
+      "https://images.unsplash.com/photo-1589541831132-6814a7f1c3d6?w=600&h=400&fit=crop",
+  },
+  {
+    city: "Malaysia",
+    country: "Malaysia",
+    type: "Regional Offices",
+    addressList: [
+      {
+        branch: "Port Klang",
+        address:
+          "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+        phone: "+60 16-985 4705",
+        email: "portklang@moltech.com",
+      },
+      {
+        branch: "Johor",
+        address:
+          "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+        phone: "+60 16-959 4075",
+        email: "johor@moltech.com",
+      },
+    ],
+    description:
+      "Our Malaysia offices provide logistics, processing and supply chain support across Port Klang and Johor regions.",
+    image:
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop",
+  },
+  {
+    city: "Australia",
+    country: "Australia",
+    type: "Regional Office",
+    address: "Level 5, 80 Clarence Street, Sydney NSW 2000",
+    phone: "+61 2 9876 5432",
+    email: "australia@moltech.com",
+    description:
+      "Our Sydney office oversees operations across Australia and Oceania with a focus on renewable energy and sustainability.",
+    image:
+      "https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=600&h=400&fit=crop",
+  },
+];
 
+const Global: React.FC = () => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      
-      <main className="pt-24 bg-background">
-        {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-              Global Presence
-            </h1>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Serving customers worldwide through our strategically located offices and facilities 
-              across Asia, Middle East, Europe, Americas, and Oceania.
-            </p>
-          </div>
-        </section>
+    <div className="bg-gradient-to-b from-slate-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Page header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-slate-900 mb-4">
+            Our Global Presence
+          </h1>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            With offices strategically located worldwide, we deliver sustainable
+            solutions and services to our partners across key regions.
+          </p>
+        </div>
 
-        {/* Offices Grid */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {offices.map((office, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="relative h-48">
-                    <img 
-                      src={office.image} 
-                      alt={`${office.city} office location`}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {office.type}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                      {office.city}
-                    </h3>
-                    <p className="text-slate-600 mb-4">{office.country}</p>
-                    
-                    <p className="text-slate-700 mb-6 leading-relaxed">
-                      {office.description}
-                    </p>
-                    
-                    <div className="space-y-3">
-                      <div className="flex items-center text-sm text-slate-600">
-                        <MapPin className="w-4 h-4 mr-3 text-blue-600" />
-                        {office.address}
-                      </div>
-                      <div className="flex items-center text-sm text-slate-600">
-                        <Phone className="w-4 h-4 mr-3 text-blue-600" />
-                        {office.phone}
-                      </div>
-                    </div>
-                  </div>
+        {/* Offices grid */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {offices.map((office, idx) => (
+            <Card
+              key={idx}
+              className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={office.image}
+                  alt={`${office.city} Office`}
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <CardTitle className="text-xl font-bold">
+                    {office.city}
+                  </CardTitle>
+                  <p className="text-sm opacity-90">{office.type}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
+              </div>
 
-      <Footer />
+              <CardContent className="p-6 space-y-4">
+                <p className="text-slate-600">{office.description}</p>
+
+                {/* Addresses */}
+                {office.addressList ? (
+                  <div className="space-y-4 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
+                    {office.addressList.map((branch, i) => (
+                      <div
+                        key={i}
+                        className="border-b pb-3 last:border-0 last:pb-0"
+                      >
+                        <p className="font-semibold text-slate-800 mb-2">
+                          {branch.branch}
+                        </p>
+                        <div className="flex items-center text-sm text-slate-600 mb-1">
+                          <MapPin className="w-4 h-4 mr-3 text-blue-600" />
+                          {branch.address}
+                        </div>
+                        <div className="flex items-center text-sm text-slate-600 mb-1">
+                          <Phone className="w-4 h-4 mr-3 text-blue-600" />
+                          {branch.phone}
+                        </div>
+                        <div className="flex items-center text-sm text-slate-600">
+                          <Mail className="w-4 h-4 mr-3 text-blue-600" />
+                          {branch.email}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="flex items-center text-sm text-slate-600">
+                      <MapPin className="w-4 h-4 mr-3 text-blue-600" />
+                      {office.address}
+                    </div>
+                    <div className="flex items-center text-sm text-slate-600">
+                      <Phone className="w-4 h-4 mr-3 text-blue-600" />
+                      {office.phone}
+                    </div>
+                    <div className="flex items-center text-sm text-slate-600">
+                      <Mail className="w-4 h-4 mr-3 text-blue-600" />
+                      {office.email}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
