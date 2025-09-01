@@ -11,18 +11,58 @@ const quickLinks = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-// ✅ Office list (one line per office)
+// ✅ Office list with country, address, phone
 const offices = [
-  "AUSTRALIA • Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 • +61 388205157",
-  "INDONESIA • 408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta • +62 815 1038 5581",
-  "MALAYSIA - PORTLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang • +60 16-985 4705",
-  "MALAYSIA - JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang • +60 16-959 4075",
-  "SAUDI ARABIA - DAMMAM • 2817 King Faizal Road, 9403-32233 • +966 13 3430003",
-  "SINGAPORE • Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447 • +65 65140868",
-  "THAILAND - BANGKOK • 109 CCT Bldg, Surawong Rd, Bangrak, 10500 • +60 16-985 4705",
-  "UAE - DUBAI • Al Qusais Industrial Area 2 • +971 509093357",
-  "UK - LONDON • 167-169 Great Portland Street, W1W 5PF • +44 7305 856612",
-  "USA - NEW YORK • 33 Wood Ave S, Suite 600, Iselin, NJ 08830 • +1 732 456 6780",
+  {
+    country: "AUSTRALIA",
+    address: "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043",
+    phone: "+61 388205157",
+  },
+  {
+    country: "INDONESIA",
+    address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
+    phone: "+62 815 1038 5581",
+  },
+  {
+    country: "MALAYSIA - PORTLANG",
+    address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+    phone: "+60 16-985 4705",
+  },
+  {
+    country: "MALAYSIA - JOHOR",
+    address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+    phone: "+60 16-959 4075",
+  },
+  {
+    country: "SAUDI ARABIA - DAMMAM",
+    address: "2817 King Faizal Road, 9403-32233",
+    phone: "+966 13 3430003",
+  },
+  {
+    country: "SINGAPORE",
+    address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+    phone: "+65 65140868",
+  },
+  {
+    country: "THAILAND - BANGKOK",
+    address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
+    phone: "+60 16-985 4705",
+  },
+  {
+    country: "UAE - DUBAI",
+    address: "Al Qusais Industrial Area 2",
+    phone: "+971 509093357",
+  },
+  {
+    country: "UK - LONDON",
+    address: "167-169 Great Portland Street, W1W 5PF",
+    phone: "+44 7305 856612",
+  },
+  {
+    country: "USA - NEW YORK",
+    address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
+    phone: "+1 732 456 6780",
+  },
 ];
 
 const scrollTop = () => {
@@ -61,23 +101,28 @@ const Footer: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Center: Auto-scroll office lines */}
+          {/* Center: Auto-scroll office blocks */}
           <div className="order-1 md:order-2 text-center">
             <div className="footer-autoscroll mx-auto w-full max-w-3xl">
               <div className="footer-autoscroll-track">
-                {[...offices, ...offices].map((line, i) => (
-                  <div
-                    key={i}
-                    className="text-base md:text-lg font-semibold py-4 text-[#F47E2A]"
-                  >
-                    {line}
+                {[...offices, ...offices].map((office, i) => (
+                  <div key={i} className="py-6">
+                    <div className="text-lg md:text-xl font-bold text-[#F47E2A]">
+                      {office.country}
+                    </div>
+                    <div className="text-sm md:text-base text-white mt-1">
+                      {office.address}
+                    </div>
+                    <div className="text-sm md:text-base text-white/90 mt-1">
+                      {office.phone}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right: placeholder for socials */}
+          {/* Right: placeholder */}
           <div className="order-3 hidden md:flex justify-end"></div>
         </div>
 
