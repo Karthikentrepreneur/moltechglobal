@@ -100,26 +100,24 @@ const row2: Office[] = [
   },
 ];
 
-function OfficeItem({ o }: { o: Office }) {
+function OfficeCard({ o }: { o: Office }) {
   return (
-    <div className="flex gap-3">
-      <span className="mt-1 h-4 w-1 rounded-full bg-[#F47E2A]" aria-hidden />
-      <div className="space-y-1">
-        <h5 className="text-[13px] font-semibold tracking-wide text-white/95">
-          {o.title}
-        </h5>
-        <p className="text-[12px] leading-snug text-white/80">
-          {o.addrLines.join(" ")}
+    <div className="min-w-[220px] rounded-r-lg border-l-2 border-[#F47E2A] bg-white/5 p-3">
+      <h5 className="mb-1 font-semibold text-white">{o.title}</h5>
+      <p className="mb-1 text-xs text-white/85 leading-snug">
+        {o.addrLines.map((line, i) => (
+          <span key={i}>
+            {line}
+            {i < o.addrLines.length - 1 && <><br /></>}
+          </span>
+        ))}
+      </p>
+      {o.phones && (
+        <p className="mb-1 text-xs text-white/85 leading-snug">
+          {o.phones.join(" / ")}
         </p>
-        {o.phones?.length ? (
-          <p className="text-[12px] leading-snug text-white/75">
-            {o.phones.join(" · ")}
-          </p>
-        ) : null}
-        {o.email ? (
-          <p className="text-[12px] leading-snug text-white/75">{o.email}</p>
-        ) : null}
-      </div>
+      )}
+      {o.email && <p className="text-xs text-white/85">{o.email}</p>}
     </div>
   );
 }
@@ -139,52 +137,50 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#153a59] text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ——— Top bar: Slim signup (reduced height) ——— */}
-        <div className="flex flex-col items-center justify-between gap-3 border-b border-white/10 py-4 sm:flex-row">
-          <p className="text-sm font-medium text-white/90">
-            Monthly Sailing Schedule
-          </p>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* ===== TOP: Newsletter / Schedule Download ===== */}
+        <div className="py-6 text-center">
+          <h3 className="text-lg md:text-xl font-semibold">
+            Download this month&apos;s Sailing Schedule
+          </h3>
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="flex w-full max-w-md items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2"
+            className="mx-auto mt-3 flex max-w-md items-stretch overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15 focus-within:ring-white/30"
           >
             <input
               type="email"
               required
               placeholder="Your email"
-              className="w-full bg-transparent text-[13px] text-white/90 placeholder:text-white/60 focus:outline-none"
+              className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/60 focus:outline-none"
             />
             <button
               type="submit"
-              className="rounded-full bg-[#F47E2A] px-3 py-1.5 text-xs font-semibold text-white hover:brightness-110"
+              className="whitespace-nowrap bg-[#F47E2A] px-4 py-2 text-sm font-semibold text-white hover:brightness-110"
             >
               Subscribe
             </button>
           </form>
         </div>
 
-        {/* ——— Middle: About + Links (condensed) ——— */}
-        <div className="grid grid-cols-1 gap-8 py-6 sm:grid-cols-2">
+        {/* ===== MAIN: About + Quick Links ===== */}
+        <div className="grid grid-cols-1 gap-6 border-t border-white/10 py-8 md:grid-cols-2">
           <div className="space-y-2">
             <h4 className="text-base font-semibold">About Moltech</h4>
-            <p className="text-[13px] leading-relaxed text-white/80">
-              We source and supply environmentally friendly products with a reduced
-              carbon footprint—operating with ethics and creating positive impact in
-              the communities we serve.
+            <p className="text-sm leading-relaxed text-white/80">
+              We aim to source and supply products that are environmentally friendly and have a reduced carbon footprint.
+              We are dedicated to upholding ethical business practices and creating a
+              positive impact on the communities where we operate.
             </p>
           </div>
 
-          <div className="sm:ml-auto">
-            <h4 className="text-base text-center font-semibold sm:text-left">
-              Quick Links
-            </h4>
-            <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1 text-center sm:text-left">
+          <div className="mx-auto w-full max-w-md">
+            <h4 className="text-center text-base font-semibold">Quick Links</h4>
+            <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1 text-center">
               {quickLinks.map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="inline-block text-[13px] text-white/85 underline-offset-4 transition-colors hover:text-white hover:underline"
+                    className="inline-block text-sm text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline"
                   >
                     {item}
                   </a>
@@ -194,33 +190,34 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ——— Global presence (compact, two rows) ——— */}
-        <div className="border-t border-white/10 py-6">
-          <h4 className="mb-4 text-center text-base font-semibold">
-            Our Global Presence
-          </h4>
-
-          {/* Row 1 */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {row1.map((o) => (
-              <OfficeItem key={o.title} o={o} />
-            ))}
+        {/* ===== GLOBAL OFFICES (Marquee Style) ===== */}
+        <div className="border-t border-white/10 py-6 overflow-hidden">
+          <div className="mb-4 text-center">
+            <h4 className="text-lg md:text-xl font-semibold">Our Global Presence</h4>
           </div>
 
-          {/* Row 2 */}
-          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {row2.map((o) => (
-              <OfficeItem key={o.title} o={o} />
-            ))}
+          {/* Row 1 → scrolls right */}
+          <div className="overflow-hidden">
+            <div className="flex animate-marquee-right gap-4 w-max">
+              {[...row1, ...row1].map((o, i) => (
+                <OfficeCard key={`${o.title}-${i}`} o={o} />
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 → scrolls left */}
+          <div className="mt-4 overflow-hidden">
+            <div className="flex animate-marquee-left gap-4 w-max">
+              {[...row2, ...row2].map((o, i) => (
+                <OfficeCard key={`${o.title}-${i}`} o={o} />
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* ——— Bottom bar ——— */}
-        <div className="flex flex-col items-center justify-between gap-2 border-t border-white/10 py-4 text-[12px] text-white/70 sm:flex-row">
-          <p>© {new Date().getFullYear()} Moltech. All rights reserved.</p>
-          <p className="text-white/60">
-            Designed for performance • Minimal footprint
-          </p>
+        {/* ===== Bottom bar ===== */}
+        <div className="border-t border-white/10 py-4 text-center text-xs text-white/60">
+          © {new Date().getFullYear()} Moltech. All rights reserved.
         </div>
       </div>
     </footer>
