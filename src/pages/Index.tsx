@@ -9,9 +9,6 @@ import Careers from "@/components/Careers";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-// Keep the simple cover component and point it at your globe image
-import ContactCover from "@/components/ContactCover";
-
 /** Scroll to hash on first load/refresh */
 function useScrollHashOnLoad(offset = 80) {
   useEffect(() => {
@@ -59,16 +56,7 @@ const Index = () => {
           <Careers />
         </section>
 
-        {/* CONTACT COVER (Contact by Location) */}
-        <section className="scroll-mt-24">
-          <ContactCover
-            src="/globe-3d.jpg"                 // <-- put this image in /public
-            title="Contact by Location"          // <-- updated title
-            subtitle="Select a country to view our nearest office details and map."
-          />
-        </section>
-
-        {/* CONTACT */}
+        {/* CONTACT (single hero handled inside ContactSection if any) */}
         <section id="contact" className="scroll-mt-24">
           <ContactSection />
         </section>
@@ -80,4 +68,3 @@ const Index = () => {
 };
 
 export default Index;
-
