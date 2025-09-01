@@ -8,8 +8,8 @@ const Global = () => {
       city: "Singapore",
       country: "Singapore",
       type: "Headquarters",
-      address: "Marina Bay Financial Centre",
-      phone: "+65 6123 4567",
+      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447 ",
+      phone: "+65 65140868",
       email: "singapore@moltech.com",
       description: "Regional headquarters and main operations center for Asia-Pacific region.",
       image: "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=600&h=400&fit=crop"
