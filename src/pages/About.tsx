@@ -104,7 +104,7 @@ const About: React.FC = () => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('/images/about-hero.jpg')", // swap to your local image if desired
+            backgroundImage: "/about.jpg", // swap to your local image if desired
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
