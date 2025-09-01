@@ -1,107 +1,178 @@
-// src/pages/Global.tsx
-import React from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { MapPin, Phone } from "lucide-react";
 
-interface Office {
-  country: string;
-  address: string;
-}
+const Global = () => {
+  const offices = [
+    {
+      city: "Jakarta",
+      country: "Indonesia",
+      type: "Regional Office",
+      address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
+      phone: "+62 815 1038 5581",
+      email: "indonesia@global.com",
+      description: "Key Southeast Asia operations office.",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Port Klang",
+      country: "Malaysia",
+      type: "Branch Office",
+      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      phone: "+60 16-985 4705",
+      email: "portklang@global.com",
+      description: "Strategic hub for Malaysian logistics and supply chain.",
+      image: "https://images.unsplash.com/photo-1581092787769-7c54c2a7a7ad?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Johor",
+      country: "Malaysia",
+      type: "Branch Office",
+      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+      phone: "+60 16-959 4075",
+      email: "johor@global.com",
+      description: "Supporting industrial clients across Johor region.",
+      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Dammam",
+      country: "Saudi Arabia",
+      type: "Regional Office",
+      address: "2817 King Faizal Road, 9403-32233",
+      phone: "+966 13 3430003",
+      email: "dammam@global.com",
+      description: "Serving Middle East operations and logistics.",
+      image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Singapore",
+      country: "Singapore",
+      type: "Headquarters",
+      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+      phone: "+65 65140868",
+      email: "singapore@global.com",
+      description: "Global headquarters and Asia-Pacific hub.",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Bangkok",
+      country: "Thailand",
+      type: "Regional Office",
+      address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
+      phone: "+60 16-985 4705",
+      email: "bangkok@global.com",
+      description: "Strategic Thailand hub for operations and trading.",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Dubai",
+      country: "UAE",
+      type: "Regional Office",
+      address: "Al Qusais Industrial Area 2",
+      phone: "+971 509093357",
+      email: "dubai@global.com",
+      description: "MENA regional operations and logistics hub.",
+      image: "https://images.unsplash.com/photo-1524492449090-1a065f3a9e66?w=600&h=400&fit=crop"
+    },
+    {
+      city: "London",
+      country: "United Kingdom",
+      type: "European Office",
+      address: "167-169 Great Portland Street, W1W 5PF",
+      phone: "+44 7305 856612",
+      email: "london@global.com",
+      description: "European business development and client services.",
+      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop"
+    },
+    {
+      city: "New York",
+      country: "USA",
+      type: "Americas Office",
+      address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
+      phone: "+1 732 456 6780",
+      email: "usa@global.com",
+      description: "North American operations and client services.",
+      image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Sydney",
+      country: "Australia",
+      type: "Branch Office",
+      address: "Level 10, 20 Martin Place, Sydney NSW 2000",
+      phone: "+61 2 9876 5432",
+      email: "australia@global.com",
+      description: "Supporting clients across Oceania region.",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+    }
+  ];
 
-const offices: Office[] = [
-  {
-    country: "Singapore",
-    address: `Global Enterprises Pte Ltd
-101 Cecil Street, #17-10 Tong Eng Building,
-Singapore - 069533`,
-  },
-  {
-    country: "India - Chennai",
-    address: `OECL Shipping & Logistics Pvt Ltd
-No.1A, First Floor, Crown Court,
-128 Cathedral Road, Chennai - 600086, India`,
-  },
-  {
-    country: "India - Mumbai",
-    address: `OECL Shipping & Logistics Pvt Ltd
-2nd Floor, Navrang Bhavan,
-123 D.N. Road, Fort, Mumbai - 400001, India`,
-  },
-  {
-    country: "UAE - Dubai",
-    address: `OECL Logistics (LLC)
-Office 1206, The Citadel Tower,
-Business Bay, P.O Box: 118624, Dubai, UAE`,
-  },
-  {
-    country: "Malaysia - Port Klang",
-    address: `OECL (Malaysia) SDN BHD
-B-5-8, 5th Floor, Block Bougainvillea,
-10 Boulevard, Lebuhraya Sprint,
-47400 Petaling Jaya, Selangor, Malaysia`,
-  },
-  {
-    country: "Malaysia - Johor",
-    address: `OECL (Malaysia) SDN BHD
-No. 28, Jalan Molek 2/2,
-Taman Molek, 81100 Johor Bahru,
-Johor, Malaysia`,
-  },
-  {
-    country: "USA",
-    address: `OECL Logistics LLC
-30 N Gould St Ste R, Sheridan,
-Wyoming 82801, USA`,
-  },
-  {
-    country: "UK",
-    address: `OECL UK Ltd
-Suite 206, Forum House,
-15-18 Lime Street, London, EC3M 7AN, UK`,
-  },
-  {
-    country: "Australia - Sydney",
-    address: `OECL Australia Pty Ltd
-Level 14, 275 Alfred Street,
-North Sydney, NSW 2060, Australia`,
-  },
-  {
-    country: "Australia - Melbourne",
-    address: `OECL Australia Pty Ltd
-Level 10, 55 Collins Street,
-Melbourne, VIC 3000, Australia`,
-  },
-];
-
-const Global: React.FC = () => {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-700 to-blue-500 text-white py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Global Presence</h1>
-          <p className="max-w-2xl mx-auto text-lg md:text-xl opacity-90">
-            Connecting businesses worldwide through shipping, logistics,
-            technology, and sustainable energy solutions.
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <Header />
+      
+      <main className="pt-24 bg-background">
+        {/* Hero Section */}
+        <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Global Presence
+            </h1>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Serving customers worldwide through our strategically located offices and facilities 
+              across Asia, Middle East, Europe, Americas, and Oceania.
+            </p>
+          </div>
+        </section>
 
-      {/* Offices Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-6 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {offices.map((office, idx) => (
-            <div
-              key={idx}
-              className="p-6 border rounded-2xl shadow bg-white hover:shadow-lg transition"
-            >
-              <h3 className="text-xl font-semibold mb-3">{office.country}</h3>
-              <p className="text-gray-600 whitespace-pre-line leading-relaxed">
-                {office.address}
-              </p>
+        {/* Offices Grid */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {offices.map((office, index) => (
+                <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                  <div className="relative h-48">
+                    <img 
+                      src={office.image} 
+                      alt={`${office.city} office location`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {office.type}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                      {office.city}
+                    </h3>
+                    <p className="text-slate-600 mb-4">{office.country}</p>
+                    
+                    <p className="text-slate-700 mb-6 leading-relaxed">
+                      {office.description}
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center text-sm text-slate-600">
+                        <MapPin className="w-4 h-4 mr-3 text-blue-600" />
+                        {office.address}
+                      </div>
+                      <div className="flex items-center text-sm text-slate-600">
+                        <Phone className="w-4 h-4 mr-3 text-blue-600" />
+                        {office.phone}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
-    </main>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
