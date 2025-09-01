@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                 {[...offices, ...offices].map((line, i) => (
                   <div
                     key={i}
-                    className="text-base md:text-lg font-semibold py-2 text-[#F47E2A]"
+                    className="text-base md:text-lg font-semibold py-4 text-[#F47E2A]"
                   >
                     {line}
                   </div>
