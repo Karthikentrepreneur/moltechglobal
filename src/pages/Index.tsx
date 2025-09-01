@@ -1,3 +1,4 @@
+// src/pages/Index.tsx
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -8,6 +9,10 @@ import Careers from "@/components/Careers";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
+// NEW
+import World3D from "@/components/World3D";
+import ContactCover from "@/components/ContactCover";
+
 /** Scroll to hash on first load/refresh */
 function useScrollHashOnLoad(offset = 80) {
   useEffect(() => {
@@ -16,23 +21,27 @@ function useScrollHashOnLoad(offset = 80) {
     const el = document.getElementById(hash);
     if (!el) return;
     const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({
-      top: y,
-      behavior: "smooth"
-    });
+    window.scrollTo({ top: y, behavior: "smooth" });
   }, []);
 }
+
 const Index = () => {
   useScrollHashOnLoad(80);
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       {/* Fixed Header */}
       <Header />
 
       {/* Keep content below the fixed header */}
-      <main className=" bg-transparent">
+      <main className="bg-transparent">
         {/* HOME / HERO */}
         <section id="home" className="scroll-mt-24">
           <Hero />
+        </section>
+
+        {/* OPTIONAL 3D WORLD VISUAL */}
+        <section id="world" className="scroll-mt-24">
+          <World3D />
         </section>
 
         {/* ABOUT */}
@@ -55,13 +64,24 @@ const Index = () => {
           <Careers />
         </section>
 
-        {/* CONTACT */}
+        {/* CONTACT COVER (by location) + CONTACT */}
+        <section className="scroll-mt-24">
+          <ContactCover
+            // You can swap this to any dummy image you place in /public
+            src="/contact-cover.jpg"
+            title="Find Us by Location"
+            subtitle="We’re closer than you think"
+          />
+        </section>
+
         <section id="contact" className="scroll-mt-24">
           <ContactSection />
         </section>
       </main>
 
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
