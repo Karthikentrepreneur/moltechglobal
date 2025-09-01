@@ -10,6 +10,7 @@ import AnimalFeedFats from "@/pages/AnimalFeedFats";
 import Glycerin from "@/pages/Glycerin";
 import FeedAdditives from "@/pages/FeedAdditives";
 import Contact from "@/pages/Contact";
+import Global from "@/pages/Global";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/products/glycerin" element={<Glycerin />} />
         <Route path="/products/feed-additives" element={<FeedAdditives />} />
 <Route path="/contact" element={<Contact />} />
+  <Route path="/global" element={<Global />} />
       </Routes>
     </Router>
   );
