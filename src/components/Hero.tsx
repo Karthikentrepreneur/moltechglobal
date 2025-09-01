@@ -1,6 +1,3 @@
-// src/components/Hero.tsx
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
@@ -43,33 +40,6 @@ const Hero = () => {
             <p className="text-lg max-w-2xl">
               Sustainable products and clean initiatives across Asia, Middle East, UK, and USA.
             </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="btn-hero group">
-              Explore Products
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="outline" className="btn-ghost group bg-green-600 hover:bg-green-500">
-              <Play className="mr-2 h-5 w-5" />
-              Talk to Us
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-8">
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-white">4+</div>
-              <div className="text-sm text-gray-200">Continents</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-white">15+</div>
-              <div className="text-sm text-gray-200">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl lg:text-3xl font-bold text-white">100%</div>
-              <div className="text-sm text-gray-200">Sustainable</div>
-            </div>
           </div>
         </div>
       </div>
