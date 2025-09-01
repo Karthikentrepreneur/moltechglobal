@@ -5,6 +5,7 @@ type Location = {
   country: string;
   address: string;
   phone: string;
+  image?: string;
 };
 
 const Global: React.FC = () => {
@@ -14,56 +15,16 @@ const Global: React.FC = () => {
       country: "Indonesia",
       address: "408, Lina Building, JL.HR Rasuna Said kav B7",
       phone: "+62 815 1038 5581",
-    },
-    {
-      city: "Port Klang",
-      country: "Malaysia",
-      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
-      phone: "+60 16-985 4705",
+      image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=400&fit=crop",
     },
     {
       city: "Johor",
       country: "Malaysia",
       address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
       phone: "+60 16-959 4075",
+      image: "https://images.unsplash.com/photo-1503264116251-35a269479413?w=600&h=400&fit=crop",
     },
-    {
-      city: "Dammam",
-      country: "Saudi Arabia",
-      address: "2817 King Faizal Road, 9403-32233",
-      phone: "+966 13 3430003",
-    },
-    {
-      city: "Singapore",
-      country: "Singapore",
-      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
-      phone: "+65 65140868",
-    },
-    {
-      city: "Bangkok",
-      country: "Thailand",
-      address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
-      phone: "+60 16-985 4705",
-    },
-    {
-      city: "Dubai",
-      country: "UAE",
-      address: "Al Qusais Industrial Area 2",
-      phone: "+971 509093357",
-    },
-    {
-      city: "London",
-      country: "UK",
-      address: "167-169 Great Portland Street, W1W 5PF",
-      phone: "+44 7305 856612",
-    },
-    {
-      city: "New York",
-      country: "USA",
-      address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
-      phone: "+1 732 456 6780",
-    },
-    // 👉 Add more locations here (just copy the format and don’t forget commas!)
+    // ✅ Add more objects here, always with commas
   ];
 
   return (
@@ -75,6 +36,13 @@ const Global: React.FC = () => {
             key={index}
             className="bg-gray-100 p-6 rounded-xl shadow-sm hover:shadow-md transition"
           >
+            {loc.image && (
+              <img
+                src={loc.image}
+                alt={`${loc.city} office`}
+                className="w-full h-40 object-cover rounded-md mb-4"
+              />
+            )}
             <h2 className="text-xl font-semibold">
               {loc.city}, {loc.country}
             </h2>
