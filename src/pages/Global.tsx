@@ -223,44 +223,11 @@ const Global = () => {
                     isAnimated={true}
                   />
                 </div>
-                
-                {/* Auto-swap text indicator */}
-                <div className="absolute top-4 right-4 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-xs z-10">
-                  Auto-swapping every 3s
-                </div>
               </div>
 
               {/* Other Offices */}
               {otherOffices.map((office, index) => (
                 <OfficeCard key={index} office={office} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Malaysian Offices Details Section */}
-        <section className="py-16 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">
-              Our Malaysian Operations
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {malaysianOffices.map((office, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 shadow-md">
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{office.city}</h3>
-                  <p className="text-slate-600 mb-4">{office.type}</p>
-                  <p className="text-slate-700 mb-4">{office.description}</p>
-                  <div className="space-y-2 text-sm text-slate-600">
-                    <div className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-2 text-blue-600" />
-                      {office.address}
-                    </div>
-                    <div className="flex items-center">
-                      <Phone className="w-4 h-4 mr-2 text-blue-600" />
-                      {office.phone}
-                    </div>
-                  </div>
-                </div>
               ))}
             </div>
           </div>
