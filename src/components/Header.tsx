@@ -21,13 +21,12 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Added Blog after Careers
   const navItems = [
     { name: "About", to: "/about" },
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Blog", to: "/blog" },
-    { name: "Contact", to: "/contact" }, // stays CTA styled
+    { name: "Contact", to: "/contact" }, // CTA
   ];
 
   const pillClasses = [
