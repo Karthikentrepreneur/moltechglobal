@@ -1,154 +1,152 @@
-
 import { useState, useEffect } from "react";
 import { MapPin, Phone } from "lucide-react";
-
-// Office videos & posters
-const malaysianVideos = [
-  {
-    city: "Port Klang",
-    country: "Malaysia",
-    type: "Branch Office",
-    address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
-    phone: "+60 16-985 4705",
-    email: "portklang@global.com",
-    description: "Strategic hub for Malaysian logistics and supply chain.",
-    video: "/videos/port-klang.mp4",
-    poster: "/images/port-klang.jpg"
-  },
-  {
-    city: "Johor",
-    country: "Malaysia",
-    type: "Branch Office",
-    address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
-    phone: "+60 16-959 4075",
-    email: "johor@global.com",
-    description: "Supporting industrial clients across Johor region.",
-    video: "/videos/johor.mp4",
-    poster: "/images/johor.jpg"
-  }
-];
-
-const otherOffices = [
-  {
-    city: "Jakarta",
-    country: "Indonesia",
-    type: "Regional Office",
-    address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
-    phone: "+62 815 1038 5581",
-    email: "indonesia@global.com",
-    description: "Key Southeast Asia operations office.",
-    video: "/videos/jakarta.mp4",
-    poster: "/images/jakarta.jpg"
-  },
-  {
-    city: "Dammam",
-    country: "Saudi Arabia",
-    type: "Regional Office",
-    address: "2817 King Faizal Road, 9403-32233",
-    phone: "+966 13 3430003",
-    email: "dammam@global.com",
-    description: "Serving Middle East operations and logistics.",
-    video: "/videos/dammam.mp4",
-    poster: "/images/dammam.jpg"
-  },
-  {
-    city: "Singapore",
-    country: "Singapore",
-    type: "Headquarters",
-    address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
-    phone: "+65 65140868",
-    email: "singapore@global.com",
-    description: "Global headquarters and Asia-Pacific hub.",
-    video: "/videos/singapore.mp4",
-    poster: "/images/singapore.jpg"
-  },
-  {
-    city: "Bangkok",
-    country: "Thailand",
-    type: "Regional Office",
-    address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
-    phone: "+60 16-985 4705",
-    email: "bangkok@global.com",
-    description: "Strategic Thailand hub for operations and trading.",
-    video: "/videos/bangkok.mp4",
-    poster: "/images/bangkok.jpg"
-  },
-  {
-    city: "Dubai",
-    country: "UAE",
-    type: "Regional Office",
-    address: "Al Qusais Industrial Area 2",
-    phone: "+971 509093357",
-    email: "dubai@global.com",
-    description: "MENA regional operations and logistics hub.",
-    video: "/videos/dubai.mp4",
-    poster: "/images/dubai.jpg"
-  },
-  {
-    city: "London",
-    country: "United Kingdom",
-    type: "European Office",
-    address: "167-169 Great Portland Street, W1W 5PF",
-    phone: "+44 7305 856612",
-    email: "london@global.com",
-    description: "European business development and client services.",
-    video: "/videos/london.mp4",
-    poster: "/images/london.jpg"
-  },
-  {
-    city: "New York",
-    country: "USA",
-    type: "Americas Office",
-    address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
-    phone: "+1 732 456 6780",
-    email: "usa@global.com",
-    description: "North American operations and client services.",
-    video: "/videos/newyork.mp4",
-    poster: "/images/newyork.jpg"
-  },
-  {
-    city: "Sydney",
-    country: "Australia",
-    type: "Branch Office",
-    address: "Level 10, 20 Martin Place, Sydney NSW 2000",
-    phone: "+61 2 9876 5432",
-    email: "australia@global.com",
-    description: "Supporting clients across Oceania region.",
-    video: "/videos/sydney.mp4",
-    poster: "/images/sydney.jpg"
-  }
-];
 
 const Global = () => {
   const [currentMalaysianOffice, setCurrentMalaysianOffice] = useState(0);
 
+  const malaysianOffices = [
+    {
+      city: "Port Klang",
+      country: "Malaysia",
+      type: "Branch Office",
+      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      phone: "+60 16-985 4705",
+      email: "portklang@global.com",
+      description: "Strategic hub for Malaysian logistics and supply chain.",
+      image: "https://images.unsplash.com/photo-1581092787769-7c54c2a7a7ad?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Johor",
+      country: "Malaysia",
+      type: "Branch Office",
+      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+      phone: "+60 16-959 4075",
+      email: "johor@global.com",
+      description: "Supporting industrial clients across Johor region.",
+      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop"
+    }
+  ];
+
+  const otherOffices = [
+    {
+      city: "Jakarta",
+      country: "Indonesia",
+      type: "Regional Office",
+      address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
+      phone: "+62 815 1038 5581",
+      email: "indonesia@global.com",
+      description: "Key Southeast Asia operations office.",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Dammam",
+      country: "Saudi Arabia",
+      type: "Regional Office",
+      address: "2817 King Faizal Road, 9403-32233",
+      phone: "+966 13 3430003",
+      email: "dammam@global.com",
+      description: "Serving Middle East operations and logistics.",
+      image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Singapore",
+      country: "Singapore",
+      type: "Headquarters",
+      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+      phone: "+65 65140868",
+      email: "singapore@global.com",
+      description: "Global headquarters and Asia-Pacific hub.",
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Bangkok",
+      country: "Thailand",
+      type: "Regional Office",
+      address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
+      phone: "+60 16-985 4705",
+      email: "bangkok@global.com",
+      description: "Strategic Thailand hub for operations and trading.",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Dubai",
+      country: "UAE",
+      type: "Regional Office",
+      address: "Al Qusais Industrial Area 2",
+      phone: "+971 509093357",
+      email: "dubai@global.com",
+      description: "MENA regional operations and logistics hub.",
+      image: "https://images.unsplash.com/photo-1524492449090-1a065f3a9e66?w=600&h=400&fit=crop"
+    },
+    {
+      city: "London",
+      country: "United Kingdom",
+      type: "European Office",
+      address: "167-169 Great Portland Street, W1W 5PF",
+      phone: "+44 7305 856612",
+      email: "london@global.com",
+      description: "European business development and client services.",
+      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop"
+    },
+    {
+      city: "New York",
+      country: "USA",
+      type: "Americas Office",
+      address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
+      phone: "+1 732 456 6780",
+      email: "usa@global.com",
+      description: "North American operations and client services.",
+      image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Sydney",
+      country: "Australia",
+      type: "Branch Office",
+      address: "Level 10, 20 Martin Place, Sydney NSW 2000",
+      phone: "+61 2 9876 5432",
+      email: "australia@global.com",
+      description: "Supporting clients across Oceania region.",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+    }
+  ];
+
+  // Auto-swap Malaysian offices every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentMalaysianOffice(prev => (prev + 1) % malaysianVideos.length);
+      setCurrentMalaysianOffice(prev => {
+        const next = (prev + 1) % 2;
+        console.log('Swapping to office:', next); // Debug log
+        return next;
+      });
     }, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
   const Header = () => (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
-        <div className="text-2xl font-bold text-blue-600">Global Corp</div>
-        <nav className="hidden md:flex space-x-8">
-          <a href="/" className="text-slate-600 hover:text-blue-600">Home</a>
-          <a href="/about" className="text-slate-600 hover:text-blue-600">About</a>
-          <a href="/services" className="text-slate-600 hover:text-blue-600">Services</a>
-          <a href="/global" className="text-blue-600 font-medium">Global</a>
-          <a href="/contact" className="text-slate-600 hover:text-blue-600">Contact</a>
-        </nav>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+        <div className="flex items-center justify-between">
+          <div className="text-2xl font-bold text-blue-600">Global Corp</div>
+          <nav className="hidden md:flex space-x-8">
+            <a href="/" className="text-slate-600 hover:text-blue-600">Home</a>
+            <a href="/about" className="text-slate-600 hover:text-blue-600">About</a>
+            <a href="/services" className="text-slate-600 hover:text-blue-600">Services</a>
+            <a href="/global" className="text-blue-600 font-medium">Global</a>
+            <a href="/contact" className="text-slate-600 hover:text-blue-600">Contact</a>
+          </nav>
+        </div>
       </div>
     </header>
   );
 
   const Footer = () => (
     <footer className="bg-slate-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <div className="text-2xl font-bold text-blue-400 mb-4">Global Corp</div>
-        <p className="text-slate-400">© 2025 Global Corp. All rights reserved.</p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center">
+          <div className="text-2xl font-bold text-blue-400 mb-4">Global Corp</div>
+          <p className="text-slate-400">© 2025 Global Corp. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );
@@ -156,23 +154,28 @@ const Global = () => {
   const OfficeCard = ({ office, isAnimated = false }) => (
     <div className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 ${isAnimated ? 'transform' : ''}`}>
       <div className="relative h-48">
-        <video
+        <img 
+          src={office.image} 
+          alt={`${office.city} office location`}
           className="w-full h-full object-cover"
-          src={office.video}
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={office.poster}
         />
         <div className="absolute top-4 left-4">
-          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">{office.type}</span>
+          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+            {office.type}
+          </span>
         </div>
       </div>
+      
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">{office.city}</h3>
+        <h3 className="text-2xl font-bold text-slate-900 mb-2">
+          {office.city}
+        </h3>
         <p className="text-slate-600 mb-4">{office.country}</p>
-        <p className="text-slate-700 mb-6 leading-relaxed">{office.description}</p>
+        
+        <p className="text-slate-700 mb-6 leading-relaxed">
+          {office.description}
+        </p>
+        
         <div className="space-y-3">
           <div className="flex items-center text-sm text-slate-600">
             <MapPin className="w-4 h-4 mr-3 text-blue-600" />
@@ -190,13 +193,17 @@ const Global = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      
       <main className="pt-24 bg-background">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">Global Presence</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Global Presence
+            </h1>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Serving customers worldwide through our strategically located offices and facilities across Asia, Middle East, Europe, Americas, and Oceania.
+              Serving customers worldwide through our strategically located offices and facilities 
+              across Asia, Middle East, Europe, Americas, and Oceania.
             </p>
           </div>
         </section>
@@ -207,8 +214,14 @@ const Global = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Auto-swapping Malaysian Offices Column */}
               <div className="relative overflow-hidden">
-                <div className="transition-all duration-500 ease-in-out" key={currentMalaysianOffice}>
-                  <OfficeCard office={malaysianVideos[currentMalaysianOffice]} isAnimated={true} />
+                <div 
+                  className="transition-all duration-500 ease-in-out"
+                  key={currentMalaysianOffice}
+                >
+                  <OfficeCard 
+                    office={malaysianOffices[currentMalaysianOffice]} 
+                    isAnimated={true}
+                  />
                 </div>
               </div>
 
@@ -220,6 +233,7 @@ const Global = () => {
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
