@@ -13,7 +13,7 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "https://images.unsplash.com/photo-1581092787769-7c54c2a7a7ad?w=600&h=400&fit=crop"
+      image: "/malasyia.avif"
     },
     {
       city: "Johor",
@@ -23,7 +23,7 @@ const Global = () => {
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop"
+      image: "/malasyia.avif"
     }
   ];
 
@@ -36,7 +36,7 @@ const Global = () => {
       phone: "+62 815 1038 5581",
       email: "indonesia@global.com",
       description: "Key Southeast Asia operations office.",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop"
+      image: "indonesia.webp"
     },
     {
       city: "Dammam",
@@ -46,7 +46,7 @@ const Global = () => {
       phone: "+966 13 3430003",
       email: "dammam@global.com",
       description: "Serving Middle East operations and logistics.",
-      image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop"
+      image: "dammam.avif"
     },
     {
       city: "Singapore",
@@ -56,7 +56,7 @@ const Global = () => {
       phone: "+65 65140868",
       email: "singapore@global.com",
       description: "Global headquarters and Asia-Pacific hub.",
-      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop"
+      image: "singapore.jpg"
     },
     {
       city: "Bangkok",
@@ -66,7 +66,7 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "bangkok@global.com",
       description: "Strategic Thailand hub for operations and trading.",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+      image: "Bangkok.jpg"
     },
     {
       city: "Dubai",
@@ -76,7 +76,7 @@ const Global = () => {
       phone: "+971 509093357",
       email: "dubai@global.com",
       description: "MENA regional operations and logistics hub.",
-      image: "https://images.unsplash.com/photo-1524492449090-1a065f3a9e66?w=600&h=400&fit=crop"
+      image: "Dubai.jpeg"
     },
     {
       city: "London",
@@ -86,7 +86,7 @@ const Global = () => {
       phone: "+44 7305 856612",
       email: "london@global.com",
       description: "European business development and client services.",
-      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop"
+      image: "London.jpg"
     },
     {
       city: "New York",
@@ -96,7 +96,7 @@ const Global = () => {
       phone: "+1 732 456 6780",
       email: "usa@global.com",
       description: "North American operations and client services.",
-      image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop"
+      image: "newyork.jpg"
     },
     {
       city: "Sydney",
@@ -106,7 +106,7 @@ const Global = () => {
       phone: "+61 2 9876 5432",
       email: "australia@global.com",
       description: "Supporting clients across Oceania region.",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+      image: "sydney.jpg"
     }
   ];
 
