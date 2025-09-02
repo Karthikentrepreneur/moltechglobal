@@ -1,8 +1,9 @@
+
 import { useState, useEffect } from "react";
 import { MapPin, Phone } from "lucide-react";
 
-// Office videos, posters & landmark images
-const malaysianOffices = [
+// Office videos & posters
+const malaysianVideos = [
   {
     city: "Port Klang",
     country: "Malaysia",
@@ -12,8 +13,7 @@ const malaysianOffices = [
     email: "portklang@global.com",
     description: "Strategic hub for Malaysian logistics and supply chain.",
     video: "/videos/port-klang.mp4",
-    poster: "/images/port-klang.jpg",
-    landmarkImage: "/images/landmarks/petronas-towers.jpg"
+    poster: "/images/port-klang.jpg"
   },
   {
     city: "Johor",
@@ -24,8 +24,7 @@ const malaysianOffices = [
     email: "johor@global.com",
     description: "Supporting industrial clients across Johor region.",
     video: "/videos/johor.mp4",
-    poster: "/images/johor.jpg",
-    landmarkImage: "/images/landmarks/johor-sultan-palace.jpg"
+    poster: "/images/johor.jpg"
   }
 ];
 
@@ -39,8 +38,7 @@ const otherOffices = [
     email: "indonesia@global.com",
     description: "Key Southeast Asia operations office.",
     video: "/videos/jakarta.mp4",
-    poster: "/images/jakarta.jpg",
-    landmarkImage: "/images/landmarks/monas.jpg"
+    poster: "/images/jakarta.jpg"
   },
   {
     city: "Dammam",
@@ -51,8 +49,7 @@ const otherOffices = [
     email: "dammam@global.com",
     description: "Serving Middle East operations and logistics.",
     video: "/videos/dammam.mp4",
-    poster: "/images/dammam.jpg",
-    landmarkImage: "/images/landmarks/king-fahd-fountain.jpg"
+    poster: "/images/dammam.jpg"
   },
   {
     city: "Singapore",
@@ -63,8 +60,7 @@ const otherOffices = [
     email: "singapore@global.com",
     description: "Global headquarters and Asia-Pacific hub.",
     video: "/videos/singapore.mp4",
-    poster: "/images/singapore.jpg",
-    landmarkImage: "/images/landmarks/marina-bay-sands.jpg"
+    poster: "/images/singapore.jpg"
   },
   {
     city: "Bangkok",
@@ -75,8 +71,7 @@ const otherOffices = [
     email: "bangkok@global.com",
     description: "Strategic Thailand hub for operations and trading.",
     video: "/videos/bangkok.mp4",
-    poster: "/images/bangkok.jpg",
-    landmarkImage: "/images/landmarks/grand-palace.jpg"
+    poster: "/images/bangkok.jpg"
   },
   {
     city: "Dubai",
@@ -87,8 +82,7 @@ const otherOffices = [
     email: "dubai@global.com",
     description: "MENA regional operations and logistics hub.",
     video: "/videos/dubai.mp4",
-    poster: "/images/dubai.jpg",
-    landmarkImage: "/images/landmarks/burj-khalifa.jpg"
+    poster: "/images/dubai.jpg"
   },
   {
     city: "London",
@@ -99,8 +93,7 @@ const otherOffices = [
     email: "london@global.com",
     description: "European business development and client services.",
     video: "/videos/london.mp4",
-    poster: "/images/london.jpg",
-    landmarkImage: "/images/landmarks/big-ben.jpg"
+    poster: "/images/london.jpg"
   },
   {
     city: "New York",
@@ -111,8 +104,7 @@ const otherOffices = [
     email: "usa@global.com",
     description: "North American operations and client services.",
     video: "/videos/newyork.mp4",
-    poster: "/images/newyork.jpg",
-    landmarkImage: "/images/landmarks/statue-of-liberty.jpg"
+    poster: "/images/newyork.jpg"
   },
   {
     city: "Sydney",
@@ -123,8 +115,7 @@ const otherOffices = [
     email: "australia@global.com",
     description: "Supporting clients across Oceania region.",
     video: "/videos/sydney.mp4",
-    poster: "/images/sydney.jpg",
-    landmarkImage: "/images/landmarks/sydney-opera-house.jpg"
+    poster: "/images/sydney.jpg"
   }
 ];
 
@@ -133,7 +124,7 @@ const Global = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentMalaysianOffice(prev => (prev + 1) % malaysianOffices.length);
+      setCurrentMalaysianOffice(prev => (prev + 1) % malaysianVideos.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -181,21 +172,14 @@ const Global = () => {
       <div className="p-6">
         <h3 className="text-2xl font-bold text-slate-900 mb-2">{office.city}</h3>
         <p className="text-slate-600 mb-4">{office.country}</p>
-        {office.landmarkImage && (
-          <img
-            src={office.landmarkImage}
-            alt={`${office.country} landmark`}
-            className="w-full h-40 object-cover rounded-lg mb-4"
-          />
-        )}
         <p className="text-slate-700 mb-6 leading-relaxed">{office.description}</p>
         <div className="space-y-3">
-          <div className="flex items-center text-sm text-slate-600 gap-2">
-            <MapPin className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center text-sm text-slate-600">
+            <MapPin className="w-4 h-4 mr-3 text-blue-600" />
             {office.address}
           </div>
-          <div className="flex items-center text-sm text-slate-600 gap-2">
-            <Phone className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center text-sm text-slate-600">
+            <Phone className="w-4 h-4 mr-3 text-blue-600" />
             {office.phone}
           </div>
         </div>
@@ -224,7 +208,7 @@ const Global = () => {
               {/* Auto-swapping Malaysian Offices Column */}
               <div className="relative overflow-hidden">
                 <div className="transition-all duration-500 ease-in-out" key={currentMalaysianOffice}>
-                  <OfficeCard office={malaysianOffices[currentMalaysianOffice]} isAnimated={true} />
+                  <OfficeCard office={malaysianVideos[currentMalaysianOffice]} isAnimated={true} />
                 </div>
               </div>
 
