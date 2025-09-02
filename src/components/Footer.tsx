@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#153a59] text-white">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ===== Row 1: About ===== */}
+        {/* About */}
         <div className="py-6 border-b border-white/10 text-center">
           <h4 className="text-lg font-semibold">About Moltech</h4>
           <p className="mt-2 mx-auto max-w-3xl text-white/85 leading-relaxed text-sm md:text-base">
@@ -42,9 +42,8 @@ const Footer: React.FC = () => {
           </p>
         </div>
 
-        {/* ===== Row 2: Quick Links + Auto-scroll Offices + Email ===== */}
+        {/* Quick Links + Offices + Email */}
         <div className="py-6 border-b border-white/10 grid grid-cols-1 gap-4 md:grid-cols-[1fr_minmax(0,2fr)_1fr] items-center">
-          {/* Left: Quick Links */}
           <nav className="order-2 md:order-1">
             <ul className="grid grid-cols-2 gap-x-4 gap-y-1 md:inline-grid md:grid-cols-1">
               {quickLinks.map((item) => (
@@ -60,7 +59,6 @@ const Footer: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Center: Auto-scroll office blocks */}
           <div className="order-1 md:order-2 text-center">
             <div className="footer-autoscroll mx-auto w-full max-w-3xl">
               <div className="footer-autoscroll-track">
@@ -81,7 +79,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Email */}
           <div className="order-3 text-right">
             <a
               href="mailto:info@moltechglobal.com"
@@ -92,7 +89,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* ===== Row 3: Back Top + Copyright ===== */}
+        {/* Back Top + Copyright */}
         <div className="py-4 flex items-center justify-between text-xs md:text-sm">
           <button
             onClick={scrollTop}
