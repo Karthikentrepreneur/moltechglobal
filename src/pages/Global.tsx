@@ -13,7 +13,8 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "https://images.unsplash.com/photo-1581092787769-7c54c2a7a7ad?w=600&h=400&fit=crop"
+      // Petronas Twin Towers / KL skyline
+      image: "https://source.unsplash.com/1600x900/?kuala-lumpur,petronas-towers&fit=crop"
     },
     {
       city: "Johor",
@@ -23,7 +24,8 @@ const Global = () => {
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop"
+      // Sultan Abu Bakar Mosque / Johor Bahru icon
+      image: "https://source.unsplash.com/1600x900/?johor-bahru,mosque&fit=crop"
     }
   ];
 
@@ -36,7 +38,8 @@ const Global = () => {
       phone: "+62 815 1038 5581",
       email: "indonesia@global.com",
       description: "Key Southeast Asia operations office.",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop"
+      // National Monument (Monas)
+      image: "https://source.unsplash.com/1600x900/?jakarta,monas&fit=crop"
     },
     {
       city: "Dammam",
@@ -46,7 +49,8 @@ const Global = () => {
       phone: "+966 13 3430003",
       email: "dammam@global.com",
       description: "Serving Middle East operations and logistics.",
-      image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop"
+      // King Fahd Causeway / Saudi landmark
+      image: "https://source.unsplash.com/1600x900/?saudi-arabia,king-fahd-causeway&fit=crop"
     },
     {
       city: "Singapore",
@@ -56,7 +60,8 @@ const Global = () => {
       phone: "+65 65140868",
       email: "singapore@global.com",
       description: "Global headquarters and Asia-Pacific hub.",
-      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop"
+      // Marina Bay Sands / Merlion
+      image: "https://source.unsplash.com/1600x900/?singapore,marina-bay-sands&fit=crop"
     },
     {
       city: "Bangkok",
@@ -66,7 +71,8 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "bangkok@global.com",
       description: "Strategic Thailand hub for operations and trading.",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+      // Wat Arun / Grand Palace
+      image: "https://source.unsplash.com/1600x900/?bangkok,wat-arun&fit=crop"
     },
     {
       city: "Dubai",
@@ -76,7 +82,8 @@ const Global = () => {
       phone: "+971 509093357",
       email: "dubai@global.com",
       description: "MENA regional operations and logistics hub.",
-      image: "https://images.unsplash.com/photo-1524492449090-1a065f3a9e66?w=600&h=400&fit=crop"
+      // Burj Khalifa
+      image: "https://source.unsplash.com/1600x900/?dubai,burj-khalifa&fit=crop"
     },
     {
       city: "London",
@@ -86,7 +93,8 @@ const Global = () => {
       phone: "+44 7305 856612",
       email: "london@global.com",
       description: "European business development and client services.",
-      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop"
+      // Big Ben / Houses of Parliament
+      image: "https://source.unsplash.com/1600x900/?london,big-ben&fit=crop"
     },
     {
       city: "New York",
@@ -96,7 +104,8 @@ const Global = () => {
       phone: "+1 732 456 6780",
       email: "usa@global.com",
       description: "North American operations and client services.",
-      image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop"
+      // Statue of Liberty / Manhattan skyline
+      image: "https://source.unsplash.com/1600x900/?new-york,statue-of-liberty&fit=crop"
     },
     {
       city: "Sydney",
@@ -106,7 +115,8 @@ const Global = () => {
       phone: "+61 2 9876 5432",
       email: "australia@global.com",
       description: "Supporting clients across Oceania region.",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
+      // Sydney Opera House
+      image: "https://source.unsplash.com/1600x900/?sydney,opera-house&fit=crop"
     }
   ];
 
@@ -115,11 +125,9 @@ const Global = () => {
     const interval = setInterval(() => {
       setCurrentMalaysianOffice(prev => {
         const next = (prev + 1) % 2;
-        console.log('Swapping to office:', next); // Debug log
         return next;
       });
     }, 3000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -154,10 +162,11 @@ const Global = () => {
   const OfficeCard = ({ office, isAnimated = false }) => (
     <div className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 ${isAnimated ? 'transform' : ''}`}>
       <div className="relative h-48">
-        <img 
-          src={office.image} 
-          alt={`${office.city} office location`}
+        <img
+          src={office.image}
+          alt={`${office.city} office location - ${office.country} famous landmark`}
           className="w-full h-full object-cover"
+          loading="lazy"
         />
         <div className="absolute top-4 left-4">
           <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -165,17 +174,17 @@ const Global = () => {
           </span>
         </div>
       </div>
-      
+
       <div className="p-6">
         <h3 className="text-2xl font-bold text-slate-900 mb-2">
           {office.city}
         </h3>
         <p className="text-slate-600 mb-4">{office.country}</p>
-        
+
         <p className="text-slate-700 mb-6 leading-relaxed">
           {office.description}
         </p>
-        
+
         <div className="space-y-3">
           <div className="flex items-center text-sm text-slate-600">
             <MapPin className="w-4 h-4 mr-3 text-blue-600" />
@@ -193,7 +202,7 @@ const Global = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      
+
       <main className="pt-24 bg-background">
         {/* Hero Section */}
         <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
@@ -202,7 +211,7 @@ const Global = () => {
               Global Presence
             </h1>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Serving customers worldwide through our strategically located offices and facilities 
+              Serving customers worldwide through our strategically located offices and facilities
               across Asia, Middle East, Europe, Americas, and Oceania.
             </p>
           </div>
@@ -214,12 +223,12 @@ const Global = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Auto-swapping Malaysian Offices Column */}
               <div className="relative overflow-hidden">
-                <div 
+                <div
                   className="transition-all duration-500 ease-in-out"
                   key={currentMalaysianOffice}
                 >
-                  <OfficeCard 
-                    office={malaysianOffices[currentMalaysianOffice]} 
+                  <OfficeCard
+                    office={malaysianOffices[currentMalaysianOffice]}
                     isAnimated={true}
                   />
                 </div>
