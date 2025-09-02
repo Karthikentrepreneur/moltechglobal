@@ -11,6 +11,7 @@ import Glycerin from "@/pages/Glycerin";
 import FeedAdditives from "@/pages/FeedAdditives";
 import Contact from "@/pages/Contact";
 import Global from "@/pages/Global";
+import Blog from "@/pages/blog";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
         {/* Main pages */}
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
-
+ <Route path="/blog" element={<Blog />} />
         {/* Products */}
         <Route path="/products" element={<ProductsGrid />} />
         <Route path="/products/biodiesel-feedstocks" element={<BiodieselFeedstocks />} />
@@ -32,6 +33,7 @@ const App = () => {
         {/* Contact & Global Presence */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/global" element={<Global />} />
+
       </Routes>
     </Router>
   );
