@@ -1,10 +1,72 @@
 import { useState, useEffect } from "react";
 import { MapPin, Phone } from "lucide-react";
 
+type Office = {
+  city: string;
+  country: string;
+  type: string;
+  address: string;
+  phone: string;
+  email: string;
+  description: string;
+  image: string; // primary URL
+  fallback?: string; // optional secondary
+};
+
+// ---- Drop-in image with graceful fallbacks ----
+const SafeImage = ({ src, alt, seed, className }: { src: string; alt: string; seed: string; className?: string }) => {
+  const [url, setUrl] = useState(src);
+  const [failedOnce, setFailedOnce] = useState(false);
+  const [failedTwice, setFailedTwice] = useState(false);
+
+  const fallback1 = `https://picsum.photos/seed/${encodeURIComponent(seed)}/1600/900`;
+  // final fallback is inline SVG (no network)
+
+  if (failedTwice) {
+    return (
+      <div className={className} aria-label={alt} role="img">
+        <svg viewBox="0 0 1600 900" className="w-full h-full">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#e2e8f0" />
+              <stop offset="100%" stopColor="#cbd5e1" />
+            </linearGradient>
+          </defs>
+          <rect width="1600" height="900" fill="url(#g)" />
+          <text x="50%" y="50%" textAnchor="middle" fontSize="48" fill="#475569">Image unavailable</text>
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={url}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      crossOrigin="anonymous"
+      onError={() => {
+        if (!failedOnce) {
+          setFailedOnce(true);
+          setUrl(fallback1);
+        } else {
+          setFailedTwice(true);
+        }
+      }}
+    />
+  );
+};
+
 const Global = () => {
   const [currentMalaysianOffice, setCurrentMalaysianOffice] = useState(0);
 
-  const malaysianOffices = [
+  // Tip: these Unsplash endpoints are the “featured” ones and generally reliable.
+  // If you still face blocking, switch any to a fixed images.unsplash.com/photo-<id>?auto=format&w=1600&q=80
+
+  const malaysianOffices: Office[] = [
     {
       city: "Port Klang",
       country: "Malaysia",
@@ -13,8 +75,8 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      // Petronas Twin Towers / KL skyline
-      image: "https://source.unsplash.com/1600x900/?kuala-lumpur,petronas-towers&fit=crop"
+      // KL skyline / Petronas
+      image: "https://source.unsplash.com/featured/1600x900/?kuala-lumpur,petronas-towers"
     },
     {
       city: "Johor",
@@ -24,12 +86,11 @@ const Global = () => {
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      // Sultan Abu Bakar Mosque / Johor Bahru icon
-      image: "https://source.unsplash.com/1600x900/?johor-bahru,mosque&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?johor-bahru,malaysia"
     }
   ];
 
-  const otherOffices = [
+  const otherOffices: Office[] = [
     {
       city: "Jakarta",
       country: "Indonesia",
@@ -38,8 +99,7 @@ const Global = () => {
       phone: "+62 815 1038 5581",
       email: "indonesia@global.com",
       description: "Key Southeast Asia operations office.",
-      // National Monument (Monas)
-      image: "https://source.unsplash.com/1600x900/?jakarta,monas&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?jakarta,monas"
     },
     {
       city: "Dammam",
@@ -49,8 +109,7 @@ const Global = () => {
       phone: "+966 13 3430003",
       email: "dammam@global.com",
       description: "Serving Middle East operations and logistics.",
-      // King Fahd Causeway / Saudi landmark
-      image: "https://source.unsplash.com/1600x900/?saudi-arabia,king-fahd-causeway&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?dammam,saudi-arabia"
     },
     {
       city: "Singapore",
@@ -60,8 +119,7 @@ const Global = () => {
       phone: "+65 65140868",
       email: "singapore@global.com",
       description: "Global headquarters and Asia-Pacific hub.",
-      // Marina Bay Sands / Merlion
-      image: "https://source.unsplash.com/1600x900/?singapore,marina-bay-sands&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?singapore,marina-bay-sands"
     },
     {
       city: "Bangkok",
@@ -71,8 +129,7 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "bangkok@global.com",
       description: "Strategic Thailand hub for operations and trading.",
-      // Wat Arun / Grand Palace
-      image: "https://source.unsplash.com/1600x900/?bangkok,wat-arun&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?bangkok,wat-arun"
     },
     {
       city: "Dubai",
@@ -82,8 +139,7 @@ const Global = () => {
       phone: "+971 509093357",
       email: "dubai@global.com",
       description: "MENA regional operations and logistics hub.",
-      // Burj Khalifa
-      image: "https://source.unsplash.com/1600x900/?dubai,burj-khalifa&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?dubai,burj-khalifa"
     },
     {
       city: "London",
@@ -93,8 +149,7 @@ const Global = () => {
       phone: "+44 7305 856612",
       email: "london@global.com",
       description: "European business development and client services.",
-      // Big Ben / Houses of Parliament
-      image: "https://source.unsplash.com/1600x900/?london,big-ben&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?london,big-ben"
     },
     {
       city: "New York",
@@ -104,8 +159,7 @@ const Global = () => {
       phone: "+1 732 456 6780",
       email: "usa@global.com",
       description: "North American operations and client services.",
-      // Statue of Liberty / Manhattan skyline
-      image: "https://source.unsplash.com/1600x900/?new-york,statue-of-liberty&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?new-york,manhattan"
     },
     {
       city: "Sydney",
@@ -115,18 +169,13 @@ const Global = () => {
       phone: "+61 2 9876 5432",
       email: "australia@global.com",
       description: "Supporting clients across Oceania region.",
-      // Sydney Opera House
-      image: "https://source.unsplash.com/1600x900/?sydney,opera-house&fit=crop"
+      image: "https://source.unsplash.com/featured/1600x900/?sydney,opera-house"
     }
   ];
 
-  // Auto-swap Malaysian offices every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentMalaysianOffice(prev => {
-        const next = (prev + 1) % 2;
-        return next;
-      });
+      setCurrentMalaysianOffice(prev => (prev + 1) % malaysianOffices.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -159,14 +208,14 @@ const Global = () => {
     </footer>
   );
 
-  const OfficeCard = ({ office, isAnimated = false }) => (
+  const OfficeCard = ({ office, isAnimated = false }: { office: Office; isAnimated?: boolean }) => (
     <div className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 ${isAnimated ? 'transform' : ''}`}>
       <div className="relative h-48">
-        <img
+        <SafeImage
           src={office.image}
           alt={`${office.city} office location - ${office.country} famous landmark`}
+          seed={`${office.country}-${office.city}`}
           className="w-full h-full object-cover"
-          loading="lazy"
         />
         <div className="absolute top-4 left-4">
           <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -176,15 +225,9 @@ const Global = () => {
       </div>
 
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">
-          {office.city}
-        </h3>
+        <h3 className="text-2xl font-bold text-slate-900 mb-2">{office.city}</h3>
         <p className="text-slate-600 mb-4">{office.country}</p>
-
-        <p className="text-slate-700 mb-6 leading-relaxed">
-          {office.description}
-        </p>
-
+        <p className="text-slate-700 mb-6 leading-relaxed">{office.description}</p>
         <div className="space-y-3">
           <div className="flex items-center text-sm text-slate-600">
             <MapPin className="w-4 h-4 mr-3 text-blue-600" />
@@ -207,9 +250,7 @@ const Global = () => {
         {/* Hero Section */}
         <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-              Global Presence
-            </h1>
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">Global Presence</h1>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Serving customers worldwide through our strategically located offices and facilities
               across Asia, Middle East, Europe, Americas, and Oceania.
@@ -223,14 +264,8 @@ const Global = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Auto-swapping Malaysian Offices Column */}
               <div className="relative overflow-hidden">
-                <div
-                  className="transition-all duration-500 ease-in-out"
-                  key={currentMalaysianOffice}
-                >
-                  <OfficeCard
-                    office={malaysianOffices[currentMalaysianOffice]}
-                    isAnimated={true}
-                  />
+                <div className="transition-all duration-500 ease-in-out" key={currentMalaysianOffice}>
+                  <OfficeCard office={malaysianOffices[currentMalaysianOffice]} isAnimated />
                 </div>
               </div>
 
