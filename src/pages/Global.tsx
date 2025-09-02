@@ -13,8 +13,7 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      // Petronas Towers
-      image: "https://images.unsplash.com/photo-1504548840739-580b10ae7715?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1581092787769-7c54c2a7a7ad?w=600&h=400&fit=crop"
     },
     {
       city: "Johor",
@@ -24,8 +23,7 @@ const Global = () => {
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      // Johor Bahru mosque
-      image: "https://images.unsplash.com/photo-1626082925312-d38d6d5a9d37?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop"
     }
   ];
 
@@ -38,8 +36,7 @@ const Global = () => {
       phone: "+62 815 1038 5581",
       email: "indonesia@global.com",
       description: "Key Southeast Asia operations office.",
-      // National Monument (Monas)
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop"
     },
     {
       city: "Dammam",
@@ -49,8 +46,7 @@ const Global = () => {
       phone: "+966 13 3430003",
       email: "dammam@global.com",
       description: "Serving Middle East operations and logistics.",
-      // King Fahd Mosque
-      image: "https://images.unsplash.com/photo-1565557623262-204f7b6f6c72?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=600&h=400&fit=crop"
     },
     {
       city: "Singapore",
@@ -60,8 +56,7 @@ const Global = () => {
       phone: "+65 65140868",
       email: "singapore@global.com",
       description: "Global headquarters and Asia-Pacific hub.",
-      // Marina Bay Sands
-      image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&h=400&fit=crop"
     },
     {
       city: "Bangkok",
@@ -71,8 +66,7 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "bangkok@global.com",
       description: "Strategic Thailand hub for operations and trading.",
-      // Wat Arun
-      image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
     },
     {
       city: "Dubai",
@@ -82,8 +76,7 @@ const Global = () => {
       phone: "+971 509093357",
       email: "dubai@global.com",
       description: "MENA regional operations and logistics hub.",
-      // Burj Khalifa
-      image: "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1524492449090-1a065f3a9e66?w=600&h=400&fit=crop"
     },
     {
       city: "London",
@@ -93,8 +86,7 @@ const Global = () => {
       phone: "+44 7305 856612",
       email: "london@global.com",
       description: "European business development and client services.",
-      // Big Ben
-      image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop"
     },
     {
       city: "New York",
@@ -104,23 +96,66 @@ const Global = () => {
       phone: "+1 732 456 6780",
       email: "usa@global.com",
       description: "North American operations and client services.",
-      // Statue of Liberty
-      image: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1600&q=80"
+      image: "https://images.unsplash.com/photo-1534353436135-e88f6bd5b6a6?w=600&h=400&fit=crop"
+    },
+    {
+      city: "Sydney",
+      country: "Australia",
+      type: "Branch Office",
+      address: "Level 10, 20 Martin Place, Sydney NSW 2000",
+      phone: "+61 2 9876 5432",
+      email: "australia@global.com",
+      description: "Supporting clients across Oceania region.",
+      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=400&fit=crop"
     }
   ];
 
+  // Auto-swap Malaysian offices every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentMalaysianOffice(prev => (prev + 1) % malaysianOffices.length);
+      setCurrentMalaysianOffice(prev => {
+        const next = (prev + 1) % 2;
+        console.log('Swapping to office:', next); // Debug log
+        return next;
+      });
     }, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
-  const OfficeCard = ({ office }) => (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500">
+  const Header = () => (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+        <div className="flex items-center justify-between">
+          <div className="text-2xl font-bold text-blue-600">Global Corp</div>
+          <nav className="hidden md:flex space-x-8">
+            <a href="/" className="text-slate-600 hover:text-blue-600">Home</a>
+            <a href="/about" className="text-slate-600 hover:text-blue-600">About</a>
+            <a href="/services" className="text-slate-600 hover:text-blue-600">Services</a>
+            <a href="/global" className="text-blue-600 font-medium">Global</a>
+            <a href="/contact" className="text-slate-600 hover:text-blue-600">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+
+  const Footer = () => (
+    <footer className="bg-slate-900 text-white py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center">
+          <div className="text-2xl font-bold text-blue-400 mb-4">Global Corp</div>
+          <p className="text-slate-400">© 2025 Global Corp. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+
+  const OfficeCard = ({ office, isAnimated = false }) => (
+    <div className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 ${isAnimated ? 'transform' : ''}`}>
       <div className="relative h-48">
-        <img
-          src={office.image}
+        <img 
+          src={office.image} 
           alt={`${office.city} office location`}
           className="w-full h-full object-cover"
         />
@@ -130,10 +165,17 @@ const Global = () => {
           </span>
         </div>
       </div>
+      
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">{office.city}</h3>
+        <h3 className="text-2xl font-bold text-slate-900 mb-2">
+          {office.city}
+        </h3>
         <p className="text-slate-600 mb-4">{office.country}</p>
-        <p className="text-slate-700 mb-6 leading-relaxed">{office.description}</p>
+        
+        <p className="text-slate-700 mb-6 leading-relaxed">
+          {office.description}
+        </p>
+        
         <div className="space-y-3">
           <div className="flex items-center text-sm text-slate-600">
             <MapPin className="w-4 h-4 mr-3 text-blue-600" />
@@ -150,32 +192,49 @@ const Global = () => {
 
   return (
     <div className="min-h-screen">
+      <Header />
+      
       <main className="pt-24 bg-background">
+        {/* Hero Section */}
         <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">Global Presence</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Global Presence
+            </h1>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Serving customers worldwide through our strategically located offices and facilities
+              Serving customers worldwide through our strategically located offices and facilities 
               across Asia, Middle East, Europe, Americas, and Oceania.
             </p>
           </div>
         </section>
 
+        {/* Offices Grid */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Malaysian auto-swap */}
-              <div key={currentMalaysianOffice}>
-                <OfficeCard office={malaysianOffices[currentMalaysianOffice]} />
+              {/* Auto-swapping Malaysian Offices Column */}
+              <div className="relative overflow-hidden">
+                <div 
+                  className="transition-all duration-500 ease-in-out"
+                  key={currentMalaysianOffice}
+                >
+                  <OfficeCard 
+                    office={malaysianOffices[currentMalaysianOffice]} 
+                    isAnimated={true}
+                  />
+                </div>
               </div>
-              {/* Other offices */}
-              {otherOffices.map((office, i) => (
-                <OfficeCard key={i} office={office} />
+
+              {/* Other Offices */}
+              {otherOffices.map((office, index) => (
+                <OfficeCard key={index} office={office} />
               ))}
             </div>
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 };
