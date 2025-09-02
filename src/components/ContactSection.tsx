@@ -131,18 +131,7 @@ export default function ContactSection() {
   };
   return <section className="relative">
       {/* Hero */}
-      <div className="relative h-[42vh] min-h-[300px]">
-        <img src="/images/3d-globe.jpg" alt="3D global network backdrop" className="h-full w-full object-cover" loading="eager" decoding="async" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-        <div className="absolute inset-0 grid place-items-center text-center text-white px-6">
-          <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-              Contact by Location
-            </h2>
-            <p className="mt-3 max-w-2xl mx-auto text-white/85">Select a country to view our nearest office details a map.</p>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Content */}
       <div className="section-padding bg-muted/30">
