@@ -1,33 +1,104 @@
-import { useState, useEffect } from "react";
+// src/pages/Global.tsx
+import { useEffect, useState } from "react";
 import { MapPin, Phone } from "lucide-react";
 
-const Global = () => {
+// ✅ use the shared site-wide components
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+type Office = {
+  city: string;
+  country: string;
+  type: string;
+  address: string;
+  phone: string;
+  email: string;
+  description: string;
+  image: string;
+};
+
+const OfficeCard = ({
+  office,
+  isAnimated = false,
+}: {
+  office: Office;
+  isAnimated?: boolean;
+}) => (
+  <div
+    className={[
+      "bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500",
+      "hover:shadow-xl h-full flex flex-col",
+      isAnimated ? "transform" : "",
+    ].join(" ")}
+  >
+    <div className="relative h-48">
+      <img
+        src={office.image}
+        alt={`${office.city} office location`}
+        className="w-full h-full object-cover"
+        loading="lazy"
+        onError={(e) => {
+          // graceful fallback if an image is missing
+          (e.currentTarget as HTMLImageElement).src = "/fallback-office.jpg";
+        }}
+      />
+      <div className="absolute top-4 left-4">
+        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+          {office.type}
+        </span>
+      </div>
+    </div>
+
+    <div className="p-6 flex-1 flex flex-col">
+      <h3 className="text-2xl font-bold text-slate-900">{office.city}</h3>
+      <p className="text-slate-600 mb-3">{office.country}</p>
+
+      <p className="text-slate-700 leading-relaxed mb-6">{office.description}</p>
+
+      <div className="mt-auto space-y-3">
+        <div className="flex items-start text-sm text-slate-700">
+          <MapPin className="w-4 h-4 mr-3 text-blue-600 mt-0.5" />
+          <span>{office.address}</span>
+        </div>
+        <div className="flex items-center text-sm text-slate-700">
+          <Phone className="w-4 h-4 mr-3 text-blue-600" />
+          <span>{office.phone}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export default function Global() {
   const [currentMalaysianOffice, setCurrentMalaysianOffice] = useState(0);
 
-  const malaysianOffices = [
+  // ✅ fixed path typo: /malasyia.avif -> /malaysia.avif
+  const malaysianOffices: Office[] = [
     {
       city: "Port Klang",
       country: "Malaysia",
       type: "Branch Office",
-      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      address:
+        "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "/malasyia.avif"
+      image: "/malaysia.avif",
     },
     {
       city: "Johor",
       country: "Malaysia",
       type: "Branch Office",
-      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+      address:
+        "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      image: "/malasyia.avif"
-    }
+      image: "/malaysia.avif",
+    },
   ];
 
-  const otherOffices = [
+  const otherOffices: Office[] = [
     {
       city: "Jakarta",
       country: "Indonesia",
@@ -36,7 +107,7 @@ const Global = () => {
       phone: "+62 815 1038 5581",
       email: "indonesia@global.com",
       description: "Key Southeast Asia operations office.",
-      image: "indonesia.webp"
+      image: "/indonesia.webp",
     },
     {
       city: "Dammam",
@@ -46,17 +117,18 @@ const Global = () => {
       phone: "+966 13 3430003",
       email: "dammam@global.com",
       description: "Serving Middle East operations and logistics.",
-      image: "dammam.avif"
+      image: "/dammam.avif",
     },
     {
       city: "Singapore",
       country: "Singapore",
       type: "Headquarters",
-      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+      address:
+        "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
       phone: "+65 65140868",
       email: "singapore@global.com",
       description: "Global headquarters and Asia-Pacific hub.",
-      image: "singapore.jpg"
+      image: "/singapore.jpg",
     },
     {
       city: "Bangkok",
@@ -65,8 +137,9 @@ const Global = () => {
       address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
       phone: "+60 16-985 4705",
       email: "bangkok@global.com",
-      description: "Strategic Thailand hub for operations and trading.",
-      image: "Bangkok.jpg"
+      description:
+        "Strategic Thailand hub for operations and trading.",
+      image: "/Bangkok.jpg",
     },
     {
       city: "Dubai",
@@ -76,7 +149,7 @@ const Global = () => {
       phone: "+971 509093357",
       email: "dubai@global.com",
       description: "MENA regional operations and logistics hub.",
-      image: "Dubai.jpeg"
+      image: "/Dubai.jpeg",
     },
     {
       city: "London",
@@ -85,8 +158,9 @@ const Global = () => {
       address: "167-169 Great Portland Street, W1W 5PF",
       phone: "+44 7305 856612",
       email: "london@global.com",
-      description: "European business development and client services.",
-      image: "London.jpg"
+      description:
+        "European business development and client services.",
+      image: "/London.jpg",
     },
     {
       city: "New York",
@@ -96,7 +170,7 @@ const Global = () => {
       phone: "+1 732 456 6780",
       email: "usa@global.com",
       description: "North American operations and client services.",
-      image: "newyork.jpg"
+      image: "/newyork.jpg",
     },
     {
       city: "Sydney",
@@ -106,104 +180,33 @@ const Global = () => {
       phone: "+61 2 9876 5432",
       email: "australia@global.com",
       description: "Supporting clients across Oceania region.",
-      image: "sydney.jpg"
-    }
+      image: "/sydney.jpg",
+    },
   ];
 
   // Auto-swap Malaysian offices every 3 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentMalaysianOffice(prev => {
-        const next = (prev + 1) % 2;
-        console.log('Swapping to office:', next); // Debug log
-        return next;
-      });
+    const t = setInterval(() => {
+      setCurrentMalaysianOffice((p) => (p + 1) % malaysianOffices.length);
     }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const Header = () => (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-blue-600">Global Corp</div>
-          <nav className="hidden md:flex space-x-8">
-            <a href="/" className="text-slate-600 hover:text-blue-600">Home</a>
-            <a href="/about" className="text-slate-600 hover:text-blue-600">About</a>
-            <a href="/services" className="text-slate-600 hover:text-blue-600">Services</a>
-            <a href="/global" className="text-blue-600 font-medium">Global</a>
-            <a href="/contact" className="text-slate-600 hover:text-blue-600">Contact</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-  );
-
-  const Footer = () => (
-    <footer className="bg-slate-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center">
-          <div className="text-2xl font-bold text-blue-400 mb-4">Global Corp</div>
-          <p className="text-slate-400">© 2025 Global Corp. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  );
-
-  const OfficeCard = ({ office, isAnimated = false }) => (
-    <div className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 ${isAnimated ? 'transform' : ''}`}>
-      <div className="relative h-48">
-        <img 
-          src={office.image} 
-          alt={`${office.city} office location`}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-4 left-4">
-          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-            {office.type}
-          </span>
-        </div>
-      </div>
-      
-      <div className="p-6">
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">
-          {office.city}
-        </h3>
-        <p className="text-slate-600 mb-4">{office.country}</p>
-        
-        <p className="text-slate-700 mb-6 leading-relaxed">
-          {office.description}
-        </p>
-        
-        <div className="space-y-3">
-          <div className="flex items-center text-sm text-slate-600">
-            <MapPin className="w-4 h-4 mr-3 text-blue-600" />
-            {office.address}
-          </div>
-          <div className="flex items-center text-sm text-slate-600">
-            <Phone className="w-4 h-4 mr-3 text-blue-600" />
-            {office.phone}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    return () => clearInterval(t);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Header />
-      
-      <main className="pt-24 bg-background">
-        {/* Hero Section */}
+
+      <main className="pt-24">
+        {/* Hero */}
         <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
               Global Presence
             </h1>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Serving customers worldwide through our strategically located offices and facilities 
-              across Asia, Middle East, Europe, Americas, and Oceania.
+            <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Serving customers worldwide through our strategically located
+              offices and facilities across Asia, Middle East, Europe,
+              Americas, and Oceania.
             </p>
           </div>
         </section>
@@ -211,23 +214,23 @@ const Global = () => {
         {/* Offices Grid */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Auto-swapping Malaysian Offices Column */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+              {/* Auto-swapping Malaysian column */}
               <div className="relative overflow-hidden">
-                <div 
-                  className="transition-all duration-500 ease-in-out"
+                <div
                   key={currentMalaysianOffice}
+                  className="transition-opacity duration-500 ease-in-out opacity-100"
                 >
-                  <OfficeCard 
-                    office={malaysianOffices[currentMalaysianOffice]} 
-                    isAnimated={true}
+                  <OfficeCard
+                    office={malaysianOffices[currentMalaysianOffice]}
+                    isAnimated
                   />
                 </div>
               </div>
 
-              {/* Other Offices */}
-              {otherOffices.map((office, index) => (
-                <OfficeCard key={index} office={office} />
+              {/* Other offices */}
+              {otherOffices.map((office, i) => (
+                <OfficeCard key={`${office.city}-${i}`} office={office} />
               ))}
             </div>
           </div>
@@ -237,6 +240,4 @@ const Global = () => {
       <Footer />
     </div>
   );
-};
-
-export default Global;
+}
