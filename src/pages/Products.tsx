@@ -1,6 +1,5 @@
-// src/pages/Products.tsx
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Products() {
   return (
@@ -14,7 +13,6 @@ export default function Products() {
             Showcase your product lines with specs, benefits, safety sheets, and downloads.
           </p>
 
-          {/* Example grid */}
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
               <div
