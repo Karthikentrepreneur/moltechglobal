@@ -66,7 +66,7 @@ const Global = () => {
       phone: "+60 16-985 4705",
       email: "bangkok@global.com",
       description: "Strategic Thailand hub for operations and trading.",
-      image: "Bangkok.jpg"
+      image: "Bangkok"
     },
     {
       city: "Dubai",
