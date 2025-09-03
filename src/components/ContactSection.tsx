@@ -134,74 +134,7 @@ export default function ContactSection() {
       
 
       {/* Content */}
-      <div className="section-padding bg-muted/30">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[420px,1fr] gap-8">
-          {/* Countries box (centered, no search, no scroll) */}
-          <Card className="mx-auto w-full max-w-[420px] rounded-3xl
-                       border border-royal-blue/25 bg-gradient-to-b from-deep-navy to-deep-navy/90
-                       text-white shadow-xl self-start text-center">
-            <CardHeader className="py-4">
-              <CardTitle className="text-white/95 text-lg">Countries</CardTitle>
-            </CardHeader>
-
-            
-          </Card>
-
-          {/* Details panel */}
-          <Card className="glass-card border border-border/60 rounded-3xl">
-            <CardHeader className="pb-1">
-              <CardTitle className="flex items-center gap-3 text-royal-blue text-2xl sm:text-3xl">
-                <MapPin className="w-6 h-6" />
-                {activeOffice?.country || "Location"}
-              </CardTitle>
-            </CardHeader>
-
-            <CardContent className="space-y-6">
-              {/* Info grid */}
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <p className="text-xs uppercase tracking-wide text-muted-foreground">City</p>
-                  <p className="text-xl font-semibold text-foreground">
-                    {activeOffice?.city ?? "—"}
-                  </p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-xs uppercase tracking-wide text-muted-foreground">Address</p>
-                  <p className="text-lg font-medium leading-relaxed text-foreground">
-                    {activeOffice?.address ?? "To be updated"}
-                  </p>
-                  <div className="flex gap-3 pt-2">
-                    <Button variant="outline" className="border-royal-blue/40 text-royal-blue hover:bg-royal-blue/10" onClick={copyAddress}>
-                      <Copy className="w-4 h-4 mr-2" />
-                      Copy
-                    </Button>
-                    {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" && <Button className="btn-hero" asChild>
-                        <a href={activeOffice.mapUrl} target="_blank" rel="noreferrer">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Open in Maps
-                        </a>
-                      </Button>}
-                  </div>
-                </div>
-              </div>
-
-              {/* Map */}
-              <div>
-                {activeOffice?.mapUrl && activeOffice.mapUrl !== "#" ? <div className="aspect-video w-full overflow-hidden rounded-2xl border border-border">
-                    <iframe src={activeOffice.mapUrl} className="h-full w-full" loading="lazy" referrerPolicy="no-referrer-when-downgrade" aria-label={`${activeOffice?.country} office map`} />
-                  </div> : <div className="aspect-video w-full rounded-2xl border border-dashed border-border grid place-items-center bg-white/60">
-                    <div className="text-center px-6">
-                      <p className="font-semibold text-foreground">Map preview placeholder</p>
-                      <p className="text-sm text-muted-foreground">
-                        Add your Google Maps embed URL to <code>mapUrl</code> for this office.
-                      </p>
-                    </div>
-                  </div>}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      
 
       {/* Get in touch form card */}
       <GetInTouchCard />
