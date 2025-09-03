@@ -144,19 +144,7 @@ export default function ContactSection() {
               <CardTitle className="text-white/95 text-lg">Countries</CardTitle>
             </CardHeader>
 
-            <CardContent className="pt-0">
-              <ul className="space-y-2">
-                {officesSorted.map(o => {
-                const isActive = o.country === selected;
-                return <li key={o.country}>
-                      <button onClick={() => setSelected(o.country)} className={["mx-auto block w-full text-left px-5 py-2.5 text-sm", "rounded-full border transition-all", "uppercase tracking-wide font-semibold shadow-sm", "focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-blue/60", isActive ? "bg-royal-blue text-white border-royal-blue" : "bg-white text-royal-blue border-royal-blue/40 hover:bg-white/90 hover:shadow"].join(" ")} aria-current={isActive ? "true" : "false"} aria-pressed={isActive}>
-                        <span className="mr-2">{FLAG[o.country] ?? "🌍"}</span>
-                        {o.country}
-                      </button>
-                    </li>;
-              })}
-              </ul>
-            </CardContent>
+            
           </Card>
 
           {/* Details panel */}
