@@ -98,7 +98,7 @@ const Contact: React.FC = () => {
               <ShieldCheck className="h-4 w-4" /> Compliance & Certifications
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm text-emerald-800">
-              <Globe className="h-4 w-4" /> Cross-border Logistics
+               Cross-border Logistics
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm text-indigo-800">
               <Headset className="h-4 w-4" /> Dedicated Support
@@ -138,15 +138,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-5 md:border-l md:pl-8 md:border-gray-200">
-            <div className="grid h-16 w-16 place-items-center rounded-2xl bg-emerald-50">
-              <MapPin className="h-8 w-8 text-emerald-600" />
-            </div>
-            <div>
-              <div className="text-2xl font-extrabold">HQ</div>
-              <div className="text-gray-600">Singapore</div>
-            </div>
-          </div>
+          
 
           <div className="flex items-center gap-5 md:border-l md:pl-8 md:border-gray-200">
             <div className="grid h-16 w-16 place-items-center rounded-2xl bg-amber-50">
