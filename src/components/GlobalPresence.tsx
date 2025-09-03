@@ -7,8 +7,8 @@ const GlobalPresence = () => {
       x: "75%", 
       y: "65%",
       address: {
-        street: "Blk 511 Kampong Bahru Road #03-01 Keppel Distripark",
-        city: "Singapore 099447",
+        street: "123 Orchard Road",
+        city: "Singapore 238873",
         country: "Singapore"
       },
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127506.01297429645!2d103.77470995!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11238a8b9375%3A0x887869cf52abf5c4!2sSingapore!5e0!3m2!1sen!2s!4v1234567890"
@@ -51,8 +51,8 @@ const GlobalPresence = () => {
       x: "78%", 
       y: "78%",
       address: {
-        street: "Suite 5, 7-9 Mallet Road, Tullamarine",
-        city: "Victoria, 3043",
+        street: "123 Business Street",
+        city: "Sydney, NSW 2000",
         country: "Australia"
       },
       mapUrl: "https://www.google.com/maps/d/embed?mid=1RBDH4vbM2A8GB_gcC5jPLo_ftrjLevg&ehbc=2E312F"
@@ -156,7 +156,7 @@ const GlobalPresence = () => {
                     <stop offset="100%" stopColor="rgb(44, 94, 255)" stopOpacity="0.2" />
                   </linearGradient>
                 </defs>
-                {/* Connection lines between locations */}
+                {/* Sample connection lines */}
                 <path d="M 200 150 Q 400 100 600 200" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
                 <path d="M 300 250 Q 500 200 700 180" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
                 <path d="M 400 280 Q 550 250 620 300" stroke="url(#lineGradient)" strokeWidth="2" fill="none" />
@@ -207,62 +207,45 @@ const GlobalPresence = () => {
           </div>
         </div>
 
-        {/* All Countries Detailed Maps Section */}
-        <div className="mt-16 space-y-12">
-          <h3 className="text-3xl font-semibold text-white text-center mb-8">
-            Our Global Offices
-          </h3>
-          
-          {locations.map((location, index) => (
-            <div key={index} className="glass-card p-8">
-              <div className="grid lg:grid-cols-2 gap-8 items-start">
-                {/* Address and Info */}
-                <div className="space-y-6">
-                  <div className="text-center lg:text-left">
-                    <h4 className="text-2xl font-semibold text-white mb-4">
-                      {location.name} Office
-                    </h4>
-                    <div className="glass-card p-6 inline-block">
-                      <div className="text-blue-200 space-y-2">
-                        <p className="text-lg font-medium text-white">Address:</p>
-                        <p className="text-sm">{location.address.street}</p>
-                        <p className="text-sm">{location.address.city}</p>
-                        <p className="text-sm">{location.address.country}</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Contact Info Placeholder */}
-                  <div className="glass-card p-6">
-                    <h5 className="text-lg font-semibold text-white mb-3">Contact Information</h5>
-                    <div className="text-blue-200 space-y-2 text-sm">
-                      <p>📞 Phone: +1-XXX-XXX-XXXX</p>
-                      <p>✉️ Email: {location.name.toLowerCase().replace(' ', '')}@company.com</p>
-                      <p>🕒 Business Hours: 9:00 AM - 6:00 PM (Local Time)</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Embedded Google Map */}
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-w-4 aspect-h-3">
-                    <iframe 
-                      src={location.mapUrl}
-                      width="100%" 
-                      height="400"
-                      style={{ border: 0 }}
-                      allowFullScreen="" 
-                      loading="lazy" 
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="rounded-2xl"
-                      title={`${location.name} Office Location`}
-                    />
+        {/* Country Operations with Maps */}
+        {locations.map((location, index) => (
+          <div key={index} className="mt-16">
+            <div className="glass-card p-8">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center">
+                {location.name} Operations
+              </h3>
+              
+              {/* Address Section */}
+              <div className="text-center mb-8">
+                <div className="glass-card p-6 inline-block">
+                  <h4 className="text-lg font-semibold text-white mb-3">Our {location.name} Office</h4>
+                  <div className="text-blue-200 space-y-1">
+                    <p className="text-sm">{location.address.street}</p>
+                    <p className="text-sm">{location.address.city}</p>
+                    <p className="text-sm">{location.address.country}</p>
                   </div>
                 </div>
               </div>
+
+              {/* Embedded Google Map */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <div className="aspect-w-4 aspect-h-3">
+                  <iframe 
+                    src={location.mapUrl}
+                    width="100%" 
+                    height="480"
+                    style={{ border: 0 }}
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-2xl"
+                    title={`${location.name} Operations Map`}
+                  />
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
