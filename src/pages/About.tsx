@@ -15,9 +15,11 @@ function usePrefersReducedMotion() {
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onChange = () => setPrefers(mql.matches);
     onChange();
-    if ("addEventListener" in mql) mql.addEventListener("change", onChange);else (mql as any).addListener?.(onChange);
+    if ("addEventListener" in mql) mql.addEventListener("change", onChange);
+    else (mql as any).addListener?.(onChange);
     return () => {
-      if ("removeEventListener" in mql) mql.removeEventListener("change", onChange);else (mql as any).removeListener?.(onChange);
+      if ("removeEventListener" in mql) mql.removeEventListener("change", onChange);
+      else (mql as any).removeListener?.(onChange);
     };
   }, []);
   return prefers;
@@ -39,10 +41,7 @@ function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
     obs.observe(el);
     return () => obs.disconnect();
   }, [options?.root, options?.rootMargin, options?.threshold]);
-  return {
-    ref,
-    inView
-  };
+  return { ref, inView };
 }
 type CountUpProps = {
   to: number;
@@ -59,10 +58,7 @@ const CountUp: React.FC<CountUpProps> = ({
   delay = 0
 }) => {
   const prefersReduced = usePrefersReducedMotion();
-  const {
-    ref,
-    inView
-  } = useInView<HTMLSpanElement>();
+  const { ref, inView } = useInView<HTMLSpanElement>();
   const [val, setVal] = useState(0);
   const started = useRef(false);
   useEffect(() => {
@@ -87,32 +83,44 @@ const CountUp: React.FC<CountUpProps> = ({
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, prefersReduced, to, duration, delay]);
-  return <span ref={ref} className={className}>
+  return (
+    <span ref={ref} className={className}>
       {val.toLocaleString()}
       {suffix}
-    </span>;
+    </span>
+  );
 };
 /* ----------------------------------------------------------- */
 
 const About: React.FC = () => {
-  return <>
+  return (
+    <>
       <Header />
 
-      <main className="pt-20 bg-white text-gray-900">
+      {/* Removed pt-20 so the hero can touch the very top (no white gap) */}
+      <main className="bg-white text-gray-900">
         {/* ---------- HERO ---------- */}
         <section className="relative min-h-[55vh]">
-          <div className="absolute inset-0" style={{
-          backgroundImage: "url('/about.jpg')",
-          // uses public/about.jpg
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }} aria-hidden />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" aria-hidden />
-          <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          {/* Background image fills the section top-to-bottom */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/about.jpg')", // uses public/about.jpg
+              backgroundSize: "cover",
+              backgroundPosition: "center"
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
+            aria-hidden
+          />
+          {/* Add internal top padding to clear a fixed header */}
+          <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-16 lg:px-8 md:pt-28">
             <div className="relative inline-block max-w-3xl p-4 sm:p-6 md:p-8">
               <span className="pointer-events-none absolute -top-4 -left-4 h-10 w-10 border-t-4 border-l-4 border-white" />
               <span className="pointer-events-none absolute -bottom-4 -right-4 h-10 w-10 border-b-4 border-r-4 border-white" />
-              
+
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white">
                 ABOUT US –<br />
                 CHEMICAL SOLUTIONS FOR<br />
@@ -165,7 +173,12 @@ const About: React.FC = () => {
           </div>
 
           <div className="overflow-hidden rounded-2xl bg-gray-100">
-            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop" alt="Sustainable operations" className="h-full w-full object-cover" draggable={false} />
+            <img
+              src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop"
+              alt="Sustainable operations"
+              className="h-full w-full object-cover"
+              draggable={false}
+            />
           </div>
         </section>
 
@@ -223,7 +236,11 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Vision */}
             <div className="relative overflow-hidden rounded-2xl">
-              <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop" alt="Vision" className="absolute inset-0 h-full w-full object-cover" />
+              <img
+                src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop"
+                alt="Vision"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-sky-600/30 to-emerald-500/30" />
               <div className="relative p-8 sm:p-10 md:p-12 text-white">
                 <h3 className="text-2xl tracking-[0.35em] font-semibold">VISION</h3>
@@ -237,7 +254,11 @@ const About: React.FC = () => {
 
             {/* Mission */}
             <div className="relative overflow-hidden rounded-2xl">
-              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1600&auto=format&fit=crop" alt="Mission" className="absolute inset-0 h-full w-full object-cover" />
+              <img
+                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1600&auto=format&fit=crop"
+                alt="Mission"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/35 via-sky-600/30 to-teal-500/30" />
               <div className="relative p-8 sm:p-10 md:p-12 text-white">
                 <h3 className="text-2xl tracking-[0.35em] font-semibold">MISSION</h3>
@@ -257,7 +278,8 @@ const About: React.FC = () => {
       </main>
 
       <Footer />
-    </>;
+    </>
+  );
 };
 export default About;
 export { About };
