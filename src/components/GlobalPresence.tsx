@@ -9,7 +9,7 @@ const GlobalPresence = () => {
       x: "78%", 
       y: "78%",
       city: "Sydney",
-      address: "Moltech HQ, 1 North Bridge Rd, Sydney",
+      address: " Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 Ph +61 388205157",
       mapUrl: "https://www.google.com/maps/d/embed?mid=1RBDH4vbM2A8GB_gcC5jPLo_ftrjLevg&ehbc=2E312F"
     },
     { 
