@@ -1,33 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Heart, Zap, Award } from "lucide-react";
 import teamTrust from "../assets/team-trust.jpg";
-
 const Careers = () => {
-  const values = [
-    {
-      icon: Users,
-      title: "Inclusive Culture",
-      description: "Diverse teams working together towards sustainability goals"
-    },
-    {
-      icon: Heart,
-      title: "Work-Life Balance",
-      description: "Healthy workspace that supports your personal growth"
-    },
-    {
-      icon: Zap,
-      title: "Innovation",
-      description: "Cutting-edge technology in renewable energy solutions"
-    },
-    {
-      icon: Award,
-      title: "Recognition",
-      description: "Your contributions to a sustainable future are valued"
-    }
-  ];
-
-  return (
-    <section className="section-padding bg-background">
+  const values = [{
+    icon: Users,
+    title: "Inclusive Culture",
+    description: "Diverse teams working together towards sustainability goals"
+  }, {
+    icon: Heart,
+    title: "Work-Life Balance",
+    description: "Healthy workspace that supports your personal growth"
+  }, {
+    icon: Zap,
+    title: "Innovation",
+    description: "Cutting-edge technology in renewable energy solutions"
+  }, {
+    icon: Award,
+    title: "Recognition",
+    description: "Your contributions to a sustainable future are valued"
+  }];
+  return <section className="section-padding bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -42,8 +34,7 @@ const Careers = () => {
 
             {/* Values Grid */}
             <div className="grid grid-cols-2 gap-6">
-              {values.map((value, index) => (
-                <div key={index} className="glass-card p-6 group hover:scale-105 transition-all duration-300">
+              {values.map((value, index) => <div key={index} className="glass-card p-6 group hover:scale-105 transition-all duration-300">
                   <div className="w-12 h-12 bg-royal-gradient rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <value.icon className="w-6 h-6 text-white" />
                   </div>
@@ -53,30 +44,17 @@ const Careers = () => {
                   <p className="text-sm text-muted-foreground">
                     {value.description}
                   </p>
-                </div>
-              ))}
+                </div>)}
             </div>
 
             {/* CTA */}
-            <div className="space-y-4">
-              <Button className="btn-hero group">
-                View Open Positions
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <p className="text-sm text-muted-foreground">
-                Building a sustainable future starts with great people
-              </p>
-            </div>
+            
           </div>
 
           {/* Visual */}
           <div className="relative">
             <div className="glass-card p-8 rounded-3xl overflow-hidden">
-              <img 
-                src={teamTrust}
-                alt="Diverse professional team working together in modern office environment"
-                className="w-full h-80 object-cover rounded-2xl"
-              />
+              <img src={teamTrust} alt="Diverse professional team working together in modern office environment" className="w-full h-80 object-cover rounded-2xl" />
             </div>
             
             {/* Floating Stats */}
@@ -137,8 +115,6 @@ const Careers = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Careers;
