@@ -1,96 +1,92 @@
+import { useState } from "react";
 import worldMapBg from "../assets/world-map-bg.jpg";
 
 const GlobalPresence = () => {
   const locations = [
     { 
-      name: "Singapore", 
-      x: "75%", 
-      y: "65%",
-      address: {
-        street: "123 Orchard Road",
-        city: "Singapore 238873",
-        country: "Singapore"
-      },
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127506.01297429645!2d103.77470995!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11238a8b9375%3A0x887869cf52abf5c4!2sSingapore!5e0!3m2!1sen!2s!4v1234567890"
-    },
-    { 
-      name: "Malaysia", 
-      x: "72%", 
-      y: "63%",
-      address: {
-        street: "456 KLCC Street",
-        city: "Kuala Lumpur 50088",
-        country: "Malaysia"
-      },
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255289.0060816296!2d101.55!3d3.139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e7d3%3A0x232e1ff540d86c99!2sKuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2s!4v1234567890"
-    },
-    { 
-      name: "Thailand", 
-      x: "70%", 
-      y: "58%",
-      address: {
-        street: "789 Sukhumvit Road",
-        city: "Bangkok 10110",
-        country: "Thailand"
-      },
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248057.47759065894!2d100.46!3d13.756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d6032280d61f3%3A0x10100b25de24820!2sBangkok%2C%20Thailand!5e0!3m2!1sen!2s!4v1234567890"
-    },
-    { 
-      name: "Indonesia", 
-      x: "73%", 
-      y: "68%",
-      address: {
-        street: "321 Sudirman Street",
-        city: "Jakarta 12190",
-        country: "Indonesia"
-      },
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253840.65789016097!2d106.69!3d-6.211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Indonesia!5e0!3m2!1sen!2s!4v1234567890"
-    },
-    { 
       name: "Australia", 
+      code: "AU",
       x: "78%", 
       y: "78%",
-      address: {
-        street: "123 Business Street",
-        city: "Sydney, NSW 2000",
-        country: "Australia"
-      },
+      city: "Sydney",
+      address: "Moltech HQ, 1 North Bridge Rd, Sydney",
       mapUrl: "https://www.google.com/maps/d/embed?mid=1RBDH4vbM2A8GB_gcC5jPLo_ftrjLevg&ehbc=2E312F"
     },
     { 
+      name: "Indonesia", 
+      code: "ID",
+      x: "73%", 
+      y: "68%",
+      city: "Jakarta",
+      address: "Moltech HQ, Sudirman Street, Jakarta",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253840.65789016097!2d106.69!3d-6.211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Indonesia!5e0!3m2!1sen!2s!4v1234567890"
+    },
+    { 
+      name: "Malaysia", 
+      code: "MY",
+      x: "72%", 
+      y: "63%",
+      city: "Kuala Lumpur",
+      address: "Moltech HQ, KLCC Street, Kuala Lumpur",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255289.0060816296!2d101.55!3d3.139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e7d3%3A0x232e1ff540d86c99!2sKuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2s!4v1234567890"
+    },
+    { 
       name: "Saudi Arabia", 
+      code: "SA",
       x: "58%", 
       y: "45%",
-      address: {
-        street: "555 King Fahd Road",
-        city: "Riyadh 11564",
-        country: "Saudi Arabia"
-      },
+      city: "Riyadh",
+      address: "Moltech HQ, King Fahd Road, Riyadh",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462118.02069936294!2d46.59!3d24.774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
-      name: "United Kingdom", 
+      name: "Singapore", 
+      code: "SG",
+      x: "75%", 
+      y: "65%",
+      city: "Singapore",
+      address: "Moltech HQ, 1 North Bridge Rd, Singapore",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127506.01297429645!2d103.77470995!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11238a8b9375%3A0x887869cf52abf5c4!2sSingapore!5e0!3m2!1sen!2s!4v1234567890"
+    },
+    { 
+      name: "Thailand", 
+      code: "TH",
+      x: "70%", 
+      y: "58%",
+      city: "Bangkok",
+      address: "Moltech HQ, Sukhumvit Road, Bangkok",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248057.47759065894!2d100.46!3d13.756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d6032280d61f3%3A0x10100b25de24820!2sBangkok%2C%20Thailand!5e0!3m2!1sen!2s!4v1234567890"
+    },
+    { 
+      name: "UAE", 
+      code: "AE",
+      x: "60%", 
+      y: "48%",
+      city: "Dubai",
+      address: "Moltech HQ, Sheikh Zayed Road, Dubai",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.6828447347!2d55.1!3d25.276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1234567890"
+    },
+    { 
+      name: "UK", 
+      code: "GB",
       x: "48%", 
       y: "32%",
-      address: {
-        street: "100 London Wall",
-        city: "London EC2Y 5DU",
-        country: "United Kingdom"
-      },
+      city: "London",
+      address: "Moltech HQ, London Wall, London",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317716.6134825814!2d-0.43!3d51.528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
-      name: "United States", 
+      name: "USA", 
+      code: "US",
       x: "25%", 
       y: "40%",
-      address: {
-        street: "250 Park Avenue",
-        city: "New York, NY 10177",
-        country: "United States"
-      },
+      city: "New York",
+      address: "Moltech HQ, Park Avenue, New York",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.1977813157!2d-74.26!3d40.697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1234567890"
     }
   ];
+
+  const [selectedCountry, setSelectedCountry] = useState(locations[4]); // Default to Singapore
 
   const stats = [
     { label: "Countries", value: "15+" },
@@ -207,45 +203,91 @@ const GlobalPresence = () => {
           </div>
         </div>
 
-        {/* Country Operations with Maps */}
-        {locations.map((location, index) => (
-          <div key={index} className="mt-16">
-            <div className="glass-card p-8">
-              <h3 className="text-2xl font-semibold text-white mb-6 text-center">
-                {location.name} Operations
-              </h3>
-              
-              {/* Address Section */}
-              <div className="text-center mb-8">
-                <div className="glass-card p-6 inline-block">
-                  <h4 className="text-lg font-semibold text-white mb-3">Our {location.name} Office</h4>
-                  <div className="text-blue-200 space-y-1">
-                    <p className="text-sm">{location.address.street}</p>
-                    <p className="text-sm">{location.address.city}</p>
-                    <p className="text-sm">{location.address.country}</p>
-                  </div>
+        {/* Countries Selection Interface */}
+        <div className="mt-16">
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Left Side - Countries List */}
+            <div className="lg:col-span-1">
+              <div className="glass-card p-6">
+                <h3 className="text-xl font-semibold text-white mb-6">Countries</h3>
+                <div className="space-y-3">
+                  {locations.map((location, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedCountry(location)}
+                      className={`w-full text-left p-4 rounded-xl transition-all duration-300 ${
+                        selectedCountry.name === location.name
+                          ? 'bg-electric-blue text-white shadow-lg'
+                          : 'bg-white/10 text-blue-200 hover:bg-white/20 hover:text-white'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <span className="text-sm font-medium opacity-70">
+                          {location.code}
+                        </span>
+                        <span className="font-semibold">
+                          {location.name.toUpperCase()}
+                        </span>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               </div>
+            </div>
 
-              {/* Embedded Google Map */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-w-4 aspect-h-3">
+            {/* Right Side - Selected Country Details */}
+            <div className="lg:col-span-2">
+              <div className="glass-card p-8">
+                {/* Country Header */}
+                <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-electric-blue rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-bold text-white">
+                        {selectedCountry.name}
+                      </h3>
+                      <div className="mt-2">
+                        <p className="text-sm text-blue-200 uppercase tracking-wider">CITY</p>
+                        <p className="text-lg text-white">{selectedCountry.city}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm text-blue-200 uppercase tracking-wider mb-2">ADDRESS</p>
+                    <p className="text-white text-sm leading-relaxed max-w-xs">
+                      {selectedCountry.address}
+                    </p>
+                    <button className="mt-3 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm text-blue-200 hover:text-white transition-colors duration-300 flex items-center space-x-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      <span>Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Embedded Map */}
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <iframe 
-                    src={location.mapUrl}
+                    src={selectedCountry.mapUrl}
                     width="100%" 
-                    height="480"
+                    height="400"
                     style={{ border: 0 }}
                     allowFullScreen="" 
                     loading="lazy" 
                     referrerPolicy="no-referrer-when-downgrade"
                     className="rounded-2xl"
-                    title={`${location.name} Operations Map`}
+                    title={`${selectedCountry.name} Office Location`}
                   />
                 </div>
               </div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
