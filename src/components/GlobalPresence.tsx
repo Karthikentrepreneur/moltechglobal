@@ -18,7 +18,7 @@ const GlobalPresence = () => {
       x: "73%", 
       y: "68%",
       city: "Jakarta",
-      address: "Moltech HQ, Sudirman Street, Jakarta",
+      address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253840.65789016097!2d106.69!3d-6.211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Indonesia!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
@@ -27,7 +27,16 @@ const GlobalPresence = () => {
       x: "72%", 
       y: "63%",
       city: "Kuala Lumpur",
-      address: "Moltech HQ, KLCC Street, Kuala Lumpur",
+      address: "PORTLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255289.0060816296!2d101.55!3d3.139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e7d3%3A0x232e1ff540d86c99!2sKuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2s!4v1234567890"
+    },
+ { 
+      name: "Malaysia", 
+      code: "MY",
+      x: "72%", 
+      y: "63%",
+      city: "Kuala Lumpur",
+      address: "JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang •",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255289.0060816296!2d101.55!3d3.139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e7d3%3A0x232e1ff540d86c99!2sKuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
@@ -36,7 +45,7 @@ const GlobalPresence = () => {
       x: "58%", 
       y: "45%",
       city: "Riyadh",
-      address: "Moltech HQ, King Fahd Road, Riyadh",
+      address: "DAMMAM • 2817 King Faizal Road, 9403-32233",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462118.02069936294!2d46.59!3d24.774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
@@ -45,43 +54,43 @@ const GlobalPresence = () => {
       x: "75%", 
       y: "65%",
       city: "Singapore",
-      address: "Moltech HQ, 1 North Bridge Rd, Singapore",
+      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127506.01297429645!2d103.77470995!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11238a8b9375%3A0x887869cf52abf5c4!2sSingapore!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
       name: "Thailand", 
-      code: "TH",
+      code: "BANGKOK",
       x: "70%", 
       y: "58%",
       city: "Bangkok",
-      address: "Moltech HQ, Sukhumvit Road, Bangkok",
+      address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248057.47759065894!2d100.46!3d13.756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d6032280d61f3%3A0x10100b25de24820!2sBangkok%2C%20Thailand!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
       name: "UAE", 
-      code: "AE",
+      code: "DUBAI",
       x: "60%", 
       y: "48%",
       city: "Dubai",
-      address: "Moltech HQ, Sheikh Zayed Road, Dubai",
+      address: " Al Qusais Industrial Area 2",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.6828447347!2d55.1!3d25.276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
       name: "UK", 
-      code: "GB",
+      code: "LONDON",
       x: "48%", 
       y: "32%",
       city: "London",
-      address: "Moltech HQ, London Wall, London",
+      address: "167-169 Great Portland Street, W1W 5PF ",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317716.6134825814!2d-0.43!3d51.528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1234567890"
     },
     { 
       name: "USA", 
-      code: "US",
+      code: "NEW YORK",
       x: "25%", 
       y: "40%",
       city: "New York",
-      address: "Moltech HQ, Park Avenue, New York",
+      address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.1977813157!2d-74.26!3d40.697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1234567890"
     }
   ];
