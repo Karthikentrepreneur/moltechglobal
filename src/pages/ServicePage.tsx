@@ -2,6 +2,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import moltechHero from "@/assets/moltech-hero-business.jpg";
 
 type Props = {
   title: string;
@@ -25,7 +28,31 @@ const ServicePage = ({
   seoDescription
 }: Props) => {
   return (
-    <article className="section-padding">
+    <div className="min-h-screen">
+      <Header />
+      <main className="pt-24">
+        {/* Hero Section with Background Image */}
+        <section className="relative h-80 overflow-hidden">
+          <img
+            src={heroImage || moltechHero}
+            alt={title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center text-white">
+              <div className="w-16 h-16 bg-royal-gradient rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Icon className="w-8 h-8 text-white" />
+              </div>
+              <h1 className="text-4xl font-bold mb-2">{title}</h1>
+              <p className="text-xl opacity-90 max-w-2xl">{summary}</p>
+            </div>
+          </div>
+        </section>
+
+        <article className="section-padding">
       <Helmet>
         <title>{seoTitle || `${title} | Moltech`}</title>
         <meta name="description" content={seoDescription || summary} />
@@ -46,27 +73,6 @@ const ServicePage = ({
           <span className="text-royal-blue font-medium">{title}</span>
         </div>
 
-        {/* Header */}
-        <header className="flex items-start gap-4">
-          <div className="w-16 h-16 bg-royal-gradient rounded-2xl flex items-center justify-center">
-            <Icon className="w-8 h-8 text-white" />
-          </div>
-          <div>
-            <h1 className="heading-lg text-royal-blue">{title}</h1>
-            <p className="body-md text-muted-foreground mt-2">{summary}</p>
-          </div>
-        </header>
-
-        {/* Optional hero image */}
-        {heroImage && (
-          <img
-            src={heroImage}
-            alt={title}
-            className="w-full h-[320px] object-cover rounded-2xl shadow-sm"
-            loading="lazy"
-            decoding="async"
-          />
-        )}
 
         {/* Details */}
         <Card className="glass-card border-none">
@@ -93,6 +99,9 @@ const ServicePage = ({
         </div>
       </div>
     </article>
+    </main>
+    <Footer />
+    </div>
   );
 };
 

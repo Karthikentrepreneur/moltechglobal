@@ -2,6 +2,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Leaf, Globe, ShieldCheck, Truck } from "lucide-react";
+import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg";
 
 export default function Blog() {
   return (
@@ -57,8 +58,8 @@ export default function Blog() {
 
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
                 <img
-                  src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop"
-                  alt="Global skyline representing international operations"
+                  src={moltechSustainability}
+                  alt="Moltech sustainable technology and green innovation"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />

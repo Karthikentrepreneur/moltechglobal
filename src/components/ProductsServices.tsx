@@ -101,20 +101,6 @@ const ProductsServices = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-16">
-          <div className="glass-card p-8 max-w-2xl mx-auto">
-            <h3 className="heading-sm text-royal-blue mb-4">
-              Need Custom Solutions?
-            </h3>
-            <p className="body-md text-muted-foreground mb-6">
-              Our team can develop tailored products to meet your specific requirements
-            </p>
-            <button className="btn-hero">
-              Contact Our Experts
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
