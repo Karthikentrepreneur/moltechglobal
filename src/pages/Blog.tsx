@@ -3,13 +3,13 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Leaf, Globe, ShieldCheck, Truck } from "lucide-react";
 import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg";
+import feedstocksImg from "@/assets/feedstocks.jpg";   // <— add your file
+import labQcImg from "@/assets/lab-qc.jpg";            // <— add your file
 
 export default function Blog() {
   return (
     <div className="min-h-screen">
       <Header />
-
-      {/* Removed pt-24 from <main>; add top padding to hero so text clears fixed header */}
       <main className="bg-background">
         {/* Hero */}
         <section className="pt-28 pb-16 bg-gradient-to-br from-blue-50 to-slate-50">
@@ -25,34 +25,24 @@ export default function Blog() {
                 </h1>
                 <p className="mt-4 text-lg leading-relaxed text-slate-700">
                   From Singapore HQ to hubs across Asia, the Middle East, the UK, and the USA,
-                  Moltech links collectors, processors, and customers to turn{" "}
-                  <em>“waste”</em> into workable, reliable supply.
+                  Moltech links collectors, processors, and customers to turn <em>“waste”</em> into workable, reliable supply.
                 </p>
                 <ul className="mt-6 space-y-2 text-slate-700">
                   <li className="flex items-start gap-2">
                     <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
-                    <span>
-                      <strong>Renewable feedstocks:</strong> UCO, tyre-derived oils, acid oils, POME.
-                    </span>
+                    <span><strong>Renewable feedstocks:</strong> UCO, tyre-derived oils, acid oils, POME.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
-                    <span>
-                      <strong>Feed & industrial:</strong> Veg-oil feed fats (liquid & dry), fatty alcohols, fatty acid esters, glycerol.
-                    </span>
+                    <span><strong>Feed & industrial:</strong> Veg-oil feed fats (liquid & dry), fatty alcohols, fatty acid esters, glycerol.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
-                    <span>
-                      <strong>How we work:</strong> ethics first, quality-obsessed, transparent by design.
-                    </span>
+                    <span><strong>How we work:</strong> ethics first, quality-obsessed, transparent by design.</span>
                   </li>
                 </ul>
 
-                <a
-                  href="/contact"
-                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
-                >
+                <a href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700">
                   Talk to our team <Truck className="h-4 w-4" />
                 </a>
               </div>
@@ -73,7 +63,7 @@ export default function Blog() {
         <section className="py-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {/* Global Presence → global supply network/map */}
+              {/* Global Presence */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
@@ -95,11 +85,11 @@ export default function Blog() {
                 </div>
               </article>
 
-              {/* Renewable Feedstocks → used cooking oil / biofuel feedstock */}
+              {/* Renewable Feedstocks */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="/kk"
+                    src={feedstocksImg}
                     alt="Used cooking oil and other biofuel feedstocks"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -117,11 +107,11 @@ export default function Blog() {
                 </div>
               </article>
 
-              {/* Quality & Transparency → lab QC for biofuels */}
+              {/* Quality & Transparency */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="/kkk"
+                    src={labQcImg}
                     alt="Laboratory quality control and traceability testing"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -147,9 +137,7 @@ export default function Blog() {
           <div className="mx-auto max-w-4xl px-6 text-center">
             <blockquote className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
               <p className="text-xl leading-relaxed text-slate-800">
-                <em>
-                  “Cleaner inputs → cleaner outputs → a tighter loop for the planet and your supply chain.”
-                </em>
+                <em>“Cleaner inputs → cleaner outputs → a tighter loop for the planet and your supply chain.”</em>
               </p>
               <div className="mt-4 text-sm text-slate-500">— Moltech Editorial</div>
             </blockquote>
