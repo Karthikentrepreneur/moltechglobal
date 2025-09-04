@@ -2,19 +2,21 @@ import { useState } from "react";
 import worldMapBg from "../assets/world-map-bg.jpg";
 
 type Office = {
-  label?: string;         // Optional short label like "PORT KLANG" / "JOHOR"
+  label?: string;  // e.g., "Port Klang", "Johor"
   city: string;
-  address: string;
-  mapUrl: string;         // Google Maps EMBED URL
+  address: string; // used to build a headerless embed URL
 };
 
 type Country = {
   name: string;
   code: string;
-  x: string;              // pin position (percent)
-  y: string;              // pin position (percent)
+  x: string; // pin position (percent)
+  y: string; // pin position (percent)
   offices: Office[];
 };
+
+const headerlessEmbed = (address: string) =>
+  `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 
 const GlobalPresence = () => {
   const countries: Country[] = [
@@ -29,8 +31,6 @@ const GlobalPresence = () => {
           city: "Sydney",
           address:
             "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 • Ph +61 388205157",
-          mapUrl:
-            "https://www.google.com/maps?q=Suite+5,+7-9+Mallet+Road,+Tullamarine,+VIC+3043&output=embed",
         },
       ],
     },
@@ -44,8 +44,6 @@ const GlobalPresence = () => {
           city: "Jakarta",
           address:
             "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=1pph8JzHyVH3jfVQHvjnJW_Q4r1P7_7Q&ehbc=2E312F",
         },
       ],
     },
@@ -60,17 +58,12 @@ const GlobalPresence = () => {
           city: "Kuala Lumpur",
           address:
             "PORT KLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
-          // FIXED: keep only the URL from the iframe src
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=1u9qMUpxCJci_kQGPU6ix8Txx15kqVls&ehbc=2E312F",
         },
         {
           label: "Johor",
           city: "Kuala Lumpur",
           address:
             "JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=14ZjhbWDRjDLKAqDD68HYR6f5AdgHeTM&ehbc=2E312F",
         },
       ],
     },
@@ -83,8 +76,6 @@ const GlobalPresence = () => {
         {
           city: "Riyadh",
           address: "DAMMAM • 2817 King Faizal Road, 9403-32233",
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=1SLpVQBG_WjaUW_xdPO2Hb46HzEFOkUM&ehbc=2E312F",
         },
       ],
     },
@@ -98,8 +89,6 @@ const GlobalPresence = () => {
           city: "Singapore",
           address:
             "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=1xcqb2plXHAHzdoMd2xTrwwKoM2YRDz0&ehbc=2E312F",
         },
       ],
     },
@@ -112,8 +101,6 @@ const GlobalPresence = () => {
         {
           city: "Bangkok",
           address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=1mLlesIp5IZnlGTf5rHqUasEyDOVAPF4&ehbc=2E312F",
         },
       ],
     },
@@ -126,8 +113,6 @@ const GlobalPresence = () => {
         {
           city: "Dubai",
           address: "Al Qusais Industrial Area 2",
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=1sQ4baWLtd5AeCMowGQzuYmM3mWj0eMI&ehbc=2E312F",
         },
       ],
     },
@@ -140,8 +125,6 @@ const GlobalPresence = () => {
         {
           city: "London",
           address: "167-169 Great Portland Street, W1W 5PF",
-          mapUrl:
-            "https://www.google.com/maps/d/embed?mid=1YBaDDjJVmNfdeSKMMUrypyoypossW2c&ehbc=2E312F",
         },
       ],
     },
@@ -154,8 +137,6 @@ const GlobalPresence = () => {
         {
           city: "New York",
           address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
-          mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.1977813157!2d-74.26!3d40.697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1234567890",
         },
       ],
     },
@@ -369,7 +350,7 @@ const GlobalPresence = () => {
 
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <iframe
-                    src={selectedOffice.mapUrl}
+                    src={headerlessEmbed(selectedOffice.address)}
                     width="100%"
                     height="400"
                     style={{ border: 0 }}
