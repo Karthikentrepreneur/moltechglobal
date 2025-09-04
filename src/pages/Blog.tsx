@@ -71,7 +71,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1600&auto=format&fit=crop"
+                    src="/kk"
                     alt="Global supply network and logistics map"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -95,7 +95,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=1600&auto=format&fit=crop"
+                    src="/kkk"
                     alt="Used cooking oil and other biofuel feedstocks"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -119,7 +119,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop"
+                    src="/kkkk"
                     alt="Laboratory quality control and traceability testing"
                     className="h-full w-full object-cover"
                     loading="lazy"
