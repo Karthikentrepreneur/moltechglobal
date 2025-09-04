@@ -12,9 +12,13 @@ const Contact: React.FC = () => {
     message: "",
   });
   const [submitting, setSubmitting] = useState(false);
-  const [status, setStatus] = useState<null | { ok: boolean; msg: string }>(null);
+  const [status, setStatus] = useState<null | { ok: boolean; msg: string }>(
+    null
+  );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -27,7 +31,14 @@ const Contact: React.FC = () => {
       await new Promise((r) => setTimeout(r, 700));
       console.log("Contact form payload:", form);
       setStatus({ ok: true, msg: "Thanks! We’ll get back to you shortly." });
-      setForm({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "",
+        message: "",
+      });
     } catch {
       setStatus({ ok: false, msg: "Something went wrong. Please try again." });
     } finally {
@@ -37,28 +48,31 @@ const Contact: React.FC = () => {
 
   return (
     <main className="bg-white text-gray-900">
-      {/* ---------- HERO (text moved to top-left and layered above image) ---------- */}
-      <section className="relative -mt-20 h-[60vh] md:h-[70vh] flex items-start">
+      {/* ---------- HERO (image centered with text layered on top) ---------- */}
+      <section className="relative -mt-20 h-[60vh] md:h-[70vh] flex items-center">
         <img
           src="/businessman.jpg"
           alt="Sustainable operations and global collaboration"
-          className="absolute inset-0 block h-full w-full object-cover object-top"
+          className="absolute inset-0 block h-full w-full object-cover object-center"
           loading="eager"
           decoding="async"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 pt-28 md:pt-36">
-          
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
+          aria-hidden
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white max-w-4xl">
+            CONTACT US – <br />
+            LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+          </h1>
         </div>
       </section>
 
       {/* ---------- INTRO 2-COLUMN ---------- */}
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 md:grid-cols-2 lg:px-8">
-        <div className="max-w-none"><h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black max-w-4xl">
-            CONTACT US – <br />
-            LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
-          </h1>
+        <div className="max-w-none">
           <p className="text-base md:text-lg text-gray-700 leading-relaxed">
             We’d love to hear from you—whether you’re exploring sustainable
             feedstock, renewable diesel inputs, or strategic partnerships across
@@ -107,7 +121,10 @@ const Contact: React.FC = () => {
             </div>
             <div>
               <div className="text-2xl font-extrabold">Email</div>
-              <a href="mailto:hello@moltechglobal.com" className="text-gray-600 hover:text-gray-900">
+              <a
+                href="mailto:hello@moltechglobal.com"
+                className="text-gray-600 hover:text-gray-900"
+              >
                 hello@moltechglobal.com
               </a>
             </div>
@@ -119,7 +136,10 @@ const Contact: React.FC = () => {
             </div>
             <div>
               <div className="text-2xl font-extrabold">Call</div>
-              <a href="tel:+6560000000" className="text-gray-600 hover:text-gray-900">
+              <a
+                href="tel:+6560000000"
+                className="text-gray-600 hover:text-gray-900"
+              >
                 +65 6000 0000
               </a>
             </div>
@@ -145,10 +165,15 @@ const Contact: React.FC = () => {
               Send us a message
             </h3>
             <p className="mt-2 text-sm text-gray-600">
-              Tell us about your requirements. We typically respond within one business day.
+              Tell us about your requirements. We typically respond within one
+              business day.
             </p>
 
-            <form className="mt-6 space-y-4" onSubmit={onSubmit} aria-labelledby="contact-form">
+            <form
+              className="mt-6 space-y-4"
+              onSubmit={onSubmit}
+              aria-labelledby="contact-form"
+            >
               <input
                 type="text"
                 name="name"
@@ -209,7 +234,11 @@ const Contact: React.FC = () => {
             </form>
 
             {status && (
-              <p className={`mt-4 text-sm ${status.ok ? "text-emerald-600" : "text-red-600"}`}>
+              <p
+                className={`mt-4 text-sm ${
+                  status.ok ? "text-emerald-600" : "text-red-600"
+                }`}
+              >
                 {status.msg}
               </p>
             )}
