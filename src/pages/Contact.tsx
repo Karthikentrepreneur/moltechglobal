@@ -58,24 +58,33 @@ const Contact: React.FC = () => {
   return (
     <main className="bg-white text-gray-900">
       {/* ---------- HERO ---------- */}
-      <section className="relative -mt-20 h-[60vh] md:h-[70vh] flex items-center">
+      <section className="relative -mt-20 h-[70vh] flex items-center">
+        {/* Background image */}
         <img
           src="/businessman.jpg"
           alt="Sustainable operations and global collaboration"
-          className="absolute inset-0 block h-full w-full object-cover object-top"
+          className="absolute inset-0 block h-full w-full object-cover object-center"
           loading="eager"
           decoding="async"
           referrerPolicy="no-referrer"
         />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
-          aria-hidden
-        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40" aria-hidden />
+
+        {/* Text with decorative corners */}
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white max-w-3xl">
-            CONTACT US – <br />
-            LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
-          </h1>
+          <div className="max-w-3xl relative">
+            {/* Top-left corner */}
+            <span className="absolute -top-6 -left-6 h-12 w-12 border-l-4 border-t-4 border-white"></span>
+            {/* Bottom-right corner */}
+            <span className="absolute -bottom-6 -right-6 h-12 w-12 border-r-4 border-b-4 border-white"></span>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-white">
+              CONTACT US – <br />
+              LET’S BUILD SUSTAINABLE <br />
+              SOLUTIONS TOGETHER
+            </h1>
+          </div>
         </div>
       </section>
 
@@ -183,7 +192,6 @@ const Contact: React.FC = () => {
               onSubmit={onSubmit}
               aria-labelledby="contact-form"
             >
-              {/* Form fields */}
               <input
                 type="text"
                 name="name"
@@ -255,8 +263,6 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* ---------- FAQ / CTA (unchanged) ---------- */}
     </main>
   );
 };
