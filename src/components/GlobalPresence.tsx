@@ -2,21 +2,19 @@ import { useState } from "react";
 import worldMapBg from "../assets/world-map-bg.jpg";
 
 type Office = {
-  label?: string;  // e.g., "Port Klang", "Johor"
+  label?: string;   // e.g., "Port Klang", "Johor"
   city: string;
-  address: string; // used to build a headerless embed URL
+  address: string;  // human-readable
+  mapUrl: string;   // headerless Google Maps EMBED URL
 };
 
 type Country = {
   name: string;
   code: string;
-  x: string; // pin position (percent)
-  y: string; // pin position (percent)
+  x: string;        // pin position (percent)
+  y: string;        // pin position (percent)
   offices: Office[];
 };
-
-const headerlessEmbed = (address: string) =>
-  `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 
 const GlobalPresence = () => {
   const countries: Country[] = [
@@ -29,8 +27,9 @@ const GlobalPresence = () => {
         {
           label: "Sydney",
           city: "Sydney",
-          address:
-            "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 • Ph +61 388205157",
+          address: "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043 • Ph +61 388205157",
+          mapUrl:
+            "https://www.google.com/maps?q=Suite%205%2C%207-9%20Mallet%20Road%2C%20Tullamarine%2C%20VIC%203043&output=embed",
         },
       ],
     },
@@ -42,8 +41,9 @@ const GlobalPresence = () => {
       offices: [
         {
           city: "Jakarta",
-          address:
-            "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
+          address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
+          mapUrl:
+            "https://www.google.com/maps?q=408%2C%20Lina%20Building%2C%20JL.HR%20Rasuna%20Said%20kav%20B7%2C%20Jakarta&output=embed",
         },
       ],
     },
@@ -56,14 +56,16 @@ const GlobalPresence = () => {
         {
           label: "Port Klang",
           city: "Kuala Lumpur",
-          address:
-            "PORT KLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+          address: "PORT KLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+          mapUrl:
+            "https://www.google.com/maps?q=18%20Jalan%20Sungai%20Chandong%2012%2C%20Pulau%20Indah%2C%2042000%20Pelabuhan%20Klang&output=embed",
         },
         {
           label: "Johor",
           city: "Kuala Lumpur",
-          address:
-            "JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+          address: "JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+          mapUrl:
+            "https://www.google.com/maps?q=No.19A%2C%20Jalan%20Sagai%206%2C%20Taman%20Pasir%20Putih%2C%2081700%20Pasir%20Gudang&output=embed",
         },
       ],
     },
@@ -76,6 +78,8 @@ const GlobalPresence = () => {
         {
           city: "Riyadh",
           address: "DAMMAM • 2817 King Faizal Road, 9403-32233",
+          mapUrl:
+            "https://www.google.com/maps?q=2817%20King%20Faizal%20Road%2C%20Dammam%2032233&output=embed",
         },
       ],
     },
@@ -87,8 +91,9 @@ const GlobalPresence = () => {
       offices: [
         {
           city: "Singapore",
-          address:
-            "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+          address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+          mapUrl:
+            "https://www.google.com/maps?q=Blk%20511%20Kampong%20Bahru%20Rd%2C%20%2303-01%20Keppel%20Distripark%2C%20099447&output=embed",
         },
       ],
     },
@@ -101,6 +106,8 @@ const GlobalPresence = () => {
         {
           city: "Bangkok",
           address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
+          mapUrl:
+            "https://www.google.com/maps?q=109%20CCT%20Bldg%2C%20Surawong%20Rd%2C%20Bangrak%2C%2010500&output=embed",
         },
       ],
     },
@@ -113,6 +120,8 @@ const GlobalPresence = () => {
         {
           city: "Dubai",
           address: "Al Qusais Industrial Area 2",
+          mapUrl:
+            "https://www.google.com/maps?q=Al%20Qusais%20Industrial%20Area%202%2C%20Dubai&output=embed",
         },
       ],
     },
@@ -125,6 +134,8 @@ const GlobalPresence = () => {
         {
           city: "London",
           address: "167-169 Great Portland Street, W1W 5PF",
+          mapUrl:
+            "https://www.google.com/maps?q=167-169%20Great%20Portland%20Street%2C%20W1W%205PF%2C%20London&output=embed",
         },
       ],
     },
@@ -137,6 +148,8 @@ const GlobalPresence = () => {
         {
           city: "New York",
           address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
+          mapUrl:
+            "https://www.google.com/maps?q=33%20Wood%20Ave%20S%2C%20Suite%20600%2C%20Iselin%2C%20NJ%2008830&output=embed",
         },
       ],
     },
@@ -191,7 +204,10 @@ const GlobalPresence = () => {
                 <button
                   key={country.name}
                   type="button"
-                  onClick={() => selectCountry(idx)}
+                  onClick={() => {
+                    setSelectedCountryIdx(idx);
+                    setSelectedOfficeIdx(0);
+                  }}
                   className="absolute group cursor-pointer"
                   style={{ left: country.x, top: country.y }}
                   aria-label={`Select ${country.name}`}
@@ -239,7 +255,10 @@ const GlobalPresence = () => {
                   {countries.map((country, idx) => (
                     <button
                       key={country.name}
-                      onClick={() => selectCountry(idx)}
+                      onClick={() => {
+                        setSelectedCountryIdx(idx);
+                        setSelectedOfficeIdx(0);
+                      }}
                       className={`w-full text-left p-4 rounded-xl transition-all duration-300 ${
                         selectedCountryIdx === idx
                           ? "bg-electric-blue text-white shadow-lg"
@@ -282,14 +301,11 @@ const GlobalPresence = () => {
                       <h3 className="text-3xl font-bold text-white">
                         {selectedCountry.name}
                       </h3>
-                      {/* Active office meta */}
                       <div className="mt-2">
                         <p className="text-sm text-blue-200 uppercase tracking-wider">
                           CITY
                         </p>
-                        <p className="text-lg text-white">
-                          {selectedOffice.city}
-                        </p>
+                        <p className="text-lg text-white">{selectedOffice.city}</p>
                       </div>
                     </div>
                   </div>
@@ -300,31 +316,20 @@ const GlobalPresence = () => {
                     <p className="text-white text-sm leading-relaxed max-w-xs">
                       {selectedOffice.address}
                     </p>
-                    {/* Copy button */}
                     <button
                       className="mt-3 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm text-blue-200 hover:text-white transition-colors duration-300 flex items-center space-x-2"
                       onClick={() => navigator.clipboard?.writeText(selectedOffice.address)}
                       title="Copy address"
                     >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                        />
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                       <span>Copy</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Office selector (only shows when >1 office) */}
+                {/* Office selector when >1 */}
                 {selectedCountry.offices.length > 1 && (
                   <div className="mb-6 flex flex-wrap gap-3">
                     {selectedCountry.offices.map((office, idx) => {
@@ -350,7 +355,7 @@ const GlobalPresence = () => {
 
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <iframe
-                    src={headerlessEmbed(selectedOffice.address)}
+                    src={selectedOffice.mapUrl}
                     width="100%"
                     height="400"
                     style={{ border: 0 }}
@@ -365,7 +370,7 @@ const GlobalPresence = () => {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </section>
   );
 };
