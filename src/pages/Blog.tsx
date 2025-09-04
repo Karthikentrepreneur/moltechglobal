@@ -2,14 +2,14 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Leaf, Globe, ShieldCheck, Truck } from "lucide-react";
-import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg";
-import feedstocksImg from "@/assets/feedstocks.jpg";   // <— add your file
-import labQcImg from "@/assets/lab-qc.jpg";            // <— add your file
+import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg"; // keep if this file exists
 
 export default function Blog() {
   return (
     <div className="min-h-screen">
       <Header />
+
+      {/* No pt on <main>; add top padding only to the hero to clear fixed header */}
       <main className="bg-background">
         {/* Hero */}
         <section className="pt-28 pb-16 bg-gradient-to-br from-blue-50 to-slate-50">
@@ -42,7 +42,10 @@ export default function Blog() {
                   </li>
                 </ul>
 
-                <a href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700">
+                <a
+                  href="/contact"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
+                >
                   Talk to our team <Truck className="h-4 w-4" />
                 </a>
               </div>
@@ -85,11 +88,11 @@ export default function Blog() {
                 </div>
               </article>
 
-              {/* Renewable Feedstocks */}
+              {/* Renewable Feedstocks — use images from /public to avoid import errors */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src={feedstocksImg}
+                    src="/images/feedstocks.jpg"
                     alt="Used cooking oil and other biofuel feedstocks"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -111,7 +114,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src={labQcImg}
+                    src="/images/lab-qc.jpg"
                     alt="Laboratory quality control and traceability testing"
                     className="h-full w-full object-cover"
                     loading="lazy"
