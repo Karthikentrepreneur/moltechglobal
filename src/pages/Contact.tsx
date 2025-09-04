@@ -63,14 +63,15 @@ const Contact: React.FC = () => {
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white max-w-4xl">
-            CONTACT US – <br />
-            LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
-          </h1>
+         
         </div>
       </section>
 
-      {/* ---------- INTRO 2-COLUMN ---------- */}
+      {/* ---------- INTRO 2-COLUMN ---------- */} 
+<h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black max-w-4xl">
+            CONTACT US – <br />
+            LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+          </h1>
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 md:grid-cols-2 lg:px-8">
         <div className="max-w-none">
           <p className="text-base md:text-lg text-gray-700 leading-relaxed">
