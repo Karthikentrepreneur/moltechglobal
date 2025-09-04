@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
 
       {/* ---------- INTRO 2-COLUMN ---------- */}
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 md:grid-cols-2 lg:px-8">
-        <div className="max-w-none"><h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white max-w-4xl">
+        <div className="max-w-none"><h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-black max-w-4xl">
             CONTACT US – <br />
             LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
           </h1>
