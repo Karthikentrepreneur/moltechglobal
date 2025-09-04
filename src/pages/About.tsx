@@ -121,16 +121,17 @@ const About: React.FC = () => {
               <span className="pointer-events-none absolute -top-4 -left-4 h-10 w-10 border-t-4 border-l-4 border-white" />
               <span className="pointer-events-none absolute -bottom-4 -right-4 h-10 w-10 border-b-4 border-r-4 border-white" />
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white">
-                ABOUT US –<br />
-                CHEMICAL SOLUTIONS FOR<br />
-                SUSTAINABLE INDUSTRIES
-              </h1>
+             
             </div>
           </div>
         </section>
 
         {/* ---------- INTRO 2-COLUMN ---------- */}
+              <h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black">
+                ABOUT US –<br />
+                CHEMICAL SOLUTIONS FOR<br />
+                SUSTAINABLE INDUSTRIES
+              </h1>
         <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 md:grid-cols-2 lg:px-8">
           <div className="max-w-none">
             <p className="text-base md:text-lg text-gray-700 leading-relaxed">
