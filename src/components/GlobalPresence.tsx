@@ -20,7 +20,7 @@ const GlobalPresence = () => {
       y: "68%",
       city: "Jakarta",
       address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
-      mapUrl: "https://www.google.com/maps/d/embed?mid=1pph8JzHyVH3jfVQHvjnJW_Q4r1P7_7Q&ehbc=2E312F" 
+      mapUrl: "<iframe src="https://www.google.com/maps/d/embed?mid=1pph8JzHyVH3jfVQHvjnJW_Q4r1P7_7Q&ehbc=2E312F" width="640" height="480"></iframe>" 
     },
     { 
       name: "Malaysia", 
