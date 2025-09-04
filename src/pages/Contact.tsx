@@ -62,7 +62,7 @@ const Contact: React.FC = () => {
       {/* ---------- HERO ---------- */}
       <section className="relative -mt-20 h-[60vh] md:h-[70vh]">
         <img
-          src="/contact.png"
+          src="/businessman.jpg"
           alt="Sustainable operations and global collaboration"
           className="absolute inset-0 block h-full w-full object-cover object-top"
           loading="eager"
