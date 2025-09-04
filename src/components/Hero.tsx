@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const images = ["/Trust.jpg", "/Biodieselfeedbook.jpg", "/Drivingsustainability.jpg"];
+  const images = ["/truck.jpg", "/ship.jpg", "/human.jpg"];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
