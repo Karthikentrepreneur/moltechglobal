@@ -78,7 +78,7 @@ const About: React.FC = () => {
         {/* ---------- HERO (image only, no extra elements) ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/about.jpg"
+            src="/chemical.jpg"
             alt="Laboratory glassware and sustainable chemistry"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
