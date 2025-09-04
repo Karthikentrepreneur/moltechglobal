@@ -99,7 +99,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="https://source.unsplash.com/1200x800/?used-cooking-oil,biofuel,feedstock,recycling"
+                    src="/kk"
                     alt="Used cooking oil and other biofuel feedstocks"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -121,7 +121,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="https://source.unsplash.com/1200x800/?laboratory,quality,testing,biofuel,chemistry"
+                    src="/kkk"
                     alt="Laboratory quality control and traceability testing"
                     className="h-full w-full object-cover"
                     loading="lazy"
