@@ -5,9 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 /* -------------------- CountUp utilities -------------------- */
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3);
-}
+function easeOutCubic(t: number) { return 1 - Math.pow(1 - t, 3); }
 function usePrefersReducedMotion() {
   const [prefers, setPrefers] = useState(false);
   useEffect(() => {
@@ -36,27 +34,15 @@ function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
     const obs = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
       root: options?.root ?? null,
       rootMargin: options?.rootMargin ?? "0px 0px -20% 0px",
-      threshold: options?.threshold ?? 0.2
+      threshold: options?.threshold ?? 0.2,
     });
     obs.observe(el);
     return () => obs.disconnect();
   }, [options?.root, options?.rootMargin, options?.threshold]);
   return { ref, inView };
 }
-type CountUpProps = {
-  to: number;
-  duration?: number; // ms
-  className?: string;
-  suffix?: string;
-  delay?: number; // ms
-};
-const CountUp: React.FC<CountUpProps> = ({
-  to,
-  duration = 1200,
-  className,
-  suffix = "",
-  delay = 0
-}) => {
+type CountUpProps = { to: number; duration?: number; className?: string; suffix?: string; delay?: number; };
+const CountUp: React.FC<CountUpProps> = ({ to, duration = 1200, className, suffix = "", delay = 0 }) => {
   const prefersReduced = usePrefersReducedMotion();
   const { ref, inView } = useInView<HTMLSpanElement>();
   const [val, setVal] = useState(0);
@@ -64,31 +50,21 @@ const CountUp: React.FC<CountUpProps> = ({
   useEffect(() => {
     if (!inView || started.current) return;
     started.current = true;
-    if (prefersReduced) {
-      setVal(to);
-      return;
-    }
-    let raf = 0;
-    let start: number | null = null;
+    if (prefersReduced) { setVal(to); return; }
+    let raf = 0, start: number | null = null;
     const total = Math.max(200, duration);
     const tick = (ts: number) => {
       if (start === null) start = ts;
       const elapsed = ts - start - delay;
       const t = Math.min(Math.max(elapsed / total, 0), 1);
       const eased = easeOutCubic(t);
-      const next = Math.round(eased * to);
-      setVal(next);
+      setVal(Math.round(eased * to));
       if (t < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, prefersReduced, to, duration, delay]);
-  return (
-    <span ref={ref} className={className}>
-      {val.toLocaleString()}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref} className={className}>{val.toLocaleString()}{suffix}</span>;
 };
 /* ----------------------------------------------------------- */
 
@@ -97,96 +73,81 @@ const About: React.FC = () => {
     <>
       <Header />
 
-      {/* Removed pt-20 so the hero can touch the very top (no white gap) */}
-      <main className="bg-white text-gray-900">
-        {/* ---------- HERO ---------- */}
-        <section className="relative min-h-[55vh]">
-          {/* Background image fills the section top-to-bottom */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: "url('/about.jpg')", // uses public/about.jpg
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }}
-            aria-hidden
+      {/* Give space for the fixed header so the hero isn't covered */}
+      <main className="bg-white text-gray-900 pt-24 md:pt-28">
+        {/* ---------- HERO (image only, no extra elements) ---------- */}
+        <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
+          <img
+            src="/about.jpg"
+            alt="Laboratory glassware and sustainable chemistry"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            loading="eager"
+            decoding="async"
           />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
-            aria-hidden
-          />
-          {/* Add internal top padding to clear a fixed header */}
-          <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-16 lg:px-8 md:pt-28">
-            <div className="relative inline-block max-w-3xl p-4 sm:p-6 md:p-8">
-              <span className="pointer-events-none absolute -top-4 -left-4 h-10 w-10 border-t-4 border-l-4 border-white" />
-              <span className="pointer-events-none absolute -bottom-4 -right-4 h-10 w-10 border-b-4 border-r-4 border-white" />
-
-             
-            </div>
-          </div>
+          {/* Softer overlay so image is visible */}
+          <div className="absolute inset-0 bg-black/25" aria-hidden />
         </section>
 
-        {/* ---------- INTRO 2-COLUMN ---------- */}
-              <h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black">
-                ABOUT US –<br />
-                CHEMICAL SOLUTIONS FOR<br />
-                SUSTAINABLE INDUSTRIES
-              </h1>
-        <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 md:grid-cols-2 lg:px-8">
-          <div className="max-w-none">
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              Moltech strides in the bio space working on clean initiatives and products that
-              drives the circular economy. With its strategic presence in Asia, Middle East,
-              United Kingdom and United States of America, Moltech is positioned to cater and
-              harness cross continental potential of renewable and sustainable products on a
-              global platform.
-            </p>
-            <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
-              Headquartered in Singapore, Moltech operates its renewable business units from
-              Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
-              with it's presence in more than 15 countries, Moltech takes further leverage of
-              cross functional support from its allied offices which makes its network more
-              robust and potential to expand.
-            </p>
-            <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
-              Moltech operates collection and processing of feedstock for renewable diesel at
-              its own locations catering to the biodiesel industry. Products like Used cooking
-              oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
-              works on vegetable oil based specially formulated feed fats both liquid and dry
-              forms. The industrial application sector is catered through products like Fatty
-              alcohols, Fatty acid esters and glycerol.
-            </p>
-            <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
-              Equipped with a global team of highly trained employees and with effective use
-              of technology, Moltech operates with high standards of ethics, operational
-              excellence, quality control and transparency which paved the way for Moltech to
-              become one of the most reliable partners on a global scale.
-            </p>
+        {/* ---------- INTRO ---------- */}
+        <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black max-w-5xl">
+            About Us — Chemical Solutions for Sustainable Industries
+          </h1>
 
-            {/* Certification — SMALL size with blue highlight */}
-            <p className="mt-6 text-sm md:text-base text-gray-900">
-              Moltech is certified by{" "}
-              <span className="text-sky-700 font-semibold">
-                International Sustainability &amp; Carbon Certification (ISCC)
-              </span>
-              , European Union.
-            </p>
-          </div>
+          <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-2">
+            <div className="max-w-none">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                Moltech strides in the bio space working on clean initiatives and products that
+                drives the circular economy. With its strategic presence in Asia, Middle East,
+                United Kingdom and United States of America, Moltech is positioned to cater and
+                harness cross continental potential of renewable and sustainable products on a
+                global platform.
+              </p>
+              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+                Headquartered in Singapore, Moltech operates its renewable business units from
+                Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
+                with it's presence in more than 15 countries, Moltech takes further leverage of
+                cross functional support from its allied offices which makes its network more
+                robust and potential to expand.
+              </p>
+              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+                Moltech operates collection and processing of feedstock for renewable diesel at
+                its own locations catering to the biodiesel industry. Products like Used cooking
+                oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
+                works on vegetable oil based specially formulated feed fats both liquid and dry
+                forms. The industrial application sector is catered through products like Fatty
+                alcohols, Fatty acid esters and glycerol.
+              </p>
+              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+                Equipped with a global team of highly trained employees and with effective use
+                of technology, Moltech operates with high standards of ethics, operational
+                excellence, quality control and transparency which paved the way for Moltech to
+                become one of the most reliable partners on a global scale.
+              </p>
 
-          <div className="overflow-hidden rounded-2xl bg-gray-100">
-            <img
-              src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop"
-              alt="Sustainable operations"
-              className="h-full w-full object-cover"
-              draggable={false}
-            />
+              <p className="mt-6 text-sm md:text-base text-gray-900">
+                Moltech is certified by{" "}
+                <span className="text-sky-700 font-semibold">
+                  International Sustainability &amp; Carbon Certification (ISCC)
+                </span>
+                , European Union.
+              </p>
+            </div>
+
+            <div className="overflow-hidden rounded-2xl bg-gray-100">
+              <img
+                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop"
+                alt="Sustainable operations"
+                className="h-full w-full object-cover"
+                draggable={false}
+              />
+            </div>
           </div>
         </section>
 
         {/* ---------- STATS ROW (animated) ---------- */}
         <section className="border-y border-gray-200 bg-white">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 md:grid-cols-4 lg:px-8">
-            {/* Years */}
             <div className="flex items-center gap-5">
               <div className="grid h-16 w-16 place-items-center rounded-2xl bg-sky-50">
                 <Users className="h-8 w-8 text-sky-500" />
@@ -197,7 +158,6 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Products */}
             <div className="flex items-center gap-5 md:border-l md:pl-8 md:border-gray-200">
               <div className="grid h-16 w-16 place-items-center rounded-2xl bg-sky-50">
                 <Box className="h-8 w-8 text-sky-500" />
@@ -208,7 +168,6 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Employees */}
             <div className="flex items-center gap-5 md:border-l md:pl-8 md:border-gray-200">
               <div className="grid h-16 w-16 place-items-center rounded-2xl bg-indigo-50">
                 <PartyPopper className="h-8 w-8 text-indigo-500" />
@@ -219,7 +178,6 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Clients */}
             <div className="flex items-center gap-5 md:border-l md:pl-8 md:border-gray-200">
               <div className="grid h-16 w-16 place-items-center rounded-2xl bg-emerald-50">
                 <Handshake className="h-8 w-8 text-emerald-600" />
@@ -235,7 +193,6 @@ const About: React.FC = () => {
         {/* ---------- VISION / MISSION ---------- */}
         <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {/* Vision */}
             <div className="relative overflow-hidden rounded-2xl">
               <img
                 src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop"
@@ -253,7 +210,6 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Mission */}
             <div className="relative overflow-hidden rounded-2xl">
               <img
                 src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1600&auto=format&fit=crop"
@@ -265,12 +221,9 @@ const About: React.FC = () => {
                 <h3 className="text-2xl tracking-[0.35em] font-semibold">MISSION</h3>
                 <div className="mt-6 h-px w-10 bg-white/70" />
                 <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 text-base md:text-lg leading-relaxed text-white/95">
-                  <li>
-                    To scale up the collection and processing of sustainable feedstock for
-                    production of clean energy across different continents.
-                  </li>
-                  <li>To operate businesses with high standards of ethics and good governance .</li>
-                  <li>To care about the community and the environment .</li>
+                  <li>Scale up the collection and processing of sustainable feedstock for clean energy.</li>
+                  <li>Operate with high standards of ethics and good governance.</li>
+                  <li>Care for the community and the environment.</li>
                 </ul>
               </div>
             </div>
@@ -282,5 +235,6 @@ const About: React.FC = () => {
     </>
   );
 };
+
 export default About;
 export { About };
