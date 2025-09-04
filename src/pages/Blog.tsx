@@ -4,43 +4,12 @@ import Footer from "../components/Footer";
 import { Leaf, Globe, ShieldCheck, Truck } from "lucide-react";
 import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg";
 
-// Reusable image with automatic fallback
-function ImgWithFallback({
-  src,
-  alt,
-  className,
-  fallback = "/images/placeholder.jpg",
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  fallback?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={className}
-      loading="lazy"
-      decoding="async"
-      referrerPolicy="no-referrer"
-      onError={(e) => {
-        const t = e.currentTarget;
-        if (t.src !== window.location.origin + fallback) {
-          // prevent infinite loop if fallback also fails
-          t.src = fallback;
-        }
-      }}
-    />
-  );
-}
-
 export default function Blog() {
   return (
     <div className="min-h-screen">
       <Header />
 
-      {/* No pt on <main>; add top padding only to the hero to clear fixed header */}
+      {/* keep main clean; use top padding on hero to clear fixed header */}
       <main className="bg-background">
         {/* Hero */}
         <section className="pt-28 pb-16 bg-gradient-to-br from-blue-50 to-slate-50">
@@ -101,13 +70,13 @@ export default function Blog() {
               {/* Global Presence */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  {/* Prefer local file; keep remote as a first try with fallback */}
-                  <ImgWithFallback
-                    src="https://source.unsplash.com/1200x800/?global,network,map,logistics"
-                    // or replace with a local file: "/images/global-presence.jpg"
+                  <img
+                    src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1600&auto=format&fit=crop"
                     alt="Global supply network and logistics map"
                     className="h-full w-full object-cover"
-                    fallback="/kkk"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="p-5">
@@ -125,10 +94,13 @@ export default function Blog() {
               {/* Renewable Feedstocks */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <ImgWithFallback
-                    src="/kk"
+                  <img
+                    src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=1600&auto=format&fit=crop"
                     alt="Used cooking oil and other biofuel feedstocks"
                     className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="p-5">
@@ -146,10 +118,13 @@ export default function Blog() {
               {/* Quality & Transparency */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <ImgWithFallback
-                    src="/kkk"
+                  <img
+                    src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop"
                     alt="Laboratory quality control and traceability testing"
                     className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="p-5">
