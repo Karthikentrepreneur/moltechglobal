@@ -94,7 +94,7 @@ export default function Global() {
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      image: "/malaysia.avif",
+      image: "/malasyia.avif",
     },
   ];
 
