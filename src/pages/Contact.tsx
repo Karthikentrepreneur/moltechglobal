@@ -153,50 +153,11 @@ const Contact: React.FC = () => {
       </section>
 
       {/* ---------- LOCATIONS GRID ---------- */}
-      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Our Offices</h2>
-        <p className="mt-2 text-gray-600">
-          Reach the nearest regional team for faster coordination and on-ground support.
-        </p>
-
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[{
-          city: "Singapore (HQ)",
-          addr: ["#03-01, Keppel Distripark", "Singapore 089057"]
-        }, {
-          city: "Kuala Lumpur, Malaysia",
-          addr: ["Level 20, City Center", "Kuala Lumpur 50050"]
-        }, {
-          city: "Bangkok, Thailand",
-          addr: ["Sathorn Square Office Tower", "Bangkok 10500"]
-        }, {
-          city: "Dubai, UAE",
-          addr: ["Business Bay", "Dubai"]
-        }, {
-          city: "London, UK",
-          addr: ["Canary Wharf", "London E14"]
-        }, {
-          city: "Houston, USA",
-          addr: ["Energy Corridor", "Houston, TX"]
-        }].map((o, i) => <div key={i} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="grid h-10 w-10 place-items-center rounded-xl bg-gray-100">
-                  <Building2 className="h-5 w-5 text-gray-700" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">{o.city}</h3>
-                  <address className="not-italic text-sm text-gray-700">
-                    {o.addr.map(line => <div key={line}>{line}</div>)}
-                  </address>
-                </div>
-              </div>
-            </div>)}
-        </div>
-      </section>
+      
 
       {/* ---------- CONTACT FORM + DETAILS ---------- */}
-      <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+      <section className="mx-auto max-w-7xl pb-16 lg:px-8 px-0">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 px-[6px]">
           {/* Form */}
           <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
             <h3 id="contact-form" className="text-xl font-semibold text-gray-900">
@@ -269,36 +230,7 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Contact details / Map */}
-          <div className="space-y-6">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-900">Global HQ</h3>
-              <p className="mt-2 text-sm text-gray-700">
-                <strong>Moltech Global</strong>
-                <br />
-                #03-01, Keppel Distripark, Singapore 089057
-              </p>
-
-              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                <a href="mailto:hello@moltechglobal.com" className="flex items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100">
-                  <Mail className="h-4 w-4 text-sky-600" />
-                  hello@moltechglobal.com
-                </a>
-                <a href="tel:+6560000000" className="flex items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 hover:bg-gray-100">
-                  <Phone className="h-4 w-4 text-sky-600" />
-                  +65 6000 0000
-                </a>
-              </div>
-
-              <div className="mt-4 flex items-center gap-2 text-sm text-gray-700">
-                <Clock className="h-4 w-4 text-amber-600" />
-                Mon–Fri · 9:00–18:00 (SGT)
-              </div>
-            </div>
-
-            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-              <iframe title="HQ Map" src="https://maps.google.com/maps?q=keppel%20distripark%20singapore&t=&z=13&ie=UTF8&iwloc=&output=embed" className="h-64 w-full" loading="lazy" />
-            </div>
-          </div>
+          
         </div>
       </section>
 
