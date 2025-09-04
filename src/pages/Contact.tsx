@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
       </section>
 
       {/* ---------- INTRO 2-COLUMN ---------- */} 
-    <h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black max-w-4xl my-[20px]">
+    <h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black max-w-4xl my-[20px] mx-[25px]">
             CONTACT US – <br />
             LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
           </h1>
