@@ -83,7 +83,7 @@ export default function Global() {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "/malaysia.avif",
+      image: "/malasyia.avif",
     },
     {
       city: "Johor",
