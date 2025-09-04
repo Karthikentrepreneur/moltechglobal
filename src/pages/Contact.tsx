@@ -58,7 +58,7 @@ const Contact: React.FC = () => {
   return (
     <main className="bg-white text-gray-900">
       {/* ---------- HERO ---------- */}
-      <section className="relative -mt-20 h-[70vh] flex items-center">
+      <section className="relative -mt-20 h-[60vh] flex items-center">
         {/* Background image */}
         <img
           src="/businessman.jpg"
@@ -71,15 +71,10 @@ const Contact: React.FC = () => {
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40" aria-hidden />
 
-        {/* Text with decorative corners */}
+        {/* Text */}
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl relative">
-            {/* Top-left corner */}
-            <span className="absolute -top-6 -left-6 h-12 w-12 border-l-4 border-t-4 border-white"></span>
-            {/* Bottom-right corner */}
-            <span className="absolute -bottom-6 -right-6 h-12 w-12 border-r-4 border-b-4 border-white"></span>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-white">
+          <div className="max-w-2xl">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug text-white">
               CONTACT US – <br />
               LET’S BUILD SUSTAINABLE <br />
               SOLUTIONS TOGETHER
