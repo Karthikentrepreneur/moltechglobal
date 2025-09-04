@@ -73,9 +73,9 @@ const About: React.FC = () => {
     <>
       <Header />
 
-      {/* Give space for the fixed header so the hero isn't covered */}
-      <main className="bg-white text-gray-900 pt-24 md:pt-28">
-        {/* ---------- HERO (image only, no extra elements) ---------- */}
+      {/* Removed top padding so the hero image fills behind the fixed header */}
+      <main className="bg-white text-gray-900 pt-0">
+        {/* ---------- HERO (image only) ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
             src="/chemical.jpg"
@@ -84,7 +84,7 @@ const About: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          {/* Softer overlay so image is visible */}
+          {/* Keep overlay subtle so the image is still clearly visible */}
           <div className="absolute inset-0 bg-black/25" aria-hidden />
         </section>
 
