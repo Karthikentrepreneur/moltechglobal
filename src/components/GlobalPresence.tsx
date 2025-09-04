@@ -44,7 +44,6 @@ const GlobalPresence = () => {
           city: "Jakarta",
           address:
             "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
-          // FIXED: store only the URL (not an <iframe>)
           mapUrl:
             "https://www.google.com/maps/d/embed?mid=1pph8JzHyVH3jfVQHvjnJW_Q4r1P7_7Q&ehbc=2E312F",
         },
@@ -61,8 +60,9 @@ const GlobalPresence = () => {
           city: "Kuala Lumpur",
           address:
             "PORT KLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+          // FIXED: keep only the URL from the iframe src
           mapUrl:
-            "<iframe src="https://www.google.com/maps/d/embed?mid=1u9qMUpxCJci_kQGPU6ix8Txx15kqVls&ehbc=2E312F" width="640" height="480"></iframe>",
+            "https://www.google.com/maps/d/embed?mid=1u9qMUpxCJci_kQGPU6ix8Txx15kqVls&ehbc=2E312F",
         },
         {
           label: "Johor",
@@ -70,7 +70,7 @@ const GlobalPresence = () => {
           address:
             "JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
           mapUrl:
-            "<iframe src="https://www.google.com/maps/d/embed?mid=14ZjhbWDRjDLKAqDD68HYR6f5AdgHeTM&ehbc=2E312F" width="640" height="480"></iframe>",
+            "https://www.google.com/maps/d/embed?mid=14ZjhbWDRjDLKAqDD68HYR6f5AdgHeTM&ehbc=2E312F",
         },
       ],
     },
@@ -84,7 +84,7 @@ const GlobalPresence = () => {
           city: "Riyadh",
           address: "DAMMAM • 2817 King Faizal Road, 9403-32233",
           mapUrl:
-            "<iframe src="https://www.google.com/maps/d/embed?mid=1SLpVQBG_WjaUW_xdPO2Hb46HzEFOkUM&ehbc=2E312F" width="640" height="480"></iframe>",
+            "https://www.google.com/maps/d/embed?mid=1SLpVQBG_WjaUW_xdPO2Hb46HzEFOkUM&ehbc=2E312F",
         },
       ],
     },
@@ -99,7 +99,7 @@ const GlobalPresence = () => {
           address:
             "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
           mapUrl:
-            "<iframe src="https://www.google.com/maps/d/embed?mid=1xcqb2plXHAHzdoMd2xTrwwKoM2YRDz0&ehbc=2E312F" width="640" height="480"></iframe>",
+            "https://www.google.com/maps/d/embed?mid=1xcqb2plXHAHzdoMd2xTrwwKoM2YRDz0&ehbc=2E312F",
         },
       ],
     },
@@ -113,7 +113,7 @@ const GlobalPresence = () => {
           city: "Bangkok",
           address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
           mapUrl:
-            "<iframe src="https://www.google.com/maps/d/embed?mid=1mLlesIp5IZnlGTf5rHqUasEyDOVAPF4&ehbc=2E312F" width="640" height="480"></iframe>",
+            "https://www.google.com/maps/d/embed?mid=1mLlesIp5IZnlGTf5rHqUasEyDOVAPF4&ehbc=2E312F",
         },
       ],
     },
@@ -127,7 +127,7 @@ const GlobalPresence = () => {
           city: "Dubai",
           address: "Al Qusais Industrial Area 2",
           mapUrl:
-            "<iframe src="https://www.google.com/maps/d/embed?mid=1sQ4baWLtd5AeCMowGQzuYmM3mWj0eMI&ehbc=2E312F" width="640" height="480"></iframe>",
+            "https://www.google.com/maps/d/embed?mid=1sQ4baWLtd5AeCMowGQzuYmM3mWj0eMI&ehbc=2E312F",
         },
       ],
     },
@@ -141,7 +141,7 @@ const GlobalPresence = () => {
           city: "London",
           address: "167-169 Great Portland Street, W1W 5PF",
           mapUrl:
-            "<iframe src="https://www.google.com/maps/d/embed?mid=1YBaDDjJVmNfdeSKMMUrypyoypossW2c&ehbc=2E312F" width="640" height="480"></iframe>",
+            "https://www.google.com/maps/d/embed?mid=1YBaDDjJVmNfdeSKMMUrypyoypossW2c&ehbc=2E312F",
         },
       ],
     },
@@ -319,7 +319,7 @@ const GlobalPresence = () => {
                     <p className="text-white text-sm leading-relaxed max-w-xs">
                       {selectedOffice.address}
                     </p>
-                    {/* Copy button: implement clipboard if you like */}
+                    {/* Copy button */}
                     <button
                       className="mt-3 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm text-blue-200 hover:text-white transition-colors duration-300 flex items-center space-x-2"
                       onClick={() => navigator.clipboard?.writeText(selectedOffice.address)}
