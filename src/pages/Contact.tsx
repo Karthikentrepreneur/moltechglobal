@@ -112,7 +112,7 @@ const Contact: React.FC = () => {
 
         <div className="overflow-hidden rounded-2xl bg-gray-100">
           <img
-            src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?q=80&w=1600&auto=format&fit=crop"
+            src="/contact.png"
             alt="Team collaboration"
             className="h-full w-full object-cover"
             draggable={false}
