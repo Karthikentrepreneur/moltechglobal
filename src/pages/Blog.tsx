@@ -3,20 +3,17 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Leaf, Globe, ShieldCheck, Truck } from "lucide-react";
 import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg";
-
 export default function Blog() {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
 
-      {/* Removed pt-24 here */}
-      <main className="bg-background">
+      <main className="pt-24 bg-background">
         {/* Hero */}
         <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
-                <p className="inline-flex items-center gap-2 text-sm font-medium text-blue-700">
+                <p className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 my-0 py-[35px]">
                   <Leaf className="h-4 w-4" />
                   Practical sustainability, scaled globally
                 </p>
@@ -49,21 +46,13 @@ export default function Blog() {
                   </li>
                 </ul>
 
-                <a
-                  href="/contact"
-                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
-                >
+                <a href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700">
                   Talk to our team <Truck className="h-4 w-4" />
                 </a>
               </div>
 
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                <img
-                  src={moltechSustainability}
-                  alt="Moltech sustainable technology and green innovation"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
+                <img src={moltechSustainability} alt="Moltech sustainable technology and green innovation" className="h-full w-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>
@@ -75,12 +64,7 @@ export default function Blog() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <img
-                    src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1600&auto=format&fit=crop"
-                    alt="Containers at a logistics port"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
+                  <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=1600&auto=format&fit=crop" alt="Containers at a logistics port" className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-blue-700">
@@ -96,12 +80,7 @@ export default function Blog() {
 
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <img
-                    src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=1600&auto=format&fit=crop"
-                    alt="Industrial pipelines"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
+                  <img src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=1600&auto=format&fit=crop" alt="Industrial pipelines" className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
@@ -117,12 +96,7 @@ export default function Blog() {
 
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <img
-                    src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop"
-                    alt="Quality control in a laboratory"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
+                  <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop" alt="Quality control in a laboratory" className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-800">
@@ -150,11 +124,12 @@ export default function Blog() {
               </p>
               <div className="mt-4 text-sm text-slate-500">— Moltech Editorial</div>
             </blockquote>
+
+            
           </div>
         </section>
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 }
