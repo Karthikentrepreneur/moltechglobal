@@ -62,7 +62,7 @@ const GlobalPresence = () => {
           address:
             "PORT KLANG • 18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
           mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255289.0060816296!2d101.55!3d3.139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e7d3%3A0x232e1ff540d86c99!2sKuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2s!4v1234567890",
+            "<iframe src="https://www.google.com/maps/d/embed?mid=1u9qMUpxCJci_kQGPU6ix8Txx15kqVls&ehbc=2E312F" width="640" height="480"></iframe>",
         },
         {
           label: "Johor",
@@ -70,7 +70,7 @@ const GlobalPresence = () => {
           address:
             "JOHOR • No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
           mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255289.0060816296!2d101.55!3d3.139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e7d3%3A0x232e1ff540d86c99!2sKuala%20Lumpur%2C%20Malaysia!5e0!3m2!1sen!2s!4v1234567890",
+            "<iframe src="https://www.google.com/maps/d/embed?mid=14ZjhbWDRjDLKAqDD68HYR6f5AdgHeTM&ehbc=2E312F" width="640" height="480"></iframe>",
         },
       ],
     },
@@ -84,7 +84,7 @@ const GlobalPresence = () => {
           city: "Riyadh",
           address: "DAMMAM • 2817 King Faizal Road, 9403-32233",
           mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462118.02069936294!2d46.59!3d24.774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1234567890",
+            "<iframe src="https://www.google.com/maps/d/embed?mid=1SLpVQBG_WjaUW_xdPO2Hb46HzEFOkUM&ehbc=2E312F" width="640" height="480"></iframe>",
         },
       ],
     },
@@ -99,7 +99,7 @@ const GlobalPresence = () => {
           address:
             "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
           mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127506.01297429645!2d103.77470995!3d1.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11238a8b9375%3A0x887869cf52abf5c4!2sSingapore!5e0!3m2!1sen!2s!4v1234567890",
+            "<iframe src="https://www.google.com/maps/d/embed?mid=1xcqb2plXHAHzdoMd2xTrwwKoM2YRDz0&ehbc=2E312F" width="640" height="480"></iframe>",
         },
       ],
     },
@@ -113,7 +113,7 @@ const GlobalPresence = () => {
           city: "Bangkok",
           address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
           mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248057.47759065894!2d100.46!3d13.756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d6032280d61f3%3A0x10100b25de24820!2sBangkok%2C%20Thailand!5e0!3m2!1sen!2s!4v1234567890",
+            "<iframe src="https://www.google.com/maps/d/embed?mid=1mLlesIp5IZnlGTf5rHqUasEyDOVAPF4&ehbc=2E312F" width="640" height="480"></iframe>",
         },
       ],
     },
@@ -127,7 +127,7 @@ const GlobalPresence = () => {
           city: "Dubai",
           address: "Al Qusais Industrial Area 2",
           mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.6828447347!2d55.1!3d25.276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1234567890",
+            "<iframe src="https://www.google.com/maps/d/embed?mid=1sQ4baWLtd5AeCMowGQzuYmM3mWj0eMI&ehbc=2E312F" width="640" height="480"></iframe>",
         },
       ],
     },
@@ -141,7 +141,7 @@ const GlobalPresence = () => {
           city: "London",
           address: "167-169 Great Portland Street, W1W 5PF",
           mapUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317716.6134825814!2d-0.43!3d51.528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1234567890",
+            "<iframe src="https://www.google.com/maps/d/embed?mid=1YBaDDjJVmNfdeSKMMUrypyoypossW2c&ehbc=2E312F" width="640" height="480"></iframe>",
         },
       ],
     },
