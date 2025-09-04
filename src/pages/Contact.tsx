@@ -4,10 +4,8 @@ import {
   Mail,
   Phone,
   Clock,
-  Send,
   Headset,
   ShieldCheck,
-  MessageCircle,
 } from "lucide-react";
 
 const Contact: React.FC = () => {
@@ -60,7 +58,7 @@ const Contact: React.FC = () => {
   return (
     <main className="bg-white text-gray-900">
       {/* ---------- HERO ---------- */}
-      <section className="relative -mt-20 h-[60vh] md:h-[70vh]">
+      <section className="relative -mt-20 h-[60vh] md:h-[70vh] flex items-center">
         <img
           src="/businessman.jpg"
           alt="Sustainable operations and global collaboration"
@@ -73,9 +71,9 @@ const Contact: React.FC = () => {
           className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"
           aria-hidden
         />
-        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white">
-            CONTACT US –<br />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white max-w-3xl">
+            CONTACT US – <br />
             LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
           </h1>
         </div>
@@ -185,15 +183,80 @@ const Contact: React.FC = () => {
               onSubmit={onSubmit}
               aria-labelledby="contact-form"
             >
-              {/* Form fields here (unchanged) */}
-              {/* ... */}
+              {/* Form fields */}
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                required
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+              />
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Your Email"
+                required
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+              />
+              <input
+                type="tel"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="Phone"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+              />
+              <input
+                type="text"
+                name="company"
+                value={form.company}
+                onChange={handleChange}
+                placeholder="Company"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+              />
+              <input
+                type="text"
+                name="subject"
+                value={form.subject}
+                onChange={handleChange}
+                placeholder="Subject"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+              />
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder="Message"
+                rows={4}
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+              />
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full rounded-lg bg-sky-600 px-4 py-2 text-white font-semibold hover:bg-sky-700 disabled:opacity-50"
+              >
+                {submitting ? "Sending..." : "Send Message"}
+              </button>
             </form>
+
+            {status && (
+              <p
+                className={`mt-4 text-sm ${
+                  status.ok ? "text-emerald-600" : "text-red-600"
+                }`}
+              >
+                {status.msg}
+              </p>
+            )}
           </div>
         </div>
       </section>
 
-      {/* ---------- FAQ ---------- */}
-      {/* Keep the rest of your FAQ and CTA sections unchanged */}
+      {/* ---------- FAQ / CTA (unchanged) ---------- */}
     </main>
   );
 };
