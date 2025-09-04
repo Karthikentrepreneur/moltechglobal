@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
       <section className="relative min-h-[55vh]">
         {/* Use a real image element instead of CSS background so it always loads */}
         <img
-          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2000&auto=format&fit=crop"
+          src="/contact.png"
           alt="Sustainable operations and global collaboration"
           className="absolute inset-0 h-full w-full object-cover"
           loading="eager"
