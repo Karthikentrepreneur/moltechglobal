@@ -2,7 +2,38 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Leaf, Globe, ShieldCheck, Truck } from "lucide-react";
-import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg"; // keep if this file exists
+import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg";
+
+// Reusable image with automatic fallback
+function ImgWithFallback({
+  src,
+  alt,
+  className,
+  fallback = "/images/placeholder.jpg",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  fallback?: string;
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      onError={(e) => {
+        const t = e.currentTarget;
+        if (t.src !== window.location.origin + fallback) {
+          // prevent infinite loop if fallback also fails
+          t.src = fallback;
+        }
+      }}
+    />
+  );
+}
 
 export default function Blog() {
   return (
@@ -56,6 +87,7 @@ export default function Blog() {
                   alt="Moltech circular-economy and sustainable biorefinery"
                   className="h-full w-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -69,11 +101,13 @@ export default function Blog() {
               {/* Global Presence */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <img
+                  {/* Prefer local file; keep remote as a first try with fallback */}
+                  <ImgWithFallback
                     src="https://source.unsplash.com/1200x800/?global,network,map,logistics"
+                    // or replace with a local file: "/images/global-presence.jpg"
                     alt="Global supply network and logistics map"
                     className="h-full w-full object-cover"
-                    loading="lazy"
+                    fallback="/images/global-presence.jpg"
                   />
                 </div>
                 <div className="p-5">
@@ -88,14 +122,13 @@ export default function Blog() {
                 </div>
               </article>
 
-              {/* Renewable Feedstocks — use images from /public to avoid import errors */}
+              {/* Renewable Feedstocks */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <img
+                  <ImgWithFallback
                     src="/images/feedstocks.jpg"
                     alt="Used cooking oil and other biofuel feedstocks"
                     className="h-full w-full object-cover"
-                    loading="lazy"
                   />
                 </div>
                 <div className="p-5">
@@ -113,11 +146,10 @@ export default function Blog() {
               {/* Quality & Transparency */}
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
-                  <img
+                  <ImgWithFallback
                     src="/images/lab-qc.jpg"
                     alt="Laboratory quality control and traceability testing"
                     className="h-full w-full object-cover"
-                    loading="lazy"
                   />
                 </div>
                 <div className="p-5">
