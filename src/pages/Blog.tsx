@@ -71,7 +71,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="/kk.jpg"
+                    src="/kkk.jpg"
                     alt="Global supply network and logistics map"
                     className="h-full w-full object-cover"
                     loading="lazy"
@@ -95,7 +95,7 @@ export default function Blog() {
               <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <div className="relative h-48">
                   <img
-                    src="/kkk.jpg"
+                    src="/kk.jpg"
                     alt="Used cooking oil and other biofuel feedstocks"
                     className="h-full w-full object-cover"
                     loading="lazy"
