@@ -21,7 +21,7 @@ const FeedAdditives: React.FC = () => {
         {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/feed-additives-hero.jpg?v=2" // ⬅️ put this file in /public and bump v when you change
+            src="/feed.jpg" // ⬅️ put this file in /public and bump v when you change
             alt="Feed additives background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
