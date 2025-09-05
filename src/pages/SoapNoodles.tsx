@@ -1,5 +1,6 @@
 import ServicePage from "./ServicePage";
 import { ShoppingBag } from "lucide-react";
+import soapNoodlesHero from "/Soapnoodles";
 
 export default function SoapNoodles() {
   return (
@@ -15,7 +16,7 @@ export default function SoapNoodles() {
         "Packaging and MOQ tailored to production requirements",
       ]}
       Icon={ShoppingBag}
-      // 👇 removed heroImage so no blank image shows up
+      heroImage={soapNoodlesHero}
       backTo="/products"
       seoTitle="Toilet & Detergent Grade Soap Noodles | Moltech"
       seoDescription="Cosmetic and detergent grades with controlled moisture, TFM, and color for reliable bar manufacturing."
