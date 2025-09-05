@@ -16,21 +16,25 @@ const AnimalFeedFats: React.FC = () => {
 
   return (
     <>
+      {/* Header like About page */}
       <Header />
 
+      {/* Main content — same structure as Soap Noodles */}
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (full-bleed image + subtle overlay; like Soap Noodles/About) ---------- */}
+        {/* ---------- HERO (same style as Soap Noodles) ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
+          {/* Full-bleed background image */}
           <img
-            src="/s.jpg" // ensure this file exists in /public
+            src="/s.jpg" // ensure this exists in /public
             alt="Animal feed fats background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-black/25" aria-hidden />
+          {/* subtle overlay for readability (same as Soap Noodles) */}
+          <div className="absolute inset-0 bg-black/35" aria-hidden />
 
-          {/* Centered title & summary on hero */}
+          {/* Centered content over the hero */}
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
               <div className="max-w-4xl">
@@ -48,7 +52,7 @@ const AnimalFeedFats: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- BODY (unchanged bullets) ---------- */}
+        {/* ---------- BODY (unchanged content) ---------- */}
         <section className="container mx-auto px-6 py-12 lg:px-8">
           <ul className="mx-auto max-w-3xl list-disc pl-5 space-y-3 text-gray-700">
             {bullets.map((b, i) => (
@@ -58,6 +62,7 @@ const AnimalFeedFats: React.FC = () => {
         </section>
       </main>
 
+      {/* Footer like About page */}
       <Footer />
     </>
   );
