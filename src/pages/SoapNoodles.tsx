@@ -15,8 +15,7 @@ export default function SoapNoodles() {
         "Packaging and MOQ tailored to production requirements",
       ]}
       Icon={ShoppingBag}
-      heroImage="/Soapnoodles.jpg" 
-      // 👆 put soapnoodles-hero.png inside the public/ folder
+      // 👇 removed heroImage so no blank image shows up
       backTo="/products"
       seoTitle="Toilet & Detergent Grade Soap Noodles | Moltech"
       seoDescription="Cosmetic and detergent grades with controlled moisture, TFM, and color for reliable bar manufacturing."
