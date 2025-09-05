@@ -1,6 +1,6 @@
 import ServicePage from "./ServicePage";
 import { ShoppingBag } from "lucide-react";
-import soapNoodlesHero from "/Feed Additives";
+import soapNoodlesHero from "/Soapnoodles";
 
 export default function SoapNoodles() {
   return (
