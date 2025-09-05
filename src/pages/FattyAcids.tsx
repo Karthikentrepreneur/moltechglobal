@@ -22,7 +22,7 @@ const FattyAcids: React.FC = () => {
         {/* HERO: full-bleed image with subtle overlay, title/summary centered */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/fatty-acids-hero.jpg" // ensure this file exists in /public
+            src="/aaaa.png" // ensure this file exists in /public
             alt="Fatty acids background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
