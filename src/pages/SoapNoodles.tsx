@@ -16,10 +16,10 @@ export default function SoapNoodles() {
       ]}
       Icon={ShoppingBag}
       heroImage="/Soapnoodles.jpg" 
-      // 👆 put soapnoodles-hero.png inside the public/ folder
       backTo="/products"
       seoTitle="Toilet & Detergent Grade Soap Noodles | Moltech"
       seoDescription="Cosmetic and detergent grades with controlled moisture, TFM, and color for reliable bar manufacturing."
+      className="!mt-0"   // 👈 removes default top margin
     />
   );
 }
