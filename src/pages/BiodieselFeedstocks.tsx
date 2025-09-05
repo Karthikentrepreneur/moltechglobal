@@ -21,7 +21,7 @@ const BiodieselFeedstocks: React.FC = () => {
         {/* ---------- HERO (image-only, like About) ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/metal.jpeg" // ensure this file is in /public
+            src="/a.png" // ensure this file is in /public
             alt="Biodiesel feedstocks background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
