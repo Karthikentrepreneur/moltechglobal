@@ -22,7 +22,7 @@ const AnimalFeedFats: React.FC = () => {
         {/* ---------- HERO (full-bleed image + subtle overlay; like Soap Noodles/About) ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/aaa.png" // ensure this file exists in /public
+            src="/s.jpg" // ensure this file exists in /public
             alt="Animal feed fats background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
