@@ -17,12 +17,11 @@ const FeedAdditives: React.FC = () => {
   return (
     <>
       <Header />
-
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (same style as Soap Noodles) ---------- */}
+        {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/feed.jpg" // put this file in /public
+            src="/feed-additives-hero.jpg?v=2" // ⬅️ put this file in /public and bump v when you change
             alt="Feed additives background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
@@ -47,7 +46,7 @@ const FeedAdditives: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- BODY (unchanged content) ---------- */}
+        {/* ---------- BODY ---------- */}
         <section className="container mx-auto px-6 py-12 lg:px-8">
           <ul className="mx-auto max-w-3xl list-disc pl-5 space-y-3 text-gray-700">
             {bullets.map((b, i) => (
@@ -56,7 +55,6 @@ const FeedAdditives: React.FC = () => {
           </ul>
         </section>
       </main>
-
       <Footer />
     </>
   );
