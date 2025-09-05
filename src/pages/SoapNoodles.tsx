@@ -1,3 +1,4 @@
+// src/pages/SoapNoodles.tsx
 import ServicePage from "./ServicePage";
 import { ShoppingBag } from "lucide-react";
 
@@ -15,11 +16,11 @@ export default function SoapNoodles() {
         "Packaging and MOQ tailored to production requirements",
       ]}
       Icon={ShoppingBag}
-      heroImage="/Soapnoodles.jpg" 
+      heroImage="/Soapnoodles.jpg"   // file in public/
       backTo="/products"
       seoTitle="Toilet & Detergent Grade Soap Noodles | Moltech"
       seoDescription="Cosmetic and detergent grades with controlled moisture, TFM, and color for reliable bar manufacturing."
-      className="!mt-0"   // 👈 removes default top margin
+      flushTop                 // 👈 ensures no gap under the header
     />
   );
 }
