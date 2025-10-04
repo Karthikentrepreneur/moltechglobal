@@ -1,28 +1,30 @@
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const images = ["/truck.jpg", "/ship.jpg", "/human.jpg"];
+  const videos = ["/herov.mp4"]; // using video instead of images
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex(i => (i + 1) % images.length);
+      setIndex((i) => (i + 1) % videos.length);
     }, 5000);
     return () => clearInterval(id);
-  }, [images.length]);
+  }, [videos.length]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background slider */}
-      {images.map((src, i) => (
-        <img
+      {/* Background video slider */}
+      {videos.map((src, i) => (
+        <video
           key={src}
           src={src}
-          alt={`Hero slide ${i + 1}`}
+          autoPlay
+          loop
+          muted
+          playsInline
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
-          draggable={false}
         />
       ))}
 
@@ -46,7 +48,7 @@ const Hero = () => {
 
       {/* Dots navigation */}
       <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
-        {images.map((_, i) => (
+        {videos.map((_, i) => (
           <button
             key={i}
             aria-label={`Go to slide ${i + 1}`}
