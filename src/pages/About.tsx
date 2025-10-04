@@ -75,8 +75,9 @@ const About: React.FC = () => {
 
       {/* Removed top padding so the hero image fills behind the fixed header */}
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (image only) ---------- */}
-        <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
+        {/* ---------- HERO (image with text overlay) ---------- */}
+        <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] flex items-center justify-center text-center">
+          {/* Background image */}
           <img
             src="/chemical.jpg"
             alt="Laboratory glassware and sustainable chemistry"
@@ -84,15 +85,26 @@ const About: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          {/* Keep overlay subtle so the image is still clearly visible */}
-          <div className="absolute inset-0 bg-black/25" aria-hidden />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/40" aria-hidden />
+
+          {/* Hero Content */}
+          <div className="relative z-10 px-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+              About Us — Chemical Solutions for Sustainable Industries
+            </h1>
+            <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-gray-200 leading-relaxed">
+              Driving innovation in bio-space and clean initiatives with a global presence across Asia,
+              Middle East, UK, and USA.
+            </p>
+          </div>
         </section>
 
         {/* ---------- INTRO ---------- */}
         <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black max-w-5xl">
-            About Us — Chemical Solutions for Sustainable Industries
-          </h1>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-tight text-black max-w-5xl">
+            Our Story
+          </h2>
 
           <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-2">
             <div className="max-w-none">
