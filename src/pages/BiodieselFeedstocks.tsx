@@ -2,6 +2,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Search, ArrowRight, Truck } from "lucide-react";
 
 const BiodieselFeedstocks: React.FC = () => {
   const bullets = [
@@ -13,15 +14,25 @@ const BiodieselFeedstocks: React.FC = () => {
     "Global pickup network with export documentation and flexible Incoterms",
   ];
 
+  // right-column “Services List” (Biodiesel active)
+  const services = [
+    { name: "Biodiesel Feedstocks (UCO)", active: true, href: "#" },
+    { name: "Soap Noodles", active: false, href: "#" },
+    { name: "Glycerin", active: false, href: "#" },
+    { name: "Fatty Acids", active: false, href: "#" },
+    { name: "Animal Feed", active: false, href: "#" },
+    { name: "Warehousing & Logistics", active: false, href: "#" },
+  ];
+
   return (
     <>
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (full-bleed image + subtle overlay; like Soap Noodles/About) ---------- */}
+        {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/a.jpg"  // ensure this file exists in /public
+            src="/a.jpg" // ensure this file exists in /public
             alt="Biodiesel feedstocks background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
@@ -29,7 +40,7 @@ const BiodieselFeedstocks: React.FC = () => {
           />
           <div className="absolute inset-0 bg-black/25" aria-hidden />
 
-          {/* Centered title & summary on hero (Soap Noodles style) */}
+          {/* Centered title & summary on hero */}
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
               <div className="max-w-4xl">
@@ -37,20 +48,101 @@ const BiodieselFeedstocks: React.FC = () => {
                   Biodiesel Feedstocks (UCO)
                 </h1>
                 <p className="mt-6 text-lg md:text-xl text-white/90">
-                  ISCC-compliant UCO feedstocks with global logistics, traceability, and stable quality for renewable diesel and SAF production.
+                  ISCC-compliant UCO feedstocks with global logistics, traceability, and stable
+                  quality for renewable diesel and SAF production.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ---------- BODY (unchanged bullets) ---------- */}
-        <section className="container mx-auto px-6 py-12 lg:px-8">
-          <ul className="mx-auto max-w-3xl list-disc pl-5 space-y-3 text-gray-700">
-            {bullets.map((b, i) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
+        {/* ---------- BELOW-HERO SECTION (matches screenshot layout) ---------- */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* LEFT: Main card with big image + title + bullets */}
+            <article className="lg:col-span-2">
+              <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
+                {/* large image (replace with your preferred asset if needed) */}
+                <img
+                  src="/biodiesel-main.jpg"
+                  alt="UCO logistics"
+                  className="w-full h-[420px] object-cover"
+                />
+
+                <div className="px-6 sm:px-8 py-8">
+                  {/* Heading row with yellow icon box (style mirrors screenshot) */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-yellow-400/90 text-gray-900">
+                      <Truck className="w-6 h-6" aria-hidden />
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
+                      Biodiesel Feedstocks (UCO)
+                    </h2>
+                  </div>
+
+                  {/* Content (unchanged bullets) */}
+                  <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
+                    {bullets.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            {/* RIGHT: Sidebar cards (Search + Services List) */}
+            <aside className="space-y-6">
+              {/* Search card */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Search</h3>
+                <form className="flex">
+                  <input
+                    type="text"
+                    placeholder="Search Here..."
+                    className="w-full px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                  />
+                  <button
+                    type="button"
+                    className="px-4 rounded-r-md bg-yellow-400 text-gray-900 border border-yellow-400 hover:bg-yellow-500 transition"
+                    aria-label="Search"
+                  >
+                    <Search className="w-5 h-5" />
+                  </button>
+                </form>
+              </div>
+
+              {/* Services List card */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Services List</h3>
+                <div className="space-y-3">
+                  {services.map((s, i) => (
+                    <a
+                      key={i}
+                      href={s.href}
+                      className={[
+                        "flex items-center justify-between rounded-md border transition px-4 py-3",
+                        s.active
+                          ? "bg-yellow-400 text-gray-900 border-yellow-400"
+                          : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
+                      ].join(" ")}
+                    >
+                      <span className="font-medium">{s.name}</span>
+                      <span
+                        className={[
+                          "inline-flex items-center justify-center w-9 h-9 rounded-full border transition",
+                          s.active
+                            ? "bg-gray-900 text-white border-gray-900"
+                            : "bg-white text-gray-700 border-gray-200",
+                        ].join(" ")}
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </aside>
+          </div>
         </section>
       </main>
 
