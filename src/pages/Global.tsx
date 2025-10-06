@@ -1,7 +1,6 @@
 // src/pages/Global.tsx
 import { useEffect, useState } from "react";
 import { MapPin, Phone } from "lucide-react";
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -50,7 +49,6 @@ const OfficeCard = ({
     <div className="p-6 flex-1 flex flex-col">
       <h3 className="text-2xl font-bold text-slate-900">{office.city}</h3>
       <p className="text-slate-600 mb-3">{office.country}</p>
-
       <p className="text-slate-700 leading-relaxed mb-6">{office.description}</p>
 
       <div className="mt-auto space-y-3">
@@ -70,7 +68,7 @@ const OfficeCard = ({
 export default function Global() {
   const [currentMalaysianOffice, setCurrentMalaysianOffice] = useState(0);
 
-  // ✅ Use the correct image path
+  // ✅ Malaysia images fixed (use .jpg or .png for reliability)
   const malaysianOffices: Office[] = [
     {
       city: "Port Klang",
@@ -80,7 +78,7 @@ export default function Global() {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "/malaysia.avif",
+      image: "/malaysia.jpg", // changed to .jpg
     },
     {
       city: "Johor",
@@ -90,7 +88,7 @@ export default function Global() {
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      image: "/malaysia.avif",
+      image: "/malaysia.jpg", // same image for consistency
     },
   ];
 
@@ -183,7 +181,7 @@ export default function Global() {
       setCurrentMalaysianOffice((p) => (p + 1) % malaysianOffices.length);
     }, 3000);
     return () => clearInterval(t);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -208,7 +206,7 @@ export default function Global() {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-              {/* Malaysia column — preserves identical shadow/elevation */}
+              {/* Malaysia Column with shadow + working image */}
               <div className="h-full">
                 <div
                   key={currentMalaysianOffice}
