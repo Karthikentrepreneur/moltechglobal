@@ -64,7 +64,7 @@ const BiodieselFeedstocks: React.FC = () => {
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 {/* large image (replace with your preferred asset if needed) */}
                 <img
-                  src="/biodiesel-main.jpg"
+                  src="/Biodieselariel.jpg"
                   alt="UCO logistics"
                   className="w-full h-[420px] object-cover"
                 />
