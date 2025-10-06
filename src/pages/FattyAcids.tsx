@@ -1,6 +1,6 @@
 // src/pages/FattyAcids.tsx
 import React, { useState } from "react";
-import { Beaker, Search, ArrowRight } from "lucide-react";
+import { Beaker, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
@@ -19,7 +19,6 @@ const FattyAcids: React.FC = () => {
     "Applications: tire manufacturing, candle production, cosmetic formulations, industrial lubricants",
   ];
 
-  // Product List with routes (same as Biodiesel page)
   const products = [
     { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
     { name: "Fatty Acids", slug: "fatty-acids" },
@@ -34,10 +33,10 @@ const FattyAcids: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (same structure as Biodiesel) ---------- */}
+        {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/aaaa.png" // ensure this file exists in /public
+            src="/aaaa.png"
             alt="Fatty acids background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
@@ -63,21 +62,26 @@ const FattyAcids: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- BELOW-HERO SECTION (matches Biodiesel layout) ---------- */}
+        {/* ---------- BELOW-HERO SECTION ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* LEFT: Main card with big image + heading + bullets */}
+            {/* LEFT: Main content card */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
-                <img
-                  src="/aaaa.png" // using same asset for the main card image
-                  alt="Fatty acids application"
-                  className="w-full h-[420px] object-cover"
-                />
-                <div className="px-6 sm:px-8 py-8">
-                  {/* Heading row with gradient icon box */}
+                <div className="px-6 sm:px-8 pt-8">
+                  {/* Rounded bordered image like FeedAdditives */}
+                  <img
+                    src="/aaaa.png"
+                    alt="Fatty acids application"
+                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
+                  />
+                </div>
+
+                <div className="px-6 sm:px-8 pb-8 mt-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}>
+                    <div
+                      className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
+                    >
                       <Beaker className="w-6 h-6" aria-hidden />
                     </div>
                     <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
@@ -85,7 +89,6 @@ const FattyAcids: React.FC = () => {
                     </h2>
                   </div>
 
-                  {/* Bullets (content unchanged) */}
                   <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
                     {bullets.map((b, i) => (
                       <li key={i}>{b}</li>
@@ -95,28 +98,8 @@ const FattyAcids: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Sidebar (Search + Product List with cursor-following highlighter) */}
+            {/* RIGHT: Sidebar (Product List only, no Search) */}
             <aside className="space-y-6">
-              {/* Search card */}
-              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Search</h3>
-                <form className="flex">
-                  <input
-                    type="text"
-                    placeholder="Search Here..."
-                    className="w-full px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                  <button
-                    type="button"
-                    className={`px-4 rounded-r-md text-white border border-transparent ${GRAD} hover:brightness-110 transition`}
-                    aria-label="Search"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
-
-              {/* Product List card (same interactivity as Biodiesel page) */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
                 <div className="space-y-3">
@@ -171,3 +154,4 @@ const FattyAcids: React.FC = () => {
 };
 
 export default FattyAcids;
+export { FattyAcids };
