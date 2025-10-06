@@ -71,7 +71,7 @@ const Glycerin: React.FC = () => {
                 <div className="px-6 sm:px-8 pt-8">
                   {/* Image styled like FeedAdditives */}
                   <img
-                    src="/aa.png"
+                    src="/chemistry.jpg"
                     alt="Glycerin product"
                     className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
                   />
