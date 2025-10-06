@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Package, Search, ArrowRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
