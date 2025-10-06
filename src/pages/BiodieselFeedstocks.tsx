@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Search, ArrowRight, Truck } from "lucide-react";
+import { ArrowRight, Truck } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
@@ -64,12 +64,16 @@ const BiodieselFeedstocks: React.FC = () => {
             {/* LEFT: Main card */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
-                <img
-                  src="/Biodieselariel.jpg"
-                  alt="UCO logistics"
-                  className="w-full h-[420px] object-cover"
-                />
-                <div className="px-6 sm:px-8 py-8">
+                <div className="px-6 sm:px-8 pt-8">
+                  {/* Image styled like FeedAdditives (rounded on all sides) */}
+                  <img
+                    src="/Biodieselariel.jpg"
+                    alt="UCO logistics"
+                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
+                  />
+                </div>
+
+                <div className="px-6 sm:px-8 pb-8 mt-6">
                   {/* Heading row with gradient icon box */}
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}>
@@ -89,28 +93,8 @@ const BiodieselFeedstocks: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Sidebar */}
+            {/* RIGHT: Sidebar — Product List only (Search removed) */}
             <aside className="space-y-6">
-              {/* Search card */}
-              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Search</h3>
-                <form className="flex">
-                  <input
-                    type="text"
-                    placeholder="Search Here..."
-                    className="w-full px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                  <button
-                    type="button"
-                    className={`px-4 rounded-r-md text-white border border-transparent ${GRAD} hover:brightness-110 transition`}
-                    aria-label="Search"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
-
-              {/* Product List card (cursor-driven highlighter) */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
                 <div className="space-y-3">
@@ -125,7 +109,7 @@ const BiodieselFeedstocks: React.FC = () => {
                         const highlighted = isActive || hoveredSlug === p.slug;
                         return [
                           "flex items-center justify-between rounded-md border transition px-4 py-3",
-                          "duration-200", // smoother transitions
+                          "duration-200",
                           highlighted
                             ? `${GRAD} text-white border-transparent`
                             : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
