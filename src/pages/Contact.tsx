@@ -31,7 +31,6 @@ const Contact: React.FC = () => {
     setStatus(null);
     try {
       await new Promise((r) => setTimeout(r, 700));
-      // eslint-disable-next-line no-console
       console.log("Contact form payload:", form);
       setStatus({ ok: true, msg: "Thanks! We’ll get back to you shortly." });
       setForm({
@@ -51,7 +50,7 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      {/* Header over hero */}
+      {/* Header overlays hero */}
       <div className="relative">
         <Header />
         <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center">
@@ -63,15 +62,13 @@ const Contact: React.FC = () => {
             decoding="async"
           />
           <div className="absolute inset-0 bg-black/60" aria-hidden />
-          {/* (Intentionally no hero text content) */}
         </section>
       </div>
 
-      {/* Main content */}
       <main className="bg-white text-gray-900">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* LEFT: Main card */}
+            {/* LEFT CONTENT */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <div className="px-6 sm:px-8 pt-8">
@@ -85,6 +82,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
 
+                <div className="px-6 sm:px-8 pb-8 mt-6">
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                     We’d love to hear from you—whether you’re exploring sustainable
                     feedstock, renewable diesel inputs, or strategic partnerships across
@@ -113,9 +111,8 @@ const Contact: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Sidebar */}
+            {/* RIGHT SIDEBAR */}
             <aside className="space-y-6">
-              {/* Channels */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Contact Channels
@@ -163,7 +160,6 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              {/* Form */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 id="contact-form" className="text-2xl font-bold text-gray-900">
                   Send us a message
