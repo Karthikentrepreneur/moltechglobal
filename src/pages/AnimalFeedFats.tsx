@@ -70,7 +70,7 @@ const AnimalFeedFats: React.FC = () => {
                 <div className="px-6 sm:px-8 pt-8">
                   {/* Rounded bordered image */}
                   <img
-                    src="/s.jpg"
+                    src="/farmer.jpg"
                     alt="Animal feed fats product"
                     className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
                   />
