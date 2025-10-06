@@ -1,6 +1,6 @@
 // src/pages/SoapNoodles.tsx
 import React, { useState } from "react";
-import { ShoppingBag, Search, ArrowRight } from "lucide-react";
+import { ShoppingBag, ArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
@@ -36,18 +36,15 @@ const SoapNoodles: React.FC = () => {
       <main className="bg-white text-gray-900 pt-0">
         {/* ---------- HERO (same style as Biodiesel) ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
-          {/* Full-bleed background image */}
           <img
-            src="/Soapnoodles.jpg" // ensure this exists in /public
+            src="/Soapnoodles.jpg"
             alt="Soap noodles background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
             decoding="async"
           />
-          {/* Subtle overlay for readability */}
           <div className="absolute inset-0 bg-black/35" aria-hidden />
 
-          {/* Centered content */}
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
               <div className="max-w-4xl">
@@ -72,15 +69,20 @@ const SoapNoodles: React.FC = () => {
             {/* LEFT: Main card with big image + heading + bullets */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
-                <img
-                  src="/Soapnoodles.jpg"
-                  alt="Soap noodles product"
-                  className="w-full h-[420px] object-cover"
-                />
-                <div className="px-6 sm:px-8 py-8">
+                <div className="px-6 sm:px-8 pt-8">
+                  <img
+                    src="/Soapnoodles.jpg"
+                    alt="Soap noodles product"
+                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
+                  />
+                </div>
+
+                <div className="px-6 sm:px-8 pb-8 mt-6">
                   {/* Heading row with gradient icon box */}
                   <div className="flex items-center gap-4 mb-4">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}>
+                    <div
+                      className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
+                    >
                       <ShoppingBag className="w-6 h-6" aria-hidden />
                     </div>
                     <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
@@ -98,28 +100,8 @@ const SoapNoodles: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Sidebar (Search + Product List with cursor-following highlighter) */}
+            {/* RIGHT: Sidebar (Product List only, Search removed) */}
             <aside className="space-y-6">
-              {/* Search card */}
-              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Search</h3>
-                <form className="flex">
-                  <input
-                    type="text"
-                    placeholder="Search Here..."
-                    className="w-full px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                  <button
-                    type="button"
-                    className={`px-4 rounded-r-md text-white border border-transparent ${GRAD} hover:brightness-110 transition`}
-                    aria-label="Search"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
-
-              {/* Product List card */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
                 <div className="space-y-3">
@@ -141,8 +123,8 @@ const SoapNoodles: React.FC = () => {
                         ].join(" ");
                       }}
                     >
-                      {({ isActive }) => {
-                        const highlighted = isActive || hoveredSlug === p.slug;
+                      {() => {
+                        const highlighted = hoveredSlug === p.slug;
                         return (
                           <>
                             <span className="font-medium">{p.name}</span>
@@ -172,16 +154,6 @@ const SoapNoodles: React.FC = () => {
     </>
   );
 };
-
-// Shared product list for the sidebar
-const products = [
-  { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
-  { name: "Fatty Acids", slug: "fatty-acids" },
-  { name: "Soap Noodles", slug: "soap-noodles" },
-  { name: "Animal Feed Fats", slug: "animal-feed-fats" },
-  { name: "Glycerin", slug: "glycerin" },
-  { name: "Feed Additivies", slug: "feed-additives" },
-];
 
 export default SoapNoodles;
 export { SoapNoodles };
