@@ -199,7 +199,17 @@ const GlobalPresence = () => {
         {/* Interactive Map (pins) */}
         <div className="relative mb-16">
           <div className="glass-card p-8 relative overflow-hidden">
-            <div className="relative h-96 bg-gradient-to-br from-royal-blue/20 to-electric-blue/20 rounded-2xl overflow-hidden">
+            <div className="relative h-96 rounded-2xl overflow-hidden bg-slate-900">
+              {/* World Map Background */}
+              <img
+                src={worldMapBg}
+                alt="World map showing global office locations"
+                className="absolute inset-0 w-full h-full object-cover opacity-60"
+              />
+              {/* Dark overlay for better pin visibility */}
+              <div className="absolute inset-0 bg-gradient-to-br from-deep-navy/60 via-royal-blue/40 to-deep-navy/60" />
+              
+              {/* Location Pins */}
               {countries.map((country, idx) => (
                 <button
                   key={country.name}
@@ -208,17 +218,26 @@ const GlobalPresence = () => {
                     setSelectedCountryIdx(idx);
                     setSelectedOfficeIdx(0);
                   }}
-                  className="absolute group cursor-pointer"
+                  className="absolute group cursor-pointer z-10"
                   style={{ left: country.x, top: country.y }}
                   aria-label={`Select ${country.name}`}
                 >
                   <div className="relative">
-                    <div className="w-4 h-4 bg-electric-blue rounded-full animate-glow shadow-lg shadow-electric-blue/50" />
-                    <div className="absolute inset-0 w-4 h-4 bg-electric-blue rounded-full animate-ping" />
-                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="glass-card px-3 py-2 whitespace-nowrap">
-                        <p className="text-sm font-semibold text-white">{country.name}</p>
+                    {/* Main Pin */}
+                    <div className="w-5 h-5 bg-electric-blue rounded-full animate-glow shadow-lg shadow-electric-blue/80 border-2 border-white relative z-10" />
+                    {/* Ping Animation */}
+                    <div className="absolute inset-0 w-5 h-5 bg-electric-blue rounded-full animate-ping opacity-75" />
+                    {/* Pulse Ring */}
+                    <div className="absolute inset-0 -m-2 w-9 h-9 bg-electric-blue/30 rounded-full animate-pulse" />
+                    
+                    {/* Tooltip */}
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="glass-card px-4 py-2 whitespace-nowrap shadow-xl">
+                        <p className="text-sm font-bold text-white">{country.name}</p>
+                        <p className="text-xs text-blue-200">{country.offices.length} office{country.offices.length > 1 ? 's' : ''}</p>
                       </div>
+                      {/* Arrow */}
+                      <div className="w-2 h-2 bg-white/20 backdrop-blur-sm rotate-45 mx-auto -mt-1" />
                     </div>
                   </div>
                 </button>
