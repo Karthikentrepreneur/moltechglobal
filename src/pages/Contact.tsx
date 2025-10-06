@@ -70,8 +70,10 @@ const Contact: React.FC = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
               CONTACT US – <br className="hidden sm:block" />
-              LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
-            </h1>
+               </h1>
+               <p className="mt-6 text-lg md:text-xl text-white/90">
+                 LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+                  </p>
           </div>
         </section>
       </div>
