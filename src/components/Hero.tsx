@@ -28,10 +28,10 @@ const Hero = () => {
         />
       ))}
 
-      {/* ✅ Subtle black gradient only for readability */}
+      {/* ✅ Subtle black gradient overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
-      {/* Content */}
+      {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
         <div className="text-white space-y-8">
           <div className="space-y-6">
@@ -44,20 +44,6 @@ const Hero = () => {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Dots navigation */}
-      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
-        {videos.map((_, i) => (
-          <button
-            key={i}
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => setIndex(i)}
-            className={`h-3 w-3 rounded-full border border-white ${
-              i === index ? "bg-white" : "bg-white/30"
-            }`}
-          />
-        ))}
       </div>
     </section>
   );
