@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Search, ArrowRight, Truck } from "lucide-react";
 
+const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
+
 const BiodieselFeedstocks: React.FC = () => {
   const bullets = [
     "ISCC Certified Used Cooking Oil (UCO) with full traceability documentation",
@@ -14,7 +16,6 @@ const BiodieselFeedstocks: React.FC = () => {
     "Global pickup network with export documentation and flexible Incoterms",
   ];
 
-  // right-column “Services List” (Biodiesel active)
   const services = [
     { name: "Biodiesel Feedstocks (UCO)", active: true, href: "#" },
     { name: "Soap Noodles", active: false, href: "#" },
@@ -32,15 +33,13 @@ const BiodieselFeedstocks: React.FC = () => {
         {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/a.jpg" // ensure this file exists in /public
+            src="/a.jpg"
             alt="Biodiesel feedstocks background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
             decoding="async"
           />
           <div className="absolute inset-0 bg-black/25" aria-hidden />
-
-          {/* Centered title & summary on hero */}
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
               <div className="max-w-4xl">
@@ -56,23 +55,23 @@ const BiodieselFeedstocks: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- BELOW-HERO SECTION (matches screenshot layout) ---------- */}
+        {/* ---------- BELOW-HERO SECTION ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* LEFT: Main card with big image + title + bullets */}
+            {/* LEFT: Main card */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
-                {/* large image (replace with your preferred asset if needed) */}
                 <img
-                  src="/Biodieselariel.jpg"
+                  src="/biodiesel-main.jpg"
                   alt="UCO logistics"
                   className="w-full h-[420px] object-cover"
                 />
-
                 <div className="px-6 sm:px-8 py-8">
-                  {/* Heading row with yellow icon box (style mirrors screenshot) */}
+                  {/* Heading row with gradient icon box */}
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-md bg-yellow-400/90 text-gray-900">
+                    <div
+                      className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
+                    >
                       <Truck className="w-6 h-6" aria-hidden />
                     </div>
                     <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
@@ -80,7 +79,6 @@ const BiodieselFeedstocks: React.FC = () => {
                     </h2>
                   </div>
 
-                  {/* Content (unchanged bullets) */}
                   <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
                     {bullets.map((b, i) => (
                       <li key={i}>{b}</li>
@@ -90,7 +88,7 @@ const BiodieselFeedstocks: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Sidebar cards (Search + Services List) */}
+            {/* RIGHT: Sidebar */}
             <aside className="space-y-6">
               {/* Search card */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
@@ -99,11 +97,11 @@ const BiodieselFeedstocks: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Search Here..."
-                    className="w-full px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                    className="w-full px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                   <button
                     type="button"
-                    className="px-4 rounded-r-md bg-yellow-400 text-gray-900 border border-yellow-400 hover:bg-yellow-500 transition"
+                    className={`px-4 rounded-r-md text-white border border-transparent ${GRAD} hover:brightness-110 transition`}
                     aria-label="Search"
                   >
                     <Search className="w-5 h-5" />
@@ -122,7 +120,7 @@ const BiodieselFeedstocks: React.FC = () => {
                       className={[
                         "flex items-center justify-between rounded-md border transition px-4 py-3",
                         s.active
-                          ? "bg-yellow-400 text-gray-900 border-yellow-400"
+                          ? `${GRAD} text-white border-transparent`
                           : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
                       ].join(" ")}
                     >
@@ -131,7 +129,7 @@ const BiodieselFeedstocks: React.FC = () => {
                         className={[
                           "inline-flex items-center justify-center w-9 h-9 rounded-full border transition",
                           s.active
-                            ? "bg-gray-900 text-white border-gray-900"
+                            ? "bg-white/15 text-white border-white/20"
                             : "bg-white text-gray-700 border-gray-200",
                         ].join(" ")}
                       >
