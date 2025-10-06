@@ -41,11 +41,11 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      {/* ✅ HEADER OVER HERO */}
+      {/* Header sits over the hero */}
       <div className="relative">
         <Header />
 
-        {/* ---------- HERO SECTION ---------- */}
+        {/* HERO (image only, no overlay content) */}
         <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center">
           <img
             src="/businessman.jpg"
@@ -55,26 +55,15 @@ const Contact: React.FC = () => {
             decoding="async"
           />
           <div className="absolute inset-0 bg-black/60" aria-hidden />
-          <div className="relative z-10 text-center px-6">
-            <div className="mx-auto inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4 mb-6">
-              <Headset className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-              Contact Us
-            </h1>
-            <p className="mt-4 text-lg md:text-xl text-white/85 max-w-2xl mx-auto">
-              Let’s build sustainable solutions together — our global team is here
-              to support you across regions and industries.
-            </p>
-          </div>
+          {/* removed hero text/content */}
         </section>
       </div>
 
-      {/* ---------- MAIN CONTENT (Same FattyAcids-style layout) ---------- */}
+      {/* MAIN CONTENT (FattyAcids-style layout) */}
       <main className="bg-white text-gray-900">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* LEFT: Info + image (main content card) */}
+            {/* LEFT: Main card with rounded image + content */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <div className="px-6 sm:px-8 pt-8">
@@ -92,7 +81,16 @@ const Contact: React.FC = () => {
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}>
                       <Headset className="w-6 h-6" />
-                   
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+                      Get in Touch
+                    </h2>
+                  </div>
+
+                  <h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black max-w-4xl mb-6">
+                    CONTACT US – <br />
+                    LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+                  </h1>
 
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                     We’d love to hear from you—whether you’re exploring sustainable
@@ -173,20 +171,61 @@ const Contact: React.FC = () => {
                 </p>
 
                 <form className="mt-6 space-y-4" onSubmit={onSubmit}>
-                  <input type="text" name="name" value={form.name} onChange={handleChange}
-                    placeholder="Your Name" required className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200" />
-                  <input type="email" name="email" value={form.email} onChange={handleChange}
-                    placeholder="Your Email" required className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200" />
-                  <input type="tel" name="phone" value={form.phone} onChange={handleChange}
-                    placeholder="Phone" className="w-full rounded-lg border border-gray-300 px-4 py-2" />
-                  <input type="text" name="company" value={form.company} onChange={handleChange}
-                    placeholder="Company" className="w-full rounded-lg border border-gray-300 px-4 py-2" />
-                  <input type="text" name="subject" value={form.subject} onChange={handleChange}
-                    placeholder="Subject" className="w-full rounded-lg border border-gray-300 px-4 py-2" />
-                  <textarea name="message" value={form.message} onChange={handleChange}
-                    placeholder="Message" rows={4} className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200" />
-                  <button type="submit" disabled={submitting}
-                    className={`w-full rounded-lg text-white font-semibold px-4 py-2 disabled:opacity-50 ${GRAD} hover:brightness-110`}>
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Your Name"
+                    required
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="Your Email"
+                    required
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="Phone"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                  />
+                  <input
+                    type="text"
+                    name="company"
+                    value={form.company}
+                    onChange={handleChange}
+                    placeholder="Company"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                  />
+                  <input
+                    type="text"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    placeholder="Subject"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                  />
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Message"
+                    rows={4}
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+                  />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className={`w-full rounded-lg text-white font-semibold px-4 py-2 disabled:opacity-50 ${GRAD} hover:brightness-110`}
+                  >
                     {submitting ? "Sending..." : "Send Message"}
                   </button>
                 </form>
