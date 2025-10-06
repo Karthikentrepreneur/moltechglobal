@@ -196,65 +196,7 @@ const GlobalPresence = () => {
           </p>
         </div>
 
-        {/* World Map with Pins */}
-        <div className="relative mb-16">
-          <div className="glass-card p-8 relative overflow-hidden">
-            <div className="relative h-[500px] rounded-2xl overflow-hidden bg-slate-900">
-              {/* World Map Background */}
-              <img
-                src={worldMapBg}
-                alt="World map showing global office locations"
-                className="absolute inset-0 w-full h-full object-cover opacity-70"
-              />
-              {/* Dark overlay for better pin visibility */}
-              <div className="absolute inset-0 bg-gradient-to-br from-deep-navy/70 via-royal-blue/50 to-deep-navy/70" />
-              
-              {/* Location Pins */}
-              {countries.map((country, idx) => (
-                <button
-                  key={country.name}
-                  type="button"
-                  onClick={() => {
-                    setSelectedCountryIdx(idx);
-                    setSelectedOfficeIdx(0);
-                  }}
-                  className="absolute group cursor-pointer z-10 transform -translate-x-1/2 -translate-y-1/2"
-                  style={{ left: country.x, top: country.y }}
-                  aria-label={`Select ${country.name}`}
-                >
-                  <div className="relative">
-                    {/* Main Pin */}
-                    <div className={`w-6 h-6 rounded-full animate-glow shadow-2xl border-3 border-white relative z-10 transition-all duration-300 ${
-                      selectedCountryIdx === idx 
-                        ? 'bg-yellow-400 shadow-yellow-400/80 scale-125' 
-                        : 'bg-electric-blue shadow-electric-blue/80'
-                    }`} />
-                    {/* Ping Animation */}
-                    <div className={`absolute inset-0 w-6 h-6 rounded-full animate-ping opacity-75 ${
-                      selectedCountryIdx === idx ? 'bg-yellow-400' : 'bg-electric-blue'
-                    }`} />
-                    {/* Pulse Ring */}
-                    <div className={`absolute inset-0 -m-3 w-12 h-12 rounded-full animate-pulse ${
-                      selectedCountryIdx === idx ? 'bg-yellow-400/40' : 'bg-electric-blue/30'
-                    }`} />
-                    
-                    {/* Tooltip */}
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-                      <div className="glass-card px-4 py-2 shadow-2xl">
-                        <p className="text-sm font-bold text-white">{country.name}</p>
-                        <p className="text-xs text-blue-200">{country.offices.length} office{country.offices.length > 1 ? 's' : ''}</p>
-                      </div>
-                      {/* Arrow */}
-                      <div className="w-2 h-2 bg-white/20 backdrop-blur-sm rotate-45 mx-auto -mt-1" />
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Selected Office Detail Map */}
+        {/* Interactive Map View */}
         <div className="relative mb-16">
           <div className="glass-card p-8 relative overflow-hidden">
             <div className="mb-6">
@@ -264,7 +206,7 @@ const GlobalPresence = () => {
               <p className="text-blue-200 text-sm">{selectedOffice.address}</p>
             </div>
             
-            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl mb-6">
               <iframe
                 src={selectedOffice.mapUrl}
                 width="100%"
@@ -276,6 +218,28 @@ const GlobalPresence = () => {
                 className="rounded-2xl"
                 title={`${selectedCountry.name} - ${selectedOffice.city} Office Location`}
               />
+            </div>
+            
+            {/* Location Selector */}
+            <div className="flex flex-wrap gap-3 justify-center">
+              {countries.map((country, idx) => (
+                <button
+                  key={country.name}
+                  type="button"
+                  onClick={() => {
+                    setSelectedCountryIdx(idx);
+                    setSelectedOfficeIdx(0);
+                  }}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    selectedCountryIdx === idx
+                      ? "bg-electric-blue text-white shadow-lg"
+                      : "bg-white/10 text-blue-200 hover:bg-white/20 hover:text-white"
+                  }`}
+                  aria-label={`Select ${country.name}`}
+                >
+                  {country.name}
+                </button>
+              ))}
             </div>
           </div>
         </div>
