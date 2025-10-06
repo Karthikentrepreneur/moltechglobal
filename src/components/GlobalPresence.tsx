@@ -196,12 +196,19 @@ const GlobalPresence = () => {
           </p>
         </div>
 
-        {/* Interactive Google Map */}
+        {/* Interactive Map View */}
         <div className="relative mb-16">
           <div className="glass-card p-8 relative overflow-hidden">
-            <div className="relative h-[600px] rounded-2xl overflow-hidden">
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {selectedCountry.name} - {selectedOffice.city}
+              </h3>
+              <p className="text-blue-200 text-sm">{selectedOffice.address}</p>
+            </div>
+            
+            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl mb-6">
               <iframe
-                src="https://www.google.com/maps/d/embed?mid=1v3AQZ_7ELQcg9LxHlFYxnWTIhvE&ehbc=2E312F"
+                src={selectedOffice.mapUrl}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -209,12 +216,12 @@ const GlobalPresence = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="rounded-2xl"
-                title="Global Office Locations Map"
+                title={`${selectedCountry.name} - ${selectedOffice.city} Office Location`}
               />
             </div>
             
-            {/* Quick Location Selector */}
-            <div className="mt-6 flex flex-wrap gap-3 justify-center">
+            {/* Location Selector */}
+            <div className="flex flex-wrap gap-3 justify-center">
               {countries.map((country, idx) => (
                 <button
                   key={country.name}
