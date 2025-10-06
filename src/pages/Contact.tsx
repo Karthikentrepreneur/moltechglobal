@@ -70,16 +70,24 @@ const Contact: React.FC = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
               CONTACT US – <br className="hidden sm:block" />
-               </h1>
-               <p className="mt-6 text-lg md:text-xl text-white/90">
-                 LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
-                  </p>
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-white/90">
+              LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+            </p>
           </div>
         </section>
       </div>
 
       {/* ---------- MAIN CONTENT ---------- */}
       <main className="bg-white text-gray-900">
+        {/* 👇 NEW “Get in Touch” SECTION HEADING */}
+        <section className="text-center py-10">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+            Get in Touch
+          </h1>
+          <div className="mt-3 h-1 w-24 mx-auto bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 rounded-full" />
+        </section>
+
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT CONTENT */}
