@@ -78,7 +78,7 @@ export default function Global() {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "/malaysia.jpg", // changed to .jpg
+      image: "/malasyia.avif", // changed to .jpg
     },
     {
       city: "Johor",
@@ -88,7 +88,7 @@ export default function Global() {
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      image: "/malaysia.jpg", // same image for consistency
+      image: "/malasyia.avif", // same image for consistency
     },
   ];
 
