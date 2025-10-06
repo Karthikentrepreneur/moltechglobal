@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const videos = ["/herov.mp4"]; // using video instead of images
+  const videos = ["/hero.mp4"]; // using video instead of images
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
