@@ -50,10 +50,12 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      {/* Header overlays hero */}
+      {/* ✅ HEADER OVER HERO */}
       <div className="relative">
         <Header />
-        <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center">
+
+        {/* ---------- HERO SECTION ---------- */}
+        <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center">
           <img
             src="/businessman.jpg"
             alt="Sustainable operations and global collaboration"
@@ -62,9 +64,19 @@ const Contact: React.FC = () => {
             decoding="async"
           />
           <div className="absolute inset-0 bg-black/60" aria-hidden />
+          <div className="relative z-10 px-6">
+            <div className="mx-auto inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4 mb-6">
+              <Headset className="h-8 w-8 text-white" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              CONTACT US – <br className="hidden sm:block" />
+              LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+            </h1>
+          </div>
         </section>
       </div>
 
+      {/* ---------- MAIN CONTENT ---------- */}
       <main className="bg-white text-gray-900">
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
