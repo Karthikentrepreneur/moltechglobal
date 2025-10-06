@@ -1,10 +1,9 @@
-import { Leaf, Globe, Award, Users, Eye, Target } from "lucide-react";
+import { Leaf, Globe, Award, Users } from "lucide-react";
 
 const AboutSection = () => {
   return (
     <section className="section-padding bg-background">
       <div className="max-w-7xl mx-auto">
-
         {/* About Us */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div className="space-y-6">
@@ -23,44 +22,6 @@ const AboutSection = () => {
               <Leaf className="w-12 h-12 text-sustainability-green mx-auto mb-4" />
               <h3 className="font-semibold text-lg mb-2">Sustainable</h3>
               <p className="text-sm text-muted-foreground">Clean initiatives</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Vision & Mission */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Left - Vision Image */}
-          <div className="relative">
-            <img
-              src="/vision.jpg"
-              alt="Vision"
-              className="rounded-2xl shadow-2xl w-full object-cover h-[400px]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-2xl" />
-          </div>
-
-          {/* Right - Vision Content */}
-          <div className="space-y-10">
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Eye className="w-8 h-8 text-royal-blue" />
-                <h2 className="heading-lg text-royal-blue">Our Vision</h2>
-              </div>
-              <p className="body-md text-muted-foreground leading-relaxed">
-                To be a global leader in sustainable energy and circular economy solutions, 
-                driving innovation and promoting a greener planet through renewable technologies.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Target className="w-8 h-8 text-sustainability-green" />
-                <h2 className="heading-lg text-royal-blue">Our Mission</h2>
-              </div>
-              <p className="body-md text-muted-foreground leading-relaxed">
-                Our mission is to transform waste into valuable resources by harnessing technology, 
-                sustainability, and innovation — enabling cleaner fuel alternatives and sustainable growth worldwide.
-              </p>
             </div>
           </div>
         </div>
