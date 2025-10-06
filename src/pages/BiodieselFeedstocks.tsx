@@ -1,5 +1,5 @@
 // src/pages/BiodieselFeedstocks.tsx
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Search, ArrowRight, Truck } from "lucide-react";
@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
 
 const BiodieselFeedstocks: React.FC = () => {
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+
   const bullets = [
     "ISCC Certified Used Cooking Oil (UCO) with full traceability documentation",
     "High-acidity vegetable oil wastes processed to refinery-ready specifications",
@@ -17,7 +19,6 @@ const BiodieselFeedstocks: React.FC = () => {
     "Global pickup network with export documentation and flexible Incoterms",
   ];
 
-  // Product List with routes
   const products = [
     { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
     { name: "Fatty Acids", slug: "fatty-acids" },
@@ -71,9 +72,7 @@ const BiodieselFeedstocks: React.FC = () => {
                 <div className="px-6 sm:px-8 py-8">
                   {/* Heading row with gradient icon box */}
                   <div className="flex items-center gap-4 mb-4">
-                    <div
-                      className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
-                    >
+                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}>
                       <Truck className="w-6 h-6" aria-hidden />
                     </div>
                     <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
@@ -111,7 +110,7 @@ const BiodieselFeedstocks: React.FC = () => {
                 </form>
               </div>
 
-              {/* Product List card */}
+              {/* Product List card (cursor-driven highlighter) */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
                 <div className="space-y-3">
@@ -119,31 +118,38 @@ const BiodieselFeedstocks: React.FC = () => {
                     <NavLink
                       key={p.slug}
                       to={`/products/${p.slug}`}
-                      className={({ isActive }) =>
-                        [
+                      end
+                      onMouseEnter={() => setHoveredSlug(p.slug)}
+                      onMouseLeave={() => setHoveredSlug(null)}
+                      className={({ isActive }) => {
+                        const highlighted = isActive || hoveredSlug === p.slug;
+                        return [
                           "flex items-center justify-between rounded-md border transition px-4 py-3",
-                          isActive
+                          "duration-200", // smoother transitions
+                          highlighted
                             ? `${GRAD} text-white border-transparent`
                             : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
-                        ].join(" ")
-                      }
-                      end
+                        ].join(" ");
+                      }}
                     >
-                      {({ isActive }) => (
-                        <>
-                          <span className="font-medium">{p.name}</span>
-                          <span
-                            className={[
-                              "inline-flex items-center justify-center w-9 h-9 rounded-full border transition",
-                              isActive
-                                ? "bg-white/15 text-white border-white/20"
-                                : "bg-white text-gray-700 border-gray-200",
-                            ].join(" ")}
-                          >
-                            <ArrowRight className="w-4 h-4" />
-                          </span>
-                        </>
-                      )}
+                      {({ isActive }) => {
+                        const highlighted = isActive || hoveredSlug === p.slug;
+                        return (
+                          <>
+                            <span className="font-medium">{p.name}</span>
+                            <span
+                              className={[
+                                "inline-flex items-center justify-center w-9 h-9 rounded-full border transition duration-200",
+                                highlighted
+                                  ? "bg-white/15 text-white border-white/20"
+                                  : "bg-white text-gray-700 border-gray-200",
+                              ].join(" ")}
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </span>
+                          </>
+                        );
+                      }}
                     </NavLink>
                   ))}
                 </div>
