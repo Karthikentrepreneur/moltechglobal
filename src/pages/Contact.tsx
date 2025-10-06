@@ -92,16 +92,7 @@ const Contact: React.FC = () => {
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}>
                       <Headset className="w-6 h-6" />
-                    </div>
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                      Get in Touch
-                    </h2>
-                  </div>
-
-                  <h1 className="text-3xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-wide text-black max-w-4xl mb-6">
-                    CONTACT US – <br />
-                    LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
-                  </h1>
+                   
 
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                     We’d love to hear from you—whether you’re exploring sustainable
