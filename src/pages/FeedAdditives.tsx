@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Package, ArrowRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
@@ -18,7 +19,6 @@ const FeedAdditives: React.FC = () => {
     "Quality control: Homogeneity testing, microbiological analysis, and stability validation",
   ];
 
-  // Consistent Product List for sidebar navigation
   const products = [
     { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
     { name: "Fatty Acids", slug: "fatty-acids" },
@@ -55,17 +55,18 @@ const FeedAdditives: React.FC = () => {
                   Feed Additives
                 </h1>
                 <p className="mt-6 text-lg md:text-xl text-white/90">
-                  Custom vitamin, mineral, and enzyme blends for targeted animal performance with rigorous quality assurance.
+                  Custom vitamin, mineral, and enzyme blends for targeted animal
+                  performance with rigorous quality assurance.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ---------- BELOW-HERO SECTION (mirrors Biodiesel layout) ---------- */}
+        {/* ---------- BELOW-HERO SECTION ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* LEFT: Main card with big image + heading + bullets */}
+            {/* LEFT: Main content */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <img
@@ -74,9 +75,10 @@ const FeedAdditives: React.FC = () => {
                   className="w-full h-[420px] object-cover"
                 />
                 <div className="px-6 sm:px-8 py-8">
-                  {/* Heading row with gradient icon box */}
                   <div className="flex items-center gap-4 mb-4">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}>
+                    <div
+                      className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
+                    >
                       <Package className="w-6 h-6" aria-hidden />
                     </div>
                     <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
@@ -84,7 +86,6 @@ const FeedAdditives: React.FC = () => {
                     </h2>
                   </div>
 
-                  {/* Bullets (content unchanged) */}
                   <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
                     {bullets.map((b, i) => (
                       <li key={i}>{b}</li>
@@ -94,9 +95,12 @@ const FeedAdditives: React.FC = () => {
               </div>
             </article>
 
-              {/* Product List card */}
+            {/* RIGHT: Product List only (Search removed) */}
+            <aside className="space-y-6">
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Product List
+                </h3>
                 <div className="space-y-3">
                   {products.map((p) => (
                     <NavLink
@@ -147,16 +151,6 @@ const FeedAdditives: React.FC = () => {
     </>
   );
 };
-
-// Shared product list slugs and names
-const products = [
-  { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
-  { name: "Fatty Acids", slug: "fatty-acids" },
-  { name: "Soap Noodles", slug: "soap-noodles" },
-  { name: "Animal Feed Fats", slug: "animal-feed-fats" },
-  { name: "Glycerin", slug: "glycerin" },
-  { name: "Feed Additivies", slug: "feed-additives" },
-];
 
 export default FeedAdditives;
 export { FeedAdditives };
