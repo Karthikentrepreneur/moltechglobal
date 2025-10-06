@@ -16,13 +16,14 @@ const BiodieselFeedstocks: React.FC = () => {
     "Global pickup network with export documentation and flexible Incoterms",
   ];
 
-  const services = [
-    { name: "Biodiesel Feedstocks (UCO)", active: true, href: "#" },
+  // Product List (replaces Services List) — using your exact text
+  const products = [
+    { name: "Biodiesel FeedStocks", active: true, href: "#" },
+    { name: "fatty Acids", active: false, href: "#" },
     { name: "Soap Noodles", active: false, href: "#" },
+    { name: "Animal Feed Fats", active: false, href: "#" },
     { name: "Glycerin", active: false, href: "#" },
-    { name: "Fatty Acids", active: false, href: "#" },
-    { name: "Animal Feed", active: false, href: "#" },
-    { name: "Warehousing & Logistics", active: false, href: "#" },
+    { name: "Feed Additivies", active: false, href: "#" },
   ];
 
   return (
@@ -62,7 +63,7 @@ const BiodieselFeedstocks: React.FC = () => {
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <img
-                  src="/Biodieselariel.jpg"
+                  src="/biodiesel-main.jpg"
                   alt="UCO logistics"
                   className="w-full h-[420px] object-cover"
                 />
@@ -109,26 +110,26 @@ const BiodieselFeedstocks: React.FC = () => {
                 </form>
               </div>
 
-              {/* Services List card */}
+              {/* Product List card (was Services List) */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Services List</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
                 <div className="space-y-3">
-                  {services.map((s, i) => (
+                  {products.map((p, i) => (
                     <a
                       key={i}
-                      href={s.href}
+                      href={p.href}
                       className={[
                         "flex items-center justify-between rounded-md border transition px-4 py-3",
-                        s.active
+                        p.active
                           ? `${GRAD} text-white border-transparent`
                           : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
                       ].join(" ")}
                     >
-                      <span className="font-medium">{s.name}</span>
+                      <span className="font-medium">{p.name}</span>
                       <span
                         className={[
                           "inline-flex items-center justify-center w-9 h-9 rounded-full border transition",
-                          s.active
+                          p.active
                             ? "bg-white/15 text-white border-white/20"
                             : "bg-white text-gray-700 border-gray-200",
                         ].join(" ")}
