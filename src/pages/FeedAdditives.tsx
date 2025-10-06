@@ -19,6 +19,7 @@ const FeedAdditives: React.FC = () => {
     "Quality control: Homogeneity testing, microbiological analysis, and stability validation",
   ];
 
+  // Sidebar product list
   const products = [
     { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
     { name: "Fatty Acids", slug: "fatty-acids" },
@@ -33,10 +34,10 @@ const FeedAdditives: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (like Biodiesel) ---------- */}
+        {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
           <img
-            src="/feed.jpg" // ensure this file is in /public
+            src="/feed.jpg"
             alt="Feed additives background"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
@@ -44,7 +45,6 @@ const FeedAdditives: React.FC = () => {
           />
           <div className="absolute inset-0 bg-black/25" aria-hidden />
 
-          {/* Centered title & summary on hero */}
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
               <div className="max-w-4xl">
@@ -63,18 +63,23 @@ const FeedAdditives: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- BELOW-HERO SECTION ---------- */}
+        {/* ---------- CONTENT ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* LEFT: Main content */}
+            {/* LEFT: Main card */}
             <article className="lg:col-span-2">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
-                <img
-                  src="/animalfeed.jpg"
-                  alt="Feed additives product"
-                  className="w-full h-[420px] object-cover"
-                />
-                <div className="px-6 sm:px-8 py-8">
+                <div className="px-6 sm:px-8 pt-8">
+                  {/* Image with rounded border on all sides */}
+                  <img
+                    src="/animalfeed.jpg"
+                    alt="Feed additives product"
+                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
+                  />
+                </div>
+
+                <div className="px-6 sm:px-8 pb-8 mt-6">
+                  {/* Heading row with gradient icon box */}
                   <div className="flex items-center gap-4 mb-4">
                     <div
                       className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
@@ -86,6 +91,7 @@ const FeedAdditives: React.FC = () => {
                     </h2>
                   </div>
 
+                  {/* Bullets */}
                   <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
                     {bullets.map((b, i) => (
                       <li key={i}>{b}</li>
@@ -95,7 +101,7 @@ const FeedAdditives: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Product List only (Search removed) */}
+            {/* RIGHT: Sidebar — Product List only */}
             <aside className="space-y-6">
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -112,8 +118,7 @@ const FeedAdditives: React.FC = () => {
                       className={({ isActive }) => {
                         const highlighted = isActive || hoveredSlug === p.slug;
                         return [
-                          "flex items-center justify-between rounded-md border transition px-4 py-3",
-                          "duration-200",
+                          "flex items-center justify-between rounded-md border transition px-4 py-3 duration-200",
                           highlighted
                             ? `${GRAD} text-white border-transparent`
                             : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
