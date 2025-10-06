@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { MapPin, Phone } from "lucide-react";
 
-// ✅ use the shared site-wide components
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -38,7 +37,6 @@ const OfficeCard = ({
         className="w-full h-full object-cover"
         loading="lazy"
         onError={(e) => {
-          // graceful fallback if an image is missing
           (e.currentTarget as HTMLImageElement).src = "/fallback-office.jpg";
         }}
       />
@@ -72,29 +70,27 @@ const OfficeCard = ({
 export default function Global() {
   const [currentMalaysianOffice, setCurrentMalaysianOffice] = useState(0);
 
-  // ✅ fixed path typo: /malasyia.avif -> /malaysia.avif
+  // ✅ Use the correct image path
   const malaysianOffices: Office[] = [
     {
       city: "Port Klang",
       country: "Malaysia",
       type: "Branch Office",
-      address:
-        "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "/malasyia.avif",
+      image: "/malaysia.avif",
     },
     {
       city: "Johor",
       country: "Malaysia",
       type: "Branch Office",
-      address:
-        "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
       phone: "+60 16-959 4075",
       email: "johor@global.com",
       description: "Supporting industrial clients across Johor region.",
-      image: "/malasyia.avif",
+      image: "/malaysia.avif",
     },
   ];
 
@@ -123,8 +119,7 @@ export default function Global() {
       city: "Singapore",
       country: "Singapore",
       type: "Headquarters",
-      address:
-        "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
       phone: "+65 65140868",
       email: "singapore@global.com",
       description: "Global headquarters and Asia-Pacific hub.",
@@ -137,8 +132,7 @@ export default function Global() {
       address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
       phone: "+60 16-985 4705",
       email: "bangkok@global.com",
-      description:
-        "Strategic Thailand hub for operations and trading.",
+      description: "Strategic Thailand hub for operations and trading.",
       image: "/Bangkok.jpg",
     },
     {
@@ -158,8 +152,7 @@ export default function Global() {
       address: "167-169 Great Portland Street, W1W 5PF",
       phone: "+44 7305 856612",
       email: "london@global.com",
-      description:
-        "European business development and client services.",
+      description: "European business development and client services.",
       image: "/London.jpg",
     },
     {
@@ -215,8 +208,8 @@ export default function Global() {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-              {/* Auto-swapping Malaysian column */}
-              <div className="relative overflow-hidden">
+              {/* Malaysia column — preserves identical shadow/elevation */}
+              <div className="h-full">
                 <div
                   key={currentMalaysianOffice}
                   className="transition-opacity duration-500 ease-in-out opacity-100"
