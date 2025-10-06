@@ -3,6 +3,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Search, ArrowRight, Truck } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
 
@@ -16,14 +17,14 @@ const BiodieselFeedstocks: React.FC = () => {
     "Global pickup network with export documentation and flexible Incoterms",
   ];
 
-  // Product List (replaces Services List) — using your exact text
+  // Product List with routes
   const products = [
-    { name: "Biodiesel FeedStocks", active: true, href: "#" },
-    { name: "fatty Acids", active: false, href: "#" },
-    { name: "Soap Noodles", active: false, href: "#" },
-    { name: "Animal Feed Fats", active: false, href: "#" },
-    { name: "Glycerin", active: false, href: "#" },
-    { name: "Feed Additivies", active: false, href: "#" },
+    { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
+    { name: "Fatty Acids", slug: "fatty-acids" },
+    { name: "Soap Noodles", slug: "soap-noodles" },
+    { name: "Animal Feed Fats", slug: "animal-feed-fats" },
+    { name: "Glycerin", slug: "glycerin" },
+    { name: "Feed Additivies", slug: "feed-additives" },
   ];
 
   return (
@@ -110,33 +111,40 @@ const BiodieselFeedstocks: React.FC = () => {
                 </form>
               </div>
 
-              {/* Product List card (was Services List) */}
+              {/* Product List card */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
                 <div className="space-y-3">
-                  {products.map((p, i) => (
-                    <a
-                      key={i}
-                      href={p.href}
-                      className={[
-                        "flex items-center justify-between rounded-md border transition px-4 py-3",
-                        p.active
-                          ? `${GRAD} text-white border-transparent`
-                          : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
-                      ].join(" ")}
+                  {products.map((p) => (
+                    <NavLink
+                      key={p.slug}
+                      to={`/products/${p.slug}`}
+                      className={({ isActive }) =>
+                        [
+                          "flex items-center justify-between rounded-md border transition px-4 py-3",
+                          isActive
+                            ? `${GRAD} text-white border-transparent`
+                            : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
+                        ].join(" ")
+                      }
+                      end
                     >
-                      <span className="font-medium">{p.name}</span>
-                      <span
-                        className={[
-                          "inline-flex items-center justify-center w-9 h-9 rounded-full border transition",
-                          p.active
-                            ? "bg-white/15 text-white border-white/20"
-                            : "bg-white text-gray-700 border-gray-200",
-                        ].join(" ")}
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </a>
+                      {({ isActive }) => (
+                        <>
+                          <span className="font-medium">{p.name}</span>
+                          <span
+                            className={[
+                              "inline-flex items-center justify-center w-9 h-9 rounded-full border transition",
+                              isActive
+                                ? "bg-white/15 text-white border-white/20"
+                                : "bg-white text-gray-700 border-gray-200",
+                            ].join(" ")}
+                          >
+                            <ArrowRight className="w-4 h-4" />
+                          </span>
+                        </>
+                      )}
+                    </NavLink>
                   ))}
                 </div>
               </div>
