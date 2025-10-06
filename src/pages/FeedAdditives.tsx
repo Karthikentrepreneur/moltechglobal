@@ -95,27 +95,6 @@ const FeedAdditives: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Sidebar (Search + Product List with cursor-following highlight) */}
-            <aside className="space-y-6">
-              {/* Search card */}
-              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Search</h3>
-                <form className="flex">
-                  <input
-                    type="text"
-                    placeholder="Search Here..."
-                    className="w-full px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                  <button
-                    type="button"
-                    className={`px-4 rounded-r-md text-white border border-transparent ${GRAD} hover:brightness-110 transition`}
-                    aria-label="Search"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                </form>
-              </div>
-
               {/* Product List card */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
