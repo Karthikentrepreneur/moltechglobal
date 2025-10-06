@@ -71,7 +71,7 @@ const FattyAcids: React.FC = () => {
                 <div className="px-6 sm:px-8 pt-8">
                   {/* Rounded bordered image like FeedAdditives */}
                   <img
-                    src="/aaaa.png"
+                    src="/biofuel.jpg"
                     alt="Fatty acids application"
                     className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
                   />
