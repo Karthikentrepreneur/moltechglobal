@@ -31,21 +31,26 @@ const Header = () => {
 
   const pillClasses = [
     "mx-auto flex items-center justify-between rounded-full transition-all duration-300",
-    "border border-white/10 shadow-lg backdrop-blur",
-    "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500",
+    "bg-white/95 border border-slate-200/80",
     isScrolled
-      ? "h-16 w-[88vw] max-w-4xl scale-[0.985] px-4"
-      : "h-20 w-[92vw] max-w-5xl px-5",
+      ? "shadow-md h-16 w-[92vw] max-w-5xl px-6"
+      : "shadow h-20 w-[95vw] max-w-6xl px-8",
   ].join(" ");
 
   const linkClasses =
-    "text-sm text-blue-100 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] transition-all duration-300";
+    "text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors duration-200";
 
   const offset = isScrolled ? 72 : 88;
   const isHome = location.pathname === "/" || location.pathname === "/home";
 
   return (
-    <header className="fixed top-2 left-1/2 -translate-x-1/2 z-50 w-full">
+    <header
+      className={[
+        "fixed top-3 left-1/2 -translate-x-1/2 z-50 w-full px-4",
+        "transition-all duration-300",
+        isScrolled ? "scale-[0.99]" : "scale-100",
+      ].join(" ")}
+    >
       <div className={pillClasses}>
         <nav className="flex items-center justify-between w-full">
           {/* Logo */}
@@ -67,7 +72,7 @@ const Header = () => {
                 className="h-8 w-auto object-contain"
               />
             </div>
-            <span className="text-[11px] font-medium tracking-widest uppercase text-gray-200 drop-shadow">
+            <span className="text-[11px] font-semibold tracking-[0.35em] uppercase text-slate-500">
               Driving Sustainability
             </span>
           </button>
@@ -79,7 +84,7 @@ const Header = () => {
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="rounded-full bg-white text-blue-700 hover:bg-blue-50 h-8 px-4 text-xs font-medium shadow-md hover:shadow-lg flex items-center"
+                  className="rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white h-9 px-5 text-xs font-semibold shadow-lg hover:shadow-xl flex items-center"
                 >
                   {item.name}
                 </Link>
@@ -96,13 +101,13 @@ const Header = () => {
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <button
-                  className="rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 h-8 w-8 grid place-items-center"
+                  className="rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 h-9 w-9 grid place-items-center"
                   aria-label="Open menu"
                 >
                   <Menu className="h-4 w-4" />
                 </button>
               </SheetTrigger>
-              <SheetContent className="bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 text-white border-white/10">
+              <SheetContent className="bg-white text-slate-800">
                 <div className="flex flex-col gap-4 mt-8">
                   {navItems.map((item) =>
                     item.name === "Contact" ? (
@@ -110,7 +115,7 @@ const Header = () => {
                         key={item.to}
                         to={item.to}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="mt-2 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm font-medium shadow-md hover:shadow-lg w-full flex items-center justify-center"
+                        className="mt-2 rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white h-10 px-6 text-sm font-semibold shadow-lg hover:shadow-xl w-full flex items-center justify-center"
                       >
                         {item.name}
                       </Link>
@@ -119,7 +124,7 @@ const Header = () => {
                         key={item.to}
                         to={item.to}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-base text-blue-100 hover:text-white transition-all duration-300"
+                        className="text-base text-slate-600 hover:text-slate-900 transition-colors duration-200"
                       >
                         {item.name}
                       </Link>
