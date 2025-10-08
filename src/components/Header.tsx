@@ -1,6 +1,6 @@
 import { useState, type MouseEvent } from "react";
 import { Menu } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 function scrollToSection(id: string, offset = 80) {
@@ -13,14 +13,20 @@ function scrollToSection(id: string, offset = 80) {
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const navItems = [
-    { name: "Home", to: "/" },
+  const navItems: Array<{
+    name: string;
+    to: string;
+    sectionId?: string;
+    isCta?: boolean;
+  }> = [
+    { name: "Home", to: "/", sectionId: "home" },
     { name: "About", to: "/about" },
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Blog", to: "/blog" },
-    { name: "Contact", to: "/contact" }, // CTA
+    { name: "Contact", to: "/contact", isCta: true },
   ];
 
   const linkClasses =
@@ -29,10 +35,24 @@ const Header = () => {
   const offset = 88;
   const isHome = location.pathname === "/" || location.pathname === "/home";
 
-  const handleHomeClick = (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
-    if (!isHome) return;
-    event.preventDefault();
-    scrollToSection("home", offset);
+  const handleNavItemClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    item: (typeof navItems)[number],
+    shouldCloseMenu = false,
+  ) => {
+    if (item.sectionId) {
+      event.preventDefault();
+
+      if (isHome) {
+        scrollToSection(item.sectionId, offset);
+      } else {
+        navigate(`/#${item.sectionId}`);
+      }
+    }
+
+    if (shouldCloseMenu) {
+      setIsMobileMenuOpen(false);
+    }
   };
 
   return (
@@ -40,17 +60,11 @@ const Header = () => {
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <nav className="flex w-full items-center justify-between">
           {/* Logo */}
-          <button
-            onClick={(event) => {
-              if (isHome) {
-                event.preventDefault();
-                scrollToSection("home", offset);
-              } else {
-                window.location.href = "/";
-              }
-            }}
+          <Link
+            to="/"
+            onClick={(event) => handleNavItemClick(event, navItems[0])}
             aria-label="Go to top"
-            className="flex flex-col items-start select-none"
+            className="flex select-none flex-col items-start"
           >
             <div className="flex items-center gap-2">
               <img
@@ -62,14 +76,12 @@ const Header = () => {
             <span className="text-[11px] font-semibold tracking-[0.35em] uppercase text-slate-500">
               Driving Sustainability
             </span>
-          </button>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => {
-              const isHomeItem = item.to === "/";
-
-              if (item.name === "Contact") {
+              if (item.isCta) {
                 return (
                   <Link
                     key={item.to}
@@ -85,7 +97,7 @@ const Header = () => {
                 <Link
                   key={item.to}
                   to={item.to}
-                  onClick={isHomeItem ? handleHomeClick : undefined}
+                  onClick={(event) => handleNavItemClick(event, item)}
                   className={linkClasses}
                 >
                   {item.name}
@@ -108,9 +120,7 @@ const Header = () => {
               <SheetContent className="bg-white text-slate-800">
                 <div className="mt-8 flex flex-col gap-4">
                   {navItems.map((item) => {
-                    const isHomeItem = item.to === "/";
-
-                    if (item.name === "Contact") {
+                    if (item.isCta) {
                       return (
                         <Link
                           key={item.to}
@@ -127,12 +137,7 @@ const Header = () => {
                       <Link
                         key={item.to}
                         to={item.to}
-                        onClick={(event) => {
-                          if (isHomeItem) {
-                            handleHomeClick(event);
-                          }
-                          setIsMobileMenuOpen(false);
-                        }}
+                        onClick={(event) => handleNavItemClick(event, item, true)}
                         className="text-base text-slate-600 transition-colors hover:text-slate-900"
                       >
                         {item.name}
