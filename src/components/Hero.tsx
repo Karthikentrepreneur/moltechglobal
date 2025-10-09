@@ -16,8 +16,22 @@ const checkIcon = (
 );
 
 const Hero = () => {
-  const videos = ["/hero.mp4"];
-  const [index, setIndex] = useState(0);
+  // Background video (section bg)
+  const bgVideo = "/video.mp4";
+
+  // Right box: 5 images with titles
+  const frames = useMemo(
+    () => [
+      { src: "/images/frame-1.jpg", title: "Sustainable Feedstocks" },
+      { src: "/images/frame-2.jpg", title: "Certified Collection Network" },
+      { src: "/images/frame-3.jpg", title: "Advanced Processing" },
+      { src: "/images/frame-4.jpg", title: "Quality & Compliance" },
+      { src: "/images/frame-5.jpg", title: "Global Supply Logistics" },
+    ],
+    []
+  );
+
+  const [frameIndex, setFrameIndex] = useState(0);
 
   const features = useMemo(
     () => [
@@ -37,12 +51,13 @@ const Hero = () => {
     []
   );
 
+  // Autoplay carousel
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % videos.length);
-    }, 5000);
+      setFrameIndex((i) => (i + 1) % frames.length);
+    }, 4000);
     return () => clearInterval(id);
-  }, [videos.length]);
+  }, [frames.length]);
 
   return (
     <section
@@ -50,18 +65,17 @@ const Hero = () => {
       className="relative isolate overflow-hidden py-20 text-white sm:py-24 lg:py-28"
       aria-labelledby="hero-heading"
     >
-      {/* Animated gradient backdrop */}
-      <div className="pointer-events-none absolute inset-0 -z-20">
-        {/* main animated gradient */}
-        <div className="animated-gradient absolute inset-0" />
-        {/* soft blobs for depth */}
-        <div className="absolute -left-32 top-24 h-[420px] w-[420px] rounded-full bg-emerald-400/30 blur-[120px]" />
-        <div className="absolute left-1/2 top-0 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-cyan-400/25 blur-[160px]" />
-        <div className="absolute -right-24 bottom-10 h-[420px] w-[420px] rounded-full bg-blue-500/30 blur-[160px]" />
-        {/* radial lighting */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_15%,rgba(255,255,255,0.16),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_85%,rgba(0,0,0,0.25),transparent_65%)]" />
-      </div>
+      {/* Background video */}
+      <video
+        src={bgVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+      {/* Readability overlay */}
+      <div className="absolute inset-0 -z-10 bg-black/50" />
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-16">
         <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -130,55 +144,64 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Video column */}
+          {/* RIGHT: Image carousel box (replaces old video box) */}
           <div className="relative z-10">
-            <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,90,255,0.9)] backdrop-blur">
-              {/* keep a good aspect on small screens, taller on large */}
+            <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
+              {/* Preserve aspect on small; taller on large */}
               <div className="aspect-[16/9] sm:aspect-[16/9] lg:h-[640px]">
-                {videos.map((src, i) => (
-                  <video
-                    key={src}
-                    src={src}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className={`h-full w-full object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`}
+                {frames.map((f, i) => (
+                  <img
+                    key={f.src}
+                    src={f.src}
+                    alt={f.title}
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${i === frameIndex ? "opacity-100" : "opacity-0"}`}
+                    loading={i === 0 ? "eager" : "lazy"}
                   />
                 ))}
               </div>
 
-              {/* subtle badge overlay */}
-              <div className="pointer-events-none absolute inset-x-6 bottom-6 flex items-center justify-between rounded-full bg-black/45 px-6 py-2 text-[10px] uppercase tracking-[0.35em] text-cyan-100/90 backdrop-blur md:inset-x-10 md:bottom-8 md:px-8 md:py-3">
-                <span>Real-time Operations</span>
-                <span className="inline-flex items-center gap-2">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-300 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-100" />
-                  </span>
-                  Live
-                </span>
+              {/* Caption bar */}
+              <div className="pointer-events-none absolute inset-x-6 bottom-6 rounded-full bg-black/45 px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-100/90 backdrop-blur md:inset-x-10 md:bottom-8 md:px-8 md:py-3">
+                {frames[frameIndex]?.title}
+              </div>
+
+              {/* Dots */}
+              <div className="absolute left-1/2 bottom-3 flex -translate-x-1/2 items-center gap-2 md:bottom-5">
+                {frames.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Go to slide ${i + 1}`}
+                    className={`h-2.5 w-2.5 rounded-full transition ${i === frameIndex ? "bg-white" : "bg-white/40 hover:bg-white/70"}`}
+                    onClick={() => setFrameIndex(i)}
+                  />
+                ))}
+              </div>
+
+              {/* Prev / Next (optional but handy) */}
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2">
+                <button
+                  className="pointer-events-auto hidden h-10 w-10 rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex items-center justify-center"
+                  onClick={() => setFrameIndex((i) => (i - 1 + frames.length) % frames.length)}
+                  aria-label="Previous"
+                >
+                  ‹
+                </button>
+                <button
+                  className="pointer-events-auto hidden h-10 w-10 rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex items-center justify-center"
+                  onClick={() => setFrameIndex((i) => (i + 1) % frames.length)}
+                  aria-label="Next"
+                >
+                  ›
+                </button>
               </div>
             </div>
           </div>
+          {/* END right box */}
         </div>
       </div>
-
-      {/* Local keyframes for animated gradient */}
-      <style>{`
-        .animated-gradient {
-          background: linear-gradient(135deg, #10b981, #06b6d4 35%, #3b82f6 70%, #0ea5e9);
-          background-size: 200% 200%;
-          animation: gradientShift 16s ease-in-out infinite;
-        }
-        @keyframes gradientShift {
-          0%   { background-position: 0% 0%; }
-          50%  { background-position: 100% 100%; }
-          100% { background-position: 0% 0%; }
-        }
-      `}</style>
     </section>
   );
 };
 
 export default Hero;
+
