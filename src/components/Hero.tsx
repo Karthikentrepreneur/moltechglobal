@@ -60,6 +60,9 @@ const Hero = () => {
               <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
                At <strong>Moltech</strong>, we’re redefining sustainability with clean, renewable products that fuel the circular economy. Our global presence across Asia, the Middle East, the UK, and the USA empowers industries worldwide with reliable, accredited bio-based solutions for biodiesel, oleochemicals, energy, and animal feed applications.
               </p>
+              <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
+               Backed by internationally accredited testing and global reach, Moltech pioneers renewable and traceable products that drive the energy transition and strengthen the circular economy.
+                </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
