@@ -24,10 +24,10 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden py-20 text-white sm:py-24 lg:py-28"
+      className="relative isolate overflow-hidden text-white flex items-center min-h-screen"
       aria-labelledby="hero-heading"
     >
-      {/* Background video */}
+      {/* ===== Background video ===== */}
       <video
         src={bgVideo}
         autoPlay
@@ -36,12 +36,15 @@ const Hero = () => {
         playsInline
         className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
       />
+
+      {/* ===== Overlay ===== */}
       <div className="absolute inset-0 -z-10 bg-black/50" />
 
+      {/* ===== Hero Content ===== */}
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-16">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* LEFT CONTENT */}
-          <div className="relative z-10 flex flex-col gap-8">
+          <div className="relative z-10 flex flex-col gap-8 justify-center">
             <div className="inline-flex items-center gap-3 self-start rounded-full border border-white/15 bg-white/10 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-cyan-100/90 backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-emerald-300" />
               Driving Sustainability
