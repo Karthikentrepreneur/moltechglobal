@@ -1,9 +1,16 @@
 import { useRef, useState } from "react";
 import { RefreshCw, Maximize2, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { buildMapSrc, GOOGLE_MAP_BASE_URL } from "@/constants/map";
+import { getInitialLocation } from "@/data/globalLocations";
 
-const MAP_URL =
-  "https://www.google.com/maps/d/u/0/embed?mid=1rF5337I7j7xk98at6ZPdMul4aglzrLg&ehbc=2E312F&hl=en&output=embed";
+const DEFAULT_CITY_ZOOM = 14;
+
+const initialLocation = getInitialLocation();
+
+const MAP_URL = initialLocation
+  ? buildMapSrc(initialLocation.city.lat, initialLocation.city.lng, DEFAULT_CITY_ZOOM)
+  : GOOGLE_MAP_BASE_URL;
 
 const ContactMapContainer = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);

@@ -54,63 +54,81 @@ const Global = () => {
       <ScrollToTop />
       <Header />
 
-      <div className="flex flex-1 relative overflow-hidden pt-24 pb-16 transition-opacity duration-500">
-        {isMobile && (
-          <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
-            <h1 className="text-lg font-bold tracking-wide">Global Presence</h1>
-            <p className="text-xs text-white/80 mt-1">Discover our worldwide logistics network</p>
+      <main className="flex-1">
+        <section className="pt-28 pb-10 md:pb-12">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+            <span className="inline-flex items-center rounded-full bg-royal-blue/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-royal-blue">
+              Global Presence
+            </span>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-deep-navy md:text-4xl">
+              Logistics without borders, service without compromise
+            </h1>
+            <p className="mt-4 max-w-3xl text-base text-slate-600 md:text-lg">
+              Explore OECL's network of offices, warehouses, and service partners spanning key trade lanes across Asia, the Middle East, Europe, and the Americas. Select a location to reveal the on-ground team supporting your supply chain.
+            </p>
           </div>
         )}
 
-        {(!isMobile || (isMobile && showMap)) && (
-          <div
-            className={`transition-all duration-300 ease-in-out ${
-              isMobile ? "w-full" : "w-[60%]"
-            }`}
-          >
-            <ContactMapContainer />
-          </div>
-        )}
+        <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
+          <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
+            {isMobile && (
+              <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
+                <h2 className="text-lg font-bold tracking-wide">Global Presence</h2>
+                <p className="text-xs text-white/80 mt-1">Discover our worldwide logistics network</p>
+              </div>
+            )}
 
-        {(!isMobile || (isMobile && !showMap)) && (
-          <aside
-            className={`transition-all duration-300 ease-in-out ${
-              isMobile ? "w-full pt-12" : "w-[35%]"
-            }`}
-          >
-            <ContactSidebar
-              isOpen={isSidebarOpen}
-              onClose={() => {
-                setIsSidebarOpen(false);
-                if (isMobile) {
-                  setShowMap(true);
-                }
-              }}
-            />
-          </aside>
-        )}
+            {(!isMobile || (isMobile && showMap)) && (
+              <div
+                className={`transition-all duration-300 ease-in-out ${
+                  isMobile ? "w-full" : "md:w-3/5"
+                }`}
+              >
+                <ContactMapContainer />
+              </div>
+            )}
 
-        {isMobile && (
-          <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
-            <Button
-              onClick={toggleMobileView}
-              className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-lg px-5 py-4 rounded-full"
-            >
-              {showMap ? (
-                <>
-                  <MapPin className="h-4 w-4" />
-                  <span className="text-sm font-semibold">View Locations</span>
-                </>
-              ) : (
-                <>
-                  <Globe className="h-4 w-4" />
-                  <span className="text-sm font-semibold">View Map</span>
-                </>
-              )}
-            </Button>
+            {(!isMobile || (isMobile && !showMap)) && (
+              <aside
+                className={`transition-all duration-300 ease-in-out ${
+                  isMobile ? "w-full pt-12" : "md:w-[38%]"
+                }`}
+              >
+                <ContactSidebar
+                  isOpen={isSidebarOpen}
+                  onClose={() => {
+                    setIsSidebarOpen(false);
+                    if (isMobile) {
+                      setShowMap(true);
+                    }
+                  }}
+                />
+              </aside>
+            )}
           </div>
-        )}
-      </div>
+
+          {isMobile && (
+            <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
+              <Button
+                onClick={toggleMobileView}
+                className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-lg px-5 py-4 rounded-full"
+              >
+                {showMap ? (
+                  <>
+                    <MapPin className="h-4 w-4" />
+                    <span className="text-sm font-semibold">View Locations</span>
+                  </>
+                ) : (
+                  <>
+                    <Globe className="h-4 w-4" />
+                    <span className="text-sm font-semibold">View Map</span>
+                  </>
+                )}
+              </Button>
+            </div>
+          )}
+        </div>
+      </main>
 
       <Footer />
     </div>
