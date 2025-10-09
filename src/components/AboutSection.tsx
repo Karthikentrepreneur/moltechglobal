@@ -14,10 +14,6 @@ const About: React.FC = () => {
       className="relative py-20 text-black"  // ✅ default text color black
     >
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
-        <h2 className="text-4xl font-bold text-center mb-12 text-black">
-          About Our Team
-        </h2>
-
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left: Image */}
           <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl hover-lift border border-gray-200">
@@ -30,6 +26,9 @@ const About: React.FC = () => {
 
           {/* Right: Text */}
           <div className="space-y-6">
+            <h3 className=""text-4xl font-bold text-center mb-12 text-black"">
+             About Us
+            </h3>
             <p className="text-lg leading-relaxed text-gray-800">
               Moltech strides in the bio space working on clean initiatives and products that drives the circular economy.
               With its strategic presence in Asia, Middle East, United Kingdom and United States of America, 
