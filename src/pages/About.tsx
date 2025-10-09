@@ -1,5 +1,7 @@
+
 // src/pages/About.tsx
 import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async"; // ✅ added
 import { Users, Box, PartyPopper, Handshake } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -71,6 +73,15 @@ const CountUp: React.FC<CountUpProps> = ({ to, duration = 1200, className, suffi
 const About: React.FC = () => {
   return (
     <>
+      {/* ✅ Page title added */}
+      <Helmet>
+        <title>About Us - Chemical Solutions for Sustainable Industries</title>
+        <meta
+          name="description"
+          content="Learn about Moltech’s global presence and expertise in providing chemical solutions for sustainable industries. Discover our story, mission, and vision for a greener future."
+        />
+      </Helmet>
+
       <Header />
 
       {/* Removed top padding so the hero image fills behind the fixed header */}
@@ -94,8 +105,8 @@ const About: React.FC = () => {
               About Us
             </h1>
             <p className="text-3xl md:text-4xl font-semibold max-w-4xl mx-auto text-gray-200 leading-relaxed">
-  Chemical Solutions for Sustainable Industries
-</p>
+              Chemical Solutions for Sustainable Industries
+            </p>
           </div>
         </section>
 

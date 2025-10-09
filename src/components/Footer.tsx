@@ -1,5 +1,6 @@
 import React from "react";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp, Mail, ChevronRight } from "lucide-react";
+import "../styles/autoscroll.css";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -10,72 +11,159 @@ const quickLinks = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-const scrollTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+const offices = [
+  { country: "AUSTRALIA", address: "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043", phone: "+61 388205157" },
+  { country: "INDONESIA", address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta", phone: "+62 815 1038 5581" },
+  { country: "MALAYSIA - PORTLANG", address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang", phone: "+60 16-985 4705" },
+  { country: "MALAYSIA - JOHOR", address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang", phone: "+60 16-959 4075" },
+  { country: "SAUDI ARABIA - DAMMAM", address: "2817 King Faizal Road, 9403-32233", phone: "+966 13 3430003" },
+  { country: "SINGAPORE", address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447", phone: "+65 65140868" },
+  { country: "THAILAND - BANGKOK", address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500", phone: "+60 16-985 4705" },
+  { country: "UAE - DUBAI", address: "Al Qusais Industrial Area 2", phone: "+971 509093357" },
+  { country: "UK - LONDON", address: "167-169 Great Portland Street, W1W 5PF", phone: "+44 7305 856612" },
+  { country: "USA - NEW YORK", address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830", phone: "+1 732 456 6780" },
+];
+
+const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+// Accent color similar to your reference
+const GOLD = "text-[#F2C200]";
+const GOLD_BG = "bg-[#F2C200]";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700">
+    <footer className="bg-black text-white">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Top */}
-        <div className="py-10 grid grid-cols-1 gap-8 md:grid-cols-3">
-          {/* About */}
+
+        {/* Top thin gold divider + round accent button (decorative) */}
+        <div className="relative">
+          <div className={`mx-auto mt-8 h-[3px] w-full max-w-5xl ${GOLD_BG} rounded-full`} />
+          <div
+            className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GOLD_BG} shadow-lg`}
+            aria-hidden
+          >
+            <ChevronRight className="h-4 w-4 text-black" />
+          </div>
+        </div>
+
+        {/* Main three-column section */}
+        <div className="py-10 grid grid-cols-1 gap-10 md:grid-cols-3">
+
+          {/* LEFT: Logo + about + social (icons kept minimal like ref) */}
           <div>
-            <h4 className="text-lg font-semibold text-gray-900">Moltech</h4>
-            <p className="mt-3 max-w-md text-sm leading-relaxed">
-              We source and supply environmentally responsible products that help
-              reduce carbon footprint. With a global presence and strong ethics,
-              we’re committed to performance, transparency, and community impact.
+            <img
+              src="/Moltechlogo.png"
+              alt="Moltech Logo"
+              className="h-14 w-auto object-contain mb-3"
+            />
+            <p className="text-white/80 leading-relaxed text-sm md:text-[15px] max-w-md">
+              We source and supply environmentally responsible products that reduce carbon footprint.
+              With a global presence and strong ethics, we’re committed to performance,
+              transparency, and community impact.
             </p>
+
+            {/* Simple circular social icon mocks (kept generic to avoid content changes) */}
+            <div className="mt-5 flex items-center gap-3">
+              <a
+                href="#"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/15 transition"
+                aria-label="Facebook"
+              >
+                <span className="sr-only">Facebook</span>
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+              </a>
+              <a
+                href="#"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/15 transition"
+                aria-label="LinkedIn"
+              >
+                <span className="sr-only">LinkedIn</span>
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M20.45 20.45h-3.55v-5.6c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.69H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.33-1.85 3.56 0 4.22 2.34 4.22 5.38v6.36zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <nav>
-            <h5 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Quick Links
-            </h5>
-            <ul className="mt-4 grid grid-cols-2 gap-y-2 gap-x-4 md:grid-cols-1">
+          {/* MIDDLE: Quick links with gold arrow bullets */}
+          <div>
+            <h4 className="text-[18px] font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-3">
               {quickLinks.map((item) => (
-                <li key={item.label}>
+                <li key={item.label} className="flex items-center gap-3">
+                  <span className={`inline-block h-2 w-2 rounded-full ${GOLD_BG}`} />
                   <a
                     href={item.href}
-                    className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
+                    className="text-white/90 hover:text-white transition-colors text-[15px]"
                   >
                     {item.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </nav>
-
-           {/* Contact */}
-          <div>
-            <h5 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-              Contact
-            </h5>
-            <div className="mt-4 space-y-2 text-sm">
-              <a
-                href="mailto:info@moltechglobal.com"
-                className="hover:text-gray-900 transition-colors"
-              >
-                info@moltechglobal.com
-              </a>
-              <p>Mon–Fri, 9:00–18:00 (IST)</p>
-            </div>
-            <button
-              onClick={scrollTop}
-              className="mt-4 inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition"
-            >
-              <ChevronUp className="h-4 w-4" />
-              Back to top
-            </button>
           </div>
+
+          {/* RIGHT: Contact (kept same content: email) + auto-scroll offices kept separate below */}
+          <div>
+            <h4 className="text-[18px] font-semibold mb-4">Contact</h4>
+            <a
+              href="mailto:info@moltechglobal.com"
+              className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors text-[15px]"
+            >
+              <Mail className={`${GOLD} h-4 w-4`} />
+              info@moltechglobal.com
+            </a>
+
+            {/* Global offices auto-scroll — styled compact like the reference */}
+            <div className="mt-6">
+              <h5 className="text-sm font-semibold mb-2 text-white/80">Global Offices</h5>
+              <div className="footer-autoscroll max-h-48 overflow-hidden">
+                <div className="footer-autoscroll-track">
+                  {[...offices, ...offices].map((office, i) => (
+                    <div key={i} className="py-2">
+                      <div className={`text-[13px] font-bold ${GOLD}`}>
+                        {office.country}
+                      </div>
+                      <div className="text-[12px] text-white/80">
+                        {office.address}
+                      </div>
+                      <div className="text-[12px] text-white/70">
+                        {office.phone}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-gray-200 py-4 text-center text-sm text-gray-600">
-          © {new Date().getFullYear()} Moltech. All rights reserved.
+        {/* Bottom divider dots effect (subtle) */}
+        <div className="flex items-center justify-center gap-2 pb-2" aria-hidden>
+          {[...Array(6)].map((_, i) => (
+            <span
+              key={i}
+              className={`h-1.5 w-1.5 rounded-full ${
+                i === 3 ? GOLD_BG : "bg-white/20"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Bottom bar: Back to Top + Copyright */}
+        <div className="py-5 flex flex-col sm:flex-row items-center justify-between text-xs md:text-sm text-white/80 border-t border-white/10">
+          <button
+            onClick={scrollTop}
+            className="group inline-flex items-center gap-1 hover:text-white transition-colors"
+          >
+            <ChevronUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+            <span>Back to Top</span>
+          </button>
+
+          <div className="text-center mt-3 sm:mt-0">
+            © 2025 Moltech. All rights reserved.
+          </div>
+
+          <div className="w-[70px] md:w-[100px]" aria-hidden />
         </div>
       </div>
     </footer>

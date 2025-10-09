@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import ProductsServices from "@/components/ProductsServices";
 import GlobalPresence from "@/components/GlobalPresence";
-import Careers from "@/components/Careers";
+import CertificationSg from "@/components/CertificationSg";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -53,7 +53,7 @@ const Index = () => {
 
         {/* CAREERS */}
         <section id="careers" className="scroll-mt-24">
-          <Careers />
+          <CertificationSg  />
         </section>
 
         {/* CONTACT (single hero handled inside ContactSection if any) */}
