@@ -34,14 +34,10 @@ const About: React.FC = () => {
               We Grow Your Brand
             </h3>
             <p className="text-lg leading-relaxed text-gray-800">
-              Our team of designers, strategists, and developers is dedicated to
-              helping your business stand out. From branding to digital
-              campaigns, we create experiences that inspire and convert.
-            </p>
-            <p className="text-lg leading-relaxed text-gray-800">
-              Whether you're launching a new product or re-imagining your
-              presence, we craft solutions tailored to your goals—turning ideas
-              into impact.
+              Moltech strides in the bio space working on clean initiatives and products that drives the circular economy.
+              With its strategic presence in Asia, Middle East, United Kingdom and United States of America, 
+              Moltech is positioned to cater and harness cross continental potential of
+              renewable and sustainable products on a global platform.
             </p>
           </div>
         </div>
