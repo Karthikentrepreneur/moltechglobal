@@ -53,15 +53,12 @@ const Hero = () => {
             <div className="space-y-5">
               <h1
                 id="hero-heading"
-                className="text-3xl font-bold leading-tight drop-shadow-sm sm:text-5xl lg:text-6xl"
+                className="text-3xl font-bold leading-tight drop-shadow-sm sm:text-4xl lg:text-6xl"
               >
-                Cleaner energy for a climate-positive tomorrow
+                Connecting Continents Through Circular Bio Solutions
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
-                Moltech connects innovative bio-based solutions with global
-                demand. We combine rigorous sustainability standards, full
-                traceability, and data-driven logistics to accelerate the
-                transition toward a resilient low-carbon future.
+               At <strong>Moltech</strong>, we’re redefining sustainability with clean, renewable products that fuel the circular economy. Our global presence across Asia, the Middle East, the UK, and the USA empowers industries worldwide with reliable, accredited bio-based solutions for biodiesel, oleochemicals, energy, and animal feed applications.
               </p>
             </div>
 
