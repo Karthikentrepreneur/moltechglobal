@@ -33,8 +33,8 @@ const BiodieselFeedstocks: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO ---------- */}
-        <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
+        {/* ---------- HERO (medium size with darker grey gradient) ---------- */}
+        <section className="relative h-[35vh] md:h-[45vh] lg:h-[50vh]">
           <img
             src="/a.jpg"
             alt="Biodiesel feedstocks background"
@@ -42,14 +42,18 @@ const BiodieselFeedstocks: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-black/25" aria-hidden />
+          {/* stronger grey gradient overlay to match the new style */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-gray-900/85 via-gray-800/70 to-gray-700/60"
+            aria-hidden
+          />
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
               <div className="max-w-4xl">
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                   Biodiesel Feedstocks (UCO)
                 </h1>
-                <p className="mt-6 text-lg md:text-xl text-white/90">
+                <p className="mt-4 text-base md:text-lg text-white/95">
                   ISCC-compliant UCO feedstocks with global logistics, traceability, and stable
                   quality for renewable diesel and SAF production.
                 </p>
