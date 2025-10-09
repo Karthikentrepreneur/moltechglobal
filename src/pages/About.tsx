@@ -110,10 +110,6 @@ const About: React.FC = () => {
         </section>
 
         {/* ---------- INTRO ---------- */}
-        <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-tight text-black max-w-5xl">
-            Our Story
-          </h2>
 
           <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-2">
             <div className="max-w-none">
