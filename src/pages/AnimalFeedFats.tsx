@@ -33,7 +33,7 @@ const AnimalFeedFats: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (medium size) ---------- */}
+        {/* ---------- HERO (medium size with grey gradient) ---------- */}
         <section className="relative h-[35vh] md:h-[45vh] lg:h-[50vh]">
           <img
             src="/s.jpg"
@@ -42,7 +42,12 @@ const AnimalFeedFats: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-black/40" aria-hidden />
+
+          {/* Elegant grey gradient overlay */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-gray-900/70 via-gray-800/40 to-gray-700/30"
+            aria-hidden
+          />
 
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
@@ -54,7 +59,8 @@ const AnimalFeedFats: React.FC = () => {
                   Animal Feed Fats
                 </h1>
                 <p className="mt-4 text-base md:text-lg text-white/90">
-                  High-energy density formulations and calcium-salt bypass fats for superior animal nutrition and feed conversion efficiency.
+                  High-energy density formulations and calcium-salt bypass fats
+                  for superior animal nutrition and feed conversion efficiency.
                 </p>
               </div>
             </div>
