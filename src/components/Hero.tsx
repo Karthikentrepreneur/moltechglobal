@@ -42,30 +42,32 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-gradient-to-br from-[#0b2c32] via-[#084d4a] to-[#021018] pt-24 pb-20 text-white lg:pb-28"
+      className="relative isolate overflow-hidden bg-gradient-to-br from-[#29f5ff] via-[#00a8ff] to-[#0056ff] py-24 text-white lg:py-28"
       aria-labelledby="hero-heading"
     >
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-teal-400/20 blur-3xl" />
-        <div className="absolute -left-24 bottom-0 h-[360px] w-[360px] rounded-full bg-emerald-400/20 blur-3xl" />
-        <div className="absolute -right-36 top-12 h-[420px] w-[420px] rounded-full bg-teal-300/10 blur-3xl" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#063537]/40 to-[#01070b]/90" />
+        <div className="absolute -left-40 top-20 h-[520px] w-[520px] rounded-full bg-[#63fff4]/40 blur-[160px]" />
+        <div className="absolute left-1/2 top-0 h-[660px] w-[660px] -translate-x-1/2 rounded-full bg-[#2fe0ff]/30 blur-[180px]" />
+        <div className="absolute -right-32 bottom-10 h-[480px] w-[480px] rounded-full bg-[#1c5dff]/40 blur-[200px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,57,255,0.25),transparent_65%)]" />
       </div>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-10 xl:px-16">
-        {/* Content column */}
-        <div className="relative z-10 flex flex-1 flex-col space-y-10 lg:max-w-xl lg:flex-[0.4]">
-          <div className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200/90 backdrop-blur">
+      <div className="mx-auto w-full max-w-7xl px-6 lg:px-10 xl:px-16">
+        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,0.44fr)_minmax(0,0.56fr)]">
+          {/* Content column */}
+          <div className="relative z-10 flex flex-col space-y-10 text-cyan-50">
+            <div className="inline-flex items-center gap-3 self-start rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-cyan-100/90 backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-emerald-300" />
             Driving Sustainability
           </div>
 
           <div className="space-y-6">
-            <h1 id="hero-heading" className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            <h1 id="hero-heading" className="text-4xl font-bold leading-tight drop-shadow-sm sm:text-5xl lg:text-6xl">
               Cleaner energy for a climate-positive tomorrow
             </h1>
-            <p className="max-w-xl text-base leading-relaxed text-emerald-50/90 sm:text-lg">
+            <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
               Moltech connects innovative bio-based solutions with global demand. We combine rigorous sustainability standards,
               full traceability, and data-driven logistics to accelerate the transition toward a resilient low-carbon future.
             </p>
@@ -73,9 +75,12 @@ const Hero = () => {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {features.map((feature) => (
-              <div key={feature} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+              <div
+                key={feature}
+                className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/10 p-4 shadow-[0_10px_45px_-25px_rgba(0,0,0,0.6)] backdrop-blur"
+              >
                 {checkIcon}
-                <p className="text-sm text-emerald-100/90">{feature}</p>
+                <p className="text-sm text-cyan-50/90">{feature}</p>
               </div>
             ))}
           </div>
@@ -83,7 +88,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#products"
-              className="inline-flex items-center justify-center rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-950 shadow-xl shadow-emerald-500/30 transition hover:-translate-y-0.5 hover:bg-emerald-300"
+              className="inline-flex items-center justify-center rounded-full bg-white/90 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-[0_25px_60px_-30px_rgba(0,0,0,0.9)] transition hover:-translate-y-0.5 hover:bg-white"
             >
               Explore Our Solutions
             </a>
@@ -91,7 +96,7 @@ const Hero = () => {
               href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:border-emerald-300 hover:text-emerald-200"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:border-white/60 hover:bg-white/10"
             >
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-300" aria-hidden="true" />
               Live Tracking
@@ -100,17 +105,18 @@ const Hero = () => {
 
           <div className="grid grid-cols-3 gap-6 sm:max-w-md">
             {stats.map(({ value, label }) => (
-              <div key={label} className="rounded-2xl border border-white/10 bg-black/20 p-4 text-center backdrop-blur">
-                <div className="text-2xl font-semibold text-emerald-300 sm:text-3xl">{value}</div>
-                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-emerald-100/70">{label}</p>
+              <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur">
+                <div className="text-2xl font-semibold text-cyan-100 sm:text-3xl">{value}</div>
+                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-cyan-50/70">{label}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Video column */}
-        <div className="relative z-10 flex flex-1 items-center justify-center lg:flex-[0.6]">
-          <div className="relative w-full overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 shadow-[0_0_160px_-40px_rgba(15,118,110,0.9)] backdrop-blur lg:h-[520px]">
+        <div className="relative z-10 flex h-full w-full items-center justify-center">
+          <div className="relative h-full min-h-[640px] w-full overflow-hidden rounded-[3rem] border border-white/20 bg-white/10 shadow-[0_45px_140px_-45px_rgba(0,60,255,0.95)] backdrop-blur">
+            <div className="pointer-events-none absolute -inset-10 rounded-[3.75rem] bg-[radial-gradient(circle_at_top_left,rgba(140,255,255,0.4),transparent_60%)] blur-3xl" />
             {videos.map((src, i) => (
               <video
                 key={src}
@@ -119,10 +125,10 @@ const Hero = () => {
                 loop
                 muted
                 playsInline
-                className={`h-full w-full object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`}
+                className={`relative h-full w-full object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`}
               />
             ))}
-            <div className="pointer-events-none absolute inset-x-10 bottom-10 flex items-center justify-between rounded-full bg-black/60 px-6 py-3 text-xs uppercase tracking-[0.35em] text-teal-100/90 backdrop-blur">
+            <div className="pointer-events-none absolute inset-x-12 bottom-12 flex items-center justify-between rounded-full bg-black/50 px-8 py-3 text-xs uppercase tracking-[0.35em] text-cyan-100/90 backdrop-blur">
               <span>Real-time Operations</span>
               <span className="inline-flex items-center gap-2 text-[10px]">
                 <span className="relative flex h-2 w-2">
@@ -132,6 +138,7 @@ const Hero = () => {
                 Live
               </span>
             </div>
+          </div>
           </div>
         </div>
       </div>
