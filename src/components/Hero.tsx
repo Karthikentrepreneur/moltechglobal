@@ -22,7 +22,7 @@ const Hero = () => {
   // Right box: 5 images with titles
   const frames = useMemo(
     () => [
-      { src: "/images/frame-1.jpg", title: "Sustainable Feedstocks" },
+      { src: "/biodiesel.png", title: "Biodiesel Feedstocks" },
       { src: "/images/frame-2.jpg", title: "Certified Collection Network" },
       { src: "/images/frame-3.jpg", title: "Advanced Processing" },
       { src: "/images/frame-4.jpg", title: "Quality & Compliance" },
@@ -99,17 +99,6 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {features.map((feature) => (
-                <div
-                  key={feature}
-                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/10 p-4 shadow-[0_15px_60px_-35px_rgba(0,0,0,0.9)] backdrop-blur"
-                >
-                  {checkIcon}
-                  <p className="text-sm text-cyan-50/90">{feature}</p>
-                </div>
-              ))}
-            </div>
 
             <div className="flex flex-wrap items-center gap-4">
               <a
@@ -129,20 +118,6 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 sm:max-w-md">
-              {stats.map(({ value, label }) => (
-                <div
-                  key={label}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur"
-                >
-                  <div className="text-2xl font-semibold text-cyan-100 sm:text-3xl">{value}</div>
-                  <p className="mt-1 text-[10px] font-medium uppercase tracking-wider text-cyan-50/70">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* RIGHT: Image carousel box (replaces old video box) */}
           <div className="relative z-10">
