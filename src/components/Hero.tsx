@@ -1,55 +1,19 @@
-import { useEffect, useMemo, useState } from "react";
-
-const checkIcon = (
-  <svg
-    className="h-5 w-5 flex-shrink-0 text-emerald-300"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-    aria-hidden="true"
-  >
-    <path
-      fillRule="evenodd"
-      d="M16.704 5.29a1 1 0 0 1 0 1.414l-7.25 7.25a1 1 0 0 1-1.415 0l-3.25-3.25a1 1 0 1 1 1.415-1.414l2.543 2.543 6.543-6.543a1 1 0 0 1 1.414 0Z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
+import { useEffect, useState } from "react";
 
 const Hero = () => {
   // Background video (section bg)
   const bgVideo = "/blue.mp4";
 
   // Right box: 5 images with titles
-  const frames = useMemo(
-    () => [
-      { src: "/biodiesel.png", title: "Biodiesel Feedstocks" },
-      { src: "/images/frame-2.jpg", title: "Certified Collection Network" },
-      { src: "/images/frame-3.jpg", title: "Advanced Processing" },
-      { src: "/images/frame-4.jpg", title: "Quality & Compliance" },
-      { src: "/images/frame-5.jpg", title: "Global Supply Logistics" },
-    ],
-    []
-  );
+  const frames = [
+    { src: "/biodiesel.png", title: "Biodiesel Feedstocks" },
+    { src: "/images/frame-2.jpg", title: "Certified Collection Network" },
+    { src: "/images/frame-3.jpg", title: "Advanced Processing" },
+    { src: "/images/frame-4.jpg", title: "Quality & Compliance" },
+    { src: "/images/frame-5.jpg", title: "Global Supply Logistics" },
+  ];
 
   const [frameIndex, setFrameIndex] = useState(0);
-
-  const features = useMemo(
-    () => [
-      "Traceability across the entire supply chain",
-      "Certified sustainable sourcing & production",
-      "Smart logistics with real-time transparency",
-    ],
-    []
-  );
-
-  const stats = useMemo(
-    () => [
-      { value: "30+", label: "Global Partnerships" },
-      { value: "18", label: "Sustainable Facilities" },
-      { value: "50%", label: "Lower Emissions vs. Fossil" },
-    ],
-    []
-  );
 
   // Autoplay carousel
   useEffect(() => {
@@ -79,7 +43,7 @@ const Hero = () => {
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-16">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Content column */}
+          {/* LEFT: Content */}
           <div className="relative z-10 flex flex-col gap-8">
             <div className="inline-flex items-center gap-3 self-start rounded-full border border-white/15 bg-white/10 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-cyan-100/90 backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-emerald-300" />
@@ -99,7 +63,6 @@ const Hero = () => {
               </p>
             </div>
 
-
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href="#products"
@@ -117,13 +80,13 @@ const Hero = () => {
                 Live Tracking
               </a>
             </div>
+          </div>
 
-
-          {/* RIGHT: Image carousel box (replaces old video box) */}
+          {/* RIGHT: Image carousel box */}
           <div className="relative z-10">
             <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
-              {/* Preserve aspect on small; taller on large */}
-              <div className="aspect-[16/9] sm:aspect-[16/9] lg:h-[640px]">
+              {/* Keep aspect on small; taller on large */}
+              <div className="relative aspect-[16/9] sm:aspect-[16/9] lg:h-[640px]">
                 {frames.map((f, i) => (
                   <img
                     key={f.src}
@@ -152,17 +115,17 @@ const Hero = () => {
                 ))}
               </div>
 
-              {/* Prev / Next (optional but handy) */}
+              {/* Prev / Next */}
               <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2">
                 <button
-                  className="pointer-events-auto hidden h-10 w-10 rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex items-center justify-center"
+                  className="pointer-events-auto hidden h-10 w-10 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex"
                   onClick={() => setFrameIndex((i) => (i - 1 + frames.length) % frames.length)}
                   aria-label="Previous"
                 >
                   ‹
                 </button>
                 <button
-                  className="pointer-events-auto hidden h-10 w-10 rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex items-center justify-center"
+                  className="pointer-events-auto hidden h-10 w-10 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex"
                   onClick={() => setFrameIndex((i) => (i + 1) % frames.length)}
                   aria-label="Next"
                 >
@@ -179,4 +142,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
