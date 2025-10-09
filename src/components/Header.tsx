@@ -59,26 +59,32 @@ const Header = () => {
     <header className="fixed top-0 left-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <nav className="flex w-full items-center justify-between">
-          {/* Logo */}
+          {/* ---------- LOGO SECTION ---------- */}
           <Link
             to="/"
             onClick={(event) => handleNavItemClick(event, navItems[0])}
             aria-label="Go to top"
-            className="flex select-none flex-col items-start"
+            className="flex select-none items-center gap-3"
           >
-            <div className="flex items-center gap-2">
-              <img
-                src="/Moltechlogo.png"
-                alt="Moltech Logo"
-                className="h-8 w-auto object-contain"
-              />
+            {/* Logo */}
+            <img
+              src="/Moltechlogo.png"
+              alt="Moltech Logo"
+              className="h-10 w-auto object-contain"
+            />
+
+            {/* Text beside logo */}
+            <div className="flex flex-col leading-tight">
+              <span className="text-[1.6rem] font-extrabold text-[#2C2F75] tracking-tight">
+                MOLTECH
+              </span>
+              <span className="text-[12px] md:text-[13px] font-semibold tracking-[0.35em] uppercase text-slate-500">
+                Driving Sustainability
+              </span>
             </div>
-            <span className="text-[11px] font-semibold tracking-[0.35em] uppercase text-slate-500">
-              Driving Sustainability
-            </span>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* ---------- DESKTOP NAV ---------- */}
           <div className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => {
               if (item.isCta) {
@@ -106,7 +112,7 @@ const Header = () => {
             })}
           </div>
 
-          {/* Mobile Nav */}
+          {/* ---------- MOBILE NAV ---------- */}
           <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -137,7 +143,9 @@ const Header = () => {
                       <Link
                         key={item.to}
                         to={item.to}
-                        onClick={(event) => handleNavItemClick(event, item, true)}
+                        onClick={(event) =>
+                          handleNavItemClick(event, item, true)
+                        }
                         className="text-base text-slate-600 transition-colors hover:text-slate-900"
                       >
                         {item.name}
