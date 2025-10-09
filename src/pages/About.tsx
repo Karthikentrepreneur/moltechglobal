@@ -72,7 +72,6 @@ const CountUp: React.FC<CountUpProps> = ({ to, duration = 1200, className, suffi
 const About: React.FC = () => {
   return (
     <>
-      {/* ✅ Page title */}
       <Helmet>
         <title>About Us - Chemical Solutions for Sustainable Industries</title>
         <meta
@@ -83,11 +82,9 @@ const About: React.FC = () => {
 
       <Header />
 
-      {/* Removed top padding so the hero image fills behind the fixed header */}
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (image with text overlay) ---------- */}
+        {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] flex items-center justify-center text-center">
-          {/* Background image */}
           <img
             src="/chemical.jpg"
             alt="Laboratory glassware and sustainable chemistry"
@@ -95,23 +92,20 @@ const About: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          {/* Overlay */}
           <div className="absolute inset-0 bg-black/40" aria-hidden />
-
-          {/* Hero Content */}
           <div className="relative z-10 px-6">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
               About Us
             </h1>
-            <p className="text-3xl md:text-4xl font-semibold max-w-4xl mx-auto text-gray-200 leading-relaxed">
-              Chemical Solutions for Sustainable Industries
-            </p>
           </div>
         </section>
 
-        {/* ---------- INTRO (title removed, paragraphs justified) ---------- */}
+        {/* ---------- INTRO ---------- */}
         <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-          {/* (Removed the "Our Story" heading as requested) */}
+          {/* ✅ Added new title here */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black text-center mb-8">
+            Chemical Solutions for Sustainable Industries
+          </h2>
 
           <div className="mt-0 grid grid-cols-1 gap-10 md:grid-cols-2">
             <div className="max-w-none">
@@ -164,7 +158,7 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- STATS ROW (animated) ---------- */}
+        {/* ---------- STATS ---------- */}
         <section className="border-y border-gray-200 bg-white">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 md:grid-cols-4 lg:px-8">
             <div className="flex items-center gap-5">
