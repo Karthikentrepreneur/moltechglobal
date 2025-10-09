@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { buildMapSrc, GOOGLE_MAP_BASE_URL } from "@/constants/map";
 import { getInitialLocation } from "@/data/globalLocations";
 
-const DEFAULT_CITY_ZOOM = 14;
+const DEFAULT_CITY_ZOOM = 15;
 
 const initialLocation = getInitialLocation();
 

@@ -36,8 +36,8 @@ type SelectedLocation = {
   city: City;
 };
 
-const COUNTRY_ZOOM = 8;
-const CITY_ZOOM = 14;
+const COUNTRY_ZOOM = 10;
+const CITY_ZOOM = 15;
 
 const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
   const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
@@ -99,6 +99,18 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
   }, []);
 
   const focusCountry = (country: Country) => {
+    const firstCity = country.cities[0];
+
+    if (firstCity) {
+      setSelectedCityIndexes(prev => ({
+        ...prev,
+        [country.name]: 0,
+      }));
+      setSelectedLocation({ country, city: firstCity });
+      updateMap(firstCity.lat, firstCity.lng, CITY_ZOOM);
+      return;
+    }
+
     updateMap(country.lat, country.lng, COUNTRY_ZOOM);
   };
 
@@ -201,8 +213,13 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
                     >
                       <AccordionTrigger
                         onClick={() => {
-                          setExpandedCountry(expandedCountry === country.name ? null : country.name);
-                          focusCountry(country);
+                          const nextExpanded =
+                            expandedCountry === country.name ? null : country.name;
+                          setExpandedCountry(nextExpanded);
+
+                          if (nextExpanded) {
+                            focusCountry(country);
+                          }
                         }}
                         className="rounded-t-md hover:bg-royal-blue/10 transition-colors px-3 py-2"
                       >
