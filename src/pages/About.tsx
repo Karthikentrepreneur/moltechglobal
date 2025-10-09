@@ -1,6 +1,6 @@
 // src/pages/About.tsx
 import React, { useEffect, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async"; // ✅ added
+import { Helmet } from "react-helmet-async";
 import { Users, Box, PartyPopper, Handshake } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -72,7 +72,7 @@ const CountUp: React.FC<CountUpProps> = ({ to, duration = 1200, className, suffi
 const About: React.FC = () => {
   return (
     <>
-      {/* ✅ Page title added */}
+      {/* ✅ Page title */}
       <Helmet>
         <title>About Us - Chemical Solutions for Sustainable Industries</title>
         <meta
@@ -109,25 +109,27 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- INTRO ---------- */}
+        {/* ---------- INTRO (title removed, paragraphs justified) ---------- */}
+        <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          {/* (Removed the "Our Story" heading as requested) */}
 
-          <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-2">
+          <div className="mt-0 grid grid-cols-1 gap-10 md:grid-cols-2">
             <div className="max-w-none">
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
                 Moltech strides in the bio space working on clean initiatives and products that
                 drives the circular economy. With its strategic presence in Asia, Middle East,
                 United Kingdom and United States of America, Moltech is positioned to cater and
                 harness cross continental potential of renewable and sustainable products on a
                 global platform.
               </p>
-              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed text-justify">
                 Headquartered in Singapore, Moltech operates its renewable business units from
                 Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
                 with it's presence in more than 15 countries, Moltech takes further leverage of
                 cross functional support from its allied offices which makes its network more
                 robust and potential to expand.
               </p>
-              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed text-justify">
                 Moltech operates collection and processing of feedstock for renewable diesel at
                 its own locations catering to the biodiesel industry. Products like Used cooking
                 oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
@@ -135,7 +137,7 @@ const About: React.FC = () => {
                 forms. The industrial application sector is catered through products like Fatty
                 alcohols, Fatty acid esters and glycerol.
               </p>
-              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed text-justify">
                 Equipped with a global team of highly trained employees and with effective use
                 of technology, Moltech operates with high standards of ethics, operational
                 excellence, quality control and transparency which paved the way for Moltech to
