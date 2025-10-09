@@ -17,7 +17,7 @@ const checkIcon = (
 
 const Hero = () => {
   // Background video (section bg)
-  const bgVideo = "/video.mp4";
+  const bgVideo = "/blue.mp4";
 
   // Right box: 5 images with titles
   const frames = useMemo(
