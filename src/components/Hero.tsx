@@ -4,14 +4,14 @@ const Hero = () => {
   // Background video
   const bgVideo = "/blue.mp4";
 
-  // Right box: 5 images with titles
+  // Right box: 6 images with titles
   const frames = [
     { src: "/Biodieselariel.jpg", title: "Biodiesel Feedstocks" },
     { src: "/1.png", title: "Fatty Acids" },
     { src: "/2.png", title: "Soap Noodles" },
     { src: "/3.png", title: "Animal Feed Fats" },
-    { src: "/4.png", title: "GLYCERIN" },
-    { src: "/5.png", title: "EED ADDITIVES" },
+    { src: "/4.png", title: "Glycerin" },
+    { src: "/5.png", title: "Feed Additives" },
   ];
 
   const [frameIndex, setFrameIndex] = useState(0);
@@ -91,7 +91,7 @@ const Hero = () => {
           </div>
 
           {/* ===== RIGHT: Image carousel ===== */}
-          <div className="relative z-10">
+          <div className="relative z-10 flex flex-col items-center text-center">
             <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
               {/* Image container */}
               <div className="relative w-full h-full lg:h-[640px] overflow-hidden rounded-[2rem]">
@@ -106,49 +106,13 @@ const Hero = () => {
                   />
                 ))}
               </div>
+            </div>
 
-              {/* Caption bar */}
-              <div className="pointer-events-none absolute inset-x-6 bottom-6 rounded-full bg-black/45 px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-100/90 backdrop-blur md:inset-x-10 md:bottom-8 md:px-8 md:py-3">
+            {/* ===== Title below image ===== */}
+            <div className="mt-6 text-center">
+              <h3 className="text-lg font-semibold uppercase tracking-[0.2em] text-cyan-100 drop-shadow">
                 {frames[frameIndex]?.title}
-              </div>
-
-              {/* Dots */}
-              <div className="absolute left-1/2 bottom-3 flex -translate-x-1/2 items-center gap-2 md:bottom-5">
-                {frames.map((_, i) => (
-                  <button
-                    key={i}
-                    aria-label={`Go to slide ${i + 1}`}
-                    className={`h-2.5 w-2.5 rounded-full transition ${
-                      i === frameIndex
-                        ? "bg-white"
-                        : "bg-white/40 hover:bg-white/70"
-                    }`}
-                    onClick={() => setFrameIndex(i)}
-                  />
-                ))}
-              </div>
-
-              {/* Prev / Next arrows */}
-              <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2">
-                <button
-                  className="pointer-events-auto hidden h-10 w-10 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex"
-                  onClick={() =>
-                    setFrameIndex((i) => (i - 1 + frames.length) % frames.length)
-                  }
-                  aria-label="Previous"
-                >
-                  ‹
-                </button>
-                <button
-                  className="pointer-events-auto hidden h-10 w-10 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur transition hover:bg-black/60 sm:flex"
-                  onClick={() =>
-                    setFrameIndex((i) => (i + 1) % frames.length)
-                  }
-                  aria-label="Next"
-                >
-                  ›
-                </button>
-              </div>
+              </h3>
             </div>
           </div>
           {/* ===== END right box ===== */}
