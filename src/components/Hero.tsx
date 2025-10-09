@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  // Background video
   const bgVideo = "/blue.mp4";
 
-  // Right box: 6 images with titles
   const frames = [
     { src: "/Biodieselariel.jpg", title: "Biodiesel Feedstocks" },
     { src: "/1.png", title: "Fatty Acids" },
@@ -16,7 +14,6 @@ const Hero = () => {
 
   const [frameIndex, setFrameIndex] = useState(0);
 
-  // Autoplay carousel
   useEffect(() => {
     const id = setInterval(() => {
       setFrameIndex((i) => (i + 1) % frames.length);
@@ -30,7 +27,7 @@ const Hero = () => {
       className="relative isolate overflow-hidden py-20 text-white sm:py-24 lg:py-28"
       aria-labelledby="hero-heading"
     >
-      {/* ===== Background video ===== */}
+      {/* Background video */}
       <video
         src={bgVideo}
         autoPlay
@@ -39,13 +36,11 @@ const Hero = () => {
         playsInline
         className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
       />
-
-      {/* ===== Overlay for readability ===== */}
       <div className="absolute inset-0 -z-10 bg-black/50" />
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-16">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* ===== LEFT: Text content ===== */}
+          {/* LEFT CONTENT */}
           <div className="relative z-10 flex flex-col gap-8">
             <div className="inline-flex items-center gap-3 self-start rounded-full border border-white/15 bg-white/10 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-cyan-100/90 backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-emerald-300" />
@@ -81,20 +76,16 @@ const Hero = () => {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:border-white/70 hover:bg-white/10"
               >
-                <span
-                  className="inline-flex h-2 w-2 rounded-full bg-emerald-300"
-                  aria-hidden="true"
-                />
+                <span className="inline-flex h-2 w-2 rounded-full bg-emerald-300" />
                 Live Tracking
               </a>
             </div>
           </div>
 
-          {/* ===== RIGHT: Image carousel ===== */}
+          {/* RIGHT IMAGE SECTION */}
           <div className="relative z-10 flex flex-col items-center text-center">
-            <div className="relative w-full overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
-              {/* Image container */}
-              <div className="relative w-full h-full lg:h-[640px] overflow-hidden rounded-[2rem]">
+            <div className="relative w-[85%] sm:w-[80%] lg:w-[90%] overflow-hidden rounded-[1.5rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
+              <div className="relative w-full h-[420px] sm:h-[480px] lg:h-[520px] overflow-hidden rounded-[1.5rem]">
                 {frames.map((f, i) => (
                   <img
                     key={f.src}
@@ -108,14 +99,13 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* ===== Title below image ===== */}
-            <div className="mt-6 text-center">
-              <h3 className="text-lg font-semibold uppercase tracking-[0.2em] text-cyan-100 drop-shadow">
+            {/* Title below image */}
+            <div className="mt-5 text-center">
+              <h3 className="text-base font-semibold uppercase tracking-[0.25em] text-cyan-100 drop-shadow">
                 {frames[frameIndex]?.title}
               </h3>
             </div>
           </div>
-          {/* ===== END right box ===== */}
         </div>
       </div>
     </section>
