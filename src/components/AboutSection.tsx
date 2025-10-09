@@ -30,9 +30,6 @@ const About: React.FC = () => {
 
           {/* Right: Text */}
           <div className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-semibold text-black">
-              We Grow Your Brand
-            </h3>
             <p className="text-lg leading-relaxed text-gray-800">
               Moltech strides in the bio space working on clean initiatives and products that drives the circular economy.
               With its strategic presence in Asia, Middle East, United Kingdom and United States of America, 
