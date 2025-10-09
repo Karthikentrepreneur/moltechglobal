@@ -1,5 +1,6 @@
 // src/pages/About.tsx
 import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Users, Box, PartyPopper, Handshake } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -71,13 +72,19 @@ const CountUp: React.FC<CountUpProps> = ({ to, duration = 1200, className, suffi
 const About: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>About Us - Chemical Solutions for Sustainable Industries</title>
+        <meta
+          name="description"
+          content="Learn about Moltech’s global presence and expertise in providing chemical solutions for sustainable industries. Discover our mission and vision for a greener future."
+        />
+      </Helmet>
+
       <Header />
 
-      {/* Removed top padding so the hero image fills behind the fixed header */}
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (image with text overlay) ---------- */}
+        {/* ---------- HERO ---------- */}
         <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] flex items-center justify-center text-center">
-          {/* Background image */}
           <img
             src="/chemical.jpg"
             alt="Laboratory glassware and sustainable chemistry"
@@ -85,74 +92,56 @@ const About: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          {/* Overlay */}
           <div className="absolute inset-0 bg-black/40" aria-hidden />
-
-          {/* Hero Content */}
           <div className="relative z-10 px-6">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
               About Us
             </h1>
-            <p className="text-3xl md:text-4xl font-semibold max-w-4xl mx-auto text-gray-200 leading-relaxed">
-  Chemical Solutions for Sustainable Industries
-</p>
           </div>
         </section>
 
-        {/* ---------- INTRO ---------- */}
-        <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-tight text-black max-w-5xl">
-            Our Story
+        {/* ---------- INTRO (matches screenshot) ---------- */}
+        <section className="mx-auto max-w-4xl md:max-w-5xl px-6 py-12 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-gray-800">
+            About Us – Chemical Solutions for Sustainable Industries
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-2">
-            <div className="max-w-none">
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                Moltech strides in the bio space working on clean initiatives and products that
-                drives the circular economy. With its strategic presence in Asia, Middle East,
-                United Kingdom and United States of America, Moltech is positioned to cater and
-                harness cross continental potential of renewable and sustainable products on a
-                global platform.
-              </p>
-              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
-                Headquartered in Singapore, Moltech operates its renewable business units from
-                Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
-                with it's presence in more than 15 countries, Moltech takes further leverage of
-                cross functional support from its allied offices which makes its network more
-                robust and potential to expand.
-              </p>
-              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
-                Moltech operates collection and processing of feedstock for renewable diesel at
-                its own locations catering to the biodiesel industry. Products like Used cooking
-                oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
-                works on vegetable oil based specially formulated feed fats both liquid and dry
-                forms. The industrial application sector is catered through products like Fatty
-                alcohols, Fatty acid esters and glycerol.
-              </p>
-              <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
-                Equipped with a global team of highly trained employees and with effective use
-                of technology, Moltech operates with high standards of ethics, operational
-                excellence, quality control and transparency which paved the way for Moltech to
-                become one of the most reliable partners on a global scale.
-              </p>
-
-              <p className="mt-6 text-sm md:text-base text-gray-900">
-                Moltech is certified by{" "}
-                <span className="text-sky-700 font-semibold">
-                  International Sustainability &amp; Carbon Certification (ISCC)
-                </span>
-                , European Union.
-              </p>
-            </div>
-
-            <div className="overflow-hidden rounded-2xl bg-gray-100">
-              <img
-                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop"
-                alt="Sustainable operations"
-                className="h-full w-full object-cover"
-                draggable={false}
-              />
-            </div>
+          <div className="mt-6 space-y-6">
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+              Moltech strides in the bio space working on clean initiatives and products that
+              drives the circular economy. With its strategic presence in Asia, Middle East,
+              United Kingdom and United States of America, Moltech is positioned to cater and
+              harness cross continental potential of renewable and sustainable products on a
+              global platform.
+            </p>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+              Headquartered in Singapore, Moltech operates its renewable business units from
+              Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
+              with it's presence in more than 15 countries, Moltech takes further leverage of
+              cross functional support from its allied offices which makes its network more
+              robust and potential to expand.
+            </p>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+              Moltech operates collection and processing of feedstock for renewable diesel at
+              its own locations catering to the biodiesel industry. Products like Used cooking
+              oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
+              works on vegetable oil based specially formulated feed fats both liquid and dry
+              forms. The industrial application sector is catered through products like Fatty
+              alcohols, Fatty acid esters and glycerol.
+            </p>
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+              Equipped with a global team of highly trained employees and with effective use
+              of technology, Moltech operates with high standards of ethics, operational
+              excellence, quality control and transparency which paved the way for Moltech to
+              become one of the most reliable partners on a global scale.
+            </p>
+            <p className="text-sm md:text-base text-gray-900">
+              Moltech is certified by{" "}
+              <span className="text-sky-700 font-semibold">
+                International Sustainability &amp; Carbon Certification (ISCC)
+              </span>
+              , European Union.
+            </p>
           </div>
         </section>
 

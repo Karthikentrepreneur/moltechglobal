@@ -73,7 +73,7 @@ const Header = () => {
                 className="h-8 w-auto object-contain"
               />
             </div>
-            <span className="text-[11px] font-semibold tracking-[0.35em] uppercase text-slate-500">
+            <span className="text-[11px] font-semibold tracking-[0.38em] uppercase text-slate-500">
               Driving Sustainability
             </span>
           </Link>

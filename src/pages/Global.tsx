@@ -67,7 +67,7 @@ const Global = () => {
               Explore OECL's network of offices, warehouses, and service partners spanning key trade lanes across Asia, the Middle East, Europe, and the Americas. Select a location to reveal the on-ground team supporting your supply chain.
             </p>
           </div>
-        </section>
+        )}
 
         <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
           <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
