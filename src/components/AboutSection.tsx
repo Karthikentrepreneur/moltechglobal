@@ -22,7 +22,7 @@ const About: React.FC = () => {
           {/* Left: Image */}
           <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl hover-lift border border-gray-200">
             <img
-              src="/Aboutourteam.png"
+              src="/Biodieselariel.png"
               alt="Creative marketing team brainstorming with laptops and whiteboards"
               className="w-full h-auto rounded-xl shadow-xl object-cover"
             />
