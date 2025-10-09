@@ -7,8 +7,8 @@ const Hero = () => {
   // Right box: 5 images with titles
   const frames = [
     { src: "/biodiesel.png", title: "Biodiesel Feedstocks" },
-    { src: "/images/frame-2.jpg", title: "Certified Collection Network" },
-    { src: "/images/frame-3.jpg", title: "Advanced Processing" },
+    { src: "/Biodieselariel.jpg", title: "Certified Collection Network" },
+    { src: "/Glycerin.jpg", title: "Advanced Processing" },
     { src: "/images/frame-4.jpg", title: "Quality & Compliance" },
     { src: "/images/frame-5.jpg", title: "Global Supply Logistics" },
   ];
