@@ -89,8 +89,6 @@ const About: React.FC = () => {
             src="/chemical.jpg"
             alt="Laboratory glassware and sustainable chemistry"
             className="absolute inset-0 h-full w-full object-cover object-center"
-            loading="eager"
-            decoding="async"
           />
           <div className="absolute inset-0 bg-black/40" aria-hidden />
           <div className="relative z-10 px-6">
@@ -100,48 +98,62 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- INTRO (matches screenshot) ---------- */}
-        <section className="mx-auto max-w-4xl md:max-w-5xl px-6 py-12 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-gray-800">
-            About Us – Chemical Solutions for Sustainable Industries
-          </h2>
+        {/* ---------- INTRO with RIGHT IMAGE ---------- */}
+        <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            {/* LEFT CONTENT */}
+            <div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 mb-6">
+               Chemical Solutions for Sustainable Industries
+              </h2>
 
-          <div className="mt-6 space-y-6">
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
-              Moltech strides in the bio space working on clean initiatives and products that
-              drives the circular economy. With its strategic presence in Asia, Middle East,
-              United Kingdom and United States of America, Moltech is positioned to cater and
-              harness cross continental potential of renewable and sustainable products on a
-              global platform.
-            </p>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
-              Headquartered in Singapore, Moltech operates its renewable business units from
-              Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
-              with it's presence in more than 15 countries, Moltech takes further leverage of
-              cross functional support from its allied offices which makes its network more
-              robust and potential to expand.
-            </p>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
-              Moltech operates collection and processing of feedstock for renewable diesel at
-              its own locations catering to the biodiesel industry. Products like Used cooking
-              oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
-              works on vegetable oil based specially formulated feed fats both liquid and dry
-              forms. The industrial application sector is catered through products like Fatty
-              alcohols, Fatty acid esters and glycerol.
-            </p>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
-              Equipped with a global team of highly trained employees and with effective use
-              of technology, Moltech operates with high standards of ethics, operational
-              excellence, quality control and transparency which paved the way for Moltech to
-              become one of the most reliable partners on a global scale.
-            </p>
-            <p className="text-sm md:text-base text-gray-900">
-              Moltech is certified by{" "}
-              <span className="text-sky-700 font-semibold">
-                International Sustainability &amp; Carbon Certification (ISCC)
-              </span>
-              , European Union.
-            </p>
+              <div className="space-y-6">
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+                  Moltech strides in the bio space working on clean initiatives and products that
+                  drives the circular economy. With its strategic presence in Asia, Middle East,
+                  United Kingdom and United States of America, Moltech is positioned to cater and
+                  harness cross continental potential of renewable and sustainable products on a
+                  global platform.
+                </p>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+                  Headquartered in Singapore, Moltech operates its renewable business units from
+                  Malaysia, Thailand, Indonesia, UAE, UK and USA. Being part of a larger group
+                  with it's presence in more than 15 countries, Moltech takes further leverage of
+                  cross functional support from its allied offices which makes its network more
+                  robust and potential to expand.
+                </p>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+                  Moltech operates collection and processing of feedstock for renewable diesel at
+                  its own locations catering to the biodiesel industry. Products like Used cooking
+                  oil, Tyre derived oils, Acid oils and POME are few of them. The Feed division
+                  works on vegetable oil based specially formulated feed fats both liquid and dry
+                  forms. The industrial application sector is catered through products like Fatty
+                  alcohols, Fatty acid esters and glycerol.
+                </p>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed text-justify">
+                  Equipped with a global team of highly trained employees and with effective use
+                  of technology, Moltech operates with high standards of ethics, operational
+                  excellence, quality control and transparency which paved the way for Moltech to
+                  become one of the most reliable partners on a global scale.
+                </p>
+                <p className="text-sm md:text-base text-gray-900">
+                  Moltech is certified by{" "}
+                  <span className="text-sky-700 font-semibold">
+                    International Sustainability &amp; Carbon Certification (ISCC)
+                  </span>
+                  , European Union.
+                </p>
+              </div>
+            </div>
+
+            {/* RIGHT IMAGE — restored original Unsplash image */}
+            <div className="overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop"
+                alt="Sustainable operations"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </section>
 
@@ -185,46 +197,6 @@ const About: React.FC = () => {
               <div>
                 <CountUp to={1000} suffix="+" className="text-4xl font-extrabold" />
                 <div className="text-gray-600">Satisfied Clients</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ---------- VISION / MISSION ---------- */}
-        <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="relative overflow-hidden rounded-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop"
-                alt="Vision"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-sky-600/30 to-emerald-500/30" />
-              <div className="relative p-8 sm:p-10 md:p-12 text-white">
-                <h3 className="text-2xl tracking-[0.35em] font-semibold">VISION</h3>
-                <div className="mt-6 h-px w-10 bg-white/70" />
-                <p className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-white/95">
-                  To engage in business and services in the bio-space which contribute to
-                  reduction in carbon footprint and environmental care
-                </p>
-              </div>
-            </div>
-
-            <div className="relative overflow-hidden rounded-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1600&auto=format&fit=crop"
-                alt="Mission"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/35 via-sky-600/30 to-teal-500/30" />
-              <div className="relative p-8 sm:p-10 md:p-12 text-white">
-                <h3 className="text-2xl tracking-[0.35em] font-semibold">MISSION</h3>
-                <div className="mt-6 h-px w-10 bg-white/70" />
-                <ul className="mt-6 max-w-2xl list-disc space-y-3 pl-5 text-base md:text-lg leading-relaxed text-white/95">
-                  <li>Scale up the collection and processing of sustainable feedstock for clean energy.</li>
-                  <li>Operate with high standards of ethics and good governance.</li>
-                  <li>Care for the community and the environment.</li>
-                </ul>
               </div>
             </div>
           </div>
