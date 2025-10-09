@@ -91,11 +91,10 @@ const About: React.FC = () => {
           {/* Hero Content */}
           <div className="relative z-10 px-6">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-              About Us — Chemical Solutions for Sustainable Industries
+              About Us
             </h1>
             <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-gray-200 leading-relaxed">
-              Driving innovation in bio-space and clean initiatives with a global presence across Asia,
-              Middle East, UK, and USA.
+             Chemical Solutions for Sustainable Industries
             </p>
           </div>
         </section>
