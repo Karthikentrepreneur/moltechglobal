@@ -9,7 +9,7 @@ const Hero = () => {
     { src: "/biodiesel.png", title: "Biodiesel Feedstocks" },
     { src: "/Biodieselariel.jpg", title: "Certified Collection Network" },
     { src: "/Glycerin.jpg", title: "Advanced Processing" },
-    { src: "/images/frame-4.jpg", title: "Quality & Compliance" },
+    { src: "/giodiesel.jpg", title: "Quality & Compliance" },
     { src: "/images/frame-5.jpg", title: "Global Supply Logistics" },
   ];
 
