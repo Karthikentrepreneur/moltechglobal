@@ -33,8 +33,8 @@ const AnimalFeedFats: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO ---------- */}
-        <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
+        {/* ---------- HERO (medium size) ---------- */}
+        <section className="relative h-[35vh] md:h-[45vh] lg:h-[50vh]">
           <img
             src="/s.jpg"
             alt="Animal feed fats background"
@@ -42,18 +42,18 @@ const AnimalFeedFats: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-black/35" aria-hidden />
+          <div className="absolute inset-0 bg-black/40" aria-hidden />
 
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
-              <div className="max-w-4xl">
-                <div className="mx-auto mb-6 inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4">
-                  <Wheat className="h-8 w-8 text-white" />
+              <div className="max-w-3xl">
+                <div className="mx-auto mb-4 inline-flex items-center justify-center rounded-xl bg-blue-600/85 p-3">
+                  <Wheat className="h-7 w-7 text-white" />
                 </div>
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                   Animal Feed Fats
                 </h1>
-                <p className="mt-6 text-lg md:text-xl text-white/90">
+                <p className="mt-4 text-base md:text-lg text-white/90">
                   High-energy density formulations and calcium-salt bypass fats for superior animal nutrition and feed conversion efficiency.
                 </p>
               </div>
@@ -72,7 +72,7 @@ const AnimalFeedFats: React.FC = () => {
                   <img
                     src="/farmer.jpg"
                     alt="Animal feed fats product"
-                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
+                    className="w-full h-[360px] md:h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
                   />
                 </div>
 
@@ -84,7 +84,7 @@ const AnimalFeedFats: React.FC = () => {
                     >
                       <Wheat className="w-6 h-6" aria-hidden />
                     </div>
-                    <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900">
                       Animal Feed Fats
                     </h2>
                   </div>
@@ -123,8 +123,8 @@ const AnimalFeedFats: React.FC = () => {
                         ].join(" ");
                       }}
                     >
-                      {() => {
-                        const highlighted = hoveredSlug === p.slug;
+                      {({ isActive }) => {
+                        const highlighted = isActive || hoveredSlug === p.slug;
                         return (
                           <>
                             <span className="font-medium">{p.name}</span>
