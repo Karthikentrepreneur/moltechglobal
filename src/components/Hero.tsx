@@ -42,20 +42,20 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-slate-950 pt-24 pb-20 text-white lg:pb-28"
+      className="relative overflow-hidden bg-gradient-to-br from-[#0b2c32] via-[#084d4a] to-[#021018] pt-24 pb-20 text-white lg:pb-28"
       aria-labelledby="hero-heading"
     >
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-emerald-500/30 blur-3xl" />
-        <div className="absolute -left-24 bottom-0 h-[360px] w-[360px] rounded-full bg-teal-400/20 blur-3xl" />
-        <div className="absolute -right-36 top-12 h-[420px] w-[420px] rounded-full bg-emerald-300/20 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(148,255,219,0.18),_rgba(10,12,19,0.95))]" />
+        <div className="absolute left-1/2 top-0 h-[620px] w-[620px] -translate-x-1/2 rounded-full bg-teal-400/20 blur-3xl" />
+        <div className="absolute -left-24 bottom-0 h-[360px] w-[360px] rounded-full bg-emerald-400/20 blur-3xl" />
+        <div className="absolute -right-36 top-12 h-[420px] w-[420px] rounded-full bg-teal-300/10 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#063537]/40 to-[#01070b]/90" />
       </div>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 lg:flex-row lg:items-center lg:gap-20 lg:px-10 xl:px-16">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-10 xl:px-16">
         {/* Content column */}
-        <div className="relative z-10 flex-1 space-y-10">
+        <div className="relative z-10 flex flex-1 flex-col space-y-10 lg:max-w-xl lg:flex-[0.4]">
           <div className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200/90 backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-emerald-300" />
             Driving Sustainability
@@ -109,32 +109,28 @@ const Hero = () => {
         </div>
 
         {/* Video column */}
-        <div className="relative z-10 flex flex-1 items-center justify-center">
-          <div className="relative w-full max-w-xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-3 shadow-[0_0_120px_-30px_rgba(16,185,129,0.8)] backdrop-blur">
-            <div className="pointer-events-none absolute -left-6 top-8 h-24 w-24 rounded-full bg-emerald-400/50 blur-2xl" />
-            <div className="pointer-events-none absolute -right-10 bottom-4 h-32 w-32 rounded-full bg-teal-300/40 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10">
-              {videos.map((src, i) => (
-                <video
-                  key={src}
-                  src={src}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className={`h-full w-full object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`}
-                />
-              ))}
-              <div className="absolute inset-x-6 bottom-6 flex items-center justify-between rounded-full bg-black/60 px-5 py-3 text-xs uppercase tracking-[0.3em] text-emerald-200/80 backdrop-blur">
-                <span>Real-time Operations</span>
-                <span className="inline-flex items-center gap-2 text-[10px]">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-100" />
-                  </span>
-                  Live
+        <div className="relative z-10 flex flex-1 items-center justify-center lg:flex-[0.6]">
+          <div className="relative w-full overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 shadow-[0_0_160px_-40px_rgba(15,118,110,0.9)] backdrop-blur lg:h-[520px]">
+            {videos.map((src, i) => (
+              <video
+                key={src}
+                src={src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={`h-full w-full object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`}
+              />
+            ))}
+            <div className="pointer-events-none absolute inset-x-10 bottom-10 flex items-center justify-between rounded-full bg-black/60 px-6 py-3 text-xs uppercase tracking-[0.35em] text-teal-100/90 backdrop-blur">
+              <span>Real-time Operations</span>
+              <span className="inline-flex items-center gap-2 text-[10px]">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-300 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-100" />
                 </span>
-              </div>
+                Live
+              </span>
             </div>
           </div>
         </div>
