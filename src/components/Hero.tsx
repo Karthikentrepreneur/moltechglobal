@@ -6,11 +6,12 @@ const Hero = () => {
 
   // Right box: 5 images with titles
   const frames = [
-    { src: "/biodiesel.png", title: "Biodiesel Feedstocks" },
-    { src: "/Biodieselariel.jpg", title: "Certified Collection Network" },
-    { src: "/Glycerin.jpg", title: "Advanced Processing" },
-    { src: "/giodiesel.jpg", title: "Quality & Compliance" },
-    { src: "/images/frame-5.jpg", title: "Global Supply Logistics" },
+    { src: "/Biodieselariel.jpg", title: "Biodiesel Feedstocks" },
+    { src: "/1.png", title: "Fatty Acids" },
+    { src: "/2.png", title: "Soap Noodles" },
+    { src: "/3.png", title: "Animal Feed Fats" },
+    { src: "/4.png", title: "GLYCERIN" },
+    { src: "/5.png", title: "EED ADDITIVES" },
   ];
 
   const [frameIndex, setFrameIndex] = useState(0);
