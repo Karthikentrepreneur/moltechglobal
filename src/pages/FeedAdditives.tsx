@@ -34,8 +34,8 @@ const FeedAdditives: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO ---------- */}
-        <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh]">
+        {/* ---------- HERO (medium height + dark grey gradient) ---------- */}
+        <section className="relative h-[35vh] md:h-[45vh] lg:h-[50vh]">
           <img
             src="/feed.jpg"
             alt="Feed additives background"
@@ -43,18 +43,22 @@ const FeedAdditives: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-black/25" aria-hidden />
+          {/* Stronger grey gradient overlay for clarity/consistency */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-gray-900/85 via-gray-800/70 to-gray-700/60"
+            aria-hidden
+          />
 
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
               <div className="max-w-4xl">
-                <div className="mx-auto mb-6 inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4">
-                  <Package className="h-8 w-8 text-white" />
+                <div className="mx-auto mb-4 inline-flex items-center justify-center rounded-xl bg-blue-600/85 p-3">
+                  <Package className="h-7 w-7 text-white" />
                 </div>
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                   Feed Additives
                 </h1>
-                <p className="mt-6 text-lg md:text-xl text-white/90">
+                <p className="mt-4 text-base md:text-lg text-white/90">
                   Custom vitamin, mineral, and enzyme blends for targeted animal
                   performance with rigorous quality assurance.
                 </p>
