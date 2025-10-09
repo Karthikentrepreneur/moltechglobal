@@ -93,9 +93,9 @@ const About: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
               About Us
             </h1>
-            <p className="text-xl max-w-3xl mx-auto text-base md:text-lg text-gray-200 leading-relaxed">
-             Chemical Solutions for Sustainable Industries
-            </p>
+            <p className="text-3xl md:text-4xl font-semibold max-w-4xl mx-auto text-gray-200 leading-relaxed">
+  Chemical Solutions for Sustainable Industries
+</p>
           </div>
         </section>
 
