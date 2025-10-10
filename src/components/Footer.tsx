@@ -26,7 +26,7 @@ const offices = [
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-// Accent color similar to your reference
+// Accent color
 const GOLD = "text-[#F2C200]";
 const GOLD_BG = "bg-[#F2C200]";
 
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
     <footer className="bg-black text-white">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Top thin gold divider + round accent button (decorative) */}
+        {/* Top thin gold divider + round accent button */}
         <div className="relative">
           <div className={`mx-auto mt-8 h-[3px] w-full max-w-5xl ${GOLD_BG} rounded-full`} />
           <div
@@ -48,8 +48,7 @@ const Footer: React.FC = () => {
 
         {/* Main three-column section */}
         <div className="py-10 grid grid-cols-1 gap-10 md:grid-cols-3">
-
-          {/* LEFT: Logo + about + social (icons kept minimal like ref) */}
+          {/* LEFT: Logo + about */}
           <div>
             <img
               src="/Moltechlogo.png"
@@ -62,28 +61,30 @@ const Footer: React.FC = () => {
               transparency, and community impact.
             </p>
 
-            {/* Simple circular social icon mocks (kept generic to avoid content changes) */}
+            {/* Social icons */}
             <div className="mt-5 flex items-center gap-3">
               <a
                 href="#"
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/15 transition"
                 aria-label="Facebook"
               >
-                <span className="sr-only">Facebook</span>
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                  <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z" />
+                </svg>
               </a>
               <a
                 href="#"
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/15 transition"
                 aria-label="LinkedIn"
               >
-                <span className="sr-only">LinkedIn</span>
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M20.45 20.45h-3.55v-5.6c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.69H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.33-1.85 3.56 0 4.22 2.34 4.22 5.38v6.36zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                  <path d="M20.45 20.45h-3.55v-5.6c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.69H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.33-1.85 3.56 0 4.22 2.34 4.22 5.38v6.36zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                </svg>
               </a>
             </div>
           </div>
 
-          {/* MIDDLE: Quick links with gold arrow bullets */}
+          {/* MIDDLE: Quick links */}
           <div>
             <h4 className="text-[18px] font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-3">
@@ -101,7 +102,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* RIGHT: Contact (kept same content: email) + auto-scroll offices kept separate below */}
+          {/* RIGHT: Contact + Offices */}
           <div>
             <h4 className="text-[18px] font-semibold mb-4">Contact</h4>
             <a
@@ -112,7 +113,6 @@ const Footer: React.FC = () => {
               info@moltechglobal.com
             </a>
 
-            {/* Global offices auto-scroll — styled compact like the reference */}
             <div className="mt-6">
               <h5 className="text-sm font-semibold mb-2 text-white/80">Global Offices</h5>
               <div className="footer-autoscroll max-h-48 overflow-hidden">
@@ -134,22 +134,11 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div>
-
         </div>
 
-        {/* Bottom divider dots effect (subtle) */}
-        <div className="flex items-center justify-center gap-2 pb-2" aria-hidden>
-          {[...Array(6)].map((_, i) => (
-            <span
-              key={i}
-              className={`h-1.5 w-1.5 rounded-full ${
-                i === 3 ? GOLD_BG : "bg-white/20"
-              }`}
-            />
-          ))}
-        </div>
+        {/* Removed dotted divider section */}
 
-        {/* Bottom bar: Back to Top + Copyright */}
+        {/* Bottom bar */}
         <div className="py-5 flex flex-col sm:flex-row items-center justify-between text-xs md:text-sm text-white/80 border-t border-white/10">
           <button
             onClick={scrollTop}
