@@ -18,7 +18,7 @@ const CertificationIndia: React.FC = () => {
       <Header />
 
       <main className="bg-gradient-to-b from-slate-50 to-white pt-24">
-        <section className="py-12 md:py-16">
+        <section className="py-8 md:py-12">
           <div className="mx-auto px-4 md:px-6 max-w-[1600px]">
             {/* Title */}
             <div className="text-center mb-10">
@@ -68,8 +68,6 @@ const CertificationIndia: React.FC = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };
