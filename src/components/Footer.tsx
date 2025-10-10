@@ -24,6 +24,11 @@ const offices = [
   { country: "USA - NEW YORK", address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830", phone: "+1 732 456 6780" },
 ];
 
+const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+// Accent color
+const GOLD = "text-[#F2C200]";
+const GOLD_BG = "bg-[#F2C200]";
 
 const Footer: React.FC = () => {
   return (
