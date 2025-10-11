@@ -108,8 +108,6 @@ const CertificationIndia: React.FC = () => {
           </div>
         </div>
       )}
-
-      <Footer />
     </>
   );
 };
