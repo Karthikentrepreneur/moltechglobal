@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 import biodieselCard from "@/assets/product-biodiesel-feedstocks-card.jpg";
 import fattyAcidsCard from "@/assets/product-fatty-acids-card.jpg";
-import soapNoodlesCard from "@/assets/product-soap-noodles-card.jpg";
-import animalFeedFatsCard from "@/assets/product-animal-feed-fats-card.jpg";
+import soapNoodlesCard from "@/soapnoodles.png";
+import animalFeedFatsCard from "@/animalfeeds.png";
 import glycerinCard from "@/assets/product-glycerin-card.jpg";
 import feedAdditivesCard from "@/assets/product-feed-additives-card.jpg";
 
