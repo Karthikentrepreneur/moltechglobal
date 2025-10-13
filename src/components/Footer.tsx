@@ -115,10 +115,13 @@ const Footer: React.FC = () => {
               <h5 className="text-sm font-semibold mb-2 text-white/80">Global Offices</h5>
 
               {/* HORIZONTAL auto-scroll (left -> right) */}
-              <div className="footer-autoscroll-x overflow-hidden">
-                <div className="footer-autoscroll-x-track">
+              <div className="footer-autoscroll">
+                <div className="footer-autoscroll-track">
                   {[...offices, ...offices].map((office, i) => (
-                    <div key={i} className="flex-none pr-8 border-r border-white/10 mr-8">
+                    <div
+                      key={i}
+                      className="office-card min-w-[260px] sm:min-w-[320px] pr-6 mr-6 border-r border-white/10"
+                    >
                       <div className="text-[13px] font-extrabold text-white">
                         {office.country}
                       </div>
