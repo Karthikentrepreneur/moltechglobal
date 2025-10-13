@@ -12,16 +12,62 @@ type Office = {
   address?: string;
   mapUrl?: string;
 };
+
 const OFFICES: Office[] = [
-  { country: "Australia",  city: "Melbourne", address: "Moltech Pty Ltd, Level 10, Collins St, Melbourne VIC", mapUrl: "#" },
-  { country: "Indonesia",  city: "Jakarta",   address: "Moltech Indonesia, SCBD District, Jl. Jend. Sudirman, Jakarta", mapUrl: "#" },
-  { country: "Malaysia",   city: "Kuala Lumpur", address: "Moltech Malaysia, Bangsar South, KL", mapUrl: "#" },
-  { country: "Saudi Arabia", city: "Riyadh",  address: "Moltech KSA, King Fahd Rd, Riyadh", mapUrl: "#" },
-  { country: "Singapore",  city: "Singapore", address: "Moltech HQ, 1 North Bridge Rd, Singapore", mapUrl: "#" },
-  { country: "Thailand",   city: "Bangkok",   address: "Moltech Thailand, Rama IV Rd, Bangkok", mapUrl: "#" },
-  { country: "UAE",        city: "Dubai",     address: "Moltech MENA, JLT Cluster, Dubai", mapUrl: "#" },
-  { country: "UK",         city: "London",    address: "Moltech UK, Canary Wharf, London", mapUrl: "#" },
-  { country: "USA",        city: "Houston",   address: "Moltech USA, Energy Corridor, Houston, TX", mapUrl: "#" },
+  {
+    country: "Australia",
+    city: "Melbourne",
+    address: "Suite 5, 7-9 Mallet Road, Tullamarine, VIC 3043",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=7-9+Mallet+Road+Tullamarine+VIC+3043",
+  },
+  {
+    country: "Indonesia",
+    city: "Jakarta",
+    address: "408, Lina Building, Jl. HR Rasuna Said Kav B7, Jakarta",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Lina+Building+Rasuna+Said+Jakarta",
+  },
+  {
+    country: "Malaysia",
+    city: "Port Klang",
+    address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=18+Jalan+Sungai+Chandong+12+Pulau+Indah+42000+Pelabuhan+Klang",
+  },
+  {
+    country: "Saudi Arabia",
+    city: "Riyadh",
+    address: "King Fahd Rd, Riyadh", // TODO: replace with exact address if you have it
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=King+Fahd+Rd+Riyadh",
+  },
+  {
+    country: "Singapore",
+    city: "Singapore",
+    address: "Blk 511 Kampong Bahru Road, #03-01 Keppel Distripark, Singapore 099447",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=511+Kampong+Bahru+Road+Keppel+Distripark+Singapore+099447",
+  },
+  {
+    country: "Thailand",
+    city: "Bangkok",
+    address: "Rama IV Rd, Bangkok", // TODO: replace with exact address if you have it
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Rama+IV+Road+Bangkok",
+  },
+  {
+    country: "UAE",
+    city: "Dubai",
+    address: "JLT Cluster, Dubai", // TODO: replace with exact address if you have it
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=JLT+Cluster+Dubai",
+  },
+  {
+    country: "UK",
+    city: "London",
+    address: "Canary Wharf, London", // TODO: replace with exact address if you have it
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Canary+Wharf+London",
+  },
+  {
+    country: "USA",
+    city: "Houston",
+    address: "Energy Corridor, Houston, TX", // TODO: replace with exact address if you have it
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Energy+Corridor+Houston+TX",
+  },
 ];
 
 /* Small emoji flags (optional) */
@@ -51,7 +97,9 @@ function GetInTouchCard() {
   return (
     <Card className="rounded-2xl shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
       <CardHeader>
-        <CardTitle className="text-3xl sm:text-[34px] text-foreground text-center">Get in touch</CardTitle>
+        <CardTitle className="text-3xl sm:text-[34px] text-foreground text-center">
+          Get in touch
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={onSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -162,12 +210,7 @@ export default function ContactSection() {
                     Copy address
                   </Button>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="gap-2"
-                    asChild
-                  >
+                  <Button variant="outline" size="sm" className="gap-2" asChild>
                     <a href={activeOffice?.mapUrl || "#"} target="_blank" rel="noreferrer">
                       <ExternalLink className="w-4 h-4" />
                       Open map
