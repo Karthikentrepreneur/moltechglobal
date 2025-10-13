@@ -24,6 +24,12 @@ const About = () => {
             </div>
           </div>
 
+          {/* Right: Content (UPDATED STYLE ONLY) */}
+          <div className="space-y-8">
+            {/* small top label */}
+            <div className="text-[11px] font-semibold tracking-widest uppercase text-gray-500">
+              About Company
+            </div>
 
             {/* Big headline */}
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0F1B3D] leading-tight">
@@ -76,6 +82,19 @@ const About = () => {
                     quality control and transparency.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            {/* Help line */}
+            <div className="flex items-center gap-3 pt-4">
+              <img
+                src="/Moltechlogo.png"
+                alt="Moltech"
+                className="h-6 w-auto object-contain"
+              />
+              <div className="text-sm text-gray-500">Need Help?</div>
+              <div className="font-semibold text-[#0F1B3D]">
+                +65 6514 0868
               </div>
             </div>
           </div>
