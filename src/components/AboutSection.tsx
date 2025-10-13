@@ -3,21 +3,7 @@ import { Users } from "lucide-react";
 
 const About = () => {
   return (
-    <section
-      id="about"
-      className="relative py-24 bg-gradient-to-br from-blue-50 via-white to-blue-100"
-    >
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, rgb(0 0 0) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        ></div>
-      </div>
-
+    <section id="about" className="relative py-24 bg-white">
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -28,7 +14,7 @@ const About = () => {
               <img
                 src="/Biodieselariel.jpg"
                 alt="Moltech sustainable biodiesel facility"
-                className="w-full h-[500px] rounded-xl object-cover" // ✅ increased image height
+                className="w-full h-[500px] rounded-xl object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl flex items-end p-8">
                 <p className="text-white font-semibold text-lg">
