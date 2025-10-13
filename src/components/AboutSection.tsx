@@ -1,5 +1,5 @@
 import React from "react";
-import { Users } from "lucide-react";
+import { Users, Globe2, ShieldCheck } from "lucide-react";
 
 const About = () => {
   return (
@@ -7,7 +7,7 @@ const About = () => {
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Image with overlay */}
+          {/* Left: Image with overlay (UNCHANGED) */}
           <div className="relative group">
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-2xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
             <div className="relative bg-white p-3 rounded-2xl shadow-2xl">
@@ -24,33 +24,78 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right: Title + Content */}
+          {/* Right: Content (UPDATED STYLE ONLY) */}
           <div className="space-y-8">
-            {/* Title + Icon */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
-                <Users className="w-6 h-6 text-blue-600" />
-              </div>
-              <h2 className="text-4xl font-bold text-gray-900">
-                About Moltech
-              </h2>
+            {/* small top label */}
+            <div className="text-[11px] font-semibold tracking-widest uppercase text-gray-500">
+              About Company
             </div>
 
-            {/* Paragraphs */}
-            <div className="space-y-6">
-              <p className="text-xl text-gray-700 leading-relaxed font-light">
-                Moltech strides in the bio space working on{" "}
-                <span className="font-semibold text-gray-900">
-                  clean initiatives and products
-                </span>{" "}
-                that drive the circular economy.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                With its strategic presence across Asia, Middle East, United
-                Kingdom, and United States of America, Moltech is positioned to
-                cater and harness cross-continental potential of renewable and
-                sustainable products on a global platform.
-              </p>
+            {/* Big headline */}
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0F1B3D] leading-tight">
+              About Moltech
+            </h2>
+
+            {/* Intro paragraph (long, with bold phrase) */}
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              Moltech strides in the bio space working on{" "}
+              <span className="font-semibold text-gray-900">
+                clean initiatives and products
+              </span>{" "}
+              that drive the circular economy. With its strategic presence in
+              Asia, Middle East, United Kingdom and United States of America,
+              Moltech is positioned to cater and harness cross-continental
+              potential of renewable and sustainable products on a global
+              platform.
+            </p>
+
+            {/* Features */}
+            <div className="space-y-6 pt-2">
+              {/* Row 1 */}
+              <div className="flex items-start gap-4">
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
+                  <Globe2 className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-semibold text-[#0F1B3D]">
+                    Global Presence & Collection
+                  </div>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Headquartered in Singapore with operations across Malaysia,
+                    Thailand, Indonesia, UAE, UK and USA — enabling reliable
+                    sourcing and delivery.
+                  </p>
+                </div>
+              </div>
+
+              {/* Row 2 */}
+              <div className="flex items-start gap-4">
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-semibold text-[#0F1B3D]">
+                    Certified & Transparent
+                  </div>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Certified by ISCC (EU); we operate with strong ethics,
+                    quality control and transparency.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Help line */}
+            <div className="flex items-center gap-3 pt-4">
+              <img
+                src="/Moltechlogo.png"
+                alt="Moltech"
+                className="h-6 w-auto object-contain"
+              />
+              <div className="text-sm text-gray-500">Need Help?</div>
+              <div className="font-semibold text-[#0F1B3D]">
+                +65 6514 0868
+              </div>
             </div>
           </div>
         </div>
