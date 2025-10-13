@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const GlobalPresence = () => {
+  const navigate = useNavigate();
+
   const stats = [
     { label: "COUNTRIES", value: 15 },
     { label: "PARTNERS", value: 200 },
@@ -65,7 +68,7 @@ const GlobalPresence = () => {
 
   return (
     <section className="relative overflow-hidden bg-deep-navy text-white py-20">
-      {/* soft map-like blobs for depth */}
+      {/* background gradient glows */}
       <div className="pointer-events-none absolute inset-0 opacity-20">
         <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-gradient-to-tr from-royal-blue to-electric-blue blur-3xl" />
         <div className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-gradient-to-br from-royal-blue to-electric-blue blur-3xl" />
@@ -79,6 +82,7 @@ const GlobalPresence = () => {
           Where We Are — Global operations across the Pacific region and beyond
         </p>
 
+        {/* Stats */}
         <div
           ref={statsRef}
           className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -86,7 +90,7 @@ const GlobalPresence = () => {
           {stats.map((s, i) => (
             <div
               key={s.label}
-              className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-8 py-10 text-center shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+              className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 px-8 py-10 text-center shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:scale-105 transition-transform duration-300"
             >
               <div className="text-4xl md:text-5xl font-extrabold">
                 {animatedStats[i]}+
@@ -96,6 +100,29 @@ const GlobalPresence = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="mt-14">
+          <button
+            onClick={() => navigate("/global")}
+            className="bg-gradient-to-r from-royal-blue to-electric-blue text-white px-8 py-4 rounded-lg text-sm font-semibold tracking-wide transition-transform duration-300 hover:scale-105 inline-flex items-center gap-2"
+          >
+            Explore Our Global Network
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
