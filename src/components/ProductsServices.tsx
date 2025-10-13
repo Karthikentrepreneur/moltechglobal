@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 import biodieselCard from "@/assets/product-biodiesel-feedstocks-card.jpg";
 import fattyAcidsCard from "@/assets/product-fatty-acids-card.jpg";
-import soapNoodlesCard from "@/assets/product-soap-noodles-card.jpg";
+import soapNoodlesCard from "@/assets/animalfeeds.png";
 import animalFeedFatsCard from "@/assets/product-animal-feed-fats-card.jpg";
 import glycerinCard from "@/assets/product-glycerin-card.jpg";
-import feedAdditivesCard from "@/assets/product-feed-additives-card.jpg";
+import feedAdditivesCard from "@/assets/soapnoodles.png";
 
 const ProductsServices = () => {
   const products = [
