@@ -29,20 +29,21 @@ const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 // Tailwind gradient helper used for accents
 const GRADIENT_BG = "bg-gradient-to-r from-royal-blue to-electric-blue";
 
-/* Dot ticker: lights one dot at a time from left -> right */
+/* Dot ticker: classic style — one active dot moves L→R */
 const DotsTicker: React.FC<{ count?: number; durationMs?: number }> = ({
   count = 8,
-  durationMs = 6000,
+  durationMs = 5600,
 }) => {
   const step = durationMs / count;
   const dots = Array.from({ length: count });
+
   return (
     <div className="mt-4 flex justify-center">
       <div
         className="dots-ticker"
         style={
           {
-            // @ts-ignore custom CSS vars
+            // @ts-ignore CSS custom props
             "--duration": `${durationMs}ms`,
             "--step": `${step}ms`,
           } as React.CSSProperties
@@ -52,12 +53,8 @@ const DotsTicker: React.FC<{ count?: number; durationMs?: number }> = ({
           <span
             key={i}
             className="dots-ticker__dot"
-            style={
-              {
-                // @ts-ignore custom CSS var
-                "--i": i,
-              } as React.CSSProperties
-            }
+            style={{ ["--i" as any]: i } as React.CSSProperties}
+            aria-hidden
           />
         ))}
       </div>
@@ -161,8 +158,8 @@ const Footer: React.FC = () => {
                 </div>
               </div>
 
-              {/* Dot ticker under the marquee */}
-              <DotsTicker count={8} durationMs={6000} />
+              {/* Classic dot ticker under the marquee */}
+              <DotsTicker count={8} durationMs={5600} />
             </div>
           </div>
         </div>
