@@ -1,37 +1,38 @@
-/* Container */
+/* Horizontal marquee container */
 .footer-autoscroll {
   width: 100%;
   overflow: hidden;
   position: relative;
-  /* optional vertical padding so items aren't clipped */
-  padding-block: 0.25rem;
+  padding-block: 0.25rem; /* keeps text from clipping */
 }
 
-/* Track: inline row that slides horizontally */
+/* The moving row */
 .footer-autoscroll-track {
-  display: inline-flex;           /* row */
-  gap: 2rem;                      /* space between office blocks */
+  display: flex;
+  flex-wrap: nowrap;     /* stay in one row */
+  gap: 2rem;             /* spacing between cards */
   will-change: transform;
-  animation: footer-scroll-right 55s linear infinite; /* slower, smoother */
+  animation: footer-scroll-right 55s linear infinite; /* adjust speed here */
 }
 
-/* Pause on hover */
+/* Pause when hovered */
 .footer-autoscroll:hover .footer-autoscroll-track {
   animation-play-state: paused;
 }
 
-/* Left -> Right marquee.
-   We render the items duplicated in markup for a seamless loop.
-   Start at -50% (middle of the doubled list) and slide to 0. */
+/* Each office card should never shrink */
+.footer-autoscroll .office-card {
+  flex: 0 0 auto; /* flex-none */
+}
+
+/* Left -> Right motion:
+   Start at -50% (middle of doubled list), glide to 0 for seamless loop. */
 @keyframes footer-scroll-right {
   0%   { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
 
-/* Accessibility: respect reduced-motion */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .footer-autoscroll-track {
-    animation: none;
-    transform: none;
-  }
+  .footer-autoscroll-track { animation: none; transform: none; }
 }
