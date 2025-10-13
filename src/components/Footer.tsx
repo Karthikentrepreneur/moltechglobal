@@ -28,7 +28,7 @@ const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
 // Gradient accents
 const GRADIENT_BG = "bg-gradient-to-r from-royal-blue to-electric-blue";
-const GRADIENT_TEXT = "bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent";
+// const GRADIENT_TEXT = "bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent"; // no longer used
 
 const Footer: React.FC = () => {
   return (
@@ -121,7 +121,8 @@ const Footer: React.FC = () => {
                 <div className="footer-autoscroll-track">
                   {[...offices, ...offices].map((office, i) => (
                     <div key={i} className="py-2">
-                      <div className={`text-[13px] font-bold ${GRADIENT_TEXT}`}>
+                      {/* Country: now bold white */}
+                      <div className="text-[13px] font-extrabold text-white">
                         {office.country}
                       </div>
                       <div className="text-[12px] text-white/80">
