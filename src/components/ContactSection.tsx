@@ -16,7 +16,7 @@ type Office = {
 };
 
 const OFFICES: Office[] = [
-  /* Australia */
+  // --- Australia ---
   {
     country: "Australia",
     city: "Melbourne",
@@ -26,7 +26,7 @@ const OFFICES: Office[] = [
     emails: ["info@gglaustralia.com"],
   },
 
-  /* Bangladesh */
+  // --- Bangladesh ---
   {
     country: "Bangladesh",
     city: "Dhaka",
@@ -37,7 +37,7 @@ const OFFICES: Office[] = [
     emails: ["info@globalconsol.com"],
   },
 
-  /* China */
+  // --- China ---
   {
     country: "China",
     city: "Shenzhen",
@@ -48,7 +48,7 @@ const OFFICES: Office[] = [
     emails: ["helen@haixun.co"],
   },
 
-  /* India */
+  // --- India ---
   {
     country: "India",
     city: "Mumbai",
@@ -114,7 +114,7 @@ const OFFICES: Office[] = [
     phones: ["+91 33 4814 9162 / 63"],
   },
 
-  /* Indonesia */
+  // --- Indonesia ---
   {
     country: "Indonesia",
     city: "Jakarta",
@@ -123,7 +123,7 @@ const OFFICES: Office[] = [
     phones: ["+62 21 529 20292", "522 4887"],
   },
 
-  /* Malaysia */
+  // --- Malaysia ---
   {
     country: "Malaysia",
     city: "Johor Bahru",
@@ -141,7 +141,7 @@ const OFFICES: Office[] = [
     phones: ["+603-3319 2778 / 74 / 75"],
   },
 
-  /* Myanmar */
+  // --- Myanmar ---
   {
     country: "Myanmar",
     city: "Yangon",
@@ -152,7 +152,7 @@ const OFFICES: Office[] = [
     emails: ["info@globalconsol.com"],
   },
 
-  /* Pakistan */
+  // --- Pakistan ---
   {
     country: "Pakistan",
     city: "Karachi",
@@ -172,16 +172,17 @@ const OFFICES: Office[] = [
     emails: ["shazia.pklhe@globalconsol.com"],
   },
 
-  /* Qatar */
+  // --- Qatar ---
   {
     country: "Qatar",
     city: "Doha",
     label: "Doha Office",
-    address: "Office No: 48, 2nd Floor, Al Matar Centre, Old Airport Road, Doha",
+    address:
+      "Office No: 48, 2nd Floor, Al Matar Centre, Old Airport Road, Doha",
     phones: ["0974 33622555"],
   },
 
-  /* Saudi Arabia */
+  // --- Saudi Arabia ---
   {
     country: "Saudi Arabia",
     city: "Dammam",
@@ -207,7 +208,7 @@ const OFFICES: Office[] = [
     phones: ["+966 12 578 0874"],
   },
 
-  /* Singapore */
+  // --- Singapore ---
   {
     country: "Singapore",
     city: "Singapore",
@@ -218,7 +219,7 @@ const OFFICES: Office[] = [
     emails: ["buddhika@globalconsol.com"],
   },
 
-  /* Sri Lanka */
+  // --- Sri Lanka ---
   {
     country: "Sri Lanka",
     city: "Colombo",
@@ -229,7 +230,7 @@ const OFFICES: Office[] = [
     emails: ["thilanka.cmb@globalconsol.com"],
   },
 
-  /* Thailand */
+  // --- Thailand ---
   {
     country: "Thailand",
     city: "Bangkok",
@@ -239,7 +240,7 @@ const OFFICES: Office[] = [
     phones: ["+662-634-3240", "+662-634-3942"],
   },
 
-  /* UAE */
+  // --- UAE ---
   {
     country: "UAE",
     city: "Dubai",
@@ -264,7 +265,7 @@ const OFFICES: Office[] = [
     phones: ["+971 50 4337214"],
   },
 
-  /* UK */
+  // --- UK ---
   {
     country: "UK",
     city: "London",
@@ -274,7 +275,7 @@ const OFFICES: Office[] = [
     phones: ["+44 (0) 203 393 9508"],
   },
 
-  /* USA */
+  // --- USA ---
   {
     country: "USA",
     city: "Chicago",
@@ -324,10 +325,10 @@ const FLAG: Record<string, string> = {
 
 /* ---------- Get in touch form (card) ---------- */
 function GetInTouchCard() {
-  const LOCATIONS = useReactMemo(() => {
-    // deduplicate country names for the dropdown
-    return Array.from(new Set(OFFICES.map((o) => o.country)));
-  }, []);
+  const LOCATIONS = useReactMemo(
+    () => Array.from(new Set(OFFICES.map((o) => o.country))),
+    []
+  );
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -348,7 +349,6 @@ function GetInTouchCard() {
         <form onSubmit={onSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <Input name="name" placeholder="Type your name" required className="h-11" />
           <Input name="email" type="email" placeholder="Type your email" required className="h-11" />
-
           <Input name="phone" placeholder="Phone" className="h-11" />
           <select
             name="location"
@@ -365,14 +365,11 @@ function GetInTouchCard() {
               </option>
             ))}
           </select>
-
           <Input name="purpose" placeholder="Purpose" className="h-11" />
           <Input name="transportation" placeholder="Transportation Method" className="h-11" />
-
           <div className="sm:col-span-2">
             <Textarea name="comment" placeholder="Comment" rows={6} />
           </div>
-
           <div className="sm:col-span-2">
             <Button type="submit" className="bg-royal-blue hover:bg-royal-blue/90 text-white px-6">
               Submit
@@ -386,7 +383,7 @@ function GetInTouchCard() {
 
 /* ---------- Auto-scrolling list (left) ---------- */
 function AutoScrollOffices() {
-  // Build a duplicated list for seamless loop
+  // duplicate for seamless loop (shows same items again after first pass)
   const items = useMemo(() => [...OFFICES, ...OFFICES], []);
 
   const mapLink = (address: string) =>
@@ -397,16 +394,16 @@ function AutoScrollOffices() {
       {/* Title */}
       <div className="sticky top-0 z-10 bg-gradient-to-r from-royal-blue to-electric-blue px-5 py-3">
         <h3 className="text-white text-lg font-semibold tracking-wide">Our Offices</h3>
-        <p className="text-white/80 text-xs">Scroll to explore — hover to pause</p>
+        <p className="text-white/80 text-xs">Auto-scroll — hover to pause</p>
       </div>
 
       {/* Animated track */}
       <div className="group max-h-[640px] overflow-hidden">
-        <div className="animate-vertical-scroll group-hover:[animation-play-state:paused]">
+        <div className="animate-vertical-scroll group-hover:[animation-play-state:paused] px-4 py-4 space-y-4">
           {items.map((o, idx) => (
             <div
               key={`${o.country}-${o.city}-${idx}`}
-              className="px-5 py-5 border-b border-gray-100 hover:bg-gray-50/60 transition-colors"
+              className="rounded-xl border-2 border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-royal-blue transition"
             >
               <div className="flex items-start gap-3">
                 <div className="mt-0.5 text-xl">{FLAG[o.country] || "🌍"}</div>
@@ -414,12 +411,12 @@ function AutoScrollOffices() {
                   <div className="font-semibold text-gray-900">
                     {o.label || `${o.city ? `${o.city} — ` : ""}${o.country}`}
                   </div>
-                  <div className="mt-1 flex items-start gap-2 text-sm text-gray-600">
+
+                  <div className="mt-1 flex items-start gap-2 text-sm text-gray-700">
                     <MapPin className="w-4 h-4 mt-0.5 text-royal-blue" />
                     <span>{o.address}</span>
                   </div>
 
-                  {/* Phones */}
                   {o.phones && o.phones.length > 0 && (
                     <div className="mt-2 flex items-start gap-2 text-sm text-gray-700">
                       <Phone className="w-4 h-4 mt-0.5 text-royal-blue" />
@@ -431,17 +428,12 @@ function AutoScrollOffices() {
                     </div>
                   )}
 
-                  {/* Emails */}
                   {o.emails && o.emails.length > 0 && (
                     <div className="mt-2 flex items-start gap-2 text-sm text-gray-700">
                       <Mail className="w-4 h-4 mt-0.5 text-royal-blue" />
                       <div className="flex flex-col">
                         {o.emails.map((e, i) => (
-                          <a
-                            key={i}
-                            href={`mailto:${e}`}
-                            className="text-royal-blue hover:underline"
-                          >
+                          <a key={i} href={`mailto:${e}`} className="text-royal-blue hover:underline">
                             {e}
                           </a>
                         ))}
@@ -449,7 +441,6 @@ function AutoScrollOffices() {
                     </div>
                   )}
 
-                  {/* Actions */}
                   <div className="mt-3 flex gap-2">
                     <Button
                       variant="outline"
@@ -460,20 +451,13 @@ function AutoScrollOffices() {
                           await navigator.clipboard.writeText(
                             `${o.label || o.country} — ${o.address}`
                           );
-                        } catch {
-                          /* noop */
-                        }
+                        } catch {}
                       }}
                     >
                       <Copy className="w-4 h-4" />
                       Copy
                     </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="gap-2"
-                      asChild
-                    >
+                    <Button variant="outline" size="sm" className="gap-2" asChild>
                       <a href={mapLink(o.address)} target="_blank" rel="noreferrer">
                         <ExternalLink className="w-4 h-4" />
                         Map
@@ -485,21 +469,21 @@ function AutoScrollOffices() {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Inline CSS for vertical marquee */}
-      <style>{`
-        @keyframes vertical-scroll {
-          0%   { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
-        }
-        .animate-vertical-scroll {
-          display: grid;
-          grid-auto-rows: minmax(0, auto);
-          animation: vertical-scroll 50s linear infinite;
-          will-change: transform;
-        }
-      `}</style>
+        {/* Inline CSS for vertical marquee (slower speed) */}
+        <style>{`
+          @keyframes vertical-scroll {
+            0%   { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+          }
+          .animate-vertical-scroll {
+            display: grid;
+            grid-auto-rows: minmax(0, auto);
+            animation: vertical-scroll 95s linear infinite; /* slowed down */
+            will-change: transform;
+          }
+        `}</style>
+      </div>
     </div>
   );
 }
@@ -509,9 +493,8 @@ export default function ContactSection() {
   return (
     <section className="relative py-12">
       <div className="max-w-7xl mx-auto px-6">
-        {/* 2-column layout: left auto-scroll, right form */}
         <div className="grid lg:grid-cols-2 gap-10 items-start">
-          {/* LEFT: Auto-scrolling offices */}
+          {/* LEFT: Individual outlined cards with slow auto-scroll */}
           <AutoScrollOffices />
 
           {/* RIGHT: Get in touch form (sticky) */}
