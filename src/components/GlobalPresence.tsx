@@ -1,20 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"; // assuming React Router is used
+import { useNavigate } from "react-router-dom";
 
 const GlobalPresence = () => {
   const navigate = useNavigate();
-
-  const countries = [
-    "Australia",
-    "Indonesia",
-    "Malaysia",
-    "Saudi Arabia",
-    "Singapore",
-    "Thailand",
-    "UAE",
-    "UK",
-    "USA",
-  ];
 
   const stats = [
     { label: "Deliveries Completed", value: 1000000 },
@@ -104,11 +92,11 @@ const GlobalPresence = () => {
           ))}
         </div>
 
-        {/* CTA Button moved below numbers */}
-        <div className="mb-20">
+        {/* CTA Button with gradient blue */}
+        <div className="mb-10">
           <button
             onClick={() => navigate("/global-presence")}
-            className="bg-electric-red hover:bg-red-600 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors duration-300 inline-flex items-center gap-2"
+            className="bg-gradient-to-r from-royal-blue to-electric-blue text-white px-6 py-3 rounded-lg text-sm font-semibold transition-transform duration-300 hover:scale-105 inline-flex items-center gap-2"
           >
             Explore Our Global Network
             <svg
@@ -125,23 +113,6 @@ const GlobalPresence = () => {
               />
             </svg>
           </button>
-        </div>
-
-        {/* Countries listed in grid format (no map) */}
-        <div>
-          <h3 className="text-2xl font-semibold text-white mb-8">
-            Our Global Presence
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-left justify-center max-w-4xl mx-auto">
-            {countries.map((country) => (
-              <div
-                key={country}
-                className="p-4 bg-white/10 rounded-xl text-white hover:bg-white/20 transition-colors"
-              >
-                {country}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
