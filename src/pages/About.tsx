@@ -1,6 +1,7 @@
 // src/pages/About.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import { Users, Box, PartyPopper, Handshake, Globe2, ShieldCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -78,19 +79,41 @@ const About: React.FC = () => {
           name="description"
           content="Learn about Moltech’s global presence and expertise in providing chemical solutions for sustainable industries. Discover our story, mission, and vision for a greener future."
         />
+        {/* Optional: structured data breadcrumb for SEO */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+              { "@type": "ListItem", "position": 2, "name": "About" }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
+        {/* ===== Breadcrumb ===== */}
+        <nav aria-label="Breadcrumb" className="border-b border-gray-100">
+          <ol className="mx-auto max-w-7xl px-6 lg:px-8 py-3 flex items-center gap-2 text-xs sm:text-sm">
+            <li>
+              <Link to="/" className="text-gray-500 hover:text-royal-blue transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden className="text-gray-400">›</li>
+            <li className="font-medium text-deep-navy">About</li>
+          </ol>
+        </nav>
+
         {/* ======== NEW TOP SECTION (blue-gradient, layout like screenshot) ======== */}
         <section className="relative">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* LEFT: stacked image with gradient accent blocks */}
             <div className="relative">
-              {/* back accent block */}
               <div className="absolute -left-8 -top-8 h-44 w-40 rounded-xl bg-gradient-to-br from-royal-blue to-electric-blue opacity-90" />
-              {/* photo card */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10">
                 <img
                   src="/chemical.jpg"
@@ -100,13 +123,13 @@ const About: React.FC = () => {
                   decoding="async"
                 />
               </div>
-
-              {/* round badge */}
               <div className="absolute -bottom-10 left-1/2 -translate-x-1/2">
                 <div className="size-28 rounded-full p-[3px] bg-gradient-to-r from-royal-blue to-electric-blue shadow-xl">
                   <div className="size-full rounded-full bg-white grid place-items-center">
                     <div className="text-center">
-                      <div className="text-[10px] tracking-widest text-gray-700 font-semibold">AWARD WINNING</div>
+                      <div className="text-[10px] tracking-widest text-gray-700 font-semibold">
+                        AWARD WINNING
+                      </div>
                       <div className="text-xs font-bold text-deep-navy">SINCE 2019</div>
                     </div>
                   </div>
@@ -116,7 +139,6 @@ const About: React.FC = () => {
 
             {/* RIGHT: content using your existing copy */}
             <div className="relative">
-              {/* small label */}
               <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal-blue/10 to-electric-blue/10 px-3 py-1 text-[11px] font-semibold tracking-widest text-royal-blue uppercase">
                 About Company
               </div>
@@ -126,10 +148,14 @@ const About: React.FC = () => {
               </h1>
 
               <p className="mt-4 text-gray-700 leading-relaxed text-base md:text-lg">
-                Moltech strides in the bio space working on <span className="font-semibold text-gray-900">clean initiatives and products</span> that drive the circular economy. With its strategic presence in Asia, Middle East, United Kingdom and United States of America, Moltech is positioned to cater and harness cross-continental potential of renewable and sustainable products on a global platform.
+                Moltech strides in the bio space working on{" "}
+                <span className="font-semibold text-gray-900">clean initiatives and products</span>{" "}
+                that drive the circular economy. With its strategic presence in Asia, Middle East,
+                United Kingdom and United States of America, Moltech is positioned to cater and
+                harness cross-continental potential of renewable and sustainable products on a
+                global platform.
               </p>
 
-              {/* two feature rows like the screenshot */}
               <div className="mt-8 space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-royal-blue/15 to-electric-blue/15 text-royal-blue">
@@ -138,7 +164,8 @@ const About: React.FC = () => {
                   <div>
                     <div className="font-semibold text-deep-navy">Global Presence & Collection</div>
                     <p className="text-sm text-gray-600 mt-1">
-                      Headquartered in Singapore with operations across Malaysia, Thailand, Indonesia, UAE, UK and USA — enabling reliable sourcing and delivery.
+                      Headquartered in Singapore with operations across Malaysia, Thailand, Indonesia,
+                      UAE, UK and USA — enabling reliable sourcing and delivery.
                     </p>
                   </div>
                 </div>
@@ -150,13 +177,13 @@ const About: React.FC = () => {
                   <div>
                     <div className="font-semibold text-deep-navy">Certified & Transparent</div>
                     <p className="text-sm text-gray-600 mt-1">
-                      Certified by <span className="font-medium text-deep-navy">ISCC (EU)</span>; we operate with strong ethics, quality control and transparency.
+                      Certified by <span className="font-medium text-deep-navy">ISCC (EU)</span>; we
+                      operate with strong ethics, quality control and transparency.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* CTA + help snippet */}
               <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
                 <a
                   href="/contact"
