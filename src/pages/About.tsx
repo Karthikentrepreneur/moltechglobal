@@ -79,7 +79,6 @@ const About: React.FC = () => {
           name="description"
           content="Learn about Moltech’s global presence and expertise in providing chemical solutions for sustainable industries. Discover our story, mission, and vision for a greener future."
         />
-        {/* Optional: structured data breadcrumb for SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -95,23 +94,21 @@ const About: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ===== Breadcrumb ===== */}
+        {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="border-b border-gray-100">
           <ol className="mx-auto max-w-7xl px-6 lg:px-8 py-3 flex items-center gap-2 text-xs sm:text-sm">
             <li>
-              <Link to="/" className="text-gray-500 hover:text-royal-blue transition-colors">
-                Home
-              </Link>
+              <Link to="/" className="text-gray-500 hover:text-royal-blue transition-colors">Home</Link>
             </li>
             <li aria-hidden className="text-gray-400">›</li>
             <li className="font-medium text-deep-navy">About</li>
           </ol>
         </nav>
 
-        {/* ======== NEW TOP SECTION (blue-gradient, layout like screenshot) ======== */}
+        {/* Top section */}
         <section className="relative">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* LEFT: stacked image with gradient accent blocks */}
+            {/* LEFT: image stack (badge REMOVED) */}
             <div className="relative">
               <div className="absolute -left-8 -top-8 h-44 w-40 rounded-xl bg-gradient-to-br from-royal-blue to-electric-blue opacity-90" />
               <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10">
@@ -123,21 +120,10 @@ const About: React.FC = () => {
                   decoding="async"
                 />
               </div>
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2">
-                <div className="size-28 rounded-full p-[3px] bg-gradient-to-r from-royal-blue to-electric-blue shadow-xl">
-                  <div className="size-full rounded-full bg-white grid place-items-center">
-                    <div className="text-center">
-                      <div className="text-[10px] tracking-widest text-gray-700 font-semibold">
-                        AWARD WINNING
-                      </div>
-                      <div className="text-xs font-bold text-deep-navy">SINCE 2019</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* ⛔ Badge removed */}
             </div>
 
-            {/* RIGHT: content using your existing copy */}
+            {/* RIGHT: content */}
             <div className="relative">
               <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal-blue/10 to-electric-blue/10 px-3 py-1 text-[11px] font-semibold tracking-widest text-royal-blue uppercase">
                 About Company
@@ -206,13 +192,12 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* soft background waves */}
+          {/* soft background */}
           <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-gradient-to-b from-royal-blue/5 to-transparent" />
           <div className="pointer-events-none absolute right-[-120px] top-20 -z-10 h-60 w-60 rounded-full bg-gradient-to-tr from-royal-blue/20 to-electric-blue/20 blur-3xl" />
         </section>
-        {/* ======== /NEW TOP SECTION ======== */}
 
-        {/* ---------- INTRO (kept content) ---------- */}
+        {/* Intro */}
         <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-tight text-black max-w-5xl">
             Our Story
@@ -269,7 +254,7 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- STATS ROW (animated) ---------- */}
+        {/* Stats */}
         <section className="border-y border-gray-200 bg-white">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 md:grid-cols-4 lg:px-8">
             <div className="flex items-center gap-5">
@@ -314,7 +299,7 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- VISION / MISSION (kept) ---------- */}
+        {/* Vision / Mission */}
         <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="relative overflow-hidden rounded-2xl">
