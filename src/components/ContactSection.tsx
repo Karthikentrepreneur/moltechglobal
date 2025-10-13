@@ -394,7 +394,6 @@ function AutoScrollOffices() {
       {/* Title */}
       <div className="sticky top-0 z-10 bg-gradient-to-r from-royal-blue to-electric-blue px-5 py-3">
         <h3 className="text-white text-lg font-semibold tracking-wide">Our Offices</h3>
-        <p className="text-white/80 text-xs">Auto-scroll — hover to pause</p>
       </div>
 
       {/* Animated track */}
