@@ -42,7 +42,9 @@ const Footer: React.FC = () => {
             aria-label="Back to top"
             className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GRADIENT_BG} shadow-lg cursor-pointer transition-transform hover:-translate-y-0.5 focus:outline-none`}
           >
-            <ChevronUp className="h-4 w-4 text-white" />
+            <svg viewBox="0 0 24 24" className="h-4 w-4 text-white" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5l-7 7m7-7l7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
         </div>
 
@@ -61,10 +63,12 @@ const Footer: React.FC = () => {
               transparency, and community impact.
             </p>
 
-            {/* Social icons (Facebook removed) */}
+            {/* Social icons (LinkedIn opens in new tab) */}
             <div className="mt-5 flex items-center gap-3">
               <a
-                href="#"
+                href="https://www.linkedin.com/company/moltechglobal"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/15 transition"
                 aria-label="LinkedIn"
               >
