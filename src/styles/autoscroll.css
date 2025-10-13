@@ -1,148 +1,50 @@
-/* ====== HORIZONTAL MARQUEE + HOVER STYLE ====== */
+/* ====== DOT TICKER (left -> right) ====== */
+/* uses --duration and --step set inline; --i per dot for stagger */
 
 :root {
-  --footer-marquee-speed: 55s;     /* bigger = slower */
   --royal-blue: #2741ff;
   --electric-blue: #2dd4ff;
 }
 
-/* Container with edge fades for nicer entry/exit */
-.footer-autoscroll {
+.dots-ticker {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dots-ticker__dot {
   position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding-block: 0.5rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #3f3f46;          /* base grey (zinc-700) */
+  opacity: 0.55;
 }
 
-.footer-autoscroll__fade {
+/* active “pulse” traveling left -> right */
+.dots-ticker__dot::before {
+  content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 56px;
-  pointer-events: none;
-  z-index: 2;
-}
-.footer-autoscroll__fade--left {
-  left: 0;
-  background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
-}
-.footer-autoscroll__fade--right {
-  right: 0;
-  background: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--royal-blue), var(--electric-blue));
+  opacity: 0;
+  transform: scale(.8);
+  box-shadow: 0 0 0 0 rgba(45, 212, 255, 0.0);
+  animation: dotPulse var(--duration, 6000ms) linear infinite;
+  animation-delay: calc(var(--i, 0) * var(--step, 750ms));
 }
 
-/* Track that slides left -> right */
-.footer-autoscroll-track {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 1rem;
-  will-change: transform;
-  animation: footer-scroll-right var(--footer-marquee-speed) linear infinite;
+@keyframes dotPulse {
+  0%   { opacity: 1; transform: scale(1); box-shadow: 0 0 0 6px rgba(45,212,255,.20); }
+  12%  { opacity: 1; transform: scale(1); box-shadow: 0 0 0 8px rgba(45,212,255,.25); }
+  20%  { opacity: 1; transform: scale(1); box-shadow: 0 0 0 4px rgba(45,212,255,.15); }
+  25%  { opacity: 0; transform: scale(.8); box-shadow: 0 0 0 0 rgba(45,212,255,0); }
+  100% { opacity: 0; transform: scale(.8); box-shadow: 0 0 0 0 rgba(45,212,255,0); }
 }
 
-/* Pause scroll on hover */
-.footer-autoscroll:hover .footer-autoscroll-track {
+/* Pause dots when hovering the scroller above */
+.footer-autoscroll:hover ~ .mt-4 .dots-ticker__dot::before,
+.footer-autoscroll:hover + .dots-ticker .dots-ticker__dot::before {
   animation-play-state: paused;
-}
-
-/* Each card stays fixed width; never wraps */
-.office-card {
-  flex: 0 0 auto;
-  min-width: 280px;
-}
-@media (min-width: 640px) {
-  .office-card { min-width: 340px; }
-}
-
-/* Gradient "pill" with shimmer-ready background */
-.office-chip {
-  padding: 2px; /* gradient border thickness */
-  border-radius: 14px;
-  background: linear-gradient(90deg, var(--royal-blue), var(--electric-blue));
-  background-size: 200% 100%;
-  transition: background-position .6s ease;
-}
-
-/* Glassy inner card */
-.office-chip__inner {
-  border-radius: 12px;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  padding: 12px 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  transform: translateZ(0);
-  transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
-}
-
-/* Typography */
-.office-chip__title {
-  font-weight: 800;
-  color: #fff;
-  font-size: 13px;
-  letter-spacing: .3px;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  transition: color .25s ease, background-size .25s ease, -webkit-text-fill-color .25s ease;
-}
-.office-chip__line {
-  color: rgba(255,255,255,0.85);
-  font-size: 12px;
-  line-height: 1.35;
-}
-.office-chip__sub {
-  color: rgba(255,255,255,0.7);
-  font-size: 12px;
-  margin-top: 2px;
-}
-
-/* ====== HOVER EFFECTS ====== */
-
-/* keep pause even when hovering inner elements */
-.footer-autoscroll-track:hover { animation-play-state: paused; }
-
-.office-chip:hover {
-  background-position: 100% 0;                 /* subtle border shimmer start */
-  animation: border-shimmer 2.25s linear infinite;
-}
-
-.office-chip__inner:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.38), 0 0 0 3px rgba(39,65,255,0.14);
-  background: rgba(255,255,255,0.08);
-  cursor: default;
-}
-
-/* Country name → gradient on hover */
-.office-chip__inner:hover .office-chip__title {
-  background: linear-gradient(90deg, var(--royal-blue), var(--electric-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Optional: underline address on hover */
-.office-chip__inner:hover .office-chip__line {
-  text-decoration: underline;
-  text-decoration-color: rgba(255,255,255,0.35);
-  text-underline-offset: 2px;
-}
-
-/* Gradient border shimmer */
-@keyframes border-shimmer {
-  0%   { background-position:   0% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* Marquee motion (duplicated content ensures seamless loop) */
-@keyframes footer-scroll-right {
-  0%   { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
-
-/* Reduced motion accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .footer-autoscroll-track { animation: none; transform: none; }
-  .office-chip, .office-chip__inner { animation: none; transition: none; }
 }
