@@ -29,6 +29,42 @@ const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 // Tailwind gradient helper used for accents
 const GRADIENT_BG = "bg-gradient-to-r from-royal-blue to-electric-blue";
 
+/* Dot ticker: lights one dot at a time from left -> right */
+const DotsTicker: React.FC<{ count?: number; durationMs?: number }> = ({
+  count = 8,
+  durationMs = 6000,
+}) => {
+  const step = durationMs / count;
+  const dots = Array.from({ length: count });
+  return (
+    <div className="mt-4 flex justify-center">
+      <div
+        className="dots-ticker"
+        style={
+          {
+            // @ts-ignore custom CSS vars
+            "--duration": `${durationMs}ms`,
+            "--step": `${step}ms`,
+          } as React.CSSProperties
+        }
+      >
+        {dots.map((_, i) => (
+          <span
+            key={i}
+            className="dots-ticker__dot"
+            style={
+              {
+                // @ts-ignore custom CSS var
+                "--i": i,
+              } as React.CSSProperties
+            }
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-white">
@@ -124,7 +160,9 @@ const Footer: React.FC = () => {
                   ))}
                 </div>
               </div>
-              {/* /Horizontal marquee */}
+
+              {/* Dot ticker under the marquee */}
+              <DotsTicker count={8} durationMs={6000} />
             </div>
           </div>
         </div>
