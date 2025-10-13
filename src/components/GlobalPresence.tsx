@@ -95,7 +95,7 @@ const GlobalPresence = () => {
         {/* CTA Button with gradient blue */}
         <div className="mb-10">
           <button
-            onClick={() => navigate("/global-presence")}
+            onClick={() => navigate("/global")}
             className="bg-gradient-to-r from-royal-blue to-electric-blue text-white px-6 py-3 rounded-lg text-sm font-semibold transition-transform duration-300 hover:scale-105 inline-flex items-center gap-2"
           >
             Explore Our Global Network
