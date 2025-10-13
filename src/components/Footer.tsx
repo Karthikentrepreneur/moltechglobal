@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronUp, Mail, ChevronRight } from "lucide-react";
+import { ChevronUp, Mail } from "lucide-react";
 import "../styles/autoscroll.css";
 
 const quickLinks = [
@@ -28,22 +28,22 @@ const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
 // Gradient accents
 const GRADIENT_BG = "bg-gradient-to-r from-royal-blue to-electric-blue";
-// const GRADIENT_TEXT = "bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent"; // no longer used
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Top thin gradient divider + round gradient accent button */}
+        {/* Top thin gradient divider + round gradient arrow (scroll to top) */}
         <div className="relative">
           <div className={`mx-auto mt-8 h-[3px] w-full max-w-5xl ${GRADIENT_BG} rounded-full`} />
-          <div
-            className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GRADIENT_BG} shadow-lg`}
-            aria-hidden
+          <button
+            onClick={scrollTop}
+            aria-label="Back to top"
+            className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GRADIENT_BG} shadow-lg cursor-pointer transition-transform hover:-translate-y-0.5 focus:outline-none`}
           >
-            <ChevronRight className="h-4 w-4 text-white" />
-          </div>
+            <ChevronUp className="h-4 w-4 text-white" />
+          </button>
         </div>
 
         {/* Main three-column section */}
@@ -61,17 +61,8 @@ const Footer: React.FC = () => {
               transparency, and community impact.
             </p>
 
-            {/* Social icons */}
+            {/* Social icons (Facebook removed) */}
             <div className="mt-5 flex items-center gap-3">
-              <a
-                href="#"
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/15 transition"
-                aria-label="Facebook"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-                  <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z" />
-                </svg>
-              </a>
               <a
                 href="#"
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white/15 transition"
@@ -121,7 +112,6 @@ const Footer: React.FC = () => {
                 <div className="footer-autoscroll-track">
                   {[...offices, ...offices].map((office, i) => (
                     <div key={i} className="py-2">
-                      {/* Country: now bold white */}
                       <div className="text-[13px] font-extrabold text-white">
                         {office.country}
                       </div>
