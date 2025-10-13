@@ -1,4 +1,4 @@
-import { useMemo, useState, FormEvent, useMemo as useReactMemo } from "react";
+import { useMemo, useState, FormEvent } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -303,7 +303,7 @@ const OFFICES: Office[] = [
   },
 ];
 
-/* Small emoji flags (optional) */
+/* Flags */
 const FLAG: Record<string, string> = {
   Australia: "🇦🇺",
   Bangladesh: "🇧🇩",
@@ -325,7 +325,7 @@ const FLAG: Record<string, string> = {
 
 /* ---------- Get in touch form (card) ---------- */
 function GetInTouchCard() {
-  const LOCATIONS = useReactMemo(
+  const LOCATIONS = useMemo(
     () => Array.from(new Set(OFFICES.map((o) => o.country))),
     []
   );
@@ -383,7 +383,7 @@ function GetInTouchCard() {
 
 /* ---------- Auto-scrolling list (left) ---------- */
 function AutoScrollOffices() {
-  // duplicate for seamless loop (shows same items again after first pass)
+  // duplicate list for a seamless loop
   const items = useMemo(() => [...OFFICES, ...OFFICES], []);
 
   const mapLink = (address: string) =>
@@ -394,6 +394,7 @@ function AutoScrollOffices() {
       {/* Title */}
       <div className="sticky top-0 z-10 bg-gradient-to-r from-royal-blue to-electric-blue px-5 py-3">
         <h3 className="text-white text-lg font-semibold tracking-wide">Our Offices</h3>
+        <p className="text-white/80 text-xs">Auto-scroll — hover to pause</p>
       </div>
 
       {/* Animated track */}
@@ -402,66 +403,69 @@ function AutoScrollOffices() {
           {items.map((o, idx) => (
             <div
               key={`${o.country}-${o.city}-${idx}`}
-              className="rounded-xl border-2 border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-royal-blue transition"
+              className="rounded-xl p-[2px] bg-gradient-to-r from-royal-blue to-electric-blue transition-shadow hover:shadow-lg"
             >
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 text-xl">{FLAG[o.country] || "🌍"}</div>
-                <div className="flex-1">
-                  <div className="font-semibold text-gray-900">
-                    {o.label || `${o.city ? `${o.city} — ` : ""}${o.country}`}
-                  </div>
-
-                  <div className="mt-1 flex items-start gap-2 text-sm text-gray-700">
-                    <MapPin className="w-4 h-4 mt-0.5 text-royal-blue" />
-                    <span>{o.address}</span>
-                  </div>
-
-                  {o.phones && o.phones.length > 0 && (
-                    <div className="mt-2 flex items-start gap-2 text-sm text-gray-700">
-                      <Phone className="w-4 h-4 mt-0.5 text-royal-blue" />
-                      <div className="flex flex-col">
-                        {o.phones.map((p, i) => (
-                          <span key={i}>{p}</span>
-                        ))}
-                      </div>
+              {/* Inner card with gradient border */}
+              <div className="rounded-[10px] bg-white p-4 shadow-sm hover:shadow-md transition">
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 text-xl">{FLAG[o.country] || "🌍"}</div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-gray-900">
+                      {o.label || `${o.city ? `${o.city} — ` : ""}${o.country}`}
                     </div>
-                  )}
 
-                  {o.emails && o.emails.length > 0 && (
-                    <div className="mt-2 flex items-start gap-2 text-sm text-gray-700">
-                      <Mail className="w-4 h-4 mt-0.5 text-royal-blue" />
-                      <div className="flex flex-col">
-                        {o.emails.map((e, i) => (
-                          <a key={i} href={`mailto:${e}`} className="text-royal-blue hover:underline">
-                            {e}
-                          </a>
-                        ))}
-                      </div>
+                    <div className="mt-1 flex items-start gap-2 text-sm text-gray-700">
+                      <MapPin className="w-4 h-4 mt-0.5 text-royal-blue" />
+                      <span>{o.address}</span>
                     </div>
-                  )}
 
-                  <div className="mt-3 flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="gap-2"
-                      onClick={async () => {
-                        try {
-                          await navigator.clipboard.writeText(
-                            `${o.label || o.country} — ${o.address}`
-                          );
-                        } catch {}
-                      }}
-                    >
-                      <Copy className="w-4 h-4" />
-                      Copy
-                    </Button>
-                    <Button variant="outline" size="sm" className="gap-2" asChild>
-                      <a href={mapLink(o.address)} target="_blank" rel="noreferrer">
-                        <ExternalLink className="w-4 h-4" />
-                        Map
-                      </a>
-                    </Button>
+                    {o.phones?.length ? (
+                      <div className="mt-2 flex items-start gap-2 text-sm text-gray-700">
+                        <Phone className="w-4 h-4 mt-0.5 text-royal-blue" />
+                        <div className="flex flex-col">
+                          {o.phones.map((p, i) => (
+                            <span key={i}>{p}</span>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    {o.emails?.length ? (
+                      <div className="mt-2 flex items-start gap-2 text-sm text-gray-700">
+                        <Mail className="w-4 h-4 mt-0.5 text-royal-blue" />
+                        <div className="flex flex-col">
+                          {o.emails.map((e, i) => (
+                            <a key={i} href={`mailto:${e}`} className="text-royal-blue hover:underline">
+                              {e}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    <div className="mt-3 flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-2"
+                        onClick={async () => {
+                          try {
+                            await navigator.clipboard.writeText(
+                              `${o.label || o.country} — ${o.address}`
+                            );
+                          } catch {}
+                        }}
+                      >
+                        <Copy className="w-4 h-4" />
+                        Copy
+                      </Button>
+                      <Button variant="outline" size="sm" className="gap-2" asChild>
+                        <a href={mapLink(o.address)} target="_blank" rel="noreferrer">
+                          <ExternalLink className="w-4 h-4" />
+                          Map
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -493,7 +497,7 @@ export default function ContactSection() {
     <section className="relative py-12">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-10 items-start">
-          {/* LEFT: Individual outlined cards with slow auto-scroll */}
+          {/* LEFT: Individual gradient-bordered cards with slow auto-scroll */}
           <AutoScrollOffices />
 
           {/* RIGHT: Get in touch form (sticky) */}
