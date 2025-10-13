@@ -2,8 +2,6 @@ import React from "react";
 import { Users } from "lucide-react";
 
 const About = () => {
-
-
   return (
     <section
       id="about"
@@ -11,24 +9,16 @@ const About = () => {
     >
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgb(0 0 0) 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}></div>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgb(0 0 0) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-            <Users className="w-8 h-8 text-blue-600" />
-          </div>
-          <h2 className="text-5xl font-bold text-gray-900 mb-4">
-            About Moltech
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-500 mx-auto"></div>
-        </div>
-
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Image with overlay */}
@@ -38,7 +28,7 @@ const About = () => {
               <img
                 src="/Biodieselariel.jpg"
                 alt="Moltech sustainable biodiesel facility"
-                className="w-full h-96 rounded-xl object-cover"
+                className="w-full h-[500px] rounded-xl object-cover" // ✅ increased image height
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl flex items-end p-8">
                 <p className="text-white font-semibold text-lg">
@@ -48,14 +38,32 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right: Content */}
+          {/* Right: Title + Content */}
           <div className="space-y-8">
+            {/* Title + Icon */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
+                <Users className="w-6 h-6 text-blue-600" />
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900">
+                About Moltech
+              </h2>
+            </div>
+
+            {/* Paragraphs */}
             <div className="space-y-6">
               <p className="text-xl text-gray-700 leading-relaxed font-light">
-                Moltech strides in the bio space working on <span className="font-semibold text-gray-900">clean initiatives and products</span> that drive the circular economy.
+                Moltech strides in the bio space working on{" "}
+                <span className="font-semibold text-gray-900">
+                  clean initiatives and products
+                </span>{" "}
+                that drive the circular economy.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                With its strategic presence across Asia, Middle East, United Kingdom, and United States of America, Moltech is positioned to cater and harness cross-continental potential of renewable and sustainable products on a global platform.
+                With its strategic presence across Asia, Middle East, United
+                Kingdom, and United States of America, Moltech is positioned to
+                cater and harness cross-continental potential of renewable and
+                sustainable products on a global platform.
               </p>
             </div>
           </div>
