@@ -1,8 +1,7 @@
-
 // src/pages/About.tsx
 import React, { useEffect, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async"; // ✅ added
-import { Users, Box, PartyPopper, Handshake } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import { Users, Box, PartyPopper, Handshake, Globe2, ShieldCheck } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -73,7 +72,6 @@ const CountUp: React.FC<CountUpProps> = ({ to, duration = 1200, className, suffi
 const About: React.FC = () => {
   return (
     <>
-      {/* ✅ Page title added */}
       <Helmet>
         <title>About Us - Chemical Solutions for Sustainable Industries</title>
         <meta
@@ -84,33 +82,110 @@ const About: React.FC = () => {
 
       <Header />
 
-      {/* Removed top padding so the hero image fills behind the fixed header */}
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (image with text overlay) ---------- */}
-        <section className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] flex items-center justify-center text-center">
-          {/* Background image */}
-          <img
-            src="/chemical.jpg"
-            alt="Laboratory glassware and sustainable chemistry"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            loading="eager"
-            decoding="async"
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40" aria-hidden />
+        {/* ======== NEW TOP SECTION (blue-gradient, layout like screenshot) ======== */}
+        <section className="relative">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* LEFT: stacked image with gradient accent blocks */}
+            <div className="relative">
+              {/* back accent block */}
+              <div className="absolute -left-8 -top-8 h-44 w-40 rounded-xl bg-gradient-to-br from-royal-blue to-electric-blue opacity-90" />
+              {/* photo card */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10">
+                <img
+                  src="/chemical.jpg"
+                  alt="Laboratory glassware and sustainable chemistry"
+                  className="h-[420px] w-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
 
-          {/* Hero Content */}
-          <div className="relative z-10 px-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-              About Us
-            </h1>
-            <p className="text-3xl md:text-4xl font-semibold max-w-4xl mx-auto text-gray-200 leading-relaxed">
-              Chemical Solutions for Sustainable Industries
-            </p>
+              {/* round badge */}
+              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2">
+                <div className="size-28 rounded-full p-[3px] bg-gradient-to-r from-royal-blue to-electric-blue shadow-xl">
+                  <div className="size-full rounded-full bg-white grid place-items-center">
+                    <div className="text-center">
+                      <div className="text-[10px] tracking-widest text-gray-700 font-semibold">AWARD WINNING</div>
+                      <div className="text-xs font-bold text-deep-navy">SINCE 2019</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: content using your existing copy */}
+            <div className="relative">
+              {/* small label */}
+              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-royal-blue/10 to-electric-blue/10 px-3 py-1 text-[11px] font-semibold tracking-widest text-royal-blue uppercase">
+                About Company
+              </div>
+
+              <h1 className="mt-4 text-4xl md:text-5xl font-extrabold leading-tight text-deep-navy">
+                About Moltech
+              </h1>
+
+              <p className="mt-4 text-gray-700 leading-relaxed text-base md:text-lg">
+                Moltech strides in the bio space working on <span className="font-semibold text-gray-900">clean initiatives and products</span> that drive the circular economy. With its strategic presence in Asia, Middle East, United Kingdom and United States of America, Moltech is positioned to cater and harness cross-continental potential of renewable and sustainable products on a global platform.
+              </p>
+
+              {/* two feature rows like the screenshot */}
+              <div className="mt-8 space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-royal-blue/15 to-electric-blue/15 text-royal-blue">
+                    <Globe2 className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-deep-navy">Global Presence & Collection</div>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Headquartered in Singapore with operations across Malaysia, Thailand, Indonesia, UAE, UK and USA — enabling reliable sourcing and delivery.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-royal-blue/15 to-electric-blue/15 text-royal-blue">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-deep-navy">Certified & Transparent</div>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Certified by <span className="font-medium text-deep-navy">ISCC (EU)</span>; we operate with strong ethics, quality control and transparency.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA + help snippet */}
+              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold text-white bg-gradient-to-r from-royal-blue to-electric-blue shadow-lg shadow-royal-blue/20 hover:shadow-xl hover:shadow-electric-blue/25 transition"
+                >
+                  Know More About Us
+                </a>
+                <div className="flex items-center gap-3 text-sm">
+                  <img
+                    src="/Moltechlogo.png"
+                    alt="Moltech"
+                    className="h-9 w-9 rounded-full ring-2 ring-white/10 object-contain bg-white"
+                  />
+                  <div>
+                    <div className="text-gray-500">Need Help?</div>
+                    <div className="font-semibold text-deep-navy">+65 6514 0868</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
 
-        {/* ---------- INTRO ---------- */}
+          {/* soft background waves */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-gradient-to-b from-royal-blue/5 to-transparent" />
+          <div className="pointer-events-none absolute right-[-120px] top-20 -z-10 h-60 w-60 rounded-full bg-gradient-to-tr from-royal-blue/20 to-electric-blue/20 blur-3xl" />
+        </section>
+        {/* ======== /NEW TOP SECTION ======== */}
+
+        {/* ---------- INTRO (kept content) ---------- */}
         <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-tight text-black max-w-5xl">
             Our Story
@@ -212,7 +287,7 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- VISION / MISSION ---------- */}
+        {/* ---------- VISION / MISSION (kept) ---------- */}
         <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="relative overflow-hidden rounded-2xl">
