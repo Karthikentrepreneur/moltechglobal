@@ -26,23 +26,23 @@ const offices = [
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-// Accent color
-const GOLD = "text-[#F2C200]";
-const GOLD_BG = "bg-[#F2C200]";
+// Gradient accents
+const GRADIENT_BG = "bg-gradient-to-r from-royal-blue to-electric-blue";
+const GRADIENT_TEXT = "bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent";
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Top thin gold divider + round accent button */}
+        {/* Top thin gradient divider + round gradient accent button */}
         <div className="relative">
-          <div className={`mx-auto mt-8 h-[3px] w-full max-w-5xl ${GOLD_BG} rounded-full`} />
+          <div className={`mx-auto mt-8 h-[3px] w-full max-w-5xl ${GRADIENT_BG} rounded-full`} />
           <div
-            className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GOLD_BG} shadow-lg`}
+            className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GRADIENT_BG} shadow-lg`}
             aria-hidden
           >
-            <ChevronRight className="h-4 w-4 text-black" />
+            <ChevronRight className="h-4 w-4 text-white" />
           </div>
         </div>
 
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {quickLinks.map((item) => (
                 <li key={item.label} className="flex items-center gap-3">
-                  <span className={`inline-block h-2 w-2 rounded-full ${GOLD_BG}`} />
+                  <span className={`inline-block h-2 w-2 rounded-full ${GRADIENT_BG}`} />
                   <a
                     href={item.href}
                     className="text-white/90 hover:text-white transition-colors text-[15px]"
@@ -109,7 +109,9 @@ const Footer: React.FC = () => {
               href="mailto:info@moltechglobal.com"
               className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors text-[15px]"
             >
-              <Mail className={`${GOLD} h-4 w-4`} />
+              <span className={`inline-grid place-items-center ${GRADIENT_BG} rounded-full p-1`}>
+                <Mail className="h-3.5 w-3.5 text-white" />
+              </span>
               info@moltechglobal.com
             </a>
 
@@ -119,7 +121,7 @@ const Footer: React.FC = () => {
                 <div className="footer-autoscroll-track">
                   {[...offices, ...offices].map((office, i) => (
                     <div key={i} className="py-2">
-                      <div className={`text-[13px] font-bold ${GOLD}`}>
+                      <div className={`text-[13px] font-bold ${GRADIENT_TEXT}`}>
                         {office.country}
                       </div>
                       <div className="text-[12px] text-white/80">
@@ -135,8 +137,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Removed dotted divider section */}
 
         {/* Bottom bar */}
         <div className="py-5 flex flex-col sm:flex-row items-center justify-between text-xs md:text-sm text-white/80 border-t border-white/10">
