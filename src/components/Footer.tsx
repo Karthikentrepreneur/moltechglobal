@@ -42,6 +42,7 @@ const Footer: React.FC = () => {
             aria-label="Back to top"
             className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GRADIENT_BG} shadow-lg cursor-pointer transition-transform hover:-translate-y-0.5 focus:outline-none`}
           >
+            {/* Up arrow */}
             <svg viewBox="0 0 24 24" className="h-4 w-4 text-white" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 5l-7 7m7-7l7 7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -112,10 +113,12 @@ const Footer: React.FC = () => {
 
             <div className="mt-6">
               <h5 className="text-sm font-semibold mb-2 text-white/80">Global Offices</h5>
-              <div className="footer-autoscroll max-h-48 overflow-hidden">
-                <div className="footer-autoscroll-track">
+
+              {/* HORIZONTAL auto-scroll (left -> right) */}
+              <div className="footer-autoscroll-x overflow-hidden">
+                <div className="footer-autoscroll-x-track">
                   {[...offices, ...offices].map((office, i) => (
-                    <div key={i} className="py-2">
+                    <div key={i} className="flex-none pr-8 border-r border-white/10 mr-8">
                       <div className="text-[13px] font-extrabold text-white">
                         {office.country}
                       </div>
@@ -129,6 +132,7 @@ const Footer: React.FC = () => {
                   ))}
                 </div>
               </div>
+              {/* /HORIZONTAL auto-scroll */}
             </div>
           </div>
         </div>
