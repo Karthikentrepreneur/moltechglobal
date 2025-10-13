@@ -1,16 +1,37 @@
+/* Container */
 .footer-autoscroll {
-  height: 5.5rem;   /* smaller, fits 3 lines comfortably */
+  width: 100%;
   overflow: hidden;
   position: relative;
+  /* optional vertical padding so items aren't clipped */
+  padding-block: 0.25rem;
 }
 
+/* Track: inline row that slides horizontally */
 .footer-autoscroll-track {
-  display: flex;
-  flex-direction: column;
-  animation: footer-scroll-up 26s linear infinite;
+  display: inline-flex;           /* row */
+  gap: 2rem;                      /* space between office blocks */
+  will-change: transform;
+  animation: footer-scroll-right 55s linear infinite; /* slower, smoother */
 }
 
-@keyframes footer-scroll-up {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+/* Pause on hover */
+.footer-autoscroll:hover .footer-autoscroll-track {
+  animation-play-state: paused;
+}
+
+/* Left -> Right marquee.
+   We render the items duplicated in markup for a seamless loop.
+   Start at -50% (middle of the doubled list) and slide to 0. */
+@keyframes footer-scroll-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Accessibility: respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .footer-autoscroll-track {
+    animation: none;
+    transform: none;
+  }
 }
