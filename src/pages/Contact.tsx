@@ -97,28 +97,32 @@ const Contact: React.FC = () => {
             <div className="space-y-6">
               <GetInTouchCard />
 
-              {/* Contact Channels moved down below the message box */}
+              {/* Contact Channels (Call + Hours in one row) */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Contact Channels
                 </h3>
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
-                      <Mail className="h-7 w-7 text-sky-500" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-semibold">Email</div>
-                      <a
-                        href="mailto:hello@moltechglobal.com"
-                        className="text-gray-600 hover:text-gray-900"
-                      >
-                        hello@moltechglobal.com
-                      </a>
-                    </div>
-                  </div>
 
-                  <div className="flex items-center gap-4">
+                {/* Email stays full-width */}
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
+                    <Mail className="h-7 w-7 text-sky-500" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-semibold">Email</div>
+                    <a
+                      href="mailto:hello@moltechglobal.com"
+                      className="text-gray-600 hover:text-gray-900"
+                    >
+                      hello@moltechglobal.com
+                    </a>
+                  </div>
+                </div>
+
+                {/* ✅ Call & Hours on the same row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Call */}
+                  <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4">
                     <div className="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50">
                       <Phone className="h-7 w-7 text-indigo-500" />
                     </div>
@@ -133,7 +137,8 @@ const Contact: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4">
+                  {/* Hours */}
+                  <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4">
                     <div className="grid h-14 w-14 place-items-center rounded-2xl bg-amber-50">
                       <Clock className="h-7 w-7 text-amber-600" />
                     </div>
