@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
         {/* “Get in Touch” SECTION HEADING */}
         <section className="text-center py-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
-            Get in Touch
+            Contact
           </h1>
           <div className="mt-3 h-1 w-24 mx-auto bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 rounded-full" />
         </section>
