@@ -98,7 +98,7 @@ const About: React.FC = () => {
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(2,6,23,0.08)] ring-1 ring-black/5">
                 <img
-                  src="/chemical.jpg"
+                  src="/About.png"
                   alt="Moltech laboratory"
                   className="w-full h-[380px] md:h-[440px] object-cover"
                   loading="lazy"
