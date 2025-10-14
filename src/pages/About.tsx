@@ -2,7 +2,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Globe2, ShieldCheck, Users, Box, PartyPopper, Handshake } from "lucide-react";
+import {
+  Globe2,
+  ShieldCheck,
+  Users,
+  Box,
+  PartyPopper,
+  Handshake,
+  Telescope,
+  Target,
+} from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -59,19 +68,16 @@ const About: React.FC = () => {
       <Header />
 
       <main className="bg-white text-[#0F1B3D]">
-        {/* ====== HERO HEADER (like screenshot) ====== */}
+        {/* ====== HERO HEADER ====== */}
         <section aria-label="About Us hero" className="relative">
           <div className="relative h-[38vh] md:h-[50vh] lg:h-[56vh]">
-            {/* Update the image path to your hero image */}
             <img
-              src="/about-hero.jpg"   // ← replace with your actual hero image (e.g., /hero-about-banner.jpg)
+              src="/about-hero.jpg"
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
               loading="eager"
             />
-            {/* Dark gradient overlay (top soft, bottom strong) */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
-            {/* Centered title + breadcrumb */}
             <div className="relative z-10 flex h-full items-center justify-center text-center px-6">
               <div>
                 <h1 className="text-white text-4xl md:text-5xl font-extrabold drop-shadow-sm">
@@ -79,9 +85,7 @@ const About: React.FC = () => {
                 </h1>
                 <nav aria-label="Breadcrumb" className="mt-3">
                   <ol className="flex items-center justify-center gap-2 text-sm text-white/90">
-                    <li>
-                      <Link to="/" className="hover:text-white transition-colors">Home</Link>
-                    </li>
+                    <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
                     <li aria-hidden>→</li>
                     <li className="font-semibold">About Us</li>
                   </ol>
@@ -91,10 +95,9 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ===== Hero/Intro content block (kept as-is) ===== */}
+        {/* ===== Intro block ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            {/* Left image card */}
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(2,6,23,0.08)] ring-1 ring-black/5">
                 <img
@@ -106,7 +109,6 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Right content */}
             <div className="lg:col-span-6">
               <div className="text-[11px] font-semibold tracking-widest uppercase text-gray-500">
                 About Company
@@ -125,7 +127,6 @@ const About: React.FC = () => {
                 products on a global platform.
               </p>
 
-              {/* Bullets */}
               <div className="mt-8 space-y-6">
                 <div className="flex gap-4">
                   <div className="h-10 w-10 rounded-full bg-slate-100 grid place-items-center text-[#0F1B3D]">
@@ -154,7 +155,7 @@ const About: React.FC = () => {
                 </div>
               </div>
 
-              {/* Logo + Contact Button (number removed) */}
+              {/* Logo + CTA */}
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <img src="/Moltechlogo.png" className="h-6 w-auto object-contain" alt="Moltech" />
                 <Link
@@ -168,7 +169,6 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <hr className="border-gray-100" />
         </div>
@@ -212,7 +212,6 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <hr className="border-gray-100" />
         </div>
@@ -262,29 +261,46 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Vision / Mission ===== */}
+        {/* ===== Vision / Mission (styled like the image) ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="rounded-2xl ring-1 ring-black/5 bg-white p-8 shadow-[0_14px_40px_rgba(2,6,23,0.06)]">
-              <h4 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">Vision</h4>
-              <p className="mt-4 text-[16.5px] leading-8 text-slate-700">
-                To engage in business and services in the bio-space which contribute to
-                reduction in carbon footprint and environmental care.
-              </p>
+            {/* Vision card */}
+            <div className="relative">
+              {/* floating icon */}
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-16 w-16 rounded-full bg-white/90 shadow-lg grid place-items-center">
+                <Telescope className="h-8 w-8 text-white drop-shadow" />
+                <div className="absolute inset-0 rounded-full bg-blue-700 -z-10" />
+              </div>
+
+              <div className="rounded-2xl bg-blue-700 text-white p-8 pt-14 shadow-[0_20px_60px_rgba(2,6,23,0.15)]">
+                <h4 className="text-xl tracking-[0.35em] font-semibold uppercase">Vision</h4>
+                <p className="mt-4 text-[16.5px] leading-8 text-white/90">
+                  To engage in business and services in the bio-space which contribute to
+                  reduction in carbon footprint and environmental care.
+                </p>
+              </div>
             </div>
 
-            <div className="rounded-2xl ring-1 ring-black/5 bg-white p-8 shadow-[0_14px_40px_rgba(2,6,23,0.06)]">
-              <h4 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">Mission</h4>
-              <ul className="mt-4 list-disc pl-5 space-y-2 text-[16.5px] leading-8 text-slate-700">
-                <li>Scale up collection and processing of sustainable feedstock for clean energy.</li>
-                <li>Operate with high standards of ethics and good governance.</li>
-                <li>Care for the community and the environment.</li>
-              </ul>
+            {/* Mission card */}
+            <div className="relative">
+              {/* floating icon */}
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-16 w-16 rounded-full bg-white/90 shadow-lg grid place-items-center">
+                <Target className="h-8 w-8 text-white drop-shadow" />
+                <div className="absolute inset-0 rounded-full bg-rose-600 -z-10" />
+              </div>
+
+              <div className="rounded-2xl bg-rose-600 text-white p-8 pt-14 shadow-[0_20px_60px_rgba(2,6,23,0.15)]">
+                <h4 className="text-xl tracking-[0.35em] font-semibold uppercase">Mission</h4>
+                <ul className="mt-4 list-disc pl-5 space-y-2 text-[16.5px] leading-8">
+                  <li>Scale up collection and processing of sustainable feedstock for clean energy.</li>
+                  <li>Operate with high standards of ethics and good governance.</li>
+                  <li>Care for the community and the environment.</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
