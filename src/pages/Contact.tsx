@@ -1,10 +1,12 @@
-// src/components/ContactSection.tsx
+// src/pages/Contact.tsx
 import React, { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { Mail, Phone, Clock, Headset, ShieldCheck } from "lucide-react";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
 
-export default function ContactSection() {
+const Contact: React.FC = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -28,7 +30,6 @@ export default function ContactSection() {
     setSubmitting(true);
     setStatus(null);
     try {
-      // 🔁 replace with your API call
       await new Promise((r) => setTimeout(r, 700));
       console.log("Contact form payload:", form);
       setStatus({ ok: true, msg: "Thanks! We’ll get back to you shortly." });
@@ -49,32 +50,37 @@ export default function ContactSection() {
 
   return (
     <>
-      {/* ---------- HERO SECTION (same as page) ---------- */}
-      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center">
-        <img
-          src="/businessman.jpg"
-          alt="Sustainable operations and global collaboration"
-          className="absolute inset-0 block h-full w-full object-cover object-center"
-          loading="eager"
-          decoding="async"
-        />
-        <div className="absolute inset-0 bg-black/60" aria-hidden />
-        <div className="relative z-10 px-6">
-          <div className="mx-auto inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4 mb-6">
-            <Headset className="h-8 w-8 text-white" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            CONTACT US – <br className="hidden sm:block" />
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-white/90">
-            LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
-          </p>
-        </div>
-      </section>
+      {/* ✅ HEADER OVER HERO */}
+      <div className="relative">
+        <Header />
 
-      {/* ---------- MAIN CONTENT (same as page) ---------- */}
+        {/* ---------- HERO SECTION ---------- */}
+        <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center">
+          <img
+            src="/businessman.jpg"
+            alt="Sustainable operations and global collaboration"
+            className="absolute inset-0 block h-full w-full object-cover object-center"
+            loading="eager"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-black/60" aria-hidden />
+          <div className="relative z-10 px-6">
+            <div className="mx-auto inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4 mb-6">
+              <Headset className="h-8 w-8 text-white" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              CONTACT US – <br className="hidden sm:block" />
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-white/90">
+              LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+            </p>
+          </div>
+        </section>
+      </div>
+
+      {/* ---------- MAIN CONTENT ---------- */}
       <main className="bg-white text-gray-900">
-        {/* “Get in Touch” heading */}
+        {/* 👇 NEW “Get in Touch” SECTION HEADING */}
         <section className="text-center py-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
             Get in Touch
@@ -155,7 +161,10 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <div className="text-lg font-semibold">Call</div>
-                      <a href="tel:+6560000000" className="text-gray-600 hover:text-gray-900">
+                      <a
+                        href="tel:+6560000000"
+                        className="text-gray-600 hover:text-gray-900"
+                      >
                         +65 6000 0000
                       </a>
                     </div>
@@ -256,6 +265,11 @@ export default function ContactSection() {
           </div>
         </section>
       </main>
+
+      <Footer />
     </>
   );
-}
+};
+
+export default Contact;
+export { Contact };
