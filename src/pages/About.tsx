@@ -265,41 +265,43 @@ const About: React.FC = () => {
           <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Vision / Mission (styled like the image) ===== */}
+        {/* ===== Vision / Mission (same size; mission is green) ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             {/* Vision card */}
             <div className="relative">
               {/* floating icon */}
               <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-16 w-16 rounded-full bg-white/90 shadow-lg grid place-items-center">
-                <Telescope className="h-8 w-8 text-white drop-shadow" />
                 <div className="absolute inset-0 rounded-full bg-blue-700 -z-10" />
+                <Telescope className="h-8 w-8 text-white" />
               </div>
 
-              <div className="rounded-2xl bg-blue-700 text-white p-8 pt-14 shadow-[0_20px_60px_rgba(2,6,23,0.15)]">
+              <div className="h-full rounded-2xl bg-blue-700 text-white p-8 pt-16 shadow-[0_20px_60px_rgba(2,6,23,0.15)] flex flex-col min-h-[280px]">
                 <h4 className="text-xl tracking-[0.35em] font-semibold uppercase">Vision</h4>
                 <p className="mt-4 text-[16.5px] leading-8 text-white/90">
                   To engage in business and services in the bio-space which contribute to
                   reduction in carbon footprint and environmental care.
                 </p>
+                <div className="mt-auto" />
               </div>
             </div>
 
-            {/* Mission card */}
+            {/* Mission card (green) */}
             <div className="relative">
               {/* floating icon */}
               <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-16 w-16 rounded-full bg-white/90 shadow-lg grid place-items-center">
-                <Target className="h-8 w-8 text-white drop-shadow" />
-                <div className="absolute inset-0 rounded-full bg-rose-600 -z-10" />
+                <div className="absolute inset-0 rounded-full bg-emerald-600 -z-10" />
+                <Target className="h-8 w-8 text-white" />
               </div>
 
-              <div className="rounded-2xl bg-rose-600 text-white p-8 pt-14 shadow-[0_20px_60px_rgba(2,6,23,0.15)]">
+              <div className="h-full rounded-2xl bg-emerald-600 text-white p-8 pt-16 shadow-[0_20px_60px_rgba(2,6,23,0.15)] flex flex-col min-h=[280px] md:min-h-[280px]">
                 <h4 className="text-xl tracking-[0.35em] font-semibold uppercase">Mission</h4>
                 <ul className="mt-4 list-disc pl-5 space-y-2 text-[16.5px] leading-8">
                   <li>Scale up collection and processing of sustainable feedstock for clean energy.</li>
                   <li>Operate with high standards of ethics and good governance.</li>
                   <li>Care for the community and the environment.</li>
                 </ul>
+                <div className="mt-auto" />
               </div>
             </div>
           </div>
