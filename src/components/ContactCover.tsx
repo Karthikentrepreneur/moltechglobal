@@ -1,26 +1,10 @@
 // src/components/ContactSection.tsx
 import React, { useState } from "react";
-import { Mail, Phone, Clock, Headset, ShieldCheck, MapPin, ArrowRight } from "lucide-react";
-
-type ContactSectionProps = {
-  heroImageSrc?: string;
-  heroTitle?: string;
-  heroSubtitle?: string;
-  contactEmail?: string;
-  contactPhone?: string;
-  hqAddress?: string;
-};
+import { Mail, Phone, Clock, Headset, ShieldCheck } from "lucide-react";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
 
-const ContactSection: React.FC<ContactSectionProps> = ({
-  heroImageSrc = "/businessman.jpg",
-  heroTitle = "Let’s Build Sustainable Solutions Together",
-  heroSubtitle = "Tell us what you need across feedstock, renewable diesel inputs, or partnerships.",
-  contactEmail = "hello@moltechglobal.com",
-  contactPhone = "+65 6000 0000",
-  hqAddress = "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
-}) => {
+const ContactSection: React.FC = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -34,18 +18,27 @@ const ContactSection: React.FC<ContactSectionProps> = ({
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+  ) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     setStatus(null);
     try {
-      // TODO: replace with your API call (fetch/axios)
       await new Promise((r) => setTimeout(r, 700));
       console.log("Contact form payload:", form);
       setStatus({ ok: true, msg: "Thanks! We’ll get back to you shortly." });
-      setForm({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "",
+        message: "",
+      });
     } catch {
       setStatus({ ok: false, msg: "Something went wrong. Please try again." });
     } finally {
@@ -55,205 +48,213 @@ const ContactSection: React.FC<ContactSectionProps> = ({
 
   return (
     <>
-      {/* ===== HERO (shorter, premium look) ===== */}
-      <section className="relative h-[46vh] md:h-[52vh] flex items-center">
+      {/* ---------- HERO SECTION (matches Contact.tsx) ---------- */}
+      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center text-center">
         <img
-          src={heroImageSrc}
+          src="/businessman.jpg"
           alt="Sustainable operations and global collaboration"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 block h-full w-full object-cover object-center"
           loading="eager"
           decoding="async"
         />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-blue-500/30 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 -right-24 h-96 w-96 rounded-full bg-cyan-400/25 blur-3xl" />
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 text-white">
-          <div className="inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 ring-1 ring-white/20 backdrop-blur">
-            <Headset className="h-5 w-5" />
-            <span className="text-sm font-medium">We reply within 1 business day</span>
+        <div className="absolute inset-0 bg-black/60" aria-hidden />
+        <div className="relative z-10 px-6">
+          <div className="mx-auto inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4 mb-6">
+            <Headset className="h-8 w-8 text-white" />
           </div>
-          <h1 className="mt-5 text-4xl md:text-5xl font-extrabold leading-tight">
-            {heroTitle}
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            CONTACT US – <br className="hidden sm:block" />
           </h1>
-          <p className="mt-3 max-w-2xl text-white/85">{heroSubtitle}</p>
+          <p className="mt-6 text-lg md:text-xl text-white/90">
+            LET’S BUILD SUSTAINABLE SOLUTIONS TOGETHER
+          </p>
         </div>
       </section>
 
-      {/* ===== MAIN (glass cards) ===== */}
-      <main className="relative bg-gradient-to-b from-white to-slate-50">
-        <section className="-mt-16 md:-mt-20 pb-16">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* FORM CARD */}
-              <div className="lg:col-span-2">
-                <div className="rounded-2xl bg-white/80 backdrop-blur-xl shadow-[0_30px_80px_rgba(2,6,23,0.10)] ring-1 ring-black/5 p-6 md:p-8">
-                  <div className="flex flex-wrap items-center justify-between gap-4">
+      {/* ---------- MAIN CONTENT (matches Contact.tsx) ---------- */}
+      <main className="bg-white text-gray-900">
+        {/* “Get in Touch” heading */}
+        <section className="text-center py-10">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+            Get in Touch
+          </h1>
+          <div className="mt-3 h-1 w-24 mx-auto bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 rounded-full" />
+        </section>
+
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* LEFT CONTENT */}
+            <article className="lg:col-span-2">
+              <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
+                <div className="px-6 sm:px-8 pt-8">
+                  <img
+                    src="/contact.png"
+                    alt="Team collaboration"
+                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
+                    draggable={false}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                <div className="px-6 sm:px-8 pb-8 mt-6">
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                    We’d love to hear from you—whether you’re exploring sustainable
+                    feedstock, renewable diesel inputs, or strategic partnerships across
+                    regions. Our global team is here to help you make confident,
+                    climate-positive moves.
+                  </p>
+                  <p className="mt-4 text-base md:text-lg text-gray-700 leading-relaxed">
+                    Share your requirements and timelines, and we’ll connect you with
+                    the right experts from our regional hubs across Asia, the Middle
+                    East, the UK, and the USA. Together, we’ll craft reliable, scalable
+                    solutions.
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm text-sky-800">
+                      <ShieldCheck className="h-4 w-4" /> Compliance & Certifications
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm text-emerald-800">
+                      Cross-border Logistics
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm text-indigo-800">
+                      <Headset className="h-4 w-4" /> Dedicated Support
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            {/* RIGHT SIDEBAR */}
+            <aside className="space-y-6">
+              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Contact Channels
+                </h3>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
+                      <Mail className="h-7 w-7 text-sky-500" />
+                    </div>
                     <div>
-                      <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                        Get in Touch
-                      </h2>
-                      <p className="mt-1 text-slate-600">
-                        Share your requirements and timelines. We’ll connect you to the right team.
-                      </p>
-                    </div>
-                    <div className="hidden sm:flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold text-white shadow-md bg-gradient-to-r from-blue-600 to-blue-400">
-                      <ShieldCheck className="h-4 w-4" />
-                      ISCC (EU) Certified
-                    </div>
-                  </div>
-
-                  <div className="mt-6 overflow-hidden rounded-xl">
-                    <img
-                      src="/contact.png"
-                      alt="Team collaboration"
-                      className="w-full h-56 md:h-64 object-cover"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <form className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={onSubmit}>
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Your Name *"
-                      required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:ring focus:ring-blue-200"
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="Your Email *"
-                      required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:ring focus:ring-blue-200"
-                    />
-                    <input
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="Phone"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3"
-                    />
-                    <input
-                      name="company"
-                      value={form.company}
-                      onChange={handleChange}
-                      placeholder="Company"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3"
-                    />
-                    <input
-                      name="subject"
-                      value={form.subject}
-                      onChange={handleChange}
-                      placeholder="Subject"
-                      className="md:col-span-2 w-full rounded-lg border border-gray-300 px-4 py-3"
-                    />
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Message"
-                      rows={5}
-                      className="md:col-span-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:ring focus:ring-blue-200"
-                    />
-                    <div className="md:col-span-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                      <button
-                        type="submit"
-                        disabled={submitting}
-                        className={`inline-flex items-center justify-center rounded-xl text-white font-semibold px-6 py-3 disabled:opacity-50 ${GRAD} hover:brightness-110 shadow-lg`}
+                      <div className="text-lg font-semibold">Email</div>
+                      <a
+                        href="mailto:hello@moltechglobal.com"
+                        className="text-gray-600 hover:text-gray-900"
                       >
-                        {submitting ? "Sending..." : "Send Message"}
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </button>
-                      <p className="text-xs text-slate-500">
-                        By submitting, you agree to be contacted by our regional team.
-                      </p>
+                        hello@moltechglobal.com
+                      </a>
                     </div>
-                  </form>
+                  </div>
 
-                  {status && (
-                    <p
-                      className={`mt-4 text-sm ${
-                        status.ok ? "text-emerald-600" : "text-red-600"
-                      }`}
-                    >
-                      {status.msg}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* INFO STACK */}
-              <div className="space-y-6">
-                <div className="rounded-2xl bg-white/80 backdrop-blur-xl p-6 ring-1 ring-black/5 shadow-[0_20px_60px_rgba(2,6,23,0.08)]">
-                  <h3 className="text-xl font-bold text-slate-900">Contact Channels</h3>
-                  <div className="mt-5 space-y-5">
-                    <a
-                      href={`mailto:${contactEmail}`}
-                      className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-white/70 p-4 hover:border-blue-400 transition"
-                    >
-                      <div className="grid h-12 w-12 place-items-center rounded-xl bg-blue-50">
-                        <Mail className="h-6 w-6 text-blue-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-slate-900">Email</div>
-                        <div className="text-slate-600 group-hover:text-slate-800">
-                          {contactEmail}
-                        </div>
-                      </div>
-                    </a>
-
-                    <a
-                      href={`tel:${contactPhone.replace(/[^+\d]/g, "")}`}
-                      className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-white/70 p-4 hover:border-blue-400 transition"
-                    >
-                      <div className="grid h-12 w-12 place-items-center rounded-xl bg-indigo-50">
-                        <Phone className="h-6 w-6 text-indigo-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-slate-900">Call</div>
-                        <div className="text-slate-600 group-hover:text-slate-800">
-                          {contactPhone}
-                        </div>
-                      </div>
-                    </a>
-
-                    <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white/70 p-4">
-                      <div className="grid h-12 w-12 place-items-center rounded-xl bg-amber-50">
-                        <Clock className="h-6 w-6 text-amber-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-slate-900">Hours</div>
-                        <div className="text-slate-600">Mon–Fri · 9:00–18:00</div>
-                      </div>
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50">
+                      <Phone className="h-7 w-7 text-indigo-500" />
                     </div>
+                    <div>
+                      <div className="text-lg font-semibold">Call</div>
+                      <a
+                        href="tel:+6560000000"
+                        className="text-gray-600 hover:text-gray-900"
+                      >
+                        +65 6000 0000
+                      </a>
+                    </div>
+                  </div>
 
-                    <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white/70 p-4">
-                      <div className="grid h-12 w-12 place-items-center rounded-xl bg-emerald-50">
-                        <MapPin className="h-6 w-6 text-emerald-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-slate-900">HQ</div>
-                        <div className="text-slate-600">{hqAddress}</div>
-                      </div>
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-amber-50">
+                      <Clock className="h-7 w-7 text-amber-600" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-semibold">Hours</div>
+                      <div className="text-gray-600">Mon–Fri · 9:00–18:00</div>
                     </div>
                   </div>
                 </div>
-
-                <div className="rounded-2xl bg-white/80 backdrop-blur-xl p-6 ring-1 ring-black/5 shadow-[0_20px_60px_rgba(2,6,23,0.08)]">
-                  <h3 className="text-xl font-bold text-slate-900">Why work with us?</h3>
-                  <ul className="mt-4 list-disc pl-6 text-slate-700 space-y-2">
-                    <li>ISCC (EU) certified systems and compliance</li>
-                    <li>Cross-border logistics and reliable supply</li>
-                    <li>Regional experts across APAC, MENA, EU, and USA</li>
-                  </ul>
-                </div>
               </div>
-            </div>
+
+              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                <h3 id="contact-form" className="text-2xl font-bold text-gray-900">
+                  Send us a message
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">
+                  Tell us about your requirements. We typically respond within one
+                  business day.
+                </p>
+
+                <form className="mt-6 space-y-4" onSubmit={onSubmit}>
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Your Name"
+                    required
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="Your Email"
+                    required
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="Phone"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                  />
+                  <input
+                    type="text"
+                    name="company"
+                    value={form.company}
+                    onChange={handleChange}
+                    placeholder="Company"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                  />
+                  <input
+                    type="text"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    placeholder="Subject"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2"
+                  />
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Message"
+                    rows={4}
+                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-sky-500 focus:ring focus:ring-sky-200"
+                  />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className={`w-full rounded-lg text-white font-semibold px-4 py-2 disabled:opacity-50 ${GRAD} hover:brightness-110`}
+                  >
+                    {submitting ? "Sending..." : "Send Message"}
+                  </button>
+                </form>
+
+                {status && (
+                  <p
+                    className={`mt-4 text-sm ${
+                      status.ok ? "text-emerald-600" : "text-red-600"
+                    }`}
+                  >
+                    {status.msg}
+                  </p>
+                )}
+              </div>
+            </aside>
           </div>
         </section>
       </main>
