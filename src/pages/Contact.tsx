@@ -80,12 +80,12 @@ const Contact: React.FC = () => {
 
       {/* ---------- MAIN CONTENT ---------- */}
       <main className="bg-white text-gray-900">
-        {/* 👇 NEW “Get in Touch” SECTION HEADING */}
+        {/* “Get in Touch” SECTION HEADING */}
         <section className="text-center py-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
             Get in Touch
           </h1>
-          <div className="mt-3 h-1 w-24 mx-auto bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 rounded-full" />
+        <div className="mt-3 h-1 w-24 mx-auto bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 rounded-full" />
         </section>
 
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
@@ -118,7 +118,56 @@ const Contact: React.FC = () => {
                     solutions.
                   </p>
 
-                  <div className="mt-6 flex flex-wrap gap-3">
+                  {/* ✅ MOVED: CONTACT CHANNELS PANEL BELOW PARAGRAPHS */}
+                  <div className="mt-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {/* Email */}
+                      <a
+                        href="mailto:hello@moltechglobal.com"
+                        className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-gray-50 p-5 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-blue-400 transition"
+                      >
+                        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
+                          <Mail className="h-7 w-7 text-sky-500" />
+                        </div>
+                        <div>
+                          <div className="text-lg font-semibold text-gray-900">Email</div>
+                          <div className="text-gray-600 group-hover:text-gray-900">
+                            hello@moltechglobal.com
+                          </div>
+                        </div>
+                      </a>
+
+                      {/* Phone */}
+                      <a
+                        href="tel:+6560000000"
+                        className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-gray-50 p-5 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-blue-400 transition"
+                      >
+                        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50">
+                          <Phone className="h-7 w-7 text-indigo-500" />
+                        </div>
+                        <div>
+                          <div className="text-lg font-semibold text-gray-900">Call</div>
+                          <div className="text-gray-600 group-hover:text-gray-900">
+                            +65 6000 0000
+                          </div>
+                        </div>
+                      </a>
+
+                      {/* Hours */}
+                      <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-gray-50 p-5 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-amber-50">
+                          <Clock className="h-7 w-7 text-amber-600" />
+                        </div>
+                        <div>
+                          <div className="text-lg font-semibold text-gray-900">Hours</div>
+                          <div className="text-gray-600">Mon–Fri · 9:00–18:00</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tags/Chips */}
+                  <div className="mt-8 flex flex-wrap gap-3">
                     <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm text-sky-800">
                       <ShieldCheck className="h-4 w-4" /> Compliance & Certifications
                     </span>
@@ -133,55 +182,8 @@ const Contact: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT SIDEBAR */}
+            {/* RIGHT SIDEBAR — form only now */}
             <aside className="space-y-6">
-              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Contact Channels
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
-                      <Mail className="h-7 w-7 text-sky-500" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-semibold">Email</div>
-                      <a
-                        href="mailto:hello@moltechglobal.com"
-                        className="text-gray-600 hover:text-gray-900"
-                      >
-                        hello@moltechglobal.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50">
-                      <Phone className="h-7 w-7 text-indigo-500" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-semibold">Call</div>
-                      <a
-                        href="tel:+6560000000"
-                        className="text-gray-600 hover:text-gray-900"
-                      >
-                        +65 6000 0000
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-amber-50">
-                      <Clock className="h-7 w-7 text-amber-600" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-semibold">Hours</div>
-                      <div className="text-gray-600">Mon–Fri · 9:00–18:00</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 id="contact-form" className="text-2xl font-bold text-gray-900">
                   Send us a message
