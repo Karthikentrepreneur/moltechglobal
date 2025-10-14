@@ -93,17 +93,17 @@ const Contact: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Message Box, then Contact Channels underneath */}
-            <div className="space-y-6">
+            {/* RIGHT: Message Box, with Contact Channels snug underneath */}
+            <div className="space-y-0"> {/* remove vertical gap between children */}
               <GetInTouchCard />
 
-              {/* Contact Channels (Call + Hours in one row) */}
-              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+              {/* Pull the channels card up to kiss the message box (no white gap) */}
+              <div className="-mt-4 rounded-t-none bg-gray-50 rounded-b-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)] border border-slate-200 border-t-0">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Contact Channels
                 </h3>
 
-                {/* Email stays full-width */}
+                {/* Email full-width */}
                 <div className="mb-6 flex items-center gap-4">
                   <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
                     <Mail className="h-7 w-7 text-sky-500" />
@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                {/* ✅ Call & Hours on the same row */}
+                {/* Call & Hours in one row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* Call */}
                   <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4">
