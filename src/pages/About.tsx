@@ -7,21 +7,34 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 /* -------------------- CountUp -------------------- */
-function easeOutCubic(t: number) { return 1 - Math.pow(1 - t, 3); }
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
 function useInView<T extends HTMLElement>(opts?: IntersectionObserverInit) {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
-    if (!el || !("IntersectionObserver" in window)) { setInView(true); return; }
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.2, ...opts });
+    if (!el || !("IntersectionObserver" in window)) {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {
+      threshold: 0.2,
+      ...opts,
+    });
     io.observe(el);
     return () => io.disconnect();
   }, [opts]);
   return { ref, inView };
 }
+
 const CountUp: React.FC<{ to: number; className?: string; duration?: number; suffix?: string }> = ({
-  to, className, duration = 1200, suffix = ""
+  to,
+  className,
+  duration = 1200,
+  suffix = "",
 }) => {
   const { ref, inView } = useInView<HTMLSpanElement>();
   const [v, setV] = useState(0);
@@ -29,7 +42,8 @@ const CountUp: React.FC<{ to: number; className?: string; duration?: number; suf
   useEffect(() => {
     if (!inView || started.current) return;
     started.current = true;
-    let raf = 0, start: number | null = null;
+    let raf = 0,
+      start: number | null = null;
     const tick = (ts: number) => {
       if (start === null) start = ts;
       const t = Math.min((ts - start) / duration, 1);
@@ -39,7 +53,12 @@ const CountUp: React.FC<{ to: number; className?: string; duration?: number; suf
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, to, duration]);
-  return <span ref={ref} className={className}>{v.toLocaleString()}{suffix}</span>;
+  return (
+    <span ref={ref} className={className}>
+      {v.toLocaleString()}
+      {suffix}
+    </span>
+  );
 };
 /* ------------------------------------------------ */
 
@@ -60,13 +79,19 @@ const About: React.FC = () => {
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="border-b border-gray-100">
           <ol className="mx-auto max-w-7xl px-6 lg:px-8 py-3 flex items-center gap-2 text-xs sm:text-sm">
-            <li><Link to="/" className="text-gray-500 hover:text-[#0F1B3D]">Home</Link></li>
-            <li aria-hidden className="text-gray-400">›</li>
+            <li>
+              <Link to="/" className="text-gray-500 hover:text-[#0F1B3D]">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden className="text-gray-400">
+              ›
+            </li>
             <li className="font-medium">About</li>
           </ol>
         </nav>
 
-        {/* ===== Hero/Intro block (matches screenshot layout) ===== */}
+        {/* ===== Hero/Intro block ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left image card */}
@@ -131,11 +156,14 @@ const About: React.FC = () => {
                 </div>
               </div>
 
-              {/* Help line */}
-              <div className="mt-10 flex items-center gap-4">
-                <img src="/Moltechlogo.png" className="h-6 w-auto object-contain" alt="Moltech" />
-                <span className="text-slate-500 text-sm">Need Help?</span>
-                <span className="font-semibold text-[#0F1B3D]">+65 6514 0868</span>
+              {/* Contact CTA Button (replaces Need Help section) */}
+              <div className="mt-10">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 w-full sm:w-auto"
+                >
+                  Contact Us
+                </Link>
               </div>
             </div>
           </div>
@@ -146,7 +174,7 @@ const About: React.FC = () => {
           <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Our Story (same typography rhythm) ===== */}
+        {/* ===== Our Story ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
           <h2 className="text-3xl md:text-4xl font-extrabold">Our Story</h2>
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -190,7 +218,7 @@ const About: React.FC = () => {
           <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Compact stats row (subtle, consistent) ===== */}
+        {/* ===== Compact Stats Row ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="flex items-center gap-4">
@@ -240,11 +268,13 @@ const About: React.FC = () => {
           <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Vision / Mission (clean blocks) ===== */}
+        {/* ===== Vision / Mission ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="rounded-2xl ring-1 ring-black/5 bg-white p-8 shadow-[0_14px_40px_rgba(2,6,23,0.06)]">
-              <h3 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">Vision</h3>
+              <h3 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">
+                Vision
+              </h3>
               <p className="mt-4 text-[16.5px] leading-8 text-slate-700">
                 To engage in business and services in the bio-space which contribute to
                 reduction in carbon footprint and environmental care.
@@ -252,7 +282,9 @@ const About: React.FC = () => {
             </div>
 
             <div className="rounded-2xl ring-1 ring-black/5 bg-white p-8 shadow-[0_14px_40px_rgba(2,6,23,0.06)]">
-              <h3 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">Mission</h3>
+              <h3 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">
+                Mission
+              </h3>
               <ul className="mt-4 list-disc pl-5 space-y-2 text-[16.5px] leading-8 text-slate-700">
                 <li>Scale up collection and processing of sustainable feedstock for clean energy.</li>
                 <li>Operate with high standards of ethics and good governance.</li>
