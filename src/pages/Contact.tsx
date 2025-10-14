@@ -21,7 +21,7 @@ const Contact: React.FC = () => {
             loading="eager"
             decoding="async"
           />
-        <div className="absolute inset-0 bg-black/60" aria-hidden />
+          <div className="absolute inset-0 bg-black/60" aria-hidden />
           <div className="relative z-10 px-6">
             <div className="mx-auto inline-flex items-center justify-center rounded-2xl bg-blue-600/85 p-4 mb-6">
               <Headset className="h-8 w-8 text-white" />
@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
         {/* 50/50 grid */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* LEFT: Article with image, paragraphs, and Contact Channels below */}
+            {/* LEFT: Article with image + paragraphs + chips */}
             <article>
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <div className="px-6 sm:px-8 pt-8">
@@ -77,54 +77,6 @@ const Contact: React.FC = () => {
                     solutions.
                   </p>
 
-                  {/* ✅ Contact Channels moved here (under paragraphs) */}
-                  <div className="mt-8">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {/* Email */}
-                      <a
-                        href="mailto:hello@moltechglobal.com"
-                        className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-gray-50 p-5 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-blue-400 transition"
-                      >
-                        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
-                          <Mail className="h-7 w-7 text-sky-500" />
-                        </div>
-                        <div>
-                          <div className="text-lg font-semibold text-gray-900">Email</div>
-                          <div className="text-gray-600 group-hover:text-gray-900">
-                            hello@moltechglobal.com
-                          </div>
-                        </div>
-                      </a>
-
-                      {/* Phone */}
-                      <a
-                        href="tel:+6560000000"
-                        className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-gray-50 p-5 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-blue-400 transition"
-                      >
-                        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50">
-                          <Phone className="h-7 w-7 text-indigo-500" />
-                        </div>
-                        <div>
-                          <div className="text-lg font-semibold text-gray-900">Call</div>
-                          <div className="text-gray-600 group-hover:text-gray-900">
-                            +65 6000 0000
-                          </div>
-                        </div>
-                      </a>
-
-                      {/* Hours */}
-                      <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-gray-50 p-5 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-amber-50">
-                          <Clock className="h-7 w-7 text-amber-600" />
-                        </div>
-                        <div>
-                          <div className="text-lg font-semibold text-gray-900">Hours</div>
-                          <div className="text-gray-600">Mon–Fri · 9:00–18:00</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                   {/* Tags/Chips */}
                   <div className="mt-8 flex flex-wrap gap-3">
                     <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm text-sky-800">
@@ -141,10 +93,59 @@ const Contact: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT: Get In Touch message box */}
-            <div>
+            {/* RIGHT: Message Box, then Contact Channels underneath */}
+            <div className="space-y-6">
               <GetInTouchCard />
+
+              {/* Contact Channels moved down below the message box */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Contact Channels
+                </h3>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-50">
+                      <Mail className="h-7 w-7 text-sky-500" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-semibold">Email</div>
+                      <a
+                        href="mailto:hello@moltechglobal.com"
+                        className="text-gray-600 hover:text-gray-900"
+                      >
+                        hello@moltechglobal.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50">
+                      <Phone className="h-7 w-7 text-indigo-500" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-semibold">Call</div>
+                      <a
+                        href="tel:+6560000000"
+                        className="text-gray-600 hover:text-gray-900"
+                      >
+                        +65 6000 0000
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-14 w-14 place-items-center rounded-2xl bg-amber-50">
+                      <Clock className="h-7 w-7 text-amber-600" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-semibold">Hours</div>
+                      <div className="text-gray-600">Mon–Fri · 9:00–18:00</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            {/* END RIGHT */}
           </div>
         </section>
       </main>
