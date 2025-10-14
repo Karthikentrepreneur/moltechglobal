@@ -3,7 +3,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Mail, Phone, Clock, Headset, ShieldCheck } from "lucide-react";
-import GetInTouchCard from "@/components/GetInTouchCard"; // ← new unified message box
+import GetInTouchCard from "@/components/GetInTouchCard";
 
 const Contact: React.FC = () => {
   return (
@@ -46,6 +46,7 @@ const Contact: React.FC = () => {
           <div className="mt-3 h-1 w-24 mx-auto bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 rounded-full" />
         </section>
 
+        {/* Top grid: article + contact channels */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT CONTENT */}
@@ -91,9 +92,8 @@ const Contact: React.FC = () => {
               </div>
             </article>
 
-            {/* RIGHT SIDEBAR */}
+            {/* RIGHT SIDEBAR: Contact Channels only */}
             <aside className="space-y-6">
-              {/* Contact Channels */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Contact Channels
@@ -140,10 +140,12 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Unified message box (same as ContactSection) */}
-              <GetInTouchCard />
             </aside>
+          </div>
+
+          {/* 👇 BIGGER MESSAGE BOX: full-width, centered, wider container */}
+          <div className="mt-12 max-w-5xl mx-auto">
+            <GetInTouchCard />
           </div>
         </section>
       </main>
