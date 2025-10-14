@@ -7,23 +7,15 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 /* -------------------- CountUp -------------------- */
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3);
-}
+function easeOutCubic(t: number) { return 1 - Math.pow(1 - t, 3); }
 
 function useInView<T extends HTMLElement>(opts?: IntersectionObserverInit) {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
-    if (!el || !("IntersectionObserver" in window)) {
-      setInView(true);
-      return;
-    }
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {
-      threshold: 0.2,
-      ...opts,
-    });
+    if (!el || !("IntersectionObserver" in window)) { setInView(true); return; }
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.2, ...opts });
     io.observe(el);
     return () => io.disconnect();
   }, [opts]);
@@ -31,10 +23,7 @@ function useInView<T extends HTMLElement>(opts?: IntersectionObserverInit) {
 }
 
 const CountUp: React.FC<{ to: number; className?: string; duration?: number; suffix?: string }> = ({
-  to,
-  className,
-  duration = 1200,
-  suffix = "",
+  to, className, duration = 1200, suffix = ""
 }) => {
   const { ref, inView } = useInView<HTMLSpanElement>();
   const [v, setV] = useState(0);
@@ -42,8 +31,7 @@ const CountUp: React.FC<{ to: number; className?: string; duration?: number; suf
   useEffect(() => {
     if (!inView || started.current) return;
     started.current = true;
-    let raf = 0,
-      start: number | null = null;
+    let raf = 0, start: number | null = null;
     const tick = (ts: number) => {
       if (start === null) start = ts;
       const t = Math.min((ts - start) / duration, 1);
@@ -53,12 +41,7 @@ const CountUp: React.FC<{ to: number; className?: string; duration?: number; suf
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, to, duration]);
-  return (
-    <span ref={ref} className={className}>
-      {v.toLocaleString()}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref} className={className}>{v.toLocaleString()}{suffix}</span>;
 };
 /* ------------------------------------------------ */
 
@@ -76,22 +59,39 @@ const About: React.FC = () => {
       <Header />
 
       <main className="bg-white text-[#0F1B3D]">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="border-b border-gray-100">
-          <ol className="mx-auto max-w-7xl px-6 lg:px-8 py-3 flex items-center gap-2 text-xs sm:text-sm">
-            <li>
-              <Link to="/" className="text-gray-500 hover:text-[#0F1B3D]">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden className="text-gray-400">
-              ›
-            </li>
-            <li className="font-medium">About</li>
-          </ol>
-        </nav>
+        {/* ====== HERO HEADER (like screenshot) ====== */}
+        <section aria-label="About Us hero" className="relative">
+          <div className="relative h-[38vh] md:h-[50vh] lg:h-[56vh]">
+            {/* Update the image path to your hero image */}
+            <img
+              src="/about-hero.jpg"   // ← replace with your actual hero image (e.g., /hero-about-banner.jpg)
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="eager"
+            />
+            {/* Dark gradient overlay (top soft, bottom strong) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
+            {/* Centered title + breadcrumb */}
+            <div className="relative z-10 flex h-full items-center justify-center text-center px-6">
+              <div>
+                <h1 className="text-white text-4xl md:text-5xl font-extrabold drop-shadow-sm">
+                  About Us
+                </h1>
+                <nav aria-label="Breadcrumb" className="mt-3">
+                  <ol className="flex items-center justify-center gap-2 text-sm text-white/90">
+                    <li>
+                      <Link to="/" className="hover:text-white transition-colors">Home</Link>
+                    </li>
+                    <li aria-hidden>→</li>
+                    <li className="font-semibold">About Us</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        {/* ===== Hero/Intro block ===== */}
+        {/* ===== Hero/Intro content block (kept as-is) ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left image card */}
@@ -101,7 +101,7 @@ const About: React.FC = () => {
                   src="/chemical.jpg"
                   alt="Moltech laboratory"
                   className="w-full h-[380px] md:h-[440px] object-cover"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -112,15 +112,13 @@ const About: React.FC = () => {
                 About Company
               </div>
 
-              <h1 className="mt-2 text-4xl sm:text-5xl font-extrabold leading-tight">
+              <h2 className="mt-2 text-4xl sm:text-5xl font-extrabold leading-tight">
                 About Moltech
-              </h1>
+              </h2>
 
               <p className="mt-5 text-[17px] leading-8 text-slate-700">
                 Moltech strides in the bio space working on{" "}
-                <span className="font-semibold text-[#0F1B3D]">
-                  clean initiatives and products
-                </span>{" "}
+                <span className="font-semibold text-[#0F1B3D]">clean initiatives and products</span>{" "}
                 that drive the circular economy. With its strategic presence in Asia, Middle
                 East, United Kingdom and United States of America, Moltech is positioned to
                 cater and harness cross-continental potential of renewable and sustainable
@@ -156,11 +154,12 @@ const About: React.FC = () => {
                 </div>
               </div>
 
-              {/* Contact CTA Button (replaces Need Help section) */}
-              <div className="mt-10">
+              {/* Logo + Contact Button (number removed) */}
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <img src="/Moltechlogo.png" className="h-6 w-auto object-contain" alt="Moltech" />
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
                 >
                   Contact Us
                 </Link>
@@ -176,7 +175,7 @@ const About: React.FC = () => {
 
         {/* ===== Our Story ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold">Our Story</h2>
+          <h3 className="text-3xl md:text-4xl font-extrabold">Our Story</h3>
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="space-y-5 text-[16.5px] leading-8 text-slate-700">
               <p>
@@ -218,7 +217,7 @@ const About: React.FC = () => {
           <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Compact Stats Row ===== */}
+        {/* ===== Compact stats row ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="flex items-center gap-4">
@@ -272,9 +271,7 @@ const About: React.FC = () => {
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="rounded-2xl ring-1 ring-black/5 bg-white p-8 shadow-[0_14px_40px_rgba(2,6,23,0.06)]">
-              <h3 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">
-                Vision
-              </h3>
+              <h4 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">Vision</h4>
               <p className="mt-4 text-[16.5px] leading-8 text-slate-700">
                 To engage in business and services in the bio-space which contribute to
                 reduction in carbon footprint and environmental care.
@@ -282,9 +279,7 @@ const About: React.FC = () => {
             </div>
 
             <div className="rounded-2xl ring-1 ring-black/5 bg-white p-8 shadow-[0_14px_40px_rgba(2,6,23,0.06)]">
-              <h3 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">
-                Mission
-              </h3>
+              <h4 className="text-sm tracking-[0.35em] font-semibold uppercase text-slate-500">Mission</h4>
               <ul className="mt-4 list-disc pl-5 space-y-2 text-[16.5px] leading-8 text-slate-700">
                 <li>Scale up collection and processing of sustainable feedstock for clean energy.</li>
                 <li>Operate with high standards of ethics and good governance.</li>
