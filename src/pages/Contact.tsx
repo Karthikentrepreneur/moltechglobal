@@ -38,13 +38,7 @@ const Contact: React.FC = () => {
 
       {/* ---------- MAIN CONTENT ---------- */}
       <main className="bg-white text-gray-900">
-        {/* “Get in Touch” SECTION HEADING */}
-        <section className="text-center py-10">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
-            Contact
-          </h1>
-          <div className="mt-3 h-1 w-24 mx-auto bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 rounded-full" />
-        </section>
+        {/* (Removed the centered "Contact / Get in Touch" heading block) */}
 
         {/* 50/50 grid */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
@@ -94,10 +88,10 @@ const Contact: React.FC = () => {
             </article>
 
             {/* RIGHT: Message Box, with Contact Channels snug underneath */}
-            <div className="space-y-0"> {/* remove vertical gap between children */}
+            <div className="space-y-0">
               <GetInTouchCard />
 
-              {/* Pull the channels card up to kiss the message box (no white gap) */}
+              {/* Contact Channels (flush under box) */}
               <div className="-mt-4 rounded-t-none bg-gray-50 rounded-b-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)] border border-slate-200 border-t-0">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Contact Channels
