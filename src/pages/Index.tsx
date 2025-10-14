@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import ProductsServices from "@/components/ProductsServices";
-import GlobalPresence from "@/components/GlobalPresence";
 import CertificationSg from "@/components/CertificationSg";
+import GlobalPresence from "@/components/GlobalPresence";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -46,14 +46,14 @@ const Index = () => {
           <ProductsServices />
         </section>
 
-        {/* GLOBAL */}
-        <section id="global" className="scroll-mt-24">
-          <GlobalPresence />
-        </section>
-
         {/* CAREERS */}
         <section id="careers" className="scroll-mt-24">
           <CertificationSg  />
+        </section>
+        
+         {/* GLOBAL */}
+        <section id="global" className="scroll-mt-24">
+          <GlobalPresence />
         </section>
 
         {/* CONTACT (single hero handled inside ContactSection if any) */}
