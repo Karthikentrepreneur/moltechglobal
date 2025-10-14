@@ -12,7 +12,7 @@ const About = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-2xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
             <div className="relative bg-white p-3 rounded-2xl shadow-2xl">
               <img
-                src="/Biodieselariel.jpg"
+                src="/About.png"
                 alt="Moltech sustainable biodiesel facility"
                 className="w-full h-[500px] rounded-xl object-cover"
               />
