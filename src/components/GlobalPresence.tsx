@@ -1,6 +1,7 @@
 // src/components/GlobalPresence.tsx
 import { useEffect, useState } from "react";
 import { MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 /* ---------- Types ---------- */
 type Office = {
@@ -79,7 +80,7 @@ export default function GlobalPresence() {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "/malasyia.avif", // if you have a .jpg instead, change the path here
+      image: "/malasyia.avif", // update if your asset is .jpg
     },
     {
       city: "Johor",
@@ -221,6 +222,17 @@ export default function GlobalPresence() {
             {otherOffices.map((office, i) => (
               <OfficeCard key={`${office.city}-${i}`} office={office} />
             ))}
+          </div>
+
+          {/* ▼ New CTA below the grid */}
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/global"
+              className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
+              aria-label="View our full global presence"
+            >
+              Explore Our Global Network
+            </Link>
           </div>
         </div>
       </section>
