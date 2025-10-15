@@ -52,14 +52,14 @@ const Global = () => {
       <Header />
 
       <main className="flex-1">
-        {/* Intro */}
+        {/* Hero Section */}
         <section className="pt-28 pb-10 md:pb-12">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
             <span className="inline-flex items-center rounded-full bg-royal-blue/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-royal-blue">
               Global Presence
             </span>
 
-            {/* Title with BLUE gradient */}
+            {/* Main Title */}
             <h1 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent">
               Logistics without borders, service without compromise
             </h1>
@@ -72,9 +72,10 @@ const Global = () => {
           </div>
         </section>
 
-        {/* Map + Sidebar */}
+        {/* Map and Sidebar Section */}
         <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
           <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
+            {/* Mobile Header Banner */}
             {isMobile && (
               <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
                 <h2 className="text-lg font-bold tracking-wide">Global Presence</h2>
@@ -82,6 +83,7 @@ const Global = () => {
               </div>
             )}
 
+            {/* Map Section */}
             {(!isMobile || (isMobile && showMap)) && (
               <div
                 className={`transition-all duration-300 ease-in-out ${
@@ -92,6 +94,7 @@ const Global = () => {
               </div>
             )}
 
+            {/* Sidebar Section */}
             {(!isMobile || (isMobile && !showMap)) && (
               <aside
                 className={`transition-all duration-300 ease-in-out ${
@@ -109,12 +112,12 @@ const Global = () => {
             )}
           </div>
 
-          {/* Mobile toggle */}
+          {/* Floating Mobile Toggle Button */}
           {isMobile && (
             <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
               <Button
                 onClick={toggleMobileView}
-                className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-lg px-5 py-4 rounded-full"
+                className="flex items-center gap-2 bg-gradient-to-r from-royal-blue to-electric-blue hover:from-deep-navy hover:to-royal-blue text-white shadow-xl px-5 py-4 rounded-full transition-all"
               >
                 {showMap ? (
                   <>
