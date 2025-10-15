@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronUp, Mail, ChevronLeft, ChevronRight } from "lucide-react";
 
 const quickLinks = [
@@ -29,13 +29,34 @@ const GRADIENT_BG = "bg-gradient-to-r from-blue-600 to-blue-400";
 
 const Footer = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  // === Auto-scroll every 4 seconds ===
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % offices.length);
+        setFade(true);
+      }, 250);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   const nextOffice = () => {
-    setCurrentIndex((prev) => (prev + 1) % offices.length);
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % offices.length);
+      setFade(true);
+    }, 250);
   };
 
   const prevOffice = () => {
-    setCurrentIndex((prev) => (prev - 1 + offices.length) % offices.length);
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + offices.length) % offices.length);
+      setFade(true);
+    }, 250);
   };
 
   return (
@@ -45,61 +66,83 @@ const Footer = () => {
           --royal-blue: #2741ff;
           --electric-blue: #2dd4ff;
         }
+
         .office-chip {
           padding: 2px;
           border-radius: 14px;
           background: linear-gradient(90deg, var(--royal-blue), var(--electric-blue));
-          background-size: 200% 100%;
-          transition: background-position .6s ease;
+          transition: background-position 0.6s ease;
         }
+
         .office-chip__inner {
           border-radius: 12px;
           background: rgba(255,255,255,0.06);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
           padding: 14px 18px;
-          box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-          transform: translateZ(0);
-          transition: transform .25s ease, box-shadow .25s ease;
+          backdrop-filter: blur(6px);
+          transition: all 0.35s ease;
         }
+
         .office-chip__title {
           font-weight: 800;
           color: #fff;
           font-size: 13px;
-          letter-spacing: .3px;
           margin-bottom: 6px;
           text-transform: uppercase;
         }
+
         .office-chip__line {
-          color: rgba(255,255,255,0.85);
+          color: rgba(255,255,255,0.9);
           font-size: 13px;
-          line-height: 1.35;
+          line-height: 1.4;
         }
+
         .office-chip__sub {
           color: rgba(255,255,255,0.7);
           font-size: 12px;
-          margin-top: 2px;
+          margin-top: 3px;
+        }
+
+        .fade-enter {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+
+        .fade-enter-active {
+          opacity: 1;
+          transform: translateY(0);
+          transition: all 0.4s ease;
+        }
+
+        .fade-exit {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .fade-exit-active {
+          opacity: 0;
+          transform: translateY(-5px);
+          transition: all 0.3s ease;
         }
       `}</style>
 
       <footer className="bg-black text-white">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Top divider + arrow */}
+          {/* Divider + Top Button */}
           <div className="relative">
             <div className={`mx-auto mt-8 h-[3px] w-full max-w-5xl ${GRADIENT_BG} rounded-full`} />
             <button
               onClick={scrollTop}
               aria-label="Back to top"
-              className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GRADIENT_BG} shadow-lg transition-transform hover:-translate-y-0.5`}
+              className={`absolute right-0 -top-4 grid h-9 w-9 place-items-center rounded-full ${GRADIENT_BG} shadow-lg hover:-translate-y-0.5 transition-transform`}
             >
               <ChevronUp className="h-4 w-4 text-white" />
             </button>
           </div>
 
-          {/* === Main Grid === */}
-          <div className="py-10 grid grid-cols-1 gap-10 md:grid-cols-3">
-            {/* Left: About */}
-            <div>
+          {/* Main Grid */}
+          <div className="py-10 grid grid-cols-1 gap-10 md:grid-cols-3 items-start">
+            {/* Column 1: Logo + About */}
+            <div className="flex flex-col justify-start">
               <img src="/Moltechlogo.png" alt="Moltech Logo" className="h-8 w-auto mb-3" />
               <p className="text-white/80 leading-relaxed text-sm md:text-[15px] max-w-md">
                 We source and supply environmentally responsible products that reduce carbon footprint.
@@ -107,7 +150,7 @@ const Footer = () => {
               </p>
             </div>
 
-            {/* Middle: Quick links */}
+            {/* Column 2: Quick Links */}
             <div>
               <h4 className="text-[18px] font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-3">
@@ -122,8 +165,8 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Right: Contact + Offices Slider */}
-            <div>
+            {/* Column 3: Contact + Auto-Slider */}
+            <div className="flex flex-col justify-start">
               <h4 className="text-[18px] font-semibold mb-4">Contact</h4>
               <a
                 href="mailto:info@moltechglobal.com"
@@ -135,38 +178,36 @@ const Footer = () => {
                 info@moltechglobal.com
               </a>
 
-              {/* Office Slider */}
-              <div className="mt-6 text-center relative">
-                <h5 className="text-sm font-semibold mb-3 text-white/80">Global Offices</h5>
+              <h5 className="text-sm font-semibold mt-6 mb-3 text-white/80">Global Offices</h5>
+              <div className="relative flex items-center justify-center">
+                {/* Left arrow */}
+                <button
+                  onClick={prevOffice}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
 
-                <div className="relative flex items-center justify-center">
-                  {/* Left Arrow */}
-                  <button
-                    onClick={prevOffice}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-
-                  {/* Office card */}
-                  <div className="office-card flex justify-center w-full px-8">
-                    <div className="office-chip w-full max-w-sm">
-                      <div className="office-chip__inner text-left">
-                        <div className="office-chip__title">{offices[currentIndex].country}</div>
-                        <div className="office-chip__line">{offices[currentIndex].address}</div>
-                        <div className="office-chip__sub">{offices[currentIndex].phone}</div>
-                      </div>
-                    </div>
+                {/* Office Card (auto fade) */}
+                <div
+                  className={`office-chip w-full max-w-sm mx-auto transition-all duration-500 ${
+                    fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                  }`}
+                >
+                  <div className="office-chip__inner text-left">
+                    <div className="office-chip__title">{offices[currentIndex].country}</div>
+                    <div className="office-chip__line">{offices[currentIndex].address}</div>
+                    <div className="office-chip__sub">{offices[currentIndex].phone}</div>
                   </div>
-
-                  {/* Right Arrow */}
-                  <button
-                    onClick={nextOffice}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white transition"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
                 </div>
+
+                {/* Right arrow */}
+                <button
+                  onClick={nextOffice}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
               </div>
             </div>
           </div>
