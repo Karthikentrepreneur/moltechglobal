@@ -67,7 +67,7 @@ const Global = () => {
             {(!isMobile || (isMobile && showMap)) && (
               <div
                 className={`transition-all duration-300 ease-in-out ${
-                  isMobile ? "w-full" : "md:w-[60%]"
+                  isMobile ? "w-full" : "md:w-[50%]"
                 }`}
               >
                 <ContactMapContainer />
