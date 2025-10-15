@@ -86,15 +86,13 @@ const About = () => {
             </div>
 
             {/* Help line */}
-            <div className="flex items-center gap-3 pt-4">
-              <img
-                src="/Moltechlogo.png"
-                alt="Moltech"
-                className="h-6 w-auto object-contain"
-              />
-              <div className="text-sm text-gray-500">Need Help?</div>
-              <div className="font-semibold text-[#0F1B3D]">
-                +65 6514 0868
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
+                >
+                  Learn More
+                </Link>
               </div>
             </div>
           </div>
