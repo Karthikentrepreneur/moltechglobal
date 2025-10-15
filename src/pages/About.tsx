@@ -91,7 +91,7 @@ const About: React.FC = () => {
             <img
               src="/abot.jpg"
               alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-95"
+              className="absolute inset-0 h-full w-full object-cover opacity-70"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
