@@ -60,10 +60,10 @@ const Global = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <SEO
-        title="OECL Global Presence | International Logistics Solutions"
-        description="Explore OECL's extensive global presence across key international logistics markets."
-        keywords="OECL global logistics, international network, worldwide presence"
-        url="https://www.oecl.sg/global-presence"
+        title="Moltech Global Presence"
+        description=""
+        keywords=""
+        url=""
       />
       <ScrollToTop />
       <Header />
