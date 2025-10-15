@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import ContactMapContainer from '@/components/ContactMapContainer';
-import ContactSidebar from '@/components/ContactSidebar';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ContactMapContainer from "@/components/ContactMapContainer";
+import ContactSidebar from "@/components/ContactSidebar";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import { Globe, MapPin } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -13,14 +15,14 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }, [pathname]);
 
   return null;
 };
 
-const GlobalPresence = () => {
+const Global = () => {
   const isMobile = useIsMobile();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showMap, setShowMap] = useState(true);
@@ -35,62 +37,88 @@ const GlobalPresence = () => {
     }
   }, [isMobile]);
 
+  const toggleMobileView = () => {
+    if (!isMobile) return;
+    setShowMap((prev) => !prev);
+    setIsSidebarOpen(true);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-amber-50/30 to-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-royal-blue/5 via-white to-white">
+      <SEO
+        title="OECL Global Presence | International Logistics Solutions"
+        description="Explore OECL's extensive global presence, offering comprehensive logistics and supply chain solutions across key markets. Our strategic network ensures seamless operations for your business worldwide."
+        keywords="OECL global logistics, international supply chain solutions, global logistics network, OECL worldwide presence, B2B logistics services, global freight forwarding, international warehousing services, OECL supply chain partners"
+        url="https://www.oecl.sg/global-presence"
+      />
       <ScrollToTop />
-      <Navigation />
+      <Header />
 
-      {/* Mobile fixed title */}
-      {isMobile && (
-        <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-amber-500 to-amber-400 p-3 text-white text-center shadow-md">
-          <h1 className="text-lg font-bold">Global Presence</h1>
+      <main className="flex-1">
+        <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
+          <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
+            {isMobile && (
+              <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
+                <h2 className="text-lg font-bold tracking-wide">Global Presence</h2>
+                <p className="text-xs text-white/80 mt-1">Discover our worldwide logistics network</p>
+              </div>
+            )}
+
+            {(!isMobile || (isMobile && showMap)) && (
+              <div
+                className={`transition-all duration-300 ease-in-out ${
+                  isMobile ? "w-full" : "md:w-[60%]"
+                }`}
+              >
+                <ContactMapContainer />
+              </div>
+            )}
+
+            {(!isMobile || (isMobile && !showMap)) && (
+              <aside
+                className={`transition-all duration-300 ease-in-out ${
+                  isMobile ? "w-full pt-12" : "md:w-[35%]"
+                }`}
+              >
+                <ContactSidebar
+                  isOpen={isSidebarOpen}
+                  onClose={() => {
+                    setIsSidebarOpen(false);
+                    if (isMobile) {
+                      setShowMap(true);
+                    }
+                  }}
+                />
+              </aside>
+            )}
+          </div>
+
+          {isMobile && (
+            <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
+              <Button
+                onClick={toggleMobileView}
+                className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-lg px-5 py-4 rounded-full"
+              >
+                {showMap ? (
+                  <>
+                    <MapPin className="h-4 w-4" />
+                    <span className="text-sm font-semibold">View Locations</span>
+                  </>
+                ) : (
+                  <>
+                    <Globe className="h-4 w-4" />
+                    <span className="text-sm font-semibold">View Map</span>
+                  </>
+                )}
+              </Button>
+            </div>
+          )}
         </div>
-      )}
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`flex flex-1 relative overflow-hidden mx-0 ${isMobile ? 'pt-[140px] pb-10' : 'pt-[160px] pb-10'}`}
-      >
-        {/* Map Section */}
-        {(!isMobile || (isMobile && showMap)) && (
-          <motion.main
-            initial={isMobile ? { x: '100%' } : { opacity: 0 }}
-            animate={isMobile ? { x: 0 } : { opacity: 1 }}
-            exit={isMobile ? { x: '100%' } : { opacity: 0 }}
-            transition={{
-              type: 'spring',
-              stiffness: 300,
-              damping: 30
-            }}
-            className={`transition-all duration-300 ease-in-out ${isMobile ? 'w-full' : 'w-[60%]'}`}
-          >
-            <ContactMapContainer />
-          </motion.main>
-        )}
-
-        {/* Sidebar Section */}
-        {(!isMobile || (isMobile && !showMap)) && (
-          <motion.div
-            initial={isMobile ? { x: '-100%' } : { opacity: 0 }}
-            animate={isMobile ? { x: 0 } : { opacity: 1 }}
-            exit={isMobile ? { x: '-100%' } : { opacity: 0 }}
-            transition={{
-              type: 'spring',
-              stiffness: 300,
-              damping: 30
-            }}
-            className={`transition-all duration-300 ease-in-out ${isMobile ? 'w-full pt-12' : 'w-[35%]'}`}
-          >
-            <ContactSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-          </motion.div>
-        )}
-      </motion.div>
+      </main>
 
       <Footer />
     </div>
   );
 };
 
-export default GlobalPresence;
+export default Global;
