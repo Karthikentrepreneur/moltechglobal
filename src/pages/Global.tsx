@@ -73,7 +73,7 @@ const Global = () => {
                 {/* ⬇⬇ make the whole sidebar sticky with a safe top offset
                        - top-24 clears the fixed banner on mobile
                        - md:top-28 clears the site header on desktop */}
-                <div className="sticky top-24 md:top-28 z-20">
+                <div className="sticky top-24 md:top-34 z-20">
                   <ContactSidebar
                     isOpen={isSidebarOpen}
                     onClose={() => {
