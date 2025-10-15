@@ -1,4 +1,3 @@
-// src/pages/Global.tsx
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
@@ -40,7 +39,7 @@ const Global = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white"> {/* ← pure white page */}
+    <div className="min-h-screen flex flex-col bg-white">
       <SEO
         title="OECL Global Presence | International Logistics Solutions"
         description="Explore OECL's extensive global presence, offering comprehensive logistics and supply chain solutions across key markets. Our strategic network ensures seamless operations for your business worldwide."
@@ -51,7 +50,7 @@ const Global = () => {
       <ScrollToTop />
       <Header />
 
-      <main className="flex-1 bg-white"> {/* ensure inner area is also white */}
+      <main className="flex-1 bg-white">
         {/* Hero Section */}
         <section className="pt-28 pb-10 md:pb-12 bg-white">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -59,15 +58,16 @@ const Global = () => {
               Global Presence
             </span>
 
-            {/* Main Title (keep your blue gradient text or change to solid if you prefer) */}
+            {/* Title with Blue Gradient */}
             <h1 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent">
               Logistics without borders, service without compromise
             </h1>
 
             <p className="mt-4 max-w-3xl text-base text-slate-600 md:text-lg">
-              Explore OECL's network of offices, warehouses, and service partners spanning key trade lanes across Asia,
-              the Middle East, Europe, and the Americas. Select a location to reveal the on-ground team supporting your
-              supply chain.
+              Explore OECL's network of offices, warehouses, and service partners
+              spanning key trade lanes across Asia, the Middle East, Europe, and
+              the Americas. Select a location to reveal the on-ground team
+              supporting your supply chain.
             </p>
           </div>
         </section>
@@ -78,8 +78,12 @@ const Global = () => {
             {/* Mobile Header Banner */}
             {isMobile && (
               <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
-                <h2 className="text-lg font-bold tracking-wide">Global Presence</h2>
-                <p className="text-xs text-white/80 mt-1">Discover our worldwide logistics network</p>
+                <h2 className="text-lg font-bold tracking-wide">
+                  Global Presence
+                </h2>
+                <p className="text-xs text-white/80 mt-1">
+                  Discover our worldwide logistics network
+                </p>
               </div>
             )}
 
@@ -117,7 +121,7 @@ const Global = () => {
             <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
               <Button
                 onClick={toggleMobileView}
-                className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-xl px-5 py-4 rounded-full transition-all"
+                className="flex items-center gap-2 bg-gradient-to-r from-royal-blue to-electric-blue hover:from-deep-navy hover:to-royal-blue text-white shadow-xl px-5 py-4 rounded-full transition-all"
               >
                 {showMap ? (
                   <>
