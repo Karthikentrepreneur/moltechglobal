@@ -31,7 +31,7 @@ const Footer = () => {
   const [fade, setFade] = useState(true);
   const [paused, setPaused] = useState(false);
 
-  // Smooth auto scroll
+  // Auto-scroll logic
   useEffect(() => {
     if (paused) return;
     const timer = setInterval(() => {
@@ -82,8 +82,6 @@ const Footer = () => {
           padding: 2px;
           border-radius: 14px;
           background: linear-gradient(90deg, var(--royal-blue), var(--electric-blue));
-          background-size: 200% 100%;
-          transition: background-position .6s ease;
         }
 
         .office-chip__inner {
@@ -161,9 +159,11 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Right Column - Contact + Office Scroll */}
+            {/* Right Column - Contact + LinkedIn + Office Scroll */}
             <div className="flex flex-col justify-start">
               <h4 className="text-[18px] font-semibold mb-4">Contact</h4>
+
+              {/* Email */}
               <a
                 href="mailto:info@moltechglobal.com"
                 className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors text-[15px]"
@@ -174,14 +174,28 @@ const Footer = () => {
                 info@moltechglobal.com
               </a>
 
-              <h5 className="text-sm font-semibold mt-6 mb-3 text-white/80">Global Offices</h5>
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/company/moltechglobal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors text-[15px]"
+              >
+                <span className={`inline-grid place-items-center ${GRADIENT_BG} rounded-full p-1`}>
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current text-white">
+                    <path d="M20.45 20.45h-3.55v-5.6c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.69H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.33-1.85 3.56 0 4.22 2.34 4.22 5.38v6.36zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                  </svg>
+                </span>
+                LinkedIn
+              </a>
 
+              {/* Auto-scrolling Global Offices */}
+              <h5 className="text-sm font-semibold mt-6 mb-3 text-white/80">Global Offices</h5>
               <div
                 className="relative flex items-center justify-center"
                 onMouseEnter={() => setPaused(true)}
                 onMouseLeave={() => setPaused(false)}
               >
-                {/* Left Arrow */}
                 <button
                   onClick={prev}
                   className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition"
@@ -189,7 +203,6 @@ const Footer = () => {
                   <ChevronLeft className="h-5 w-5" />
                 </button>
 
-                {/* Smooth Fade Card */}
                 <div
                   className={`office-card w-full max-w-sm mx-auto ${
                     fade ? "fade-in opacity-100" : "opacity-0 translate-y-2"
@@ -204,7 +217,6 @@ const Footer = () => {
                   </div>
                 </div>
 
-                {/* Right Arrow */}
                 <button
                   onClick={next}
                   className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition"
