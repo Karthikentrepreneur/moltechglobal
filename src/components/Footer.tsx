@@ -24,39 +24,40 @@ const offices = [
 ];
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
 const GRADIENT_BG = "bg-gradient-to-r from-blue-600 to-blue-400";
 
 const Footer = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const [paused, setPaused] = useState(false);
 
-  // === Auto-scroll every 4 seconds ===
+  // Smooth auto scroll
   useEffect(() => {
+    if (paused) return;
     const timer = setInterval(() => {
       setFade(false);
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % offices.length);
+        setIndex((prev) => (prev + 1) % offices.length);
         setFade(true);
-      }, 250);
+      }, 350);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [paused]);
 
-  const nextOffice = () => {
+  const next = () => {
     setFade(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % offices.length);
+      setIndex((prev) => (prev + 1) % offices.length);
       setFade(true);
-    }, 250);
+    }, 300);
   };
 
-  const prevOffice = () => {
+  const prev = () => {
     setFade(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + offices.length) % offices.length);
+      setIndex((prev) => (prev - 1 + offices.length) % offices.length);
       setFade(true);
-    }, 250);
+    }, 300);
   };
 
   return (
@@ -67,19 +68,30 @@ const Footer = () => {
           --electric-blue: #2dd4ff;
         }
 
+        .office-card {
+          transition: all 0.5s ease;
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        .office-card.fade-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
         .office-chip {
           padding: 2px;
           border-radius: 14px;
           background: linear-gradient(90deg, var(--royal-blue), var(--electric-blue));
-          transition: background-position 0.6s ease;
+          background-size: 200% 100%;
+          transition: background-position .6s ease;
         }
 
         .office-chip__inner {
           border-radius: 12px;
           background: rgba(255,255,255,0.06);
-          padding: 14px 18px;
-          backdrop-filter: blur(6px);
-          transition: all 0.35s ease;
+          backdrop-filter: blur(8px);
+          padding: 16px 18px;
+          box-shadow: 0 8px 22px rgba(0,0,0,0.25);
         }
 
         .office-chip__title {
@@ -93,41 +105,19 @@ const Footer = () => {
         .office-chip__line {
           color: rgba(255,255,255,0.9);
           font-size: 13px;
-          line-height: 1.4;
+          line-height: 1.5;
         }
 
         .office-chip__sub {
-          color: rgba(255,255,255,0.7);
+          color: rgba(255,255,255,0.75);
           font-size: 12px;
           margin-top: 3px;
-        }
-
-        .fade-enter {
-          opacity: 0;
-          transform: translateY(5px);
-        }
-
-        .fade-enter-active {
-          opacity: 1;
-          transform: translateY(0);
-          transition: all 0.4s ease;
-        }
-
-        .fade-exit {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .fade-exit-active {
-          opacity: 0;
-          transform: translateY(-5px);
-          transition: all 0.3s ease;
         }
       `}</style>
 
       <footer className="bg-black text-white">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Divider + Top Button */}
+          {/* Top divider */}
           <div className="relative">
             <div className={`mx-auto mt-8 h-[3px] w-full max-w-5xl ${GRADIENT_BG} rounded-full`} />
             <button
@@ -139,18 +129,24 @@ const Footer = () => {
             </button>
           </div>
 
-          {/* Main Grid */}
+          {/* === Main Footer Content === */}
           <div className="py-10 grid grid-cols-1 gap-10 md:grid-cols-3 items-start">
-            {/* Column 1: Logo + About */}
+            {/* Left Column - Logo + About */}
             <div className="flex flex-col justify-start">
-              <img src="/Moltechlogo.png" alt="Moltech Logo" className="h-8 w-auto mb-3" />
+              <div className="flex items-center gap-2 mb-4">
+                <img
+                  src="/Moltechlogo.png"
+                  alt="Moltech Logo"
+                  className="h-10 w-auto object-contain drop-shadow-[0_0_10px_rgba(45,212,255,0.3)]"
+                />
+              </div>
               <p className="text-white/80 leading-relaxed text-sm md:text-[15px] max-w-md">
                 We source and supply environmentally responsible products that reduce carbon footprint.
                 With a global presence and strong ethics, we're committed to performance, transparency, and community impact.
               </p>
             </div>
 
-            {/* Column 2: Quick Links */}
+            {/* Middle Column - Quick Links */}
             <div>
               <h4 className="text-[18px] font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-3">
@@ -165,7 +161,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Column 3: Contact + Auto-Slider */}
+            {/* Right Column - Contact + Office Scroll */}
             <div className="flex flex-col justify-start">
               <h4 className="text-[18px] font-semibold mb-4">Contact</h4>
               <a
@@ -179,31 +175,38 @@ const Footer = () => {
               </a>
 
               <h5 className="text-sm font-semibold mt-6 mb-3 text-white/80">Global Offices</h5>
-              <div className="relative flex items-center justify-center">
-                {/* Left arrow */}
+
+              <div
+                className="relative flex items-center justify-center"
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
+              >
+                {/* Left Arrow */}
                 <button
-                  onClick={prevOffice}
+                  onClick={prev}
                   className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition"
                 >
                   <ChevronLeft className="h-5 w-5" />
                 </button>
 
-                {/* Office Card (auto fade) */}
+                {/* Smooth Fade Card */}
                 <div
-                  className={`office-chip w-full max-w-sm mx-auto transition-all duration-500 ${
-                    fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                  className={`office-card w-full max-w-sm mx-auto ${
+                    fade ? "fade-in opacity-100" : "opacity-0 translate-y-2"
                   }`}
                 >
-                  <div className="office-chip__inner text-left">
-                    <div className="office-chip__title">{offices[currentIndex].country}</div>
-                    <div className="office-chip__line">{offices[currentIndex].address}</div>
-                    <div className="office-chip__sub">{offices[currentIndex].phone}</div>
+                  <div className="office-chip">
+                    <div className="office-chip__inner text-left">
+                      <div className="office-chip__title">{offices[index].country}</div>
+                      <div className="office-chip__line">{offices[index].address}</div>
+                      <div className="office-chip__sub">{offices[index].phone}</div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Right arrow */}
+                {/* Right Arrow */}
                 <button
-                  onClick={nextOffice}
+                  onClick={next}
                   className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white/60 hover:text-white transition"
                 >
                   <ChevronRight className="h-5 w-5" />
