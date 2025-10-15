@@ -27,7 +27,7 @@ const CertificationIndia: React.FC = () => {
     <>
       <Header />
 
-      <main className="bg-gradient-to-b from-slate-50 to-white pt-10">
+      <main className="bg-gradient-to-b from-slate-50 to-white pt-1">
         <section className="py-10 md:py-14">
           <div className="mx-auto px-4 md:px-6 max-w-[1600px]">
             {/* Title */}
