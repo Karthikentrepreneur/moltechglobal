@@ -173,4 +173,26 @@ const Header = () => {
                       );
                     }
 
-                    // Inter
+                    // Internal link
+                    return (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        onClick={(event) => handleNavItemClick(event, item, true)}
+                        className="text-base text-slate-600 transition-colors hover:text-slate-900"
+                      >
+                        {item.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
