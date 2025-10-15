@@ -1,5 +1,6 @@
 import React from "react";
 import { Globe2, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -87,17 +88,14 @@ const About = () => {
               </div>
             </div>
 
-            {/* Help line */}
-            <div className="flex items-center gap-3 pt-4">
-              <img
-                src="/Moltechlogo.png"
-                alt="Moltech"
-                className="h-6 w-auto object-contain"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="text-sm text-gray-500">Need Help?</div>
-              <div className="font-semibold text-[#0F1B3D]">+65 6514 0868</div>
+            {/* Learn More button */}
+            <div className="pt-6">
+              <Link
+                to="/about"
+                className="inline-block bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-3 rounded-lg text-sm font-semibold tracking-wide shadow-md hover:shadow-lg hover:from-blue-700 hover:to-blue-500 transition-all duration-300"
+              >
+                Learn More
+              </Link>
             </div>
           </div>
         </div>
