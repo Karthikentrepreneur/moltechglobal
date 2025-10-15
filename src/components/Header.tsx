@@ -18,6 +18,7 @@ const Header = () => {
   const navItems: Array<{
     name: string;
     to: string;
+    external?: boolean;
     sectionId?: string;
     isCta?: boolean;
   }> = [
@@ -26,6 +27,11 @@ const Header = () => {
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Blog", to: "/blog" },
+    {
+      name: "Tracking",
+      to: "http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH",
+      external: true,
+    },
     { name: "Contact", to: "/contact", isCta: true },
   ];
 
@@ -73,14 +79,30 @@ const Header = () => {
                 className="h-8 w-auto object-contain"
               />
             </div>
- <span className="text-[10.5px] font-semibold tracking-[0.18em] uppercase text-slate-400 mt-1 select-none">
-    Driving Sustainability
-  </span>
+            <span className="text-[10.5px] font-semibold tracking-[0.18em] uppercase text-slate-400 mt-1 select-none">
+              Driving Sustainability
+            </span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => {
+              // External link
+              if (item.external) {
+                return (
+                  <a
+                    key={item.name}
+                    href={item.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-10 items-center rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 px-5 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
+                  >
+                    {item.name}
+                  </a>
+                );
+              }
+
+              // Contact CTA
               if (item.isCta) {
                 return (
                   <Link
@@ -93,6 +115,7 @@ const Header = () => {
                 );
               }
 
+              // Normal internal links
               return (
                 <Link
                   key={item.to}
@@ -120,6 +143,23 @@ const Header = () => {
               <SheetContent className="bg-white text-slate-800">
                 <div className="mt-8 flex flex-col gap-4">
                   {navItems.map((item) => {
+                    // External link (Tracking)
+                    if (item.external) {
+                      return (
+                        <a
+                          key={item.name}
+                          href={item.to}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="mt-2 flex h-11 w-full items-center justify-center rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 px-6 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
+                        >
+                          {item.name}
+                        </a>
+                      );
+                    }
+
+                    // Contact CTA
                     if (item.isCta) {
                       return (
                         <Link
@@ -133,25 +173,4 @@ const Header = () => {
                       );
                     }
 
-                    return (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        onClick={(event) => handleNavItemClick(event, item, true)}
-                        className="text-base text-slate-600 transition-colors hover:text-slate-900"
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
-};
-
-export default Header;
+                    // Inter
