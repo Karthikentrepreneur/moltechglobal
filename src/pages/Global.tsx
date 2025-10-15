@@ -1,4 +1,21 @@
-// ...imports stay the same
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ContactMapContainer from "@/components/ContactMapContainer";
+import ContactSidebar from "@/components/ContactSidebar";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import { Globe, MapPin } from "lucide-react";
+import SEO from "@/components/SEO";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+  return null;
+};
 
 const Global = () => {
   const isMobile = useIsMobile();
@@ -33,8 +50,8 @@ const Global = () => {
       <Header />
 
       <main className="flex-1">
-        {/* IMPORTANT: allow sticky children to render outside */}
-        <div className="relative flex flex-1 flex-col overflow-visible pb-16">
+        {/* back to overflow-hidden to avoid white bleed; no sticky needed */}
+        <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
           <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
             {/* Mobile banner */}
             {isMobile && (
@@ -44,57 +61,52 @@ const Global = () => {
               </div>
             )}
 
-            {/* MAP */}
+            {/* Map column (explicit z-index lower than sidebar) */}
             {(!isMobile || (isMobile && showMap)) && (
-              <div className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full" : "md:w-[60%]"}`}>
+              <div className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full" : "md:w-[60%]"} z-10`}>
                 <ContactMapContainer />
               </div>
             )}
 
-            {/* SIDEBAR */}
+            {/* Sidebar column */}
             {(!isMobile || (isMobile && !showMap)) && (
               <aside
                 className={`transition-all duration-300 ease-in-out relative z-20
                   ${isMobile ? "w-full pt-24" : "md:w-[35%] pt-28"}`}
               >
-                {/* Sticky shell keeps the header visible below fixed site header */}
-                <div className="sticky top-24 md:top-28">
-                  {/* Scroll area so long country lists don't push the header offscreen */}
-                  <div className="max-h-[calc(100vh-6rem)] md:max-h-[calc(100vh-7rem)] overflow-y-auto">
-                    <ContactSidebar
-                      isOpen={isSidebarOpen}
-                      onClose={() => {
-                        setIsSidebarOpen(false);
-                        if (isMobile) setShowMap(true);
-                      }}
-                    />
-                  </div>
-                </div>
+                {/* No sticky; just clear the fixed header/banner with padding */}
+                <ContactSidebar
+                  isOpen={isSidebarOpen}
+                  onClose={() => {
+                    setIsSidebarOpen(false);
+                    if (isMobile) setShowMap(true);
+                  }}
+                />
               </aside>
             )}
           </div>
 
-          {/* Mobile toggle */}
-          {isMobile && (
-            <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
-              <Button
-                onClick={toggleMobileView}
-                className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-lg px-5 py-4 rounded-full"
-              >
-                {showMap ? (
-                  <>
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-sm font-semibold">View Locations</span>
-                  </>
-                ) : (
-                  <>
-                    <Globe className="h-4 w-4" />
-                    <span className="text-sm font-semibold">View Map</span>
-                  </>
-                )}
-              </Button>
-            </div>
-          )}
+            {/* Mobile toggle */}
+            {isMobile && (
+              <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
+                <Button
+                  onClick={toggleMobileView}
+                  className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-lg px-5 py-4 rounded-full"
+                >
+                  {showMap ? (
+                    <>
+                      <MapPin className="h-4 w-4" />
+                      <span className="text-sm font-semibold">View Locations</span>
+                    </>
+                  ) : (
+                    <>
+                      <Globe className="h-4 w-4" />
+                      <span className="text-sm font-semibold">View Map</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
         </div>
       </main>
 
