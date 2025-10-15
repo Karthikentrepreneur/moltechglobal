@@ -1,3 +1,4 @@
+// src/pages/Global.tsx
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
@@ -17,120 +18,117 @@ const ScrollToTop = () => {
 
 const Global = () => {
   const isMobile = useIsMobile();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [showMap, setShowMap] = useState(true);
-
-  // === NEW: measure sidebar height and sync map height ===
   const sidebarRef = useRef<HTMLDivElement | null>(null);
   const [sidebarH, setSidebarH] = useState<number>(640);
 
+  // === Equal height sync (desktop only) ===
   useEffect(() => {
     const el = sidebarRef.current;
-    if (!el || isMobile) return; // equalize only on desktop
-    const apply = () => {
+    if (!el || isMobile) return;
+    const syncHeight = () => {
       const h = Math.max(520, Math.round(el.getBoundingClientRect().height));
       setSidebarH(h);
     };
-    const ro = new ResizeObserver(apply);
+    const ro = new ResizeObserver(syncHeight);
     ro.observe(el);
-    window.addEventListener("resize", apply);
-    apply();
-    return () => { ro.disconnect(); window.removeEventListener("resize", apply); };
+    window.addEventListener("resize", syncHeight);
+    syncHeight();
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", syncHeight);
+    };
   }, [isMobile]);
 
   useEffect(() => {
-    if (isMobile) { setShowMap(false); setIsSidebarOpen(true); }
-    else { setShowMap(true); setIsSidebarOpen(true); }
+    if (isMobile) {
+      setShowMap(true);
+      setIsSidebarOpen(false);
+    } else {
+      setShowMap(true);
+      setIsSidebarOpen(true);
+    }
   }, [isMobile]);
 
   const toggleMobileView = () => {
     if (!isMobile) return;
-    setShowMap((p) => !p);
+    setShowMap((prev) => !prev);
     setIsSidebarOpen(true);
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-royal-blue/5 via-white to-white">
+    <div className="min-h-screen flex flex-col bg-white">
       <SEO
         title="OECL Global Presence | International Logistics Solutions"
-        description="Explore OECL's extensive global presence, offering comprehensive logistics and supply chain solutions across key markets."
-        keywords="OECL global logistics, international supply chain, worldwide presence"
+        description="Explore OECL's extensive global presence across key international logistics markets."
+        keywords="OECL global logistics, international network, worldwide presence"
         url="https://www.oecl.sg/global-presence"
       />
       <ScrollToTop />
       <Header />
 
       <main className="flex-1">
-        <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
-          <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
-            {/* Mobile page title bar */}
-            {isMobile && (
-              <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
-                <h2 className="text-lg font-bold tracking-wide">Global Presence</h2>
-                <p className="text-xs text-white/80 mt-1">Discover our worldwide logistics network</p>
+        <div className="relative flex flex-col md:flex-row w-full pt-20 md:pt-28">
+          {/* ===== MAP SECTION ===== */}
+          {(!isMobile || (isMobile && showMap)) && (
+            <section
+              className="relative md:w-[65%] w-full border-b md:border-b-0 md:border-r border-gray-200"
+              style={!isMobile ? { height: `${sidebarH}px` } : {}}
+            >
+              <div className="map-equal h-full">
+                <ContactMapContainer />
               </div>
-            )}
+            </section>
+          )}
 
-            {/* MAP (height = sidebar height on desktop) */}
-            {(!isMobile || (isMobile && showMap)) && (
-              <div
-                className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full" : "md:w-[60%]"} z-10`}
-                style={!isMobile ? { height: `${sidebarH}px` } : undefined}
-              >
-                {/* Wrapper forces the iframe to fill */}
-                <div className="h-full map-equal">
-                  <ContactMapContainer />
-                </div>
-              </div>
-            )}
-
-            {/* SIDEBAR */}
-            {(!isMobile || (isMobile && !showMap)) && (
-              <aside className={`transition-all duration-300 ease-in-out relative z-20 ${isMobile ? "w-full pt-24" : "md:w-[35%] pt-28"}`}>
-                <div ref={sidebarRef}>
-                  <ContactSidebar
-                    isOpen={isSidebarOpen}
-                    onClose={() => {
-                      setIsSidebarOpen(false);
-                      if (isMobile) setShowMap(true);
-                    }}
-                  />
-                </div>
-              </aside>
-            )}
-          </div>
-
-          {/* Mobile toggle */}
-          {isMobile && (
-            <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
-              <Button
-                onClick={toggleMobileView}
-                className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-lg px-5 py-4 rounded-full"
-              >
-                {showMap ? (
-                  <>
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-sm font-semibold">View Locations</span>
-                  </>
-                ) : (
-                  <>
-                    <Globe className="h-4 w-4" />
-                    <span className="text-sm font-semibold">View Map</span>
-                  </>
-                )}
-              </Button>
-            </div>
+          {/* ===== SIDEBAR SECTION ===== */}
+          {(!isMobile || (isMobile && !showMap)) && (
+            <aside
+              className="relative md:w-[35%] w-full bg-white"
+              ref={sidebarRef}
+            >
+              <ContactSidebar
+                isOpen={isSidebarOpen}
+                onClose={() => {
+                  setIsSidebarOpen(false);
+                  if (isMobile) setShowMap(true);
+                }}
+              />
+            </aside>
           )}
         </div>
+
+        {/* ===== MOBILE TOGGLE BUTTON ===== */}
+        {isMobile && (
+          <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
+            <Button
+              onClick={toggleMobileView}
+              className="flex items-center gap-2 bg-[#0B4CAB] hover:bg-[#083b8a] text-white shadow-lg px-5 py-4 rounded-full"
+            >
+              {showMap ? (
+                <>
+                  <MapPin className="h-4 w-4" />
+                  <span className="text-sm font-semibold">View Locations</span>
+                </>
+              ) : (
+                <>
+                  <Globe className="h-4 w-4" />
+                  <span className="text-sm font-semibold">View Map</span>
+                </>
+              )}
+            </Button>
+          </div>
+        )}
       </main>
 
       <Footer />
 
-      {/* Make the embedded map/iframe fill the forced height */}
+      {/* Equal map height enforcement */}
       <style>{`
         .map-equal,
         .map-equal > * { height: 100%; }
-        .map-equal iframe { height: 100% !important; width: 100% !important; display: block; }
+        .map-equal iframe { height: 100% !important; width: 100% !important; display: block; border: none; }
       `}</style>
     </div>
   );
