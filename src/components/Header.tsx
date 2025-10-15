@@ -26,6 +26,7 @@ const Header = () => {
     { name: "About", to: "/about" },
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
+    { name: "Careers", to: "/careers" },
     { name: "Blog", to: "/blog" },
     {
       name: "Tracking",
