@@ -72,13 +72,9 @@ const Global = () => {
             )}
 
             {/* MAP (height = sidebar height on desktop) */}
-            {(!isMobile || (isMobile && showMap)) && (
-              <div
-                className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full" : "md:w-[60%]"} z-10`}
-                style={!isMobile ? { height: `${sidebarH}px` } : undefined}
-              >
-                {/* Wrapper forces the iframe to fill */}
-                <div className="h-full map-equal">
+             {(!isMobile || (isMobile && !showMap)) && (
+              <aside className={`transition-all duration-300 ease-in-out relative z-20 ${isMobile ? "w-full pt-24" : "md:w-[60%] pt-28"}`}>
+                <div ref={sidebarRef}>
                   <ContactMapContainer />
                 </div>
               </div>
