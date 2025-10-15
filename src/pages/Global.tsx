@@ -1,3 +1,4 @@
+// src/pages/Global.tsx
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
@@ -11,14 +12,9 @@ import SEO from "@/components/SEO";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
-
   return null;
 };
 
@@ -51,24 +47,32 @@ const Global = () => {
         keywords="OECL global logistics, international supply chain solutions, global logistics network, OECL worldwide presence, B2B logistics services, global freight forwarding, international warehousing services, OECL supply chain partners"
         url="https://www.oecl.sg/global-presence"
       />
+
       <ScrollToTop />
       <Header />
 
       <main className="flex-1">
+        {/* Intro */}
         <section className="pt-28 pb-10 md:pb-12">
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
             <span className="inline-flex items-center rounded-full bg-royal-blue/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-royal-blue">
               Global Presence
             </span>
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-deep-navy md:text-4xl">
+
+            {/* Title with BLUE gradient */}
+            <h1 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent">
               Logistics without borders, service without compromise
             </h1>
+
             <p className="mt-4 max-w-3xl text-base text-slate-600 md:text-lg">
-              Explore OECL's network of offices, warehouses, and service partners spanning key trade lanes across Asia, the Middle East, Europe, and the Americas. Select a location to reveal the on-ground team supporting your supply chain.
+              Explore OECL's network of offices, warehouses, and service partners spanning key trade lanes across Asia,
+              the Middle East, Europe, and the Americas. Select a location to reveal the on-ground team supporting your
+              supply chain.
             </p>
           </div>
         </section>
 
+        {/* Map + Sidebar */}
         <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
           <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
             {isMobile && (
@@ -98,15 +102,14 @@ const Global = () => {
                   isOpen={isSidebarOpen}
                   onClose={() => {
                     setIsSidebarOpen(false);
-                    if (isMobile) {
-                      setShowMap(true);
-                    }
+                    if (isMobile) setShowMap(true);
                   }}
                 />
               </aside>
             )}
           </div>
 
+          {/* Mobile toggle */}
           {isMobile && (
             <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
               <Button
