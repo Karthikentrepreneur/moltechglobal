@@ -73,9 +73,9 @@ const Header = () => {
                 className="h-8 w-auto object-contain"
               />
             </div>
-            <span className="text-[11px] font-semibold tracking-[0.38em] uppercase text-slate-500">
-              Driving Sustainability
-            </span>
+ <span className="text-[10.5px] font-semibold tracking-[0.18em] uppercase text-slate-400 mt-1 select-none">
+    Driving Sustainability
+  </span>
           </Link>
 
           {/* Desktop Nav */}
