@@ -1,5 +1,5 @@
 import React from "react";
-import { Users, Globe2, ShieldCheck } from "lucide-react";
+import { Globe2, ShieldCheck } from "lucide-react";
 
 const About = () => {
   return (
@@ -7,16 +7,18 @@ const About = () => {
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Image with overlay (UNCHANGED) */}
+          {/* Left: Image with overlay */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-2xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-2xl transform rotate-3 transition-transform group-hover:rotate-6" />
             <div className="relative bg-white p-3 rounded-2xl shadow-2xl">
               <img
                 src="/About.png"
                 alt="Moltech sustainable biodiesel facility"
                 className="w-full h-[500px] rounded-xl object-cover"
+                loading="lazy"
+                decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl flex items-end p-8">
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
                 <p className="text-white font-semibold text-lg">
                   Leading the Circular Economy
                 </p>
@@ -24,7 +26,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right: Content (UPDATED STYLE ONLY) */}
+          {/* Right: Content */}
           <div className="space-y-8">
             {/* small top label */}
             <div className="text-[11px] font-semibold tracking-widest uppercase text-gray-500">
@@ -36,7 +38,7 @@ const About = () => {
               About Moltech
             </h2>
 
-            {/* Intro paragraph (long, with bold phrase) */}
+            {/* Intro paragraph */}
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
               Moltech strides in the bio space working on{" "}
               <span className="font-semibold text-gray-900">
@@ -54,7 +56,7 @@ const About = () => {
               {/* Row 1 */}
               <div className="flex items-start gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
-                  <Globe2 className="h-5 w-5" />
+                  <Globe2 className="h-5 w-5" aria-hidden />
                 </div>
                 <div>
                   <div className="font-semibold text-[#0F1B3D]">
@@ -71,7 +73,7 @@ const About = () => {
               {/* Row 2 */}
               <div className="flex items-start gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
-                  <ShieldCheck className="h-5 w-5" />
+                  <ShieldCheck className="h-5 w-5" aria-hidden />
                 </div>
                 <div>
                   <div className="font-semibold text-[#0F1B3D]">
@@ -86,14 +88,16 @@ const About = () => {
             </div>
 
             {/* Help line */}
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/about"
-                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
-                >
-                  Learn More
-                </Link>
-              </div>
+            <div className="flex items-center gap-3 pt-4">
+              <img
+                src="/Moltechlogo.png"
+                alt="Moltech"
+                className="h-6 w-auto object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="text-sm text-gray-500">Need Help?</div>
+              <div className="font-semibold text-[#0F1B3D]">+65 6514 0868</div>
             </div>
           </div>
         </div>
