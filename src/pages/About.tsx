@@ -203,7 +203,7 @@ const About: React.FC = () => {
 
             <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(2,6,23,0.08)] ring-1 ring-black/5">
               <img
-                src="public/greenworld.jpg"
+                src="/greenworld.jpg"
                 alt="Operations"
                 className="w-full h-[360px] md:h-[420px] object-cover"
                 loading="lazy"
