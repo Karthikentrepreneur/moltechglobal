@@ -180,11 +180,6 @@ const About: React.FC = () => {
 
               {/* Logo + CTA */}
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <img
-                  src="/Moltechlogo.png"
-                  className="h-6 w-auto object-contain"
-                  alt="Moltech"
-                />
                 <Link
                   to="/contact"
                   className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
