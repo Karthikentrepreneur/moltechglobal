@@ -1,29 +1,45 @@
-export default function Careers() {
-  return (
-    <section className="mx-auto w-full max-w-7xl px-6 py-14">
-      <h1 className="text-3xl font-semibold text-white/90">Careers</h1>
-      <p className="mt-3 text-white/70 max-w-3xl">
-        Introduce your culture, benefits, and open roles. Connect to your ATS if available.
-      </p>
+import React from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Briefcase } from "lucide-react";
 
-      {/* Example job list */}
-      <div className="mt-8 space-y-4">
-        {[
-          { title: "Supply Chain Analyst", loc: "Chennai, IN", type: "Full-time" },
-          { title: "Front-end Developer", loc: "Remote", type: "Contract" },
-        ].map((job) => (
-          <div key={job.title} className="rounded-xl border border-white/10 bg-white/5 p-5">
-            <div className="flex items-center justify-between">
-              <h3 className="text-white/90 font-medium">{job.title}</h3>
-              <span className="text-xs text-white/60">{job.type}</span>
-            </div>
-            <p className="text-sm text-white/60 mt-1">{job.loc}</p>
-            <button className="mt-3 rounded-full bg-white text-blue-700 hover:bg-blue-50 h-9 px-4 text-sm shadow">
-              Apply
-            </button>
+const Careers: React.FC = () => {
+  return (
+    <>
+      <Header />
+
+      {/* ===== Hero Section ===== */}
+      <section className="relative flex items-center justify-center min-h-[70vh] bg-gradient-to-br from-emerald-50 via-white to-blue-50 text-center">
+        {/* Background Icon */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5">
+          <Briefcase className="w-64 h-64 text-emerald-500" />
+        </div>
+
+        <div className="relative z-10 px-6">
+          <div className="inline-flex items-center justify-center rounded-2xl bg-emerald-500/90 p-4 mb-6 shadow-lg">
+            <Briefcase className="h-8 w-8 text-white" />
           </div>
-        ))}
-      </div>
-    </section>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">
+            Careers at Moltech
+          </h1>
+          <p className="mt-4 text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
+            Join our mission to drive sustainability and innovation in the
+            renewable energy space.
+          </p>
+
+          {/* Coming Soon Message */}
+          <div className="mt-10 inline-block rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-500 to-sky-500 px-8 py-4 shadow-md">
+            <span className="text-white text-lg md:text-xl font-semibold">
+              🚧 This page will be updated soon.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
-}
+};
+
+export default Careers;
+export { Careers };
