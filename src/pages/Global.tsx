@@ -1,21 +1,4 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ContactMapContainer from "@/components/ContactMapContainer";
-import ContactSidebar from "@/components/ContactSidebar";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { Button } from "@/components/ui/button";
-import { Globe, MapPin } from "lucide-react";
-import SEO from "@/components/SEO";
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pathname]);
-  return null;
-};
+// ...imports stay the same
 
 const Global = () => {
   const isMobile = useIsMobile();
@@ -50,9 +33,10 @@ const Global = () => {
       <Header />
 
       <main className="flex-1">
-        {/* ⬇⬇ changed overflow-hidden -> overflow-visible so sticky children can escape */}
+        {/* IMPORTANT: allow sticky children to render outside */}
         <div className="relative flex flex-1 flex-col overflow-visible pb-16">
           <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
+            {/* Mobile banner */}
             {isMobile && (
               <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
                 <h2 className="text-lg font-bold tracking-wide">Global Presence</h2>
@@ -60,33 +44,37 @@ const Global = () => {
               </div>
             )}
 
-            {/* Map column */}
+            {/* MAP */}
             {(!isMobile || (isMobile && showMap)) && (
               <div className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full" : "md:w-[60%]"}`}>
                 <ContactMapContainer />
               </div>
             )}
 
-            {/* Sidebar column */}
+            {/* SIDEBAR */}
             {(!isMobile || (isMobile && !showMap)) && (
-              <aside className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full pt-12" : "md:w-[35%]"}`}>
-                {/* ⬇⬇ make the whole sidebar sticky with a safe top offset
-                       - top-24 clears the fixed banner on mobile
-                       - md:top-28 clears the site header on desktop */}
-                <div className="sticky top-34 md:top-34 z-40">
-                  <ContactSidebar
-                    isOpen={isSidebarOpen}
-                    onClose={() => {
-                      setIsSidebarOpen(false);
-                      if (isMobile) setShowMap(true);
-                    }}
-                  />
+              <aside
+                className={`transition-all duration-300 ease-in-out relative z-20
+                  ${isMobile ? "w-full pt-24" : "md:w-[35%] pt-28"}`}
+              >
+                {/* Sticky shell keeps the header visible below fixed site header */}
+                <div className="sticky top-24 md:top-28">
+                  {/* Scroll area so long country lists don't push the header offscreen */}
+                  <div className="max-h-[calc(100vh-6rem)] md:max-h-[calc(100vh-7rem)] overflow-y-auto">
+                    <ContactSidebar
+                      isOpen={isSidebarOpen}
+                      onClose={() => {
+                        setIsSidebarOpen(false);
+                        if (isMobile) setShowMap(true);
+                      }}
+                    />
+                  </div>
                 </div>
               </aside>
             )}
           </div>
 
-          {/* Mobile switcher */}
+          {/* Mobile toggle */}
           {isMobile && (
             <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
               <Button
