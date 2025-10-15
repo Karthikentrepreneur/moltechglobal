@@ -11,14 +11,9 @@ import SEO from "@/components/SEO";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
-
   return null;
 };
 
@@ -55,7 +50,8 @@ const Global = () => {
       <Header />
 
       <main className="flex-1">
-        <div className="relative flex flex-1 flex-col overflow-hidden pb-16">
+        {/* ⬇⬇ changed overflow-hidden -> overflow-visible so sticky children can escape */}
+        <div className="relative flex flex-1 flex-col overflow-visible pb-16">
           <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
             {isMobile && (
               <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
@@ -64,35 +60,33 @@ const Global = () => {
               </div>
             )}
 
+            {/* Map column */}
             {(!isMobile || (isMobile && showMap)) && (
-              <div
-                className={`transition-all duration-300 ease-in-out ${
-                  isMobile ? "w-full" : "md:w-[50%]"
-                }`}
-              >
+              <div className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full" : "md:w-[60%]"}`}>
                 <ContactMapContainer />
               </div>
             )}
 
+            {/* Sidebar column */}
             {(!isMobile || (isMobile && !showMap)) && (
-              <aside
-                className={`transition-all duration-300 ease-in-out ${
-                  isMobile ? "w-full pt-12" : "md:w-[35%]"
-                }`}
-              >
-                <ContactSidebar
-                  isOpen={isSidebarOpen}
-                  onClose={() => {
-                    setIsSidebarOpen(false);
-                    if (isMobile) {
-                      setShowMap(true);
-                    }
-                  }}
-                />
+              <aside className={`transition-all duration-300 ease-in-out ${isMobile ? "w-full pt-12" : "md:w-[35%]"}`}>
+                {/* ⬇⬇ make the whole sidebar sticky with a safe top offset
+                       - top-24 clears the fixed banner on mobile
+                       - md:top-28 clears the site header on desktop */}
+                <div className="sticky top-24 md:top-28 z-20">
+                  <ContactSidebar
+                    isOpen={isSidebarOpen}
+                    onClose={() => {
+                      setIsSidebarOpen(false);
+                      if (isMobile) setShowMap(true);
+                    }}
+                  />
+                </div>
               </aside>
             )}
           </div>
 
+          {/* Mobile switcher */}
           {isMobile && (
             <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
               <Button
