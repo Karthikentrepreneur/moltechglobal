@@ -1,210 +1,144 @@
-import React, { useState } from "react";
-import {
-  ChevronDown,
-  ChevronRight,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+// src/pages/Global.tsx
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ContactMapContainer from "@/components/ContactMapContainer";
+import ContactSidebar from "@/components/ContactSidebar";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import { Globe, MapPin } from "lucide-react";
+import SEO from "@/components/SEO";
 
-/* ========= Types ========= */
-type Office = {
-  city: string;
-  officeLabel: string; // e.g., "Melbourne Office"
-  address: string;
-  phones?: string[];
-  email?: string;
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+  return null;
 };
 
-type Country = {
-  id: string;
-  name: string;
-  flagEmoji: string;
-  offices: Office[];
-};
+const Global = () => {
+  const isMobile = useIsMobile();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showMap, setShowMap] = useState(true);
 
-/* ========= Demo Data (replace with your own as needed) ========= */
-const DATA: Country[] = [
-  {
-    id: "australia",
-    name: "Australia",
-    flagEmoji: "🇦🇺",
-    offices: [
-      {
-        city: "Melbourne",
-        officeLabel: "Melbourne Office",
-        address:
-          "Suite 5, 7-9 Mallet Road, Tullamarine, Victoria, 3043",
-        phones: ["+61 432254969", "+61 388205157"],
-        email: "info@gglaustralia.com",
-      },
-    ],
-  },
-  { id: "china", name: "China", flagEmoji: "🇨🇳", offices: [] },
-  { id: "india", name: "India", flagEmoji: "🇮🇳", offices: [] },
-  { id: "indonesia", name: "Indonesia", flagEmoji: "🇮🇩", offices: [] },
-  { id: "malaysia", name: "Malaysia", flagEmoji: "🇲🇾", offices: [] },
-  { id: "myanmar", name: "Myanmar", flagEmoji: "🇲🇲", offices: [] },
-  { id: "qatar", name: "Qatar", flagEmoji: "🇶🇦", offices: [] },
-  { id: "saudi", name: "Saudi Arabia", flagEmoji: "🇸🇦", offices: [] },
-  { id: "singapore", name: "Singapore", flagEmoji: "🇸🇬", offices: [] },
-];
+  useEffect(() => {
+    if (isMobile) {
+      setShowMap(false);
+      setIsSidebarOpen(true);
+    } else {
+      setShowMap(true);
+      setIsSidebarOpen(true);
+    }
+  }, [isMobile]);
 
-/* ========= Component ========= */
-export default function ContactSidebar({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
-  const [openCountryId, setOpenCountryId] = useState<string>("australia");
-  const [openCityKey, setOpenCityKey] = useState<string>("australia|Melbourne");
-
-  if (!isOpen) return null;
+  const toggleMobileView = () => {
+    if (!isMobile) return;
+    setShowMap((prev) => !prev);
+    setIsSidebarOpen(true);
+  };
 
   return (
-    <div className="w-full">
-      {/* Card container matching screenshot */}
-      <div className="rounded-xl border border-red-200 bg-white shadow-sm overflow-hidden">
-        {/* Header bar (red) */}
-        <div className="bg-red-600 text-white px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20">
-              {/* simple globe dot */}
-              <span className="block h-2 w-2 rounded-full bg-white" />
+    <div className="min-h-screen flex flex-col bg-white"> {/* ← pure white page */}
+      <SEO
+        title="OECL Global Presence | International Logistics Solutions"
+        description="Explore OECL's extensive global presence, offering comprehensive logistics and supply chain solutions across key markets. Our strategic network ensures seamless operations for your business worldwide."
+        keywords="OECL global logistics, international supply chain solutions, global logistics network, OECL worldwide presence, B2B logistics services, global freight forwarding, international warehousing services, OECL supply chain partners"
+        url="https://www.oecl.sg/global-presence"
+      />
+
+      <ScrollToTop />
+      <Header />
+
+      <main className="flex-1 bg-white"> {/* ensure inner area is also white */}
+        {/* Hero Section */}
+        <section className="pt-28 pb-10 md:pb-12 bg-white">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+            <span className="inline-flex items-center rounded-full bg-royal-blue/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-royal-blue">
+              Global Presence
             </span>
-            <h2 className="font-semibold">Global Locations</h2>
+
+            {/* Main Title (keep your blue gradient text or change to solid if you prefer) */}
+            <h1 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-royal-blue to-electric-blue bg-clip-text text-transparent">
+              Logistics without borders, service without compromise
+            </h1>
+
+            <p className="mt-4 max-w-3xl text-base text-slate-600 md:text-lg">
+              Explore OECL's network of offices, warehouses, and service partners spanning key trade lanes across Asia,
+              the Middle East, Europe, and the Americas. Select a location to reveal the on-ground team supporting your
+              supply chain.
+            </p>
           </div>
-        </div>
+        </section>
 
-        <div className="p-4 space-y-3">
-          {DATA.map((country) => {
-            const isOpenCountry = openCountryId === country.id;
-            return (
-              <div
-                key={country.id}
-                className="rounded-lg border border-red-200"
-              >
-                {/* Country row */}
-                <button
-                  onClick={() =>
-                    setOpenCountryId((cur) =>
-                      cur === country.id ? "" : country.id
-                    )
-                  }
-                  className="flex w-full items-center justify-between px-4 py-3"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl">{country.flagEmoji}</span>
-                    <span className="font-semibold text-slate-800">
-                      {country.name}
-                    </span>
-                  </div>
-                  {isOpenCountry ? (
-                    <ChevronDown className="h-5 w-5 text-slate-500" />
-                  ) : (
-                    <ChevronRight className="h-5 w-5 text-slate-500" />
-                  )}
-                </button>
-
-                {/* Country body */}
-                {isOpenCountry && (
-                  <div className="px-3 pb-3">
-                    {/* Cities list */}
-                    {country.offices.length > 0 ? (
-                      country.offices.map((office) => {
-                        const key = `${country.id}|${office.city}`;
-                        const cityOpen = openCityKey === key;
-
-                        return (
-                          <div key={key} className="mt-2">
-                            {/* City pill (light red background, right arrow) */}
-                            <button
-                              onClick={() =>
-                                setOpenCityKey((cur) =>
-                                  cur === key ? "" : key
-                                )
-                              }
-                              className="flex w-full items-center justify-between rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-left"
-                            >
-                              <div className="flex items-center gap-2">
-                                <MapPin className="h-4 w-4 text-red-500" />
-                                <span className="text-sm text-slate-800">
-                                  {office.city}
-                                </span>
-                              </div>
-                              <ChevronRight className="h-4 w-4 text-red-400" />
-                            </button>
-
-                            {/* Office card (red border, red icons) */}
-                            {cityOpen && (
-                              <div className="mt-2 rounded-lg border border-red-200 bg-white">
-                                <div className="p-4">
-                                  {/* Title */}
-                                  <h3 className="text-sm font-semibold text-red-600">
-                                    {office.officeLabel}
-                                  </h3>
-
-                                  <div className="mt-3 space-y-2 text-sm">
-                                    <div className="flex items-start gap-2 text-slate-800">
-                                      <MapPin className="mt-0.5 h-4 w-4 text-red-500" />
-                                      <span>{office.address}</span>
-                                    </div>
-
-                                    {office.phones && office.phones.length > 0 && (
-                                      <div className="flex items-start gap-2 text-slate-800">
-                                        <Phone className="mt-0.5 h-4 w-4 text-red-500" />
-                                        <div className="space-y-0.5">
-                                          {office.phones.map((ph) => (
-                                            <div key={ph}>Tel: {ph}</div>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    )}
-
-                                    {office.email && (
-                                      <div className="flex items-start gap-2">
-                                        <Mail className="mt-0.5 h-4 w-4 text-red-500" />
-                                        <a
-                                          className="text-red-600 underline underline-offset-2"
-                                          href={`mailto:${office.email}`}
-                                          target="_blank"
-                                          rel="noreferrer"
-                                        >
-                                          {office.email}
-                                        </a>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="mt-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-slate-700">
-                        Details coming soon
-                      </div>
-                    )}
-                  </div>
-                )}
+        {/* Map and Sidebar Section */}
+        <div className="relative flex flex-1 flex-col overflow-hidden pb-16 bg-white">
+          <div className="flex flex-1 flex-col md:flex-row md:gap-6 md:px-6 lg:px-8">
+            {/* Mobile Header Banner */}
+            {isMobile && (
+              <div className="fixed top-20 left-0 right-0 z-30 bg-gradient-to-r from-royal-blue to-electric-blue p-3 text-white text-center shadow-md">
+                <h2 className="text-lg font-bold tracking-wide">Global Presence</h2>
+                <p className="text-xs text-white/80 mt-1">Discover our worldwide logistics network</p>
               </div>
-            );
-          })}
-        </div>
+            )}
 
-        {/* Footer (close button for mobile parity if you want it) */}
-        <div className="px-4 py-3">
-          <button
-            onClick={onClose}
-            className="w-full rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700 transition"
-          >
-            Close
-          </button>
+            {/* Map Section */}
+            {(!isMobile || (isMobile && showMap)) && (
+              <div
+                className={`transition-all duration-300 ease-in-out ${
+                  isMobile ? "w-full" : "md:w-3/5"
+                }`}
+              >
+                <ContactMapContainer />
+              </div>
+            )}
+
+            {/* Sidebar Section */}
+            {(!isMobile || (isMobile && !showMap)) && (
+              <aside
+                className={`transition-all duration-300 ease-in-out ${
+                  isMobile ? "w-full pt-12" : "md:w-[38%]"
+                }`}
+              >
+                <ContactSidebar
+                  isOpen={isSidebarOpen}
+                  onClose={() => {
+                    setIsSidebarOpen(false);
+                    if (isMobile) setShowMap(true);
+                  }}
+                />
+              </aside>
+            )}
+          </div>
+
+          {/* Floating Mobile Toggle Button */}
+          {isMobile && (
+            <div className="fixed bottom-6 left-0 right-0 flex justify-center z-40">
+              <Button
+                onClick={toggleMobileView}
+                className="flex items-center gap-2 bg-royal-blue hover:bg-deep-navy text-white shadow-xl px-5 py-4 rounded-full transition-all"
+              >
+                {showMap ? (
+                  <>
+                    <MapPin className="h-4 w-4" />
+                    <span className="text-sm font-semibold">View Locations</span>
+                  </>
+                ) : (
+                  <>
+                    <Globe className="h-4 w-4" />
+                    <span className="text-sm font-semibold">View Map</span>
+                  </>
+                )}
+              </Button>
+            </div>
+          )}
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
-}
+};
+
+export default Global;
