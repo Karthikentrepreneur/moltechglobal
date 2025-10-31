@@ -8,13 +8,11 @@ type Props = { imgSrc?: string };
 const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
   return (
     <section id="about" className="relative overflow-hidden bg-white py-24">
-      {/* Removed old left-side blue shapes */}
-
+      {/* Removed old blue shapes */}
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* LEFT :: Image with blue glow outline */}
+          {/* LEFT :: Image with subtle blue glow */}
           <div className="relative mx-auto w-[720px] max-w-full">
-            {/* outer blue glow */}
             <div
               aria-hidden
               className="absolute left-1/2 top-1/2 -z-10 h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
@@ -24,7 +22,6 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               }}
             />
 
-            {/* circular image with gradient ring */}
             <div
               className="mx-auto aspect-square w-full max-w-[700px] rounded-full p-[10px]"
               style={{
@@ -47,21 +44,18 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
 
           {/* RIGHT :: Text content */}
           <div className="space-y-7">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-gray-500">
-              About Company
-            </div>
-
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#0F1B3D]">
-              About Moltech
+            {/* Title */}
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#0F1B3D]">
+              Moltech
             </h2>
 
-            {/* Paragraph with gradient highlight */}
+            {/* Description with thin highlight */}
             <p className="text-lg md:text-xl leading-relaxed text-gray-700">
               Moltech strides in the bio space working on{" "}
               <span className="relative font-bold text-gray-900 inline-block">
                 clean initiatives and products
                 <span
-                  className="absolute left-0 bottom-0 h-[4px] w-full rounded-full"
+                  className="absolute left-0 bottom-0 h-[2px] w-full rounded-full"
                   style={{
                     background:
                       "linear-gradient(90deg, #3B82F6 0%, #60A5FA 50%, #2563EB 100%)",
@@ -75,7 +69,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               platform.
             </p>
 
-            {/* Features section */}
+            {/* Features */}
             <div className="space-y-6 pt-1">
               <div className="flex items-start gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
@@ -109,7 +103,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               </div>
             </div>
 
-            {/* CTA button */}
+            {/* CTA Button */}
             <div className="pt-4">
               <Link
                 to="/about"
