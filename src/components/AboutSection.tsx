@@ -3,45 +3,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Globe2, ShieldCheck } from "lucide-react";
 
-type AboutSectionProps = {
-  /** public path to your existing image */
-  imgSrc?: string;
-};
-
-const AboutSection: React.FC<AboutSectionProps> = ({ imgSrc = "/png.png" }) => {
+type Props = { imgSrc?: string };
+const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
   return (
     <section id="about" className="relative overflow-hidden bg-white py-24">
-      {/* --- Blue accent arcs (no yellow) --- */}
-      <div
-        className="pointer-events-none absolute -left-[28%] top-[12%] h-[900px] w-[900px] rounded-full"
-        style={{ background: "#2B6CB0" }}
-      />
-      <div
-        className="pointer-events-none absolute -left-[20%] -top-[12%] h-[620px] w-[620px] rounded-full"
-        style={{ background: "#4299E1" }}
-      />
+      {/* ⛔ removed left-side blue circles */}
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* LEFT :: Circular image (uses your existing /png.png) */}
+          {/* LEFT :: Image with blue gradient OUTLINE + soft glow */}
           <div className="relative mx-auto w-[720px] max-w-full">
+            {/* soft outer glow behind the circle */}
             <div
-              className="absolute inset-0 rounded-full blur-2xl opacity-30"
+              aria-hidden
+              className="absolute left-1/2 top-1/2 -z-10 h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
               style={{
                 background:
-                  "radial-gradient(60% 60% at 50% 50%, rgba(30,58,138,0.25), transparent 70%)",
+                  "radial-gradient(closest-side, rgba(37,99,235,0.30), rgba(59,130,246,0.18) 55%, transparent 70%)",
               }}
             />
-            <div className="relative mx-auto aspect-square w-full max-w-[700px] overflow-hidden rounded-full">
-              <div className="absolute inset-0 rounded-full ring-8 ring-blue-50" />
-              <img
-                src={imgSrc}
-                alt="Moltech sustainable operations"
-                className="h-full w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+
+            {/* gradient outline ring (padding trick) */}
+            <div className="mx-auto aspect-square w-full max-w-[700px] rounded-full p-[10px]"
+                 style={{
+                   background:
+                     "conic-gradient(from 140deg, rgba(96,165,250,0.8), rgba(59,130,246,0.65), rgba(96,165,250,0.8))"
+                 }}
+            >
+              {/* inner white holder to keep ring separate */}
+              <div className="relative h-full w-full overflow-hidden rounded-full bg-white">
+                <img
+                  src={imgSrc}
+                  alt="Moltech sustainable operations"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                {/* bottom dark fade for readability */}
+                <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+              </div>
             </div>
           </div>
 
