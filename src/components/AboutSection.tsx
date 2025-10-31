@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import { Globe2, ShieldCheck } from "lucide-react";
 
 type Props = { imgSrc?: string };
+
 const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
   return (
     <section id="about" className="relative overflow-hidden bg-white py-24">
-      {/* ⛔ removed left-side blue circles */}
+      {/* Removed old left-side blue shapes */}
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* LEFT :: Image with blue gradient OUTLINE + soft glow */}
+          {/* LEFT :: Image with blue glow outline */}
           <div className="relative mx-auto w-[720px] max-w-full">
-            {/* soft outer glow behind the circle */}
+            {/* outer blue glow */}
             <div
               aria-hidden
               className="absolute left-1/2 top-1/2 -z-10 h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
@@ -23,14 +24,14 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               }}
             />
 
-            {/* gradient outline ring (padding trick) */}
-            <div className="mx-auto aspect-square w-full max-w-[700px] rounded-full p-[10px]"
-                 style={{
-                   background:
-                     "conic-gradient(from 140deg, rgba(96,165,250,0.8), rgba(59,130,246,0.65), rgba(96,165,250,0.8))"
-                 }}
+            {/* circular image with gradient ring */}
+            <div
+              className="mx-auto aspect-square w-full max-w-[700px] rounded-full p-[10px]"
+              style={{
+                background:
+                  "conic-gradient(from 140deg, rgba(96,165,250,0.8), rgba(59,130,246,0.65), rgba(96,165,250,0.8))",
+              }}
             >
-              {/* inner white holder to keep ring separate */}
               <div className="relative h-full w-full overflow-hidden rounded-full bg-white">
                 <img
                   src={imgSrc}
@@ -39,13 +40,12 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
                   loading="lazy"
                   decoding="async"
                 />
-                {/* bottom dark fade for readability */}
                 <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
             </div>
           </div>
 
-          {/* RIGHT :: Content (unchanged) */}
+          {/* RIGHT :: Text content */}
           <div className="space-y-7">
             <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-gray-500">
               About Company
@@ -55,10 +55,18 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               About Moltech
             </h2>
 
+            {/* Paragraph with gradient highlight */}
             <p className="text-lg md:text-xl leading-relaxed text-gray-700">
               Moltech strides in the bio space working on{" "}
-              <span className="font-semibold text-gray-900">
+              <span className="relative font-bold text-gray-900 inline-block">
                 clean initiatives and products
+                <span
+                  className="absolute left-0 bottom-0 h-[4px] w-full rounded-full"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #3B82F6 0%, #60A5FA 50%, #2563EB 100%)",
+                  }}
+                />
               </span>{" "}
               that drive the circular economy. With its strategic presence in
               Asia, Middle East, United Kingdom and United States of America,
@@ -67,6 +75,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               platform.
             </p>
 
+            {/* Features section */}
             <div className="space-y-6 pt-1">
               <div className="flex items-start gap-4">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
@@ -100,6 +109,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               </div>
             </div>
 
+            {/* CTA button */}
             <div className="pt-4">
               <Link
                 to="/about"
