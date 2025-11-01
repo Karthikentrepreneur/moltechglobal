@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
 
 const Hero = () => {
   const bgVideo = "/blue.mp4";
@@ -13,13 +17,6 @@ const Hero = () => {
   ];
 
   const [frameIndex, setFrameIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setFrameIndex((i) => (i + 1) % frames.length);
-    }, 4000);
-    return () => clearInterval(id);
-  }, [frames.length]);
 
   return (
     <section
@@ -58,11 +55,17 @@ const Hero = () => {
                 Empowering Circular Innovation
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
-               At <strong>Moltech</strong>, we’re redefining sustainability with clean, renewable products that fuel the circular economy. Our global presence across Asia, the Middle East, the UK, and the USA empowers industries worldwide with reliable, accredited bio-based solutions for biodiesel, oleochemicals, energy, and animal feed applications.
+                At <strong>Moltech</strong>, we’re redefining sustainability with clean,
+                renewable products that fuel the circular economy. Our global
+                presence across Asia, the Middle East, the UK, and the USA empowers
+                industries worldwide with reliable, accredited bio-based solutions
+                for biodiesel, oleochemicals, energy, and animal feed applications.
               </p>
               <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
-               Backed by internationally accredited testing and global reach, Moltech pioneers renewable and traceable products that drive the energy transition and strengthen the circular economy.
-                </p>
+                Backed by internationally accredited testing and global reach,
+                Moltech pioneers renewable and traceable products that drive the
+                energy transition and strengthen the circular economy.
+              </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -85,21 +88,27 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT IMAGE SECTION */}
+          {/* RIGHT IMAGE SECTION WITH SWIPER */}
           <div className="relative z-10 flex flex-col items-center text-center">
             <div className="relative w-[85%] sm:w-[80%] lg:w-[90%] overflow-hidden rounded-[1.5rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
-              <div className="relative w-full h-[420px] sm:h-[480px] lg:h-[520px] overflow-hidden rounded-[1.5rem]">
-                {frames.map((f, i) => (
-                  <img
-                    key={f.src}
-                    src={f.src}
-                    alt={f.title}
-                    className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ${
-                      i === frameIndex ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
+              <Swiper
+                modules={[Autoplay, EffectFade]}
+                autoplay={{ delay: 4000, disableOnInteraction: false }}
+                loop
+                effect="slide"
+                onSlideChange={(swiper) => setFrameIndex(swiper.realIndex)}
+                className="rounded-[1.5rem]"
+              >
+                {frames.map((f) => (
+                  <SwiperSlide key={f.src}>
+                    <img
+                      src={f.src}
+                      alt={f.title}
+                      className="w-full h-[420px] sm:h-[480px] lg:h-[520px] object-cover object-center"
+                    />
+                  </SwiperSlide>
                 ))}
-              </div>
+              </Swiper>
             </div>
 
             {/* Title below image */}
