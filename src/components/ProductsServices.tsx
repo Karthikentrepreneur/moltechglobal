@@ -56,31 +56,21 @@ const ProductsServices = () => {
   ];
 
   return (
-    <section id="products" className="relative isolate overflow-hidden text-white section-padding">
-      {/* ===== Background Video ===== */}
-      <video
-        src="/Product.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-      />
-
-      {/* ===== Dark Overlay for Readability ===== */}
-      <div className="absolute inset-0 -z-10 bg-black/60" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <section
+      className="section-padding"
+      style={{ backgroundColor: "#5243A2" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
         <div className="text-center space-y-6 mb-12">
-          <h2 className="heading-lg text-white drop-shadow-lg">Products & Services</h2>
+          <h2 className="heading-lg text-white">Products & Services</h2>
           <p className="body-lg text-gray-200 max-w-3xl mx-auto">
             Comprehensive range of sustainable bio-based products serving industries worldwide
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 relative z-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {products.map((product, i) => {
             const Icon = product.icon;
             return (
@@ -89,7 +79,7 @@ const ProductsServices = () => {
                 to={`/products/${product.slug}`}
                 className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-2xl"
               >
-                <Card className="h-full overflow-hidden rounded-2xl border-white/10 bg-white/10 backdrop-blur-sm shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-0.5">
+                <Card className="h-full overflow-hidden rounded-2xl border-white/10 bg-white/5 backdrop-blur-sm shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-0.5">
                   {/* Image */}
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <img
@@ -98,7 +88,9 @@ const ProductsServices = () => {
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       loading={i < 2 ? "eager" : "lazy"}
                     />
+                    {/* soft gradient for legibility */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
+                    {/* corner icon chip */}
                     <div className="absolute bottom-3 right-3 rounded-xl bg-white/25 backdrop-blur-sm w-11 h-11 grid place-items-center">
                       <Icon className="w-5 h-5 text-white" />
                     </div>
@@ -116,6 +108,7 @@ const ProductsServices = () => {
                       {product.subtitle}
                     </p>
 
+                    {/* subtle CTA row */}
                     <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
                       <span className="transition-colors group-hover:text-emerald-400">
                         View details
