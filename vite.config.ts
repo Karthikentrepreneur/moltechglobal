@@ -11,12 +11,24 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === "development" && componentTagger(),
   ].filter(Boolean),
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+
+  // ✅ Important for Swiper & smooth Vercel build
+  optimizeDeps: {
+    include: ["swiper", "swiper/react", "swiper/modules"],
+  },
+
+  build: {
+    rollupOptions: {
+      // prevent Vercel Rollup from externalizing Swiper accidentally
+      external: [],
     },
   },
 }));
