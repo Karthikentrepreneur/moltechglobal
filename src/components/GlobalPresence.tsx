@@ -15,7 +15,7 @@ type Office = {
   image: string;
 };
 
-/* ---------- Card (exactly as in Global.tsx) ---------- */
+/* ---------- Card Component ---------- */
 const OfficeCard = ({
   office,
   isAnimated = false,
@@ -25,8 +25,8 @@ const OfficeCard = ({
 }) => (
   <div
     className={[
-      "bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500",
-      "hover:shadow-xl h-full flex flex-col",
+      "bg-white/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-500",
+      "hover:shadow-xl h-full flex flex-col backdrop-blur-sm border border-white/10",
       isAnimated ? "transform" : "",
     ].join(" ")}
   >
@@ -41,24 +41,26 @@ const OfficeCard = ({
         }}
       />
       <div className="absolute top-4 left-4">
-        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+        <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
           {office.type}
         </span>
       </div>
     </div>
 
-    <div className="p-6 flex-1 flex flex-col">
-      <h3 className="text-2xl font-bold text-slate-900">{office.city}</h3>
-      <p className="text-slate-600 mb-3">{office.country}</p>
-      <p className="text-slate-700 leading-relaxed mb-6">{office.description}</p>
+    <div className="p-6 flex-1 flex flex-col text-white">
+      <h3 className="text-2xl font-bold">{office.city}</h3>
+      <p className="text-gray-300 mb-3">{office.country}</p>
+      <p className="text-gray-200 leading-relaxed mb-6">
+        {office.description}
+      </p>
 
       <div className="mt-auto space-y-3">
-        <div className="flex items-start text-sm text-slate-700">
-          <MapPin className="w-4 h-4 mr-3 text-blue-600 mt-0.5" />
+        <div className="flex items-start text-sm text-gray-200">
+          <MapPin className="w-4 h-4 mr-3 text-emerald-400 mt-0.5" />
           <span>{office.address}</span>
         </div>
-        <div className="flex items-center text-sm text-slate-700">
-          <Phone className="w-4 h-4 mr-3 text-blue-600" />
+        <div className="flex items-center text-sm text-gray-200">
+          <Phone className="w-4 h-4 mr-3 text-emerald-400" />
           <span>{office.phone}</span>
         </div>
       </div>
@@ -66,11 +68,10 @@ const OfficeCard = ({
   </div>
 );
 
-/* ---------- Component that matches Global.tsx layout ---------- */
+/* ---------- Main Component ---------- */
 export default function GlobalPresence() {
   const [currentMalaysianOffice, setCurrentMalaysianOffice] = useState(0);
 
-  // Same data as Global.tsx (use your actual image paths)
   const malaysianOffices: Office[] = [
     {
       city: "Port Klang",
@@ -80,7 +81,7 @@ export default function GlobalPresence() {
       phone: "+60 16-985 4705",
       email: "portklang@global.com",
       description: "Strategic hub for Malaysian logistics and supply chain.",
-      image: "/malasyia.avif", // update if your asset is .jpg
+      image: "/malasyia.avif",
     },
     {
       city: "Johor",
@@ -177,7 +178,6 @@ export default function GlobalPresence() {
     },
   ];
 
-  // Auto-swap Malaysian offices every 3 seconds (same as page)
   useEffect(() => {
     const t = setInterval(() => {
       setCurrentMalaysianOffice((p) => (p + 1) % malaysianOffices.length);
@@ -186,14 +186,17 @@ export default function GlobalPresence() {
   }, []);
 
   return (
-    <div className="bg-white">
-      {/* Hero (same as page) */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 to-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+    <div
+      className="text-white"
+      style={{ backgroundColor: "#3E2E88" }} // ⬅️ Violet background applied here
+    >
+      {/* Hero */}
+      <section className="py-16 text-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4 drop-shadow-md">
             Global Presence
           </h1>
-          <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
             Serving customers worldwide through our strategically located
             offices and facilities across Asia, Middle East, Europe,
             Americas, and Oceania.
@@ -201,7 +204,7 @@ export default function GlobalPresence() {
         </div>
       </section>
 
-      {/* Offices Grid (same as page) */}
+      {/* Offices Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
@@ -224,11 +227,11 @@ export default function GlobalPresence() {
             ))}
           </div>
 
-          {/* ▼ New CTA below the grid */}
+          {/* CTA Button */}
           <div className="mt-12 flex justify-center">
             <Link
               to="/global"
-              className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
+              className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500"
               aria-label="View our full global presence"
             >
               Explore Our Global Network
