@@ -56,21 +56,31 @@ const ProductsServices = () => {
   ];
 
   return (
-    <section
-      className="section-padding"
-      style={{ backgroundColor: "#3E2E88" }} // ⬅️ Darker violet background
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="products" className="relative isolate overflow-hidden text-white section-padding">
+      {/* ===== Background Video ===== */}
+      <video
+        src="/Product.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+
+      {/* ===== Dark Overlay for Readability ===== */}
+      <div className="absolute inset-0 -z-10 bg-black/60" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
         <div className="text-center space-y-6 mb-12">
-          <h2 className="heading-lg text-white">Products & Services</h2>
-          <p className="body-lg text-gray-300 max-w-3xl mx-auto">
+          <h2 className="heading-lg text-white drop-shadow-lg">Products & Services</h2>
+          <p className="body-lg text-gray-200 max-w-3xl mx-auto">
             Comprehensive range of sustainable bio-based products serving industries worldwide
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 relative z-10">
           {products.map((product, i) => {
             const Icon = product.icon;
             return (
