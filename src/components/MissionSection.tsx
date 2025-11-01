@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const BRAND = {
   violet: "#3E2E88",
-  amber: "#F4B942",
+  silver: "#C0C0C0",
 };
 
 const MissionSection = () => {
@@ -23,14 +23,14 @@ const MissionSection = () => {
             />
           </div>
 
-          {/* Amber arcs (decor) */}
+          {/* Violet decorative arcs */}
           <div
             className="absolute -left-16 -top-10 h-40 w-72 rounded-[80px] hidden sm:block"
-            style={{ backgroundColor: BRAND.amber, opacity: 0.85 }}
+            style={{ backgroundColor: BRAND.violet, opacity: 0.2 }}
           />
           <div
             className="absolute -bottom-24 left-10 h-52 w-80 rounded-[100px] hidden sm:block"
-            style={{ backgroundColor: BRAND.amber, opacity: 0.6 }}
+            style={{ backgroundColor: BRAND.violet, opacity: 0.15 }}
           />
         </div>
 
@@ -52,10 +52,20 @@ const MissionSection = () => {
             </p>
           </div>
 
+          {/* CTA button with silver border */}
           <button
             onClick={() => navigate("/vision-mission")}
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-slate-900 transition"
-            style={{ backgroundColor: BRAND.amber }}
+            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-slate-900 transition-all duration-300"
+            style={{
+              border: `2px solid ${BRAND.silver}`,
+              backgroundColor: "transparent",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = BRAND.violet)
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "transparent")
+            }
           >
             Our Vision
             <ArrowRight className="h-4 w-4" />
