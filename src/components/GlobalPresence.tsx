@@ -50,7 +50,9 @@ const OfficeCard = ({
     <div className="p-6 flex-1 flex flex-col text-white">
       <h3 className="text-2xl font-bold">{office.city}</h3>
       <p className="text-gray-300 mb-3">{office.country}</p>
-      <p className="text-gray-200 leading-relaxed mb-6">{office.description}</p>
+      <p className="text-gray-200 leading-relaxed mb-6">
+        {office.description}
+      </p>
 
       <div className="mt-auto space-y-3">
         <div className="flex items-start text-sm text-gray-200">
@@ -186,10 +188,7 @@ export default function GlobalPresence() {
   return (
     <div
       className="text-white"
-      style={{
-        backgroundColor: "rgba(62, 46, 136, 0.2)", // Violet with 20% opacity
-        backdropFilter: "blur(4px)", // adds subtle softness behind
-      }}
+      style={{ backgroundColor: "#3E2E88" }} // ⬅️ Violet background applied here
     >
       {/* Hero */}
       <section className="py-16 text-center">
