@@ -18,9 +18,8 @@ const Header = () => {
 
   // Detect scroll position
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20); // when scroll > 20px
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -40,8 +39,13 @@ const Header = () => {
     { name: "Contact", to: "/contact", isCta: true },
   ];
 
-  const linkClasses =
-    "text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors duration-200";
+  const baseLink =
+    "text-sm font-medium transition-colors duration-200";
+  const linkClasses = `${baseLink} ${
+    isScrolled
+      ? "text-slate-600 hover:text-slate-900"
+      : "text-white/90 hover:text-white"
+  }`;
 
   const offset = 88;
   const isHome = location.pathname === "/" || location.pathname === "/home";
@@ -53,17 +57,13 @@ const Header = () => {
   ) => {
     if (item.sectionId) {
       event.preventDefault();
-
       if (isHome) {
         scrollToSection(item.sectionId, offset);
       } else {
         navigate(`/#${item.sectionId}`);
       }
     }
-
-    if (shouldCloseMenu) {
-      setIsMobileMenuOpen(false);
-    }
+    if (shouldCloseMenu) setIsMobileMenuOpen(false);
   };
 
   return (
@@ -71,12 +71,12 @@ const Header = () => {
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
         isScrolled
           ? "bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm"
-          : "bg-transparent border-transparent"
+          : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <nav className="flex w-full items-center justify-between">
-          {/* Logo */}
+          {/* Logo — left corner */}
           <Link
             to="/"
             onClick={(event) => handleNavItemClick(event, navItems[0])}
@@ -90,7 +90,11 @@ const Header = () => {
                 className="h-8 w-auto object-contain"
               />
             </div>
-            <span className="text-[10.5px] font-semibold tracking-[0.18em] uppercase text-slate-400 mt-1 select-none">
+            <span
+              className={`text-[10.5px] font-semibold tracking-[0.18em] uppercase mt-1 select-none ${
+                isScrolled ? "text-slate-500" : "text-white/80"
+              }`}
+            >
               Driving Sustainability
             </span>
           </Link>
@@ -105,7 +109,11 @@ const Header = () => {
                     href={item.to}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 items-center rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 px-5 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
+                    className="
+                      flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl
+                      bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500
+                      text-white
+                    "
                   >
                     {item.name}
                   </a>
@@ -117,7 +125,11 @@ const Header = () => {
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="flex h-10 items-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 px-5 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
+                    className="
+                      flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl
+                      bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500
+                      text-white
+                    "
                   >
                     {item.name}
                   </Link>
@@ -142,7 +154,11 @@ const Header = () => {
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <button
-                  className="grid h-9 w-9 place-items-center rounded-md border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-50"
+                  className={`grid h-9 w-9 place-items-center rounded-md transition-colors ${
+                    isScrolled
+                      ? "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                      : "border border-white/50 bg-transparent text-white hover:bg-white/10"
+                  }`}
                   aria-label="Open menu"
                 >
                   <Menu className="h-4 w-4" />
@@ -183,8 +199,10 @@ const Header = () => {
                       <Link
                         key={item.to}
                         to={item.to}
-                        onClick={(event) => handleNavItemClick(event, item, true)}
-                        className="text-base text-slate-600 transition-colors hover:text-slate-900"
+                        onClick={(event) =>
+                          handleNavItemClick(event, item, true)
+                        }
+                        className="text-base text-slate-700 transition-colors hover:text-slate-900"
                       >
                         {item.name}
                       </Link>
