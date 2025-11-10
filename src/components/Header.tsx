@@ -43,7 +43,7 @@ const Header = () => {
   const linkClasses = `${baseLink} ${
     isScrolled
       ? "text-slate-600 hover:text-slate-900"
-      : "text-slate-100 hover:text-white"
+      : "text-white/90 hover:text-white"
   }`;
 
   const offset = 88;
@@ -67,7 +67,7 @@ const Header = () => {
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
         isScrolled
           ? "bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm"
-          : "bg-gradient-to-b from-gray-200/70 to-transparent backdrop-blur-sm"
+          : "bg-gradient-to-b from-black/70 via-black/0 to-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -88,7 +88,7 @@ const Header = () => {
             </div>
             <span
               className={`text-[10.5px] font-semibold tracking-[0.18em] uppercase mt-1 select-none ${
-                isScrolled ? "text-slate-500" : "text-slate-100"
+                isScrolled ? "text-slate-500" : "text-white/80"
               }`}
             >
               Driving Sustainability
@@ -145,7 +145,7 @@ const Header = () => {
                   className={`grid h-9 w-9 place-items-center rounded-md transition-colors ${
                     isScrolled
                       ? "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
-                      : "border border-white/40 bg-gray-300/20 text-white hover:bg-gray-300/30"
+                      : "border border-white/50 bg-transparent text-white hover:bg-white/10"
                   }`}
                   aria-label="Open menu"
                 >
@@ -190,7 +190,7 @@ const Header = () => {
                         onClick={(event) =>
                           handleNavItemClick(event, item, true)
                         }
-                        className="text-base text-slate-700 transition-colors hover:text-slate-900"
+                        className="text-base text-slate-700 transition-colors hover:text-slate-900"F
                       >
                         {item.name}
                       </Link>
@@ -207,3 +207,4 @@ const Header = () => {
 };
 
 export default Header;
+F
