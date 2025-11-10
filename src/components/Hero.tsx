@@ -47,7 +47,7 @@ const slides: Slide[] = [
   },
   {
     kind: "image",
-    src: "/soap-noodles.jpg",
+    src: "/soapnoodles.mp4",
     title: "SOAP NOODLES",
     description:
       "Consistent, quality-controlled soap noodles for personal and home care—delivered with end-to-end compliance and sustainability.",
