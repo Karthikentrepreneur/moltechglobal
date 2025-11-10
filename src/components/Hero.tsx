@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type Slide = {
   src: string;
@@ -6,8 +6,8 @@ type Slide = {
   description: string;
 };
 
-const SLIDE_MS = 5000;      // each video visible for 5 s
-const FADE_MS = 1000;       // cross-fade duration
+const SLIDE_DURATION = 5000; // 5 seconds per video
+const FADE_DURATION = 800; // fade transition in ms
 
 const slides: Slide[] = [
   {
@@ -20,7 +20,7 @@ const slides: Slide[] = [
     src: "/02.mp4",
     title: "BIODIESEL FEEDSTOCK",
     description:
-      "Origination of sustainable feed stocks using technology, skilled manpower and an in-house global logistics platform makes us the preferred choice of generators and oil refineries.",
+      "Origination of sustainable feed stocks using technology, skilled manpower and an in-house global logistics platform makes us the preferred choice of generators and oil refineries. Used cooking oil is processed and reaches bio refineries for conversion into biofuel.",
   },
   {
     src: "/03.mp4",
@@ -50,17 +50,33 @@ const slides: Slide[] = [
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
-  const [fadeFlag, setFadeFlag] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const [fadeIn, setFadeIn] = useState(true);
+  const videoA = useRef<HTMLVideoElement | null>(null);
+  const videoB = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    // cross-fade timer
-    timeoutRef.current = window.setTimeout(() => {
-      setFadeFlag((f) => !f);
+    let timeoutId: number;
+
+    const playNext = () => {
+      setFadeIn((f) => !f); // trigger fade toggle
       setIndex((i) => (i + 1) % slides.length);
-    }, SLIDE_MS);
-    return () => timeoutRef.current && clearTimeout(timeoutRef.current);
-  }, [index]);
+    };
+
+    timeoutId = window.setInterval(playNext, SLIDE_DURATION);
+    return () => clearInterval(timeoutId);
+  }, []);
+
+  // keep both videos autoplaying to ensure seamless blending
+  useEffect(() => {
+    if (videoA.current) {
+      videoA.current.muted = true;
+      videoA.current.play().catch(() => {});
+    }
+    if (videoB.current) {
+      videoB.current.muted = true;
+      videoB.current.play().catch(() => {});
+    }
+  }, [index, fadeIn]);
 
   const current = slides[index];
   const next = slides[(index + 1) % slides.length];
@@ -70,38 +86,43 @@ const Hero = () => {
       id="home"
       className="relative isolate h-screen w-full overflow-hidden text-white flex items-end justify-center"
     >
-      {/* two video layers cross-fading */}
+      {/* --- Dual Videos for Crossfade --- */}
       <div className="absolute inset-0 -z-20">
+        {/* Layer A */}
         <video
-          key={current.src}
+          ref={videoA}
+          key={current.src + "-a"}
           src={current.src}
           autoPlay
           muted
-          loop
           playsInline
           preload="auto"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[${FADE_MS}ms] ${
-            fadeFlag ? "opacity-0" : "opacity-100"
+          loop
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[${FADE_DURATION}ms] ${
+            fadeIn ? "opacity-100" : "opacity-0"
           }`}
         />
+
+        {/* Layer B */}
         <video
-          key={next.src}
+          ref={videoB}
+          key={next.src + "-b"}
           src={next.src}
           autoPlay
           muted
-          loop
           playsInline
           preload="auto"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[${FADE_MS}ms] ${
-            fadeFlag ? "opacity-100" : "opacity-0"
+          loop
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[${FADE_DURATION}ms] ${
+            fadeIn ? "opacity-0" : "opacity-100"
           }`}
         />
       </div>
 
-      {/* subtle dark overlay */}
+      {/* Overlay for readability */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-      {/* bottom-center content box */}
+      {/* Bottom Center Content */}
       <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl text-center bg-black/60 backdrop-blur-sm px-6 sm:px-10 py-6 sm:py-8 rounded-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)]">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
