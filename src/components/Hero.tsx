@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-
-const SLIDE_MS = 5000;
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Slide = {
   kind: "video" | "image";
@@ -8,6 +6,12 @@ type Slide = {
   title: string;
   description: string;
 };
+
+const SLIDE_MS = 5000;
+
+/** Strip zero-width and other sneaky characters from paths */
+const cleanPath = (p: string) =>
+  p.replace(/[\u200B-\u200F\uFEFF\u00A0]/g, "").trim();
 
 const slides: Slide[] = [
   {
@@ -47,7 +51,8 @@ const slides: Slide[] = [
   },
   {
     kind: "video",
-    src: "/soapnoodles.mp4‎",
+    // IMPORTANT: corrected path — no hidden char after .mp4
+    src: "/soapnoodles.mp4",
     title: "SOAP NOODLES",
     description:
       "Consistent, quality-controlled soap noodles for personal and home care—delivered with end-to-end compliance and sustainability.",
@@ -56,13 +61,35 @@ const slides: Slide[] = [
 
 const Hero = () => {
   const [idx, setIdx] = useState(0);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
+  // Rotate slides every 5s
   useEffect(() => {
-    const id = setInterval(() => setIdx((i) => (i + 1) % slides.length), SLIDE_MS);
+    const id = window.setInterval(
+      () => setIdx((i) => (i + 1) % slides.length),
+      SLIDE_MS
+    );
     return () => clearInterval(id);
   }, []);
 
   const current = slides[idx];
+  const currentSrc = useMemo(() => cleanPath(current.src), [current.src]);
+
+  // Help Safari/iOS autoplay reliably
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) {
+      v.muted = true;
+      const play = v.play();
+      if (play && typeof play.catch === "function") {
+        play.catch(() => {
+          // ignore autoplay promise rejection
+        });
+      }
+    }
+  }, [currentSrc, current.kind]);
+
+  const skipToNext = () => setIdx((i) => (i + 1) % slides.length);
 
   return (
     <section
@@ -72,38 +99,34 @@ const Hero = () => {
       {/* Background Media */}
       {current.kind === "video" ? (
         <video
-          key={current.src}
-          src={current.src}
+          key={currentSrc}
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
+          onError={skipToNext}
           className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
+        >
+          <source src={currentSrc} type="video/mp4" />
+        </video>
       ) : (
         <img
-          key={current.src}
-          src={current.src}
+          key={currentSrc}
+          src={currentSrc}
           alt={current.title}
+          onError={skipToNext}
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
       )}
 
-      {/* Full screen dark overlay for smooth readability */}
+      {/* Soft top-to-bottom dark overlay for overall readability */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-      {/* Centered bottom content */}
+      {/* Bottom-centered content card with dark translucent backdrop */}
       <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
-        <div
-          className="
-            max-w-3xl text-center
-            bg-black/60 backdrop-blur-sm
-            px-6 sm:px-10 py-6 sm:py-8
-            rounded-3xl
-            shadow-[0_0_30px_rgba(0,0,0,0.6)]
-          "
-        >
+        <div className="max-w-3xl text-center bg-black/60 backdrop-blur-sm px-6 sm:px-10 py-6 sm:py-8 rounded-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)]">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
             {current.title}
           </h1>
@@ -119,7 +142,7 @@ const Hero = () => {
               Explore Our Solutions
             </a>
             <a
-              href='http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH'
+              href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300 bg-cyan-300/10 px-6 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white hover:bg-cyan-300/20 transition"
