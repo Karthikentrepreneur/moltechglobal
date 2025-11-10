@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-const SLIDE_MS = 5000; // 5 seconds per video
-const FADE_MS = 900;   // smooth crossfade
+/** Play each video for 5s, loop through list */
+const SLIDE_MS = 5000;
 
 type Slide = {
+  src: string;         // video or image path
   kind: "video" | "image";
-  src: string;
   title: string;
   description: string;
 };
@@ -57,116 +57,77 @@ const slides: Slide[] = [
 
 const Hero = () => {
   const [idx, setIdx] = useState(0);
-  const [fadeFlag, setFadeFlag] = useState(false);
-  const timerRef = useRef<number | null>(null);
-  const progressRef = useRef<HTMLDivElement | null>(null);
 
-  const next = () => setIdx((i) => (i + 1) % slides.length);
-  const prev = () => setIdx((i) => (i - 1 + slides.length) % slides.length);
+  // rotate every 5s
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setIdx((i) => (i + 1) % slides.length);
+    }, SLIDE_MS);
+    return () => clearInterval(id);
+  }, []);
 
   const current = slides[idx];
-  const nextIdx = (idx + 1) % slides.length;
-  const upcoming = slides[nextIdx];
-
-  // autoplay timer
-  useEffect(() => {
-    if (progressRef.current) {
-      progressRef.current.style.transition = "none";
-      progressRef.current.style.width = "0%";
-      requestAnimationFrame(() => {
-        if (progressRef.current) {
-          progressRef.current.style.transition = `width ${SLIDE_MS}ms linear`;
-          progressRef.current.style.width = "100%";
-        }
-      });
-    }
-
-    timerRef.current = window.setTimeout(() => {
-      setFadeFlag((f) => !f);
-      window.setTimeout(() => next(), FADE_MS);
-    }, SLIDE_MS);
-
-    return () => timerRef.current && clearTimeout(timerRef.current);
-  }, [idx]);
-
-  const Media = ({ slide }: { slide: Slide }) =>
-    slide.kind === "video" ? (
-      <video
-        key={slide.src}
-        src={slide.src}
-        autoPlay
-        muted
-        playsInline
-        loop
-        preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-    ) : (
-      <img
-        src={slide.src}
-        alt={slide.title}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-    );
-
-  const titleDecor = useMemo(
-    () => (
-      <span className="relative inline-block">
-        <span className="relative z-10">{current.title}</span>
-        <span className="absolute -inset-x-1 -bottom-1 h-2 rounded-full bg-gradient-to-r from-emerald-300/70 via-cyan-300/70 to-indigo-300/70 blur-[3px]" />
-      </span>
-    ),
-    [current.title]
-  );
 
   return (
     <section
       id="home"
       className="relative isolate min-h-[92vh] w-full overflow-hidden text-white"
+      aria-labelledby="hero-heading"
     >
-      {/* Dual video layers for fade */}
-      <div className="absolute inset-0 -z-20">
-        <div
-          className={`absolute inset-0 transition-opacity duration-[${FADE_MS}ms] ${
-            fadeFlag ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          <Media slide={current} />
-        </div>
-        <div
-          className={`absolute inset-0 transition-opacity duration-[${FADE_MS}ms] ${
-            fadeFlag ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Media slide={upcoming} />
-        </div>
-      </div>
+      {/* BACKGROUND MEDIA */}
+      {current.kind === "video" ? (
+        <video
+          key={current.src}            // forces source switch when idx changes
+          src={current.src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+      ) : (
+        <img
+          key={current.src}
+          src={current.src}
+          alt={current.title}
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+          loading="eager"
+        />
+      )}
 
-      {/* Overlays for readability */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(120%_70%_at_50%_40%,transparent_0%,rgba(0,0,0,0.15)_45%,rgba(0,0,0,0.55)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+      {/* subtle vignette for contrast */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(110%_70%_at_50%_40%,transparent_0%,rgba(0,0,0,0.12)_45%,rgba(0,0,0,0.55)_100%)]" />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex min-h-[92vh] max-w-7xl items-center px-6 sm:px-10 lg:px-16">
-        <div className="w-full">
-          <div className="mb-6 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
-              Sustainability • Traceability • Quality
-            </span>
-          </div>
-
-          <div className="max-w-3xl rounded-2xl border border-white/15 bg-white/10 p-6 sm:p-8 shadow-[0_30px_120px_-40px_rgba(0,0,0,0.8)] backdrop-blur">
-            <h1 className="text-center sm:text-left text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight drop-shadow-md">
-              {titleDecor}
+      {/* CONTENT BOX — bottom left */}
+      <div className="relative z-10 mx-auto max-w-7xl min-h-[92vh]">
+        <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10">
+          <div
+            className="
+              max-w-[680px]
+              rounded-2xl
+              border border-white/10
+              bg-[#4A3FB6]/85     /* Moltech purple with opacity */
+              p-5 sm:p-7
+              shadow-[0_30px_120px_-40px_rgba(0,0,0,0.8)]
+              backdrop-blur
+            "
+          >
+            <h1
+              id="hero-heading"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight drop-shadow"
+            >
+              {current.title}
             </h1>
-            <p className="mt-4 text-center sm:text-left text-base sm:text-lg leading-relaxed text-white/90">
+
+            <p className="mt-3 text-sm sm:text-base lg:text-[17px] leading-relaxed text-white/95">
               {current.description}
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
+
+            <div className="mt-5 flex flex-wrap gap-3">
               <a
                 href="#products"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-[0_25px_60px_-30px_rgba(0,0,0,0.9)] transition hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-slate-900 shadow hover:-translate-y-0.5 transition"
               >
                 Explore Our Solutions
               </a>
@@ -174,35 +135,12 @@ const Hero = () => {
                 href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:border-white/70 hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15 transition"
               >
-                <span className="inline-flex h-2 w-2 rounded-full bg-emerald-300" />
+                <span className="h-2 w-2 rounded-full bg-emerald-300" />
                 Live Tracking
               </a>
             </div>
-          </div>
-
-          {/* Slide indicators */}
-          <div className="mt-6 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {slides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setIdx(i)}
-                  className={`h-2 rounded-full transition-all ${
-                    i === idx ? "w-7 bg-white" : "w-2 bg-white/40 hover:bg-white/70"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Progress bar */}
-          <div className="relative mt-4 h-1 w-full overflow-hidden rounded-full bg-white/10">
-            <div
-              ref={progressRef}
-              className="h-full w-0 rounded-full bg-white/80"
-            />
           </div>
         </div>
       </div>
