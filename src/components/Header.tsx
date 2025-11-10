@@ -39,8 +39,7 @@ const Header = () => {
     { name: "Contact", to: "/contact", isCta: true },
   ];
 
-  const baseLink =
-    "text-sm font-medium transition-colors duration-200";
+  const baseLink = "text-sm font-medium transition-colors duration-200";
   const linkClasses = `${baseLink} ${
     isScrolled
       ? "text-slate-600 hover:text-slate-900"
@@ -57,11 +56,8 @@ const Header = () => {
   ) => {
     if (item.sectionId) {
       event.preventDefault();
-      if (isHome) {
-        scrollToSection(item.sectionId, offset);
-      } else {
-        navigate(`/#${item.sectionId}`);
-      }
+      if (isHome) scrollToSection(item.sectionId, offset);
+      else navigate(`/#${item.sectionId}`);
     }
     if (shouldCloseMenu) setIsMobileMenuOpen(false);
   };
@@ -71,7 +67,7 @@ const Header = () => {
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
         isScrolled
           ? "bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm"
-          : "bg-transparent"
+          : "bg-gradient-to-b from-black/70 via-black/30 to-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -109,11 +105,7 @@ const Header = () => {
                     href={item.to}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="
-                      flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl
-                      bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500
-                      text-white
-                    "
+                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white"
                   >
                     {item.name}
                   </a>
@@ -125,11 +117,7 @@ const Header = () => {
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="
-                      flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl
-                      bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500
-                      text-white
-                    "
+                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white"
                   >
                     {item.name}
                   </Link>
