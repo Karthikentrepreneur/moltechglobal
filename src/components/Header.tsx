@@ -190,7 +190,7 @@ const Header = () => {
                         onClick={(event) =>
                           handleNavItemClick(event, item, true)
                         }
-                        className="text-base text-slate-700 transition-colors hover:text-slate-900"F
+                        className="text-base text-slate-700 transition-colors hover:text-slate-900"
                       >
                         {item.name}
                       </Link>
@@ -207,4 +207,4 @@ const Header = () => {
 };
 
 export default Header;
-F
+
