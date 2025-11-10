@@ -46,8 +46,8 @@ const slides: Slide[] = [
       "High-quality glycerin streams supporting pharmaceutical, personal care, and industrial applications—traceable and reliable.",
   },
   {
-    kind: "image",
-    src: "/soapnoodles.mp4",
+    kind: "video",
+    src: "/soapnoodles.mp4‎",
     title: "SOAP NOODLES",
     description:
       "Consistent, quality-controlled soap noodles for personal and home care—delivered with end-to-end compliance and sustainability.",
