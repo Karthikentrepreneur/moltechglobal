@@ -1,124 +1,102 @@
 import { useEffect, useState } from "react";
 
-const SLIDE_MS = 4000;
+const SLIDE_MS = 8000; // duration per video (8s each)
 
 const Hero = () => {
-  const bgVideo = "/blue.mp4";
-
-  const frames = [
-    { src: "/Biodieselariel.jpg", title: "Biodiesel Feedstocks" },
-    { src: "/1.png", title: "Fatty Acids" },
-    { src: "/2.png", title: "Soap Noodles" },
-    { src: "/3.png", title: "Animal Feed Fats" },
-    { src: "/4.png", title: "Glycerin" },
-    { src: "/5.png", title: "Feed Additives" },
+  const slides = [
+    {
+      video: "/01.mp4",
+      title: "DRIVING SUSTAINABILITY",
+      description:
+        "To reduce carbon footprint and greenhouse gas emissions with products that create a balanced eco system. Effective use of technology for full Traceability are applied as per EU Sustainability directives.",
+    },
+    {
+      video: "/02.mp4",
+      title: "BIODIESEL FEEDSTOCK",
+      description:
+        "Origination of sustainable feed stocks using technology, skilled manpower and in-house global logistics platform makes us the preferred choice of generators and oil refineries. Used cooking oil collected are processed and find its way to the bio refineries for conversion into biofuel.",
+    },
+    {
+      video: "/03.mp4",
+      title: "TRUST",
+      description:
+        "We treat our trading partners as a team. Exchange of ideas, communication and transparency, strong work ethics and strict quality control — makes Moltech one of the trusted partners to trade.",
+    },
+    {
+      video: "/04.mp4",
+      title: "GLOBAL SOLUTIONS",
+      description:
+        "With a footprint across continents, Moltech integrates sustainability, technology, and logistics to ensure consistent supply and traceable bio-based materials worldwide.",
+    },
   ];
 
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIdx((i) => (i + 1) % frames.length);
+      setIdx((prev) => (prev + 1) % slides.length);
     }, SLIDE_MS);
     return () => clearInterval(id);
-  }, [frames.length]);
+  }, [slides.length]);
 
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden text-white flex items-center min-h-screen"
-      aria-labelledby="hero-heading"
+      className="relative isolate overflow-hidden text-white flex items-center justify-center min-h-screen"
     >
-      {/* Background video */}
+      {/* Background Video */}
       <video
-        src={bgVideo}
+        key={slides[idx].video}
+        src={slides[idx].video}
         autoPlay
         muted
         loop
         playsInline
-        className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
+        className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000"
       />
 
-      {/* Overlay: top lighter, bottom darker */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
 
       {/* Content */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-16">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* LEFT */}
-          <div className="relative z-10 flex flex-col gap-8 justify-center">
-            <div className="inline-flex items-center gap-3 self-start rounded-full border border-white/15 bg-white/10 px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-cyan-100/90 backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-emerald-300" />
-              Driving Sustainability
-            </div>
+      <div className="relative z-10 max-w-5xl text-center px-6 sm:px-10 lg:px-16">
+        <div className="space-y-6 animate-fadeIn">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-wide uppercase drop-shadow-lg">
+            {slides[idx].title}
+          </h1>
+          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-gray-100/90 max-w-3xl mx-auto">
+            {slides[idx].description}
+          </p>
 
-            <div className="space-y-5">
-              <h1
-                id="hero-heading"
-                className="text-3xl font-bold leading-tight drop-shadow-sm sm:text-4xl lg:text-5xl"
-              >
-                Empowering Circular Innovation
-              </h1>
-              <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
-                At <strong>Moltech</strong>, we’re redefining sustainability with clean, renewable
-                products that fuel the circular economy. Our global presence across
-                Asia, the Middle East, the UK, and the USA empowers industries
-                worldwide with reliable, accredited bio-based solutions for biodiesel,
-                oleochemicals, energy, and animal feed applications.
-              </p>
-              <p className="max-w-xl text-base leading-relaxed text-cyan-50/90 sm:text-lg">
-                Backed by internationally accredited testing and global reach, Moltech
-                pioneers renewable and traceable products that drive the energy transition
-                and strengthen the circular economy.
-              </p>
-            </div>
+          <div className="flex justify-center gap-4 mt-8">
+            <a
+              href="#products"
+              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-[0_25px_60px_-30px_rgba(0,0,0,0.9)] transition hover:-translate-y-0.5"
+            >
+              Explore Our Solutions
+            </a>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#products"
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-[0_25px_60px_-30px_rgba(0,0,0,0.9)] transition hover:-translate-y-0.5"
-              >
-                Explore Our Solutions
-              </a>
-
-              <a
-                href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:border-white/70 hover:bg-white/10"
-              >
-                <span className="inline-flex h-2 w-2 rounded-full bg-emerald-300" />
-                Live Tracking
-              </a>
-            </div>
+            <a
+              href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:border-white/70 hover:bg-white/10"
+            >
+              Live Tracking
+            </a>
           </div>
+        </div>
 
-          {/* RIGHT — no-deps slider */}
-          <div className="relative z-10 flex flex-col items-center text-center">
-            <div className="relative w-[85%] sm:w-[80%] lg:w-[90%] overflow-hidden rounded-[1.5rem] border border-white/20 bg-white/10 shadow-[0_50px_150px_-50px_rgba(0,0,0,0.9)] backdrop-blur">
-              <div
-                className="flex transition-transform duration-700 ease-out"
-                style={{ transform: `translateX(-${idx * 100}%)` }}
-              >
-                {frames.map((f) => (
-                  <div key={f.src} className="min-w-full">
-                    <img
-                      src={f.src}
-                      alt={f.title}
-                      className="w-full h-[420px] sm:h-[480px] lg:h-[520px] object-cover object-center"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Caption */}
-            <div className="mt-5 text-center">
-              <h3 className="text-base font-semibold uppercase tracking-[0.25em] text-cyan-100 drop-shadow">
-                {frames[idx]?.title}
-              </h3>
-            </div>
-          </div>
+        {/* Optional indicator dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              className={`h-2 w-2 rounded-full transition-all ${
+                i === idx ? "bg-white w-6" : "bg-white/40"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -126,4 +104,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
