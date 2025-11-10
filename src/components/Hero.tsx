@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 
 type Message = { title: string; description: string };
 
-// 5 overlay texts
 const MESSAGES: Message[] = [
   {
     title: "DRIVING SUSTAINABILITY",
@@ -31,44 +30,31 @@ const MESSAGES: Message[] = [
   },
 ];
 
-const SLIDE_MS = 5000; // 5 seconds per text
-const FADE_MS = 600;   // cross-fade duration for text
+const SLIDE_MS = 5000; // 5s per message
+const FADE_MS = 450;   // softer, quicker fade to reduce perceived “pause”
 
 const Hero = () => {
-  // which message index is the "current"
   const [i, setI] = useState(0);
-  // which layer is visible (A or B) for cross-fade
-  const [showA, setShowA] = useState(true);
-
+  const [fadingOut, setFadingOut] = useState(false);
   const timerRef = useRef<number | null>(null);
-  const fadeRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const tick = () => {
-      // start the fade
-      setShowA((v) => !v);
-
-      // after fade completes, advance the index so next cycle is prepared
-      fadeRef.current = window.setTimeout(() => {
-        setI((prev) => (prev + 1) % MESSAGES.length);
-        schedule(); // schedule the next 5s cycle
+    const step = () => {
+      // fade out
+      setFadingOut(true);
+      // after fade completes, swap text and fade back in
+      window.setTimeout(() => {
+        setI((x) => (x + 1) % MESSAGES.length);
+        // next animation frame prevents layout thrash
+        requestAnimationFrame(() => setFadingOut(false));
       }, FADE_MS);
     };
 
-    const schedule = () => {
-      timerRef.current = window.setTimeout(tick, SLIDE_MS);
-    };
-
-    schedule();
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-      if (fadeRef.current) clearTimeout(fadeRef.current);
-    };
+    timerRef.current = window.setInterval(step, SLIDE_MS);
+    return () => timerRef.current && clearInterval(timerRef.current);
   }, []);
 
-  const current = MESSAGES[i];
-  const next = MESSAGES[(i + 1) % MESSAGES.length];
+  const msg = MESSAGES[i];
 
   return (
     <section
@@ -76,9 +62,9 @@ const Hero = () => {
       className="relative isolate h-screen w-full overflow-hidden text-white flex items-end justify-center"
       aria-labelledby="hero-heading"
     >
-      {/* Single continuous background video */}
+      {/* Single, continuous background video */}
       <video
-        src="/herohero.mp4" /* <-- set your single background video here */
+        src="/01.mp4"  // your single looping background video
         autoPlay
         muted
         loop
@@ -87,84 +73,61 @@ const Hero = () => {
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
 
-      {/* Subtle dark overlay for global readability */}
+      {/* Global readability overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-      {/* Bottom-centered content area with two overlaid layers that cross-fade */}
+      {/* Bottom-centered card (single layer, fade-out/in) */}
       <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
-        <div className="relative max-w-3xl w-full">
-          {/* Layer A (visible when showA = true) */}
-          <div
-            className={`
-              absolute inset-0
-              transition-opacity duration-[${FADE_MS}ms]
-              ${showA ? "opacity-100" : "opacity-0"}
-            `}
+        <div
+          className={`
+            max-w-3xl w-full mx-auto text-center
+            bg-black/60 backdrop-blur-sm rounded-3xl
+            px-6 sm:px-10 py-6 sm:py-8
+            shadow-[0_0_30px_rgba(0,0,0,0.6)]
+            transition-opacity duration-[${FADE_MS}ms]
+            ${fadingOut ? "opacity-0" : "opacity-100"}
+          `}
+          // reserve height so the box doesn’t jump between messages
+          style={{ willChange: "opacity", minHeight: 180 }}
+        >
+          <h1
+            id="hero-heading"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3"
           >
-            <div className="text-center bg-black/60 backdrop-blur-sm px-6 sm:px-10 py-6 sm:py-8 rounded-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)]">
-              <h1
-                id="hero-heading"
-                className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3"
-              >
-                {current.title}
-              </h1>
-              <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/90">
-                {current.description}
-              </p>
+            {msg.title}
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/90">
+            {msg.description}
+          </p>
 
-              <div className="mt-5 flex justify-center flex-wrap gap-4">
-                <a
-                  href="#products"
-                  className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/20 transition"
-                >
-                  Explore Our Solutions
-                </a>
-                <a
-                  href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300 bg-cyan-300/10 px-6 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white hover:bg-cyan-300/20 transition"
-                >
-                  <span className="h-2 w-2 rounded-full bg-cyan-300" />
-                  Live Tracking
-                </a>
-              </div>
-            </div>
-          </div>
+          <div className="mt-5 flex justify-center flex-wrap gap-4">
+            {/* Tracking — blue→indigo gradient (matches your screenshot) */}
+            <a
+              href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
+              target="_blank"
+              rel="noreferrer"
+              className="
+                inline-flex items-center justify-center h-10 rounded-full px-5
+                text-sm font-semibold text-white
+                bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500
+                shadow-lg transition hover:shadow-xl
+              "
+            >
+              Tracking
+            </a>
 
-          {/* Layer B (visible when showA = false) */}
-          <div
-            className={`
-              transition-opacity duration-[${FADE_MS}ms]
-              ${showA ? "opacity-0" : "opacity-100"}
-            `}
-          >
-            <div className="text-center bg-black/60 backdrop-blur-sm px-6 sm:px-10 py-6 sm:py-8 rounded-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)]">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
-                {next.title}
-              </h2>
-              <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/90">
-                {next.description}
-              </p>
-
-              <div className="mt-5 flex justify-center flex-wrap gap-4">
-                <a
-                  href="#products"
-                  className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/20 transition"
-                >
-                  Explore Our Solutions
-                </a>
-                <a
-                  href="http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-300 bg-cyan-300/10 px-6 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white hover:bg-cyan-300/20 transition"
-                >
-                  <span className="h-2 w-2 rounded-full bg-cyan-300" />
-                  Live Tracking
-                </a>
-              </div>
-            </div>
+            {/* Contact — emerald→teal gradient (matches your screenshot) */}
+            <a
+              href="/contact"
+              className="
+                inline-flex items-center justify-center h-10 rounded-full px-5
+                text-sm font-semibold text-white
+                bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500
+                shadow-lg transition hover:shadow-xl
+              "
+            >
+              Contact
+            </a>
           </div>
         </div>
       </div>
