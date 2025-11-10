@@ -14,19 +14,24 @@ const MESSAGES: Message[] = [
       "Origination of sustainable feed stocks using technology, skilled manpower and an in-house global logistics platform makes us the preferred choice of generators and oil refineries.",
   },
   {
-    title: "TRUST",
+    title: "GLYCERIN & FATTY ACIDS",
     description:
-      "We treat our trading partners as a team—ideas, communication, and transparency. Strong work ethics and strict quality control make Moltech a trusted partner.",
+      "Moltech supplies high-quality fatty acids and refined glycerin for industrial use in rubber, paints, and lubricants.Crude glycerin (65–85%) and refined grades (99.5%+) ensure purity and performance across applications.",
   },
   {
-    title: "GLOBAL SOLUTIONS",
+    title: "Animal Feed Fats",
     description:
-      "A footprint across continents. We integrate sustainability, technology, and logistics to ensure consistent supply and fully traceable bio-based materials worldwide.",
+      "Fats play a vital role in animal health and feed efficiency.Moltech’s proprietary liquid and dry fat formulations enhance absorption and energy density for optimal performance.",
+  },
+    {
+    title: "SOAP NOODLES",
+    description:
+      "Moltech offers a wide variety of Soap Noodles of different qualities as per the customer's requirements.",
   },
   {
-    title: "GLYCERIN",
+    title: "FEED ADDITIVES",
     description:
-      "High-quality glycerin streams supporting pharmaceutical, personal care, and industrial applications—traceable and reliable.",
+      "Moltech partners with feed companies to meet their specific nutritional needs,offering products like soya lecithin, de-oiled rice bran, palm kernel meal, and custom vitamin premixes.",
   },
 ];
 
