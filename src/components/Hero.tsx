@@ -1,57 +1,46 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Slide = {
-  kind: "video" | "image";
   src: string;
   title: string;
   description: string;
 };
 
-const SLIDE_MS = 5000;
-
-/** Strip zero-width and other sneaky characters from paths */
-const cleanPath = (p: string) =>
-  p.replace(/[\u200B-\u200F\uFEFF\u00A0]/g, "").trim();
+const SLIDE_MS = 5000;      // each video visible for 5 s
+const FADE_MS = 1000;       // cross-fade duration
 
 const slides: Slide[] = [
   {
-    kind: "video",
     src: "/01.mp4",
     title: "DRIVING SUSTAINABILITY",
     description:
       "To reduce carbon footprint and greenhouse gas emissions with products that create a balanced eco system. Effective use of technology for full traceability are applied as per EU Sustainability directives.",
   },
   {
-    kind: "video",
     src: "/02.mp4",
     title: "BIODIESEL FEEDSTOCK",
     description:
-      "Origination of sustainable feed stocks using technology, skilled manpower and an in-house global logistics platform makes us the preferred choice of generators and oil refineries. Used cooking oil is processed and reaches bio refineries for conversion into biofuel.",
+      "Origination of sustainable feed stocks using technology, skilled manpower and an in-house global logistics platform makes us the preferred choice of generators and oil refineries.",
   },
   {
-    kind: "video",
     src: "/03.mp4",
     title: "TRUST",
     description:
       "We treat our trading partners as a team—ideas, communication, and transparency. Strong work ethics and strict quality control make Moltech a trusted partner.",
   },
   {
-    kind: "video",
     src: "/04.mp4",
     title: "GLOBAL SOLUTIONS",
     description:
       "A footprint across continents. We integrate sustainability, technology, and logistics to ensure consistent supply and fully traceable bio-based materials worldwide.",
   },
   {
-    kind: "video",
     src: "/glycerin.mp4",
     title: "GLYCERIN",
     description:
       "High-quality glycerin streams supporting pharmaceutical, personal care, and industrial applications—traceable and reliable.",
   },
   {
-    kind: "video",
-    // IMPORTANT: corrected path — no hidden char after .mp4
     src: "/soapnoodles.mp4",
     title: "SOAP NOODLES",
     description:
@@ -60,71 +49,59 @@ const slides: Slide[] = [
 ];
 
 const Hero = () => {
-  const [idx, setIdx] = useState(0);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [index, setIndex] = useState(0);
+  const [fadeFlag, setFadeFlag] = useState(false);
+  const timeoutRef = useRef<number | null>(null);
 
-  // Rotate slides every 5s
   useEffect(() => {
-    const id = window.setInterval(
-      () => setIdx((i) => (i + 1) % slides.length),
-      SLIDE_MS
-    );
-    return () => clearInterval(id);
-  }, []);
+    // cross-fade timer
+    timeoutRef.current = window.setTimeout(() => {
+      setFadeFlag((f) => !f);
+      setIndex((i) => (i + 1) % slides.length);
+    }, SLIDE_MS);
+    return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+  }, [index]);
 
-  const current = slides[idx];
-  const currentSrc = useMemo(() => cleanPath(current.src), [current.src]);
-
-  // Help Safari/iOS autoplay reliably
-  useEffect(() => {
-    const v = videoRef.current;
-    if (v) {
-      v.muted = true;
-      const play = v.play();
-      if (play && typeof play.catch === "function") {
-        play.catch(() => {
-          // ignore autoplay promise rejection
-        });
-      }
-    }
-  }, [currentSrc, current.kind]);
-
-  const skipToNext = () => setIdx((i) => (i + 1) % slides.length);
+  const current = slides[index];
+  const next = slides[(index + 1) % slides.length];
 
   return (
     <section
       id="home"
       className="relative isolate h-screen w-full overflow-hidden text-white flex items-end justify-center"
     >
-      {/* Background Media */}
-      {current.kind === "video" ? (
+      {/* two video layers cross-fading */}
+      <div className="absolute inset-0 -z-20">
         <video
-          key={currentSrc}
-          ref={videoRef}
+          key={current.src}
+          src={current.src}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          onError={skipToNext}
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        >
-          <source src={currentSrc} type="video/mp4" />
-        </video>
-      ) : (
-        <img
-          key={currentSrc}
-          src={currentSrc}
-          alt={current.title}
-          onError={skipToNext}
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[${FADE_MS}ms] ${
+            fadeFlag ? "opacity-0" : "opacity-100"
+          }`}
         />
-      )}
+        <video
+          key={next.src}
+          src={next.src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[${FADE_MS}ms] ${
+            fadeFlag ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </div>
 
-      {/* Soft top-to-bottom dark overlay for overall readability */}
+      {/* subtle dark overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-      {/* Bottom-centered content card with dark translucent backdrop */}
+      {/* bottom-center content box */}
       <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl text-center bg-black/60 backdrop-blur-sm px-6 sm:px-10 py-6 sm:py-8 rounded-3xl shadow-[0_0_30px_rgba(0,0,0,0.6)]">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
