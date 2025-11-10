@@ -23,7 +23,7 @@ const Hero = () => {
         "We treat our trading partners as a team. Exchange of ideas, communication and transparency, strong work ethics and strict quality control — makes Moltech one of the trusted partners to trade.",
     },
     {
-      video: "/soap-noodles.mp4",
+      video: "/glycerin.mp4",
       title: "GLOBAL SOLUTIONS",
       description:
         "With a footprint across continents, Moltech integrates sustainability, technology, and logistics to ensure consistent supply and traceable bio-based materials worldwide.",
