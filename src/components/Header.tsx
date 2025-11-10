@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 import { Menu } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -12,16 +12,20 @@ function scrollToSection(id: string, offset = 80) {
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const navItems: Array<{
-    name: string;
-    to: string;
-    external?: boolean;
-    sectionId?: string;
-    isCta?: boolean;
-  }> = [
+  // Detect scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20); // when scroll > 20px
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
     { name: "Home", to: "/", sectionId: "home" },
     { name: "About", to: "/about" },
     { name: "Products", to: "/products" },
@@ -45,7 +49,7 @@ const Header = () => {
   const handleNavItemClick = (
     event: MouseEvent<HTMLAnchorElement>,
     item: (typeof navItems)[number],
-    shouldCloseMenu = false,
+    shouldCloseMenu = false
   ) => {
     if (item.sectionId) {
       event.preventDefault();
@@ -63,7 +67,13 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm"
+          : "bg-transparent border-transparent"
+      }`}
+    >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <nav className="flex w-full items-center justify-between">
           {/* Logo */}
@@ -88,7 +98,6 @@ const Header = () => {
           {/* Desktop Nav */}
           <div className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => {
-              // External link
               if (item.external) {
                 return (
                   <a
@@ -103,7 +112,6 @@ const Header = () => {
                 );
               }
 
-              // Contact CTA
               if (item.isCta) {
                 return (
                   <Link
@@ -116,7 +124,6 @@ const Header = () => {
                 );
               }
 
-              // Normal internal links
               return (
                 <Link
                   key={item.to}
@@ -144,7 +151,6 @@ const Header = () => {
               <SheetContent className="bg-white text-slate-800">
                 <div className="mt-8 flex flex-col gap-4">
                   {navItems.map((item) => {
-                    // External link (Tracking)
                     if (item.external) {
                       return (
                         <a
@@ -160,7 +166,6 @@ const Header = () => {
                       );
                     }
 
-                    // Contact CTA
                     if (item.isCta) {
                       return (
                         <Link
@@ -174,7 +179,6 @@ const Header = () => {
                       );
                     }
 
-                    // Internal link
                     return (
                       <Link
                         key={item.to}
