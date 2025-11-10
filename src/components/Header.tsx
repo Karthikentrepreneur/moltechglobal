@@ -67,7 +67,7 @@ const Header = () => {
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
         isScrolled
           ? "bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm"
-          : "bg-gradient-to-b from-black/70 via-black/30 to-transparent"
+          : "bg-gradient-to-b from-black/80 to-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
