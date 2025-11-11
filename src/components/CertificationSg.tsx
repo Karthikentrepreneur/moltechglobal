@@ -27,7 +27,13 @@ const CertificationIndia: React.FC = () => {
     <>
       <Header />
 
-      <main className="bg-gradient-to-b from-slate-50 to-white pt-1">
+      {/* 🩵 Soft light blue background applied here */}
+      <main
+        className="min-h-screen pt-1"
+        style={{
+          background: "linear-gradient(180deg, #E6F0FF 0%, #F5FAFF 100%)",
+        }}
+      >
         <section className="py-10 md:py-14">
           <div className="mx-auto px-4 md:px-6 max-w-[1600px]">
             {/* Title */}
@@ -38,26 +44,25 @@ const CertificationIndia: React.FC = () => {
                 </span>
               </h2>
               <div className="mx-auto mt-3 h-1 w-28 rounded-full bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400" />
-              <p className="mt-4 text-sm md:text-base text-slate-600 max-w-3xl mx-auto">
+              <p className="mt-4 text-sm md:text-base text-slate-700 max-w-3xl mx-auto">
                 Verified compliance across regions — tap any certificate to view it full screen.
               </p>
             </div>
 
-            {/* Certificates Grid — responsive 1 / 2 / 3 columns */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-1">
+            {/* Certificates Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8">
               {images.map((src, i) => (
                 <button
                   key={i}
                   onClick={() => setLightboxIndex(i)}
                   className="group relative rounded-3xl border border-slate-200 bg-white p-5 md:p-6 shadow-sm hover:shadow-xl transition-all duration-300 text-left"
                 >
-                  {/* Decorative gradient edge on hover */}
+                  {/* Subtle gradient overlay on hover */}
                   <span className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-slate-200 group-hover:ring-transparent" />
                   <span className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-blue-500/10 via-blue-400/10 to-blue-300/10" />
 
-                  {/* Big, consistent viewing window */}
+                  {/* Certificate container */}
                   <div className="relative rounded-2xl bg-white">
-                    {/* Use a tall responsive window for readability */}
                     <div className="w-full h-[28rem] md:h-[32rem] xl:h-[36rem] 2xl:h-[40rem] flex items-center justify-center">
                       <img
                         src={src}
@@ -80,7 +85,7 @@ const CertificationIndia: React.FC = () => {
         </section>
       </main>
 
-      {/* Lightbox */}
+      {/* Lightbox View */}
       {lightboxIndex !== null && (
         <div
           className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
@@ -108,6 +113,8 @@ const CertificationIndia: React.FC = () => {
           </div>
         </div>
       )}
+
+      <Footer />
     </>
   );
 };
