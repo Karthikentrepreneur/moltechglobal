@@ -1,18 +1,30 @@
-// src/components/sections/VisionMissionSection.tsx
-import React from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+// src/components/MissionSection.tsx
+import React, { useEffect, useRef, useState } from "react";
 
-export const VisionMissionSection: React.FC = () => {
-  const { ref, isVisible } = useScrollAnimation(0.12);
+const MissionSection: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
-  // If the image is in /public, this respects Vite's base path
+  // Lightweight in-view animation (replaces useScrollAnimation)
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.12 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // If your image is in /public, this respects Vite base path:
   const vmImg = `${import.meta.env.BASE_URL}vision-mission.png`;
-  // If you keep it under src/assets, instead do:
+  // If it's under src/assets, instead:
   // import vmImg from "@/assets/vision-mission.png";
 
   return (
     <section
-      ref={ref as React.RefObject<HTMLElement>}
+      ref={sectionRef as React.RefObject<HTMLElement>}
       id="vision-mission"
       className="relative w-full px-6 lg:px-16 py-16 lg:py-20 bg-[#FFE94D] overflow-hidden"
     >
@@ -46,7 +58,7 @@ export const VisionMissionSection: React.FC = () => {
           </div>
         </div>
 
-        {/* RIGHT: Animated Vision-Mission Image */}
+        {/* RIGHT: Animated Image */}
         <div className="flex justify-center md:justify-end relative">
           <img
             src={vmImg}
@@ -79,4 +91,4 @@ export const VisionMissionSection: React.FC = () => {
   );
 };
 
-export default VisionMissionSection;
+export default MissionSection;
