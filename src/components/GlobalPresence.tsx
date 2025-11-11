@@ -25,8 +25,8 @@ const OfficeCard = ({
 }) => (
   <div
     className={[
-      "bg-white/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-500",
-      "hover:shadow-xl h-full flex flex-col backdrop-blur-sm border border-white/10",
+      "rounded-2xl shadow-lg overflow-hidden transition-all duration-500",
+      "hover:shadow-2xl h-full flex flex-col backdrop-blur-lg border border-white/20 bg-white/5 hover:bg-white/10",
       isAnimated ? "transform" : "",
     ].join(" ")}
   >
@@ -40,7 +40,7 @@ const OfficeCard = ({
           (e.currentTarget as HTMLImageElement).src = "/fallback-office.jpg";
         }}
       />
-      <div className="absolute top-4 left-4">
+      <div className="absolute top-3 left-3">
         <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
           {office.type}
         </span>
@@ -48,9 +48,9 @@ const OfficeCard = ({
     </div>
 
     <div className="p-6 flex-1 flex flex-col text-white">
-      <h3 className="text-2xl font-bold">{office.city}</h3>
-      <p className="text-gray-300 mb-3">{office.country}</p>
-      <p className="text-gray-200 leading-relaxed mb-6">
+      <h3 className="text-xl font-bold mb-1">{office.city}</h3>
+      <p className="text-emerald-200 text-sm mb-3">{office.country}</p>
+      <p className="text-gray-100 leading-relaxed mb-6 flex-1">
         {office.description}
       </p>
 
@@ -187,10 +187,13 @@ export default function GlobalPresence() {
 
   return (
     <div
-      className="text-white"
-      style={{ backgroundColor: "#3E2E88" }} // ⬅️ Violet background applied here
+      className="text-white relative"
+      style={{
+        background:
+          "linear-gradient(135deg, #3E2E88 0%, #5243A2 50%, #6D5CC4 100%)",
+      }}
     >
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="py-16 text-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4 drop-shadow-md">
@@ -198,8 +201,8 @@ export default function GlobalPresence() {
           </h1>
           <p className="text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
             Serving customers worldwide through our strategically located
-            offices and facilities across Asia, Middle East, Europe,
-            Americas, and Oceania.
+            offices and facilities across Asia, Middle East, Europe, Americas,
+            and Oceania.
           </p>
         </div>
       </section>
@@ -207,7 +210,7 @@ export default function GlobalPresence() {
       {/* Offices Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-stretch">
             {/* Malaysia auto-rotating card */}
             <div className="h-full">
               <div
@@ -228,11 +231,10 @@ export default function GlobalPresence() {
           </div>
 
           {/* CTA Button */}
-          <div className="mt-12 flex justify-center">
+          <div className="mt-14 flex justify-center">
             <Link
               to="/global"
-              className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500"
-              aria-label="View our full global presence"
+              className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white rounded-full shadow-lg transition-all duration-300 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500"
             >
               Explore Our Global Network
             </Link>
