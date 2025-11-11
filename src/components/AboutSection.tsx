@@ -5,7 +5,7 @@ import { Globe2, ShieldCheck } from "lucide-react";
 
 type Props = { imgSrc?: string };
 
-const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
+const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.png" }) => {
   const [visible, setVisible] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
@@ -40,7 +40,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
         {/* Equal 1:1 Grid */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* LEFT :: Responsive Image */}
+          {/* LEFT :: Image */}
           <div
             className={[
               "relative w-full h-full flex items-center justify-center",
@@ -60,30 +60,26 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
                 onLoad={() => setImgLoaded(true)}
                 loading="lazy"
               />
-              {/* top and bottom overlays */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-2xl" />
             </div>
           </div>
 
-          {/* RIGHT :: Text Content */}
+          {/* RIGHT :: Text */}
           <div
             className={[
               "space-y-7 h-full flex flex-col justify-center",
               visible ? "animate-in-right" : "opacity-0 translate-y-6",
             ].join(" ")}
           >
-            {/* tagline */}
             <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-xs font-semibold ring-1 ring-blue-200 self-start">
               <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
               Sustainable • Global • Certified
             </div>
 
-            {/* heading */}
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#0F1B3D]">
               Moltech
             </h2>
 
-            {/* description */}
             <p className="text-base md:text-lg leading-relaxed text-gray-700">
               Moltech strides in the bio space working on{" "}
               <span className="relative font-semibold text-gray-900 inline-block">
@@ -103,8 +99,75 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
               platform.
             </p>
 
-            {/* features */}
             <div className="grid gap-4 pt-2">
               <div className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition">
                 <div className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-200">
-                  <Globe2 className="
+                  <Globe2 className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-semibold text-[#0F1B3D]">
+                    Global Presence &amp; Collection
+                  </div>
+                  <p className="mt-1 text-sm text-gray-600">
+                    Headquartered in Singapore with operations across Malaysia,
+                    Thailand, Indonesia, UAE, UK and USA — ensuring reliability
+                    and consistency in global sourcing.
+                  </p>
+                </div>
+              </div>
+
+              <div className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-semibold text-[#0F1B3D]">
+                    Certified &amp; Transparent
+                  </div>
+                  <p className="mt-1 text-sm text-gray-600">
+                    Certified by ISCC (EU); we operate with ethics, quality, and
+                    traceability to ensure complete transparency.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 pt-3">
+              <Link
+                to="/about"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-md transition-all hover:from-blue-700 hover:to-blue-500 hover:shadow-lg"
+              >
+                Learn More
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-xl border border-blue-200 bg-white px-6 py-3 text-sm font-semibold tracking-wide text-blue-700 hover:bg-blue-50 transition"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .animate-in-left {
+          animation: fadeSlideInLeft .7s cubic-bezier(.22,.86,.26,.99) both;
+        }
+        .animate-in-right {
+          animation: fadeSlideInRight .7s cubic-bezier(.22,.86,.26,.99) both .1s;
+        }
+        @keyframes fadeSlideInLeft {
+          0% { opacity: 0; transform: translate3d(-18px, 8px, 0); }
+          100% { opacity: 1; transform: translate3d(0,0,0); }
+        }
+        @keyframes fadeSlideInRight {
+          0% { opacity: 0; transform: translate3d(18px, 8px, 0); }
+          100% { opacity: 1; transform: translate3d(0,0,0); }
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default AboutSection;
