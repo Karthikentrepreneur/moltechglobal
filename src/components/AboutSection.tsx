@@ -5,7 +5,7 @@ import { Globe2, ShieldCheck } from "lucide-react";
 
 type Props = { imgSrc?: string };
 
-const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
+const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
 
