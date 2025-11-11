@@ -1,58 +1,94 @@
 // src/components/AboutSection.tsx
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Globe2, ShieldCheck } from "lucide-react";
 
 type Props = { imgSrc?: string };
 
 const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section id="about" className="relative overflow-hidden bg-white py-24">
-      {/* Removed old blue shapes */}
+    <section
+      id="about"
+      ref={ref as React.RefObject<HTMLElement>}
+      className="relative overflow-hidden bg-white py-24"
+    >
+      {/* background accent */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(60% 60% at 15% 10%, rgba(37,99,235,0.1), transparent 70%), radial-gradient(60% 60% at 90% 30%, rgba(16,185,129,0.1), transparent 80%)",
+        }}
+      />
+
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* LEFT :: Image with subtle blue glow */}
-          <div className="relative mx-auto w-[720px] max-w-full">
+          {/* LEFT :: Rectangular Hero Image */}
+          <div
+            className={[
+              "relative mx-auto w-full max-w-[700px]",
+              visible ? "animate-in-left" : "opacity-0 translate-y-6",
+            ].join(" ")}
+          >
+            {/* glowing background */}
             <div
               aria-hidden
-              className="absolute left-1/2 top-1/2 -z-10 h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+              className="absolute -inset-6 -z-10 blur-3xl"
               style={{
                 background:
-                  "radial-gradient(closest-side, rgba(37,99,235,0.30), rgba(59,130,246,0.18) 55%, transparent 70%)",
+                  "radial-gradient(circle at 40% 40%, rgba(37,99,235,0.2), rgba(59,130,246,0.05) 70%)",
               }}
             />
-
-            <div
-              className="mx-auto aspect-square w-full max-w-[700px] rounded-full p-[10px]"
-              style={{
-                background:
-                  "conic-gradient(from 140deg, rgba(96,165,250,0.8), rgba(59,130,246,0.65), rgba(96,165,250,0.8))",
-              }}
-            >
-              <div className="relative h-full w-full overflow-hidden rounded-full bg-white">
-                <img
-                  src={imgSrc}
-                  alt="Moltech sustainable operations"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-              </div>
+            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-white shadow-2xl ring-1 ring-gray-200">
+              <img
+                src={imgSrc}
+                alt="Moltech sustainable operations"
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+              {/* gradient overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
             </div>
           </div>
 
-          {/* RIGHT :: Text content */}
-          <div className="space-y-7">
-            {/* Title */}
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#0F1B3D]">
+          {/* RIGHT :: Content */}
+          <div
+            className={[
+              "space-y-7",
+              visible ? "animate-in-right" : "opacity-0 translate-y-6",
+            ].join(" ")}
+          >
+            {/* tagline */}
+            <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-xs font-semibold ring-1 ring-blue-200">
+              <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
+              Sustainable • Global • Certified
+            </div>
+
+            {/* heading */}
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#0F1B3D]">
               Moltech
             </h2>
 
-            {/* Description with thin highlight */}
-            <p className="text-lg md:text-xl leading-relaxed text-gray-700">
+            {/* description */}
+            <p className="text-base md:text-lg leading-relaxed text-gray-700">
               Moltech strides in the bio space working on{" "}
-              <span className="relative font-bold text-gray-900 inline-block">
+              <span className="relative font-semibold text-gray-900 inline-block">
                 clean initiatives and products
                 <span
                   className="absolute left-0 bottom-0 h-[2px] w-full rounded-full"
@@ -69,11 +105,11 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
               platform.
             </p>
 
-            {/* Features */}
-            <div className="space-y-6 pt-1">
-              <div className="flex items-start gap-4">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
-                  <Globe2 className="h-5 w-5" aria-hidden />
+            {/* feature highlights */}
+            <div className="grid gap-4 pt-2">
+              <div className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-200">
+                  <Globe2 className="h-5 w-5" />
                 </div>
                 <div>
                   <div className="font-semibold text-[#0F1B3D]">
@@ -81,40 +117,64 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/png.png" }) => {
                   </div>
                   <p className="mt-1 text-sm text-gray-600">
                     Headquartered in Singapore with operations across Malaysia,
-                    Thailand, Indonesia, UAE, UK and USA — enabling reliable
-                    sourcing and delivery.
+                    Thailand, Indonesia, UAE, UK and USA — ensuring reliability
+                    and consistency in global sourcing.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-blue-600">
-                  <ShieldCheck className="h-5 w-5" aria-hidden />
+              <div className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200">
+                  <ShieldCheck className="h-5 w-5" />
                 </div>
                 <div>
                   <div className="font-semibold text-[#0F1B3D]">
                     Certified &amp; Transparent
                   </div>
                   <p className="mt-1 text-sm text-gray-600">
-                    Certified by ISCC (EU); we operate with strong ethics,
-                    quality control and transparency.
+                    Certified by ISCC (EU); we operate with ethics, quality, and
+                    traceability to ensure complete transparency.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* CTA Button */}
-            <div className="pt-4">
+            {/* CTA buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-3">
               <Link
                 to="/about"
-                className="inline-block rounded-lg bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-md transition-all duration-300 hover:from-blue-700 hover:to-blue-500 hover:shadow-lg"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-md transition-all hover:from-blue-700 hover:to-blue-500 hover:shadow-lg"
               >
                 Learn More
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-xl border border-blue-200 bg-white px-6 py-3 text-sm font-semibold tracking-wide text-blue-700 hover:bg-blue-50 transition"
+              >
+                Contact
               </Link>
             </div>
           </div>
         </div>
       </div>
+
+      {/* animations */}
+      <style>{`
+        .animate-in-left {
+          animation: fadeSlideInLeft .7s cubic-bezier(.22,.86,.26,.99) both;
+        }
+        .animate-in-right {
+          animation: fadeSlideInRight .7s cubic-bezier(.22,.86,.26,.99) both .1s;
+        }
+        @keyframes fadeSlideInLeft {
+          0% { opacity: 0; transform: translate3d(-18px, 8px, 0); }
+          100% { opacity: 1; transform: translate3d(0,0,0); }
+        }
+        @keyframes fadeSlideInRight {
+          0% { opacity: 0; transform: translate3d(18px, 8px, 0); }
+          100% { opacity: 1; transform: translate3d(0,0,0); }
+        }
+      `}</style>
     </section>
   );
 };
