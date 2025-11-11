@@ -89,7 +89,7 @@ const About: React.FC = () => {
         <section aria-label="About Us hero" className="relative">
           <div className="relative h-[38vh] md:h-[50vh] lg:h-[56vh]">
             <img
-              src="/abot.jpg"
+              src="/aboutmoltech.jpg"
               alt=""
               className="absolute inset-0 h-full w-full object-cover opacity-70"
               loading="eager"
