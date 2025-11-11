@@ -23,7 +23,7 @@ const MESSAGES: Message[] = [
     description:
       "Fats play a vital role in animal health and feed efficiency.Moltech’s proprietary liquid and dry fat formulations enhance absorption and energy density for optimal performance.",
   },
-    {
+  {
     title: "SOAP NOODLES",
     description:
       "Moltech offers a wide variety of Soap Noodles of different qualities as per the customer's requirements.",
@@ -35,28 +35,52 @@ const MESSAGES: Message[] = [
   },
 ];
 
-const SLIDE_MS = 5000; // 5 seconds per text
-const FADE_MS = 500; // smooth fade transition
+const MOVE_MS = 5100; // 5.1 seconds movement
+const RESET_PAUSE_MS = 100; // tiny pause to reset without visible jump
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
-  const [fadingOut, setFadingOut] = useState(false);
-  const timerRef = useRef<number | null>(null);
+  const [isSliding, setIsSliding] = useState(false);
+  const [disableTransition, setDisableTransition] = useState(false);
+  const cycleRef = useRef<number | null>(null);
 
+  const current = MESSAGES[index];
+  const next = MESSAGES[(index + 1) % MESSAGES.length];
+
+  // Run a continuous slide loop: move up over 5.1s, swap to next, reset position instantly, repeat.
   useEffect(() => {
-    const step = () => {
-      setFadingOut(true);
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % MESSAGES.length);
-        requestAnimationFrame(() => setFadingOut(false));
-      }, FADE_MS);
+    let cancelled = false;
+
+    const tick = () => {
+      if (cancelled) return;
+      // Start the slide
+      setIsSliding(true);
+
+      // After the movement finishes, swap content and reset position instantly (no transition)
+      window.setTimeout(() => {
+        if (cancelled) return;
+
+        setDisableTransition(true);   // turn off transition for the reset jump
+        setIsSliding(false);          // back to translate-y-0 (no animation)
+        setIndex((i) => (i + 1) % MESSAGES.length);
+
+        // Re-enable transition on the next frame and schedule the next slide
+        window.setTimeout(() => {
+          if (cancelled) return;
+          setDisableTransition(false);
+          tick(); // start next slide immediately
+        }, RESET_PAUSE_MS);
+      }, MOVE_MS);
     };
 
-    timerRef.current = window.setInterval(step, SLIDE_MS);
-    return () => timerRef.current && clearInterval(timerRef.current);
-  }, []);
+    // Kick off the first slide shortly after mount
+    cycleRef.current = window.setTimeout(tick, 200) as unknown as number;
 
-  const msg = MESSAGES[index];
+    return () => {
+      cancelled = true;
+      if (cycleRef.current) clearTimeout(cycleRef.current);
+    };
+  }, []);
 
   return (
     <section
@@ -65,7 +89,7 @@ const Hero = () => {
     >
       {/* Background Video */}
       <video
-        src="/herohero.mp4" // your single looping background video
+        src="/herohero.mp4"
         autoPlay
         muted
         loop
@@ -80,20 +104,45 @@ const Hero = () => {
       {/* Text Content */}
       <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
         <div
-          className={`
+          className="
             max-w-3xl text-center bg-black/60 backdrop-blur-sm rounded-3xl
             px-6 sm:px-10 py-6 sm:py-8 shadow-[0_0_30px_rgba(0,0,0,0.6)]
-            transition-opacity duration-[${FADE_MS}ms]
-            ${fadingOut ? "opacity-0" : "opacity-100"}
-          `}
-          style={{ willChange: "opacity", minHeight: 180 }}
+          "
+          style={{ minHeight: 180 }}
         >
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
-            {msg.title}
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/90">
-            {msg.description}
-          </p>
+          {/* Slide window */}
+          <div className="overflow-hidden">
+            <div
+              className={[
+                "flex flex-col",
+                // translate container: 0 -> -100% to slide next card up
+                isSliding ? "-translate-y-full" : "translate-y-0",
+                // movement duration 5.1s, ease-in-out
+                disableTransition ? "transition-none" : "transition-transform duration-[5100ms] ease-in-out",
+              ].join(" ")}
+              style={{ willChange: "transform" }}
+            >
+              {/* Current card */}
+              <div className="py-1">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
+                  {current.title}
+                </h1>
+                <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/90">
+                  {current.description}
+                </p>
+              </div>
+
+              {/* Next card (slides up underneath) */}
+              <div className="py-1">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
+                  {next.title}
+                </h1>
+                <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/90">
+                  {next.description}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
