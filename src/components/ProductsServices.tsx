@@ -3,13 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Droplets, Zap, ShoppingBag, Wheat, Beaker, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import biodieselCard from "@/assets/product-biodiesel-feedstocks-card.jpg";
-import fattyAcidsCard from "@/assets/product-fatty-acids-card.jpg";
-import soapNoodlesCard from "@/assets/soapnoodles.png";
-import animalFeedFatsCard from "@/assets/product-animal-feed-fats-card.jpg";
-import glycerinCard from "@/assets/product-glycerin-card.jpg";
-import feedAdditivesCard from "@/assets/animalfeeds.png";
-
 const ProductsServices = () => {
   const products = [
     {
@@ -63,30 +56,15 @@ const ProductsServices = () => {
   ];
 
   return (
-    <section
-      className="relative py-20 overflow-hidden"
-      style={{
-        background: "linear-gradient(135deg, #1E3A8A 0%, #2563EB 40%, #60A5FA 100%)",
-      }}
-    >
-      {/* Subtle glowing overlay */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(80% 80% at 50% 20%, rgba(255,255,255,0.25), transparent 70%)",
-        }}
-      />
-
+    <section className="relative py-20 overflow-hidden bg-white">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center space-y-6 mb-12">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
             Products & Services
           </h2>
-          <p className="text-lg md:text-xl text-gray-100 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive range of sustainable bio-based products serving industries worldwide
+          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Comprehensive range of sustainable bio-based products serving industries worldwide.
           </p>
         </div>
 
@@ -98,9 +76,9 @@ const ProductsServices = () => {
               <Link
                 key={i}
                 to={`/products/${product.slug}`}
-                className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-2xl"
+                className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-2xl"
               >
-                <Card className="h-full overflow-hidden rounded-2xl border-white/10 bg-white/10 backdrop-blur-md shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-0.5">
+                <Card className="h-full overflow-hidden rounded-2xl border-gray-200 bg-white shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-0.5">
                   {/* Image */}
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <img
@@ -109,30 +87,30 @@ const ProductsServices = () => {
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
                       loading={i < 2 ? "eager" : "lazy"}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent pointer-events-none" />
-                    {/* Icon Chip */}
-                    <div className="absolute bottom-3 right-3 rounded-xl bg-white/25 backdrop-blur-sm w-11 h-11 grid place-items-center">
-                      <Icon className="w-5 h-5 text-white" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-3 right-3 rounded-xl bg-white/70 backdrop-blur-sm w-11 h-11 grid place-items-center shadow-md">
+                      <Icon className="w-5 h-5 text-gray-800" />
                     </div>
                   </div>
 
                   {/* Content */}
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-xl font-semibold leading-tight text-white">
+                    <CardTitle className="text-xl font-semibold leading-tight text-gray-900">
                       {product.title}
                     </CardTitle>
                     <CardDescription className="sr-only">
                       {product.title}
                     </CardDescription>
                   </CardHeader>
+
                   <CardContent className="pb-6">
-                    <p className="text-sm text-gray-100 leading-relaxed">
+                    <p className="text-sm text-gray-700 leading-relaxed">
                       {product.subtitle}
                     </p>
 
                     {/* CTA Row */}
-                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
-                      <span className="transition-colors group-hover:text-emerald-400">
+                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-blue-600">
+                      <span className="transition-colors group-hover:text-blue-700">
                         View details
                       </span>
                       <svg
