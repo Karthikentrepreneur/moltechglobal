@@ -5,6 +5,11 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 export const VisionMissionSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation(0.12);
 
+  // If the image is in /public, this respects Vite's base path
+  const vmImg = `${import.meta.env.BASE_URL}vision-mission.png`;
+  // If you keep it under src/assets, instead do:
+  // import vmImg from "@/assets/vision-mission.png";
+
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
@@ -44,8 +49,12 @@ export const VisionMissionSection: React.FC = () => {
         {/* RIGHT: Animated Vision-Mission Image */}
         <div className="flex justify-center md:justify-end relative">
           <img
-            src={${import.meta.env.BASE_URL}vision-mission.png}
+            src={vmImg}
             alt="Vision Mission Illustration"
+            loading="lazy"
+            decoding="async"
+            width={500}
+            height={400}
             className={`w-[320px] sm:w-[400px] lg:w-[500px] h-auto transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0 translate-x-[-20px] animate-floating"
@@ -70,5 +79,4 @@ export const VisionMissionSection: React.FC = () => {
   );
 };
 
-// ✅ Provide default export as well so either import style works
-export default VisionMissionSection
+export default VisionMissionSection;
