@@ -76,8 +76,8 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
               Sustainable • Global • Certified
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#0F1B3D]">
-              Moltech
+            <h2 className="text-4xl sm:text-5xl md:text-4xl font-extrabold tracking-tight text-[#0F1B3D]">
+              About Moltech
             </h2>
 
             <p className="text-base md:text-lg leading-relaxed text-gray-700">
