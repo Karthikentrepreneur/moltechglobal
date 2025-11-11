@@ -64,7 +64,7 @@ const MissionSection: React.FC = () => {
             decoding="async"
             width={520}
             height={400}
-            className={`w-[320px] sm:w-[420px] lg:w-[520px] h-auto rounded-xl shadow-2xl transition-all duration-700 ${
+            className={`w-[320px] sm:w-[420px] lg:w-[520px] h-auto  transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0 translate-x-[-20px] animate-floating"
                 : "opacity-0 translate-y-4"
