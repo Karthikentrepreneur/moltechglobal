@@ -1,79 +1,74 @@
+// src/components/sections/VisionMissionSection.tsx
 import React from "react";
-import { ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const BRAND = {
-  violet: "#3E2E88",
-  silver: "#C0C0C0",
-};
-
-const MissionSection = () => {
-  const navigate = useNavigate();
+export const VisionMissionSection: React.FC = () => {
+  const { ref, isVisible } = useScrollAnimation(0.12);
 
   return (
-    <section className="relative py-16 sm:py-20 overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid items-center gap-10 lg:grid-cols-2">
-        {/* Left: image with circular crop */}
-        <div className="relative">
-          <div className="relative aspect-square w-full max-w-[480px] overflow-hidden rounded-full shadow-xl">
-            <img
-              src="/about/mission.jpg" // replace with your asset
-              alt="Moltech mission"
-              className="h-full w-full object-cover"
-            />
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      id="vision-mission"
+      className="relative w-full px-6 lg:px-16 py-16 lg:py-20 bg-[#FFE94D] overflow-hidden"
+    >
+      <div
+        className={`max-w-7xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-16 items-center transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+        }`}
+      >
+        {/* LEFT: Vision & Mission Text */}
+        <div className="space-y-10 text-left">
+          <div>
+            <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">
+              VISION
+            </h3>
+            <p className="text-base md:text-lg leading-relaxed text-slate-900/90 max-w-md">
+              “To be a guiding light in every child’s odyssey of discovery,
+              inspiring lifelong learning and holistic growth.”
+            </p>
           </div>
 
-          {/* Violet decorative arcs */}
-          <div
-            className="absolute -left-16 -top-10 h-40 w-72 rounded-[80px] hidden sm:block"
-            style={{ backgroundColor: BRAND.violet, opacity: 0.2 }}
-          />
-          <div
-            className="absolute -bottom-24 left-10 h-52 w-80 rounded-[100px] hidden sm:block"
-            style={{ backgroundColor: BRAND.violet, opacity: 0.15 }}
-          />
+          <div>
+            <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">
+              MISSION
+            </h3>
+            <p className="text-base md:text-lg leading-relaxed text-slate-900/90 max-w-md">
+              “At JOIS, we craft joyful, child-first experiences that ignite
+              imagination, nurture character, and prepare young minds to soar —
+              ready for both academic success and life’s grand adventures with
+              confidence and freedom.”
+            </p>
+          </div>
         </div>
 
-        {/* Right: mission content */}
-        <div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
-            Mission
-          </h2>
-          <div className="mt-6 space-y-5 text-slate-700 leading-relaxed sm:text-lg">
-            <p>
-              At <strong>Moltech</strong>, our mission is to accelerate the global
-              energy transition through renewable, traceable, and sustainable
-              bio-based products that power industries and communities responsibly.
-            </p>
-            <p>
-              We bridge the gap between clean innovation and real-world impact —
-              providing high-quality, certified inputs for biodiesel, oleochemicals,
-              and animal nutrition sectors while supporting circular growth.
-            </p>
-          </div>
-
-          {/* CTA button with silver border */}
-          <button
-            onClick={() => navigate("/vision-mission")}
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-slate-900 transition-all duration-300"
-            style={{
-              border: `2px solid ${BRAND.silver}`,
-              backgroundColor: "transparent",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor = BRAND.violet)
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "transparent")
-            }
-          >
-            Our Vision
-            <ArrowRight className="h-4 w-4" />
-          </button>
+        {/* RIGHT: Animated Vision-Mission Image */}
+        <div className="flex justify-center md:justify-end relative">
+          <img
+            src={${import.meta.env.BASE_URL}vision-mission.png}
+            alt="Vision Mission Illustration"
+            className={`w-[320px] sm:w-[400px] lg:w-[500px] h-auto transition-all duration-700 ${
+              isVisible
+                ? "opacity-100 translate-y-0 translate-x-[-20px] animate-floating"
+                : "opacity-0 translate-y-4"
+            }`}
+          />
         </div>
       </div>
+
+      {/* Floating Animation */}
+      <style>{`
+        @keyframes floating {
+          0% { transform: translateY(0) translateX(-20px); }
+          50% { transform: translateY(-10px) translateX(-20px); }
+          100% { transform: translateY(0) translateX(-20px); }
+        }
+        .animate-floating {
+          animation: floating 4s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };
 
-export default MissionSection;
+// ✅ Provide default export as well so either import style works
+export default VisionMissionSection
