@@ -5,7 +5,7 @@ import { Globe2, ShieldCheck } from "lucide-react";
 
 type Props = { imgSrc?: string };
 
-const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.png" }) => {
+const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
   const [visible, setVisible] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
   const ref = useRef<HTMLElement | null>(null);
@@ -98,39 +98,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.png" }) => {
               potential of renewable and sustainable products on a global
               platform.
             </p>
-
-            <div className="grid gap-4 pt-2">
-              <div className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-200">
-                  <Globe2 className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="font-semibold text-[#0F1B3D]">
-                    Global Presence &amp; Collection
-                  </div>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Headquartered in Singapore with operations across Malaysia,
-                    Thailand, Indonesia, UAE, UK and USA — ensuring reliability
-                    and consistency in global sourcing.
-                  </p>
-                </div>
-              </div>
-
-              <div className="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="font-semibold text-[#0F1B3D]">
-                    Certified &amp; Transparent
-                  </div>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Certified by ISCC (EU); we operate with ethics, quality, and
-                    traceability to ensure complete transparency.
-                  </p>
-                </div>
-              </div>
-            </div>
+ </div>
 
             <div className="flex flex-wrap items-center gap-3 pt-3">
               <Link
