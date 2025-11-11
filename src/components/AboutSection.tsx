@@ -64,7 +64,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
             </div>
           </div>
 
-          {/* RIGHT :: Text */}
+          {/* RIGHT :: Text + CTA (kept together) */}
           <div
             className={[
               "space-y-7 h-full flex flex-col justify-center",
@@ -98,8 +98,8 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
               potential of renewable and sustainable products on a global
               platform.
             </p>
- </div>
 
+            {/* CTA buttons (inside the right column) */}
             <div className="flex flex-wrap items-center gap-3 pt-3">
               <Link
                 to="/about"
