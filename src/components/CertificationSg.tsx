@@ -1,156 +1,116 @@
-// src/components/ProductsServices.tsx
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Droplets, Zap, ShoppingBag, Wheat, Beaker, Package } from "lucide-react";
-import { Link } from "react-router-dom";
+// src/pages/CertificationIndia.tsx
+import React, { useEffect, useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { X, ZoomIn } from "lucide-react";
 
-const ProductsServices = () => {
-  const products = [
-    {
-      icon: Droplets,
-      title: "Biodiesel Feedstocks",
-      subtitle:
-        "ISCC-certified UCO and high-acidity oils for renewable fuel production",
-      image: "/Biodieselariel.jpg",
-      slug: "biodiesel-feedstocks",
-    },
-    {
-      icon: Beaker,
-      title: "Fatty Acids",
-      subtitle:
-        "Specialized fatty acids and waxes for rubber, lubricants, and industrial applications",
-      image: "/biofuel.jpg",
-      slug: "fatty-acids",
-    },
-    {
-      icon: ShoppingBag,
-      title: "Soap Noodles",
-      subtitle:
-        "Base materials for cosmetics, detergents, and toilet soap manufacturing",
-      image: "/soap.jpg",
-      slug: "soap-noodles",
-    },
-    {
-      icon: Wheat,
-      title: "Animal Feed Fats",
-      subtitle:
-        "High-absorption liquid fats, dry fats, and high-purity calcium salts",
-      image: "/farmer.jpg",
-      slug: "animal-feed-fats",
-    },
-    {
-      icon: Zap,
-      title: "Glycerin",
-      subtitle:
-        "Crude and refined glycerine for industrial to pharmaceutical-grade applications",
-      image: "/chemistry.jpg",
-      slug: "glycerin",
-    },
-    {
-      icon: Package,
-      title: "Feed Additives",
-      subtitle:
-        "Functional additives and custom premixes to optimize animal health and performance",
-      image: "/animalfeed.jpg",
-      slug: "feed-additives",
-    },
-  ];
+const images = [
+  "/cer-sg.jpg",
+  "/cer-sg-iscc.jpg",
+  "/cer-uk.jpg",
+  "/cer-th.jpg",
+  "/cer-my.jpg",
+  "/cer-dxb-1.jpg",
+];
+
+const CertificationIndia: React.FC = () => {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Close on ESC
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setLightboxIndex(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
-    <section
-      className="relative py-20 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, #E0F2FE 0%, #BFDBFE 40%, #93C5FD 100%)", // 🌤️ Light blue gradient
-      }}
-    >
-      {/* Subtle white glow overlay */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-50"
-        style={{
-          background:
-            "radial-gradient(80% 80% at 50% 10%, rgba(255,255,255,0.6), transparent 80%)",
-        }}
-      />
+    <>
+      <Header />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="text-center space-y-6 mb-12">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 drop-shadow-sm">
-            Products & Services
-          </h2>
-          <p className="text-lg md:text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive range of sustainable bio-based products serving industries worldwide.
-          </p>
-        </div>
+      <main className="bg-gradient-to-b from-slate-50 to-white pt-1">
+        <section className="py-10 md:py-14">
+          <div className="mx-auto px-4 md:px-6 max-w-[1600px]">
+            {/* Title */}
+            <div className="text-center mb-10 md:mb-12">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500">
+                  Global Certifications
+                </span>
+              </h2>
+              <div className="mx-auto mt-3 h-1 w-28 rounded-full bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400" />
+              <p className="mt-4 text-sm md:text-base text-slate-600 max-w-3xl mx-auto">
+                Verified compliance across regions — tap any certificate to view it full screen.
+              </p>
+            </div>
 
-        {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {products.map((product, i) => {
-            const Icon = product.icon;
-            return (
-              <Link
-                key={i}
-                to={`/products/${product.slug}`}
-                className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-2xl"
-              >
-                <Card className="h-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1">
-                  {/* Image */}
-                  <div className="relative aspect-[16/9] overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={`${product.title} product photography`}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-                      loading={i < 2 ? "eager" : "lazy"}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent pointer-events-none" />
-                    <div className="absolute bottom-3 right-3 rounded-xl bg-white/80 backdrop-blur-sm w-11 h-11 grid place-items-center shadow-sm">
-                      <Icon className="w-5 h-5 text-gray-800" />
+            {/* Certificates Grid — responsive 1 / 2 / 3 columns */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-1">
+              {images.map((src, i) => (
+                <button
+                  key={i}
+                  onClick={() => setLightboxIndex(i)}
+                  className="group relative rounded-3xl border border-slate-200 bg-white p-5 md:p-6 shadow-sm hover:shadow-xl transition-all duration-300 text-left"
+                >
+                  {/* Decorative gradient edge on hover */}
+                  <span className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-slate-200 group-hover:ring-transparent" />
+                  <span className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-blue-500/10 via-blue-400/10 to-blue-300/10" />
+
+                  {/* Big, consistent viewing window */}
+                  <div className="relative rounded-2xl bg-white">
+                    {/* Use a tall responsive window for readability */}
+                    <div className="w-full h-[28rem] md:h-[32rem] xl:h-[36rem] 2xl:h-[40rem] flex items-center justify-center">
+                      <img
+                        src={src}
+                        alt={`Certificate ${i + 1}`}
+                        loading="lazy"
+                        className="max-h-full max-w-full object-contain"
+                      />
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-xl font-semibold leading-tight text-gray-900">
-                      {product.title}
-                    </CardTitle>
-                    <CardDescription className="sr-only">
-                      {product.title}
-                    </CardDescription>
-                  </CardHeader>
+                  {/* Zoom hint */}
+                  <div className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-2 py-1 text-xs text-slate-700 shadow group-hover:bg-white">
+                    <ZoomIn className="h-3.5 w-3.5" />
+                    View
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
 
-                  <CardContent className="pb-6">
-                    <p className="text-sm text-gray-700 leading-relaxed">
-                      {product.subtitle}
-                    </p>
+      {/* Lightbox */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <div
+            className="relative w-full max-w-6xl 2xl:max-w-7xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLightboxIndex(null)}
+              className="absolute -top-10 right-0 md:top-0 md:-right-10 rounded-full bg-white/90 p-2 shadow hover:bg-white"
+              aria-label="Close"
+            >
+              <X className="h-5 w-5 text-slate-800" />
+            </button>
 
-                    {/* CTA Row */}
-                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-blue-700">
-                      <span className="transition-colors group-hover:text-blue-800">
-                        View details
-                      </span>
-                      <svg
-                        className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.293 3.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 11-1.414-1.414L13.586 10H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            );
-          })}
+            <div className="w-full rounded-2xl bg-white p-3 md:p-4">
+              <img
+                src={images[lightboxIndex]}
+                alt={`Certificate ${lightboxIndex + 1}`}
+                className="w-full h-[75vh] md:h-[80vh] object-contain"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      )}
+    </>
   );
 };
 
-export default ProductsServices;
+export default CertificationIndia;
+export { CertificationIndia };
