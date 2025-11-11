@@ -25,8 +25,8 @@ const OfficeCard = ({
 }) => (
   <div
     className={[
-      "rounded-2xl shadow-lg overflow-hidden transition-all duration-500",
-      "hover:shadow-2xl h-full flex flex-col backdrop-blur-lg border border-white/20 bg-white/5 hover:bg-white/10",
+      "bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-500 border border-gray-200",
+      "hover:shadow-xl hover:-translate-y-1 h-full flex flex-col",
       isAnimated ? "transform" : "",
     ].join(" ")}
   >
@@ -41,26 +41,26 @@ const OfficeCard = ({
         }}
       />
       <div className="absolute top-3 left-3">
-        <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
           {office.type}
         </span>
       </div>
     </div>
 
-    <div className="p-6 flex-1 flex flex-col text-white">
+    <div className="p-6 flex-1 flex flex-col text-gray-800">
       <h3 className="text-xl font-bold mb-1">{office.city}</h3>
-      <p className="text-emerald-200 text-sm mb-3">{office.country}</p>
-      <p className="text-gray-100 leading-relaxed mb-6 flex-1">
+      <p className="text-blue-600 text-sm mb-3 font-medium">{office.country}</p>
+      <p className="text-gray-700 leading-relaxed mb-6 flex-1">
         {office.description}
       </p>
 
-      <div className="mt-auto space-y-3">
-        <div className="flex items-start text-sm text-gray-200">
-          <MapPin className="w-4 h-4 mr-3 text-emerald-400 mt-0.5" />
+      <div className="mt-auto space-y-3 text-sm">
+        <div className="flex items-start text-gray-600">
+          <MapPin className="w-4 h-4 mr-2 text-blue-500 mt-0.5" />
           <span>{office.address}</span>
         </div>
-        <div className="flex items-center text-sm text-gray-200">
-          <Phone className="w-4 h-4 mr-3 text-emerald-400" />
+        <div className="flex items-center text-gray-600">
+          <Phone className="w-4 h-4 mr-2 text-blue-500" />
           <span>{office.phone}</span>
         </div>
       </div>
@@ -186,31 +186,25 @@ export default function GlobalPresence() {
   }, []);
 
   return (
-    <div
-      className="text-white relative"
-      style={{
-        background:
-          "linear-gradient(135deg, #3E2E88 0%, #5243A2 50%, #6D5CC4 100%)",
-      }}
-    >
+    <div className="text-gray-900 bg-white">
       {/* Hero Section */}
       <section className="py-16 text-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4 drop-shadow-md">
+          <h1 className="text-4xl lg:text-5xl font-extrabold mb-4 text-gray-900">
             Global Presence
           </h1>
-          <p className="text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Serving customers worldwide through our strategically located
-            offices and facilities across Asia, Middle East, Europe, Americas,
-            and Oceania.
+            offices and facilities across Asia, Middle East, Europe,
+            Americas, and Oceania.
           </p>
         </div>
       </section>
 
       {/* Offices Grid */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-stretch">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {/* Malaysia auto-rotating card */}
             <div className="h-full">
               <div
@@ -234,7 +228,7 @@ export default function GlobalPresence() {
           <div className="mt-14 flex justify-center">
             <Link
               to="/global"
-              className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white rounded-full shadow-lg transition-all duration-300 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500"
+              className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white rounded-full shadow-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
             >
               Explore Our Global Network
             </Link>
