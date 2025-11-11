@@ -16,14 +16,14 @@ const MESSAGES: Message[] = [
   {
     title: "GLYCERIN & FATTY ACIDS",
     description:
-      "Moltech supplies high-quality fatty acids and refined glycerin for industrial use in rubber, paints, and lubricants.Crude glycerin (65–85%) and refined grades (99.5%+) ensure purity and performance across applications.",
+      "Moltech supplies high-quality fatty acids and refined glycerin for industrial use in rubber, paints, and lubricants. Crude glycerin (65–85%) and refined grades (99.5%+) ensure purity and performance across applications.",
   },
   {
     title: "Animal Feed Fats",
     description:
-      "Fats play a vital role in animal health and feed efficiency.Moltech’s proprietary liquid and dry fat formulations enhance absorption and energy density for optimal performance.",
+      "Fats play a vital role in animal health and feed efficiency. Moltech’s proprietary liquid and dry fat formulations enhance absorption and energy density for optimal performance.",
   },
-    {
+  {
     title: "SOAP NOODLES",
     description:
       "Moltech offers a wide variety of Soap Noodles of different qualities as per the customer's requirements.",
@@ -31,12 +31,12 @@ const MESSAGES: Message[] = [
   {
     title: "FEED ADDITIVES",
     description:
-      "Moltech partners with feed companies to meet their specific nutritional needs,offering products like soya lecithin, de-oiled rice bran, palm kernel meal, and custom vitamin premixes.",
+      "Moltech partners with feed companies to meet their specific nutritional needs, offering products like soya lecithin, de-oiled rice bran, palm kernel meal, and custom vitamin premixes.",
   },
 ];
 
 const SLIDE_MS = 5000; // 5 seconds per text
-const FADE_MS = 500; // smooth fade transition
+const FADE_MS = 500;  // smooth fade transition
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
@@ -65,7 +65,7 @@ const Hero = () => {
     >
       {/* Background Video */}
       <video
-        src="/herohero.mp4" // your single looping background video
+        src="/herohero.mp4"
         autoPlay
         muted
         loop
@@ -74,8 +74,8 @@ const Hero = () => {
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+      {/* Gradient Overlay (top 30% only) */}
+      <div className="absolute top-0 left-0 right-0 h-[30%] -z-10 bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
 
       {/* Text Content */}
       <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
