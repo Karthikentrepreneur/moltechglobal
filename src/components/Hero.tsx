@@ -35,8 +35,8 @@ const MESSAGES: Message[] = [
   },
 ];
 
-const SLIDE_MS = 5000; // 5 seconds per text
-const FADE_MS = 500;  // smooth fade transition
+const SLIDE_MS = 5000;
+const FADE_MS = 500;
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
@@ -51,7 +51,6 @@ const Hero = () => {
         requestAnimationFrame(() => setFadingOut(false));
       }, FADE_MS);
     };
-
     timerRef.current = window.setInterval(step, SLIDE_MS);
     return () => timerRef.current && clearInterval(timerRef.current);
   }, []);
@@ -74,24 +73,21 @@ const Hero = () => {
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
 
-      {/* Gradient Overlay (top 30% only) */}
+      {/* Gradient Overlay (top 30%) */}
       <div className="absolute top-0 left-0 right-0 h-[30%] -z-10 bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
 
       {/* Text Content */}
       <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
         <div
-          className={`
-            max-w-3xl text-center bg-black/60 backdrop-blur-sm rounded-3xl
-            px-6 sm:px-10 py-6 sm:py-8 shadow-[0_0_30px_rgba(0,0,0,0.6)]
-            transition-opacity duration-[${FADE_MS}ms]
-            ${fadingOut ? "opacity-0" : "opacity-100"}
-          `}
-          style={{ willChange: "opacity", minHeight: 180 }}
+          className={`max-w-3xl text-center transition-opacity duration-[${FADE_MS}ms] ${
+            fadingOut ? "opacity-0" : "opacity-100"
+          }`}
+          style={{ willChange: "opacity", minHeight: 160 }}
         >
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight mb-3 drop-shadow-lg">
             {msg.title}
           </h1>
-          <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/90">
+          <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-white/90 drop-shadow">
             {msg.description}
           </p>
         </div>
