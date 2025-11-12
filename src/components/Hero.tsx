@@ -73,11 +73,14 @@ const Hero = () => {
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
 
+      {/* Overlay to improve contrast */}
+      <div className="absolute inset-0 bg-black/40 -z-10" />
+
       {/* Top Gradient */}
       <div className="absolute top-0 left-0 right-0 h-[35%] -z-10 bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
-      
+
       {/* Bottom Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-[35%] -z-10 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-[40%] -z-10 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
       {/* Text Content */}
       <div className="relative z-10 mb-12 w-full flex justify-center px-4 sm:px-6 lg:px-8">
@@ -87,22 +90,10 @@ const Hero = () => {
           }`}
           style={{ willChange: "opacity", minHeight: 160 }}
         >
-          <h1
-            className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight mb-3"
-            style={{
-              textShadow:
-                "2px 2px 8px rgba(0,0,0,0.9), -1px -1px 5px rgba(0,0,0,0.7)",
-            }}
-          >
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight mb-3 text-white drop-shadow-[0_4px_6px_rgba(0,0,0,0.9)]">
             {msg.title}
           </h1>
-          <p
-            className="text-xs sm:text-sm lg:text-base leading-relaxed text-white/95"
-            style={{
-              textShadow:
-                "1px 1px 6px rgba(0,0,0,0.8), -1px -1px 4px rgba(0,0,0,0.6)",
-            }}
-          >
+          <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-white/95 drop-shadow-[0_3px_4px_rgba(0,0,0,0.85)]">
             {msg.description}
           </p>
         </div>
