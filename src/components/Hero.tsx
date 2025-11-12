@@ -73,11 +73,14 @@ const Hero = () => {
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
 
-      {/* Subtle top gradient for better contrast */}
-      <div className="absolute top-0 left-0 right-0 h-[30%] -z-10 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+      {/* Top Gradient */}
+      <div className="absolute top-0 left-0 right-0 h-[35%] -z-10 bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
+      
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-[35%] -z-10 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
 
       {/* Text Content */}
-      <div className="relative z-10 mb-10 w-full flex justify-center px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mb-12 w-full flex justify-center px-4 sm:px-6 lg:px-8">
         <div
           className={`max-w-3xl text-center transition-opacity duration-[${FADE_MS}ms] ${
             fadingOut ? "opacity-0" : "opacity-100"
@@ -88,7 +91,7 @@ const Hero = () => {
             className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight mb-3"
             style={{
               textShadow:
-                "2px 2px 8px rgba(0,0,0,0.8), -1px -1px 5px rgba(0,0,0,0.5)",
+                "2px 2px 8px rgba(0,0,0,0.9), -1px -1px 5px rgba(0,0,0,0.7)",
             }}
           >
             {msg.title}
