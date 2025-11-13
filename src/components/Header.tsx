@@ -109,7 +109,7 @@ const Header = () => {
               <span
                 className={`text-[10px] uppercase tracking-[0.16em] font-medium ${ventureTextColor}`}
               >
-                A venture of
+                
               </span>
 
               <a
@@ -122,7 +122,7 @@ const Header = () => {
                   src={isScrolled ? "/group.png" : "/Singapore.png"}
                   alt="1 Global Enterprises"
                   className={`w-auto object-contain ${
-                    isScrolled ? "h-5" : "h-6"
+                    isScrolled ? "h-10" : "h-10"
                   }`}
                 />
               </a>
