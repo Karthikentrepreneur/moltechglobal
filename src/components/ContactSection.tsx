@@ -15,7 +15,7 @@ const ContactCard = ({
   title: string;
   value: string;
   href?: string;
-  tint: string; // e.g. "bg-gradient-to-br from-sky-400 to-sky-600"
+  tint: string;
 }) => {
   return (
     <div className="flex items-start gap-4 rounded-2xl bg-white/85 backdrop-blur-sm shadow-md border border-white/40 p-5 hover:shadow-lg transition-all duration-300">
@@ -24,6 +24,8 @@ const ContactCard = ({
       </div>
       <div className="flex-1">
         <div className="text-base font-semibold text-gray-900">{title}</div>
+
+        {/* If href exists, clickable link — If not, plain text */}
         {href ? (
           <a href={href} className="block text-gray-600 hover:text-gray-900 mt-0.5">
             {value}
@@ -40,8 +42,10 @@ const ContactSection: React.FC = () => {
   return (
     <section className="relative bg-gradient-to-br from-emerald-50 via-green-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-          {/* LEFT — Only Email / Call / Hours */}
+
+          {/* LEFT SIDE */}
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F1B3D]">Contact</h2>
             <p className="text-slate-600 mt-2">
@@ -49,30 +53,37 @@ const ContactSection: React.FC = () => {
             </p>
 
             <div className="mt-6 space-y-5">
+
+              {/* Email */}
               <ContactCard
                 icon={<Mail className="h-7 w-7" />}
                 title="Email"
-                value="hello@moltechglobal.com"
-                href="mailto:hello@moltechglobal.com"
+                value="info.au@moltechglobal.com"
+                href="mailto:info.au@moltechglobal.com"
                 tint="bg-gradient-to-br from-sky-400 to-sky-600"
               />
+
+              {/* Phone — NOW NO REDIRECTION */}
               <ContactCard
                 icon={<Phone className="h-7 w-7" />}
-                title="Call"
-                value="+65 6000 0000"
-                href="tel:+6560000000"
+                title="Phone"
+                value="+61 388205157"
+                href={undefined} // removed tel:+ to avoid call redirection
                 tint="bg-gradient-to-br from-indigo-400 to-indigo-600"
               />
+
+              {/* Hours */}
               <ContactCard
                 icon={<Clock className="h-7 w-7" />}
                 title="Hours"
                 value="Mon–Fri · 9:00–18:00"
                 tint="bg-gradient-to-br from-amber-400 to-amber-600"
               />
+
             </div>
           </div>
 
-          {/* RIGHT — Form with blue gradient wrapper */}
+          {/* RIGHT SIDE — FORM */}
           <div className="relative">
             <div className="rounded-[24px] bg-gradient-to-br from-blue-50 via-sky-100 to-blue-50 p-1 shadow-[0_20px_80px_rgba(2,6,23,0.12)]">
               <div className="rounded-[20px] bg-white shadow-xl p-6 md:p-10 contact-form">
@@ -80,13 +91,14 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* gentle bottom fade */}
+      {/* Bottom Fade */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-50 to-transparent" />
 
-      {/* Force a visible, blue-gradient submit button inside the form */}
+      {/* Submit Button Style */}
       <style>{`
         .contact-form {
           overflow: visible;
@@ -108,16 +120,12 @@ const ContactSection: React.FC = () => {
           box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
           transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
         }
-        .contact-form button[type="submit"]:hover,
-        .contact-form button[data-submit]:hover,
-        .contact-form .btn-submit:hover {
+        .contact-form button[type="submit"]:hover {
           filter: brightness(1.05);
           box-shadow: 0 16px 38px rgba(37, 99, 235, 0.34);
           transform: translateY(-1px);
         }
-        .contact-form button[type="submit"]:active,
-        .contact-form button[data-submit]:active,
-        .contact-form .btn-submit:active {
+        .contact-form button[type="submit"]:active {
           transform: translateY(0);
           box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
         }
