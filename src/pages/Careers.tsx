@@ -30,7 +30,8 @@ const Careers: React.FC = () => {
           {/* Coming Soon Message */}
           <div className="mt-10 inline-block rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-500 to-sky-500 px-8 py-4 shadow-md">
             <span className="text-white text-lg md:text-xl font-semibold">
-              🚧 This page will be updated soon.
+              Our careers section is currently being updated. Please check back
+              soon for new opportunities.
             </span>
           </div>
         </div>
