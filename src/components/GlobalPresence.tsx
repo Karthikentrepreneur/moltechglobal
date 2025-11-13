@@ -83,7 +83,10 @@ export default function GlobalPresence() {
       description: "Strategic hub for Malaysian logistics and supply chain.",
       image: "/malasyia.avif",
     },
-    {
+  ];
+
+  const otherOffices: Office[] = [
+        {
       city: "Johor",
       country: "Malaysia",
       type: "Branch Office",
@@ -93,9 +96,6 @@ export default function GlobalPresence() {
       description: "Supporting industrial clients across Johor region.",
       image: "/malasyia.avif",
     },
-  ];
-
-  const otherOffices: Office[] = [
     {
       city: "Jakarta",
       country: "Indonesia",
