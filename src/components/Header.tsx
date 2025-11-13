@@ -112,7 +112,6 @@ const Header = () => {
               <span
                 className={`text-[10px] uppercase tracking-[0.16em] font-medium ${ventureTextColor}`}
               >
-                A venture of
               </span>
               <a
                 href="https://www.1ge.sg/"
@@ -125,7 +124,7 @@ const Header = () => {
                   src={isTransparent ? "/Singapore.png" : "/group.png"}
                   alt="1 Global Enterprises, Singapore"
                   className={`w-auto object-contain ${
-                    isTransparent ? "h-6" : "h-5"
+                    isTransparent ? "h-10" : "h-10"
                   }`}
                 />
               </a>
