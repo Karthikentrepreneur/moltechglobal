@@ -85,7 +85,7 @@ const ContactMapContainer = () => {
         
         {/* Map Footer */}
         <div className="py-2 px-4 border-t border-red-100 bg-gradient-to-r from-white to-red-50 text-xs text-gray-500 text-center">
-          <p>© 2025 OECL Global Presence Map | Data updated quarterly</p>
+          <p>© 2025 Moltech Global Presence Map | Data updated quarterly</p>
         </div>
       </div>
     </div>
