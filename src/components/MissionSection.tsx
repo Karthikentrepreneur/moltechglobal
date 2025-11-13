@@ -5,7 +5,6 @@ const MissionSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  // Simple intersection animation
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -17,17 +16,22 @@ const MissionSection: React.FC = () => {
     return () => obs.disconnect();
   }, []);
 
-  // image from /public
   const vmImg = `${import.meta.env.BASE_URL}vision-mission.png`;
 
   return (
     <section
       ref={sectionRef as React.RefObject<HTMLElement>}
       id="vision-mission"
-      className="relative w-full px-6 lg:px-16 py-20 overflow-hidden bg-gradient-to-br from-[#2563EB] via-[#3B82F6] to-[#60A5FA]"
+      className="relative w-full px-6 lg:px-16 py-20 overflow-hidden bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/earth-bg.jpg')" // <<--- your background image here
+      }}
     >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
       <div
-        className={`max-w-7xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-700 ${
+        className={`relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-700 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
@@ -64,7 +68,7 @@ const MissionSection: React.FC = () => {
             decoding="async"
             width={520}
             height={400}
-            className={`w-[320px] sm:w-[420px] lg:w-[520px] h-auto  transition-all duration-700 ${
+            className={`w-[320px] sm:w-[420px] lg:w-[520px] h-auto transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0 translate-x-[-20px] animate-floating"
                 : "opacity-0 translate-y-4"
