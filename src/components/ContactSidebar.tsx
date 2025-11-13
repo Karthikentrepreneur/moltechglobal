@@ -26,10 +26,6 @@ interface ContactSidebarProps {
 
 const COMMON_EMAIL = "info@moltechglobal.com";
 
-/**
- * UPDATED: Only Moltech global addresses
- * and all emails set to info@moltechglobal.com
- */
 const countries = [
   {
     code: "my",
@@ -67,8 +63,7 @@ const countries = [
         name: "Jakarta",
         lat: -6.2088,
         lng: 106.8456,
-        address:
-          "408, Lina Building, JL. HR Rasuna Said kav B7, Jakarta",
+        address: "408, Lina Building, JL. HR Rasuna Said kav B7, Jakarta",
         contacts: ["+62 815 1038 5581"],
         email: COMMON_EMAIL,
       },
@@ -195,7 +190,6 @@ const countries = [
   },
 ];
 
-// Sort countries alphabetically by name
 const sortedCountries = [...countries].sort((a, b) =>
   a.name.localeCompare(b.name)
 );
@@ -216,7 +210,6 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
     iframeRef.current = document.querySelector("iframe");
   }, []);
 
-  // Set default selected location to the first city of the first country
   useEffect(() => {
     if (sortedCountries.length > 0 && sortedCountries[0].cities.length > 0) {
       const firstCountry = sortedCountries[0];
@@ -271,7 +264,6 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
 
   return (
     <>
-      {/* Backdrop overlay for mobile */}
       {isOpen && isMobile && (
         <div
           className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm transition-opacity duration-300"
@@ -279,14 +271,13 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
         />
       )}
 
-      {/* Sidebar container */}
       <div
         className={`my-3 w-full ${
           isMobile ? "max-w-[95%]" : "max-w-[520px]"
         } mx-auto px-2 md:px-0`}
       >
-        {/* Header */}
-        <div className="flex justify-between items-center px-4 py-3 border-b bg-gradient-to-r from-red-600 to-red-700 text-white rounded-t-xl shadow-sm">
+        {/* Header – changed to violet gradient */}
+        <div className="flex justify-between items-center px-4 py-3 border-b bg-gradient-to-r from-violet-600 to-violet-700 text-white rounded-t-xl shadow-sm">
           <div className="flex items-center gap-2">
             <Globe className="h-5 w-5" />
             <h2 className="font-bold text-lg">Global Locations</h2>
@@ -296,14 +287,13 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="text-white hover:bg-red-500/20"
+              className="text-white hover:bg-violet-500/20"
             >
               <X className="h-4 w-4" />
             </Button>
           )}
         </div>
 
-        {/* Content area */}
         <ScrollArea className="h-[calc(100vh-10rem)] md:h-[calc(100vh-8rem)] bg-white rounded-b-xl shadow-md">
           <div className="p-4">
             <div className="mt-4 space-y-3">
@@ -313,124 +303,116 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
                 value={expandedCountry || ""}
                 className="w-full space-y-3"
               >
-                {sortedCountries.map((country) => {
-                  return (
-                    <AccordionItem
-                      key={country.name}
-                      value={country.name}
-                      className="border border-red-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all bg-white"
+                {sortedCountries.map((country) => (
+                  <AccordionItem
+                    key={country.name}
+                    value={country.name}
+                    className="border border-violet-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all bg-white"
+                  >
+                    <AccordionTrigger
+                      onClick={() => {
+                        setExpandedCountry(
+                          expandedCountry === country.name
+                            ? null
+                            : country.name
+                        );
+                        navigateToLocation(country.lat, country.lng);
+                      }}
+                      className="rounded-t-md hover:bg-violet-50 transition-colors px-3 py-2"
                     >
-                      <AccordionTrigger
-                        onClick={() => {
-                          setExpandedCountry(
-                            expandedCountry === country.name
-                              ? null
-                              : country.name
-                          );
-                          navigateToLocation(country.lat, country.lng);
-                        }}
-                        className="rounded-t-md hover:bg-amber-50 transition-colors px-3 py-2"
-                      >
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={`/${country.code}.svg`}
-                            alt={`${country.name} flag`}
-                            className="w-6 h-6 rounded-sm object-cover shadow-sm"
-                          />
-                          <span className="font-medium">{country.name}</span>
-                        </div>
-                      </AccordionTrigger>
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={`/${country.code}.svg`}
+                          alt={`${country.name} flag`}
+                          className="w-6 h-6 rounded-sm object-cover shadow-sm"
+                        />
+                        <span className="font-medium">{country.name}</span>
+                      </div>
+                    </AccordionTrigger>
 
-                      <AccordionContent className="bg-gradient-to-b from-red-50/30 to-white px-3 py-2">
+                    <AccordionContent className="bg-gradient-to-b from-violet-50/30 to-white px-3 py-2">
+                      <div className="space-y-2">
                         <div className="space-y-2">
-                          <div className="space-y-2">
-                            {country.cities.map(
-                              (city: any, index: number) => (
-                                <div key={index} className="w-full">
-                                  <Button
-                                    variant="ghost"
-                                    className={cn(
-                                      "w-full justify-start text-sm p-2 h-auto rounded-md border transition-all shadow-sm",
-                                      isSelectedCity(country.name, index)
-                                        ? "bg-red-100 hover:bg-red-150 border-red-300 text-red-800"
-                                        : "bg-white hover:bg-red-50 border-gray-100 hover:border-red-200"
-                                    )}
-                                    onClick={() => {
-                                      handleCitySelection(country, index);
-                                      if (isMobile) {
-                                        setTimeout(
-                                          () =>
-                                            setSelectedLocation({ ...city }),
-                                          50
-                                        );
-                                      }
-                                    }}
-                                  >
-                                    <MapPin className="w-4 h-4 mr-2 text-red-600 flex-shrink-0" />
-                                    <span className="font-medium truncate">
-                                      {city.name}
-                                    </span>
-                                    <ChevronRight className="w-4 h-4 ml-auto text-red-300" />
-                                  </Button>
+                          {country.cities.map((city: any, index: number) => (
+                            <div key={index} className="w-full">
+                              <Button
+                                variant="ghost"
+                                className={cn(
+                                  "w-full justify-start text-sm p-2 h-auto rounded-md border transition-all shadow-sm",
+                                  isSelectedCity(country.name, index)
+                                    ? "bg-violet-100 hover:bg-violet-200 border-violet-300 text-violet-800"
+                                    : "bg-white hover:bg-violet-50 border-gray-100 hover:border-violet-200"
+                                )}
+                                onClick={() => {
+                                  handleCitySelection(country, index);
+                                  if (isMobile) {
+                                    setTimeout(
+                                      () =>
+                                        setSelectedLocation({ ...city }),
+                                      50
+                                    );
+                                  }
+                                }}
+                              >
+                                <MapPin className="w-4 h-4 mr-2 text-violet-600 flex-shrink-0" />
+                                <span className="font-medium truncate">
+                                  {city.name}
+                                </span>
+                                <ChevronRight className="w-4 h-4 ml-auto text-violet-300" />
+                              </Button>
 
-                                  {/* Show address details for selected city – ONLY address, phone, email */}
-                                  {isSelectedCity(country.name, index) &&
-                                    city.address && (
-                                      <div className="mt-2 p-3 bg-white rounded-lg border border-red-200 shadow text-sm w-full">
-                                        {/* Address */}
+                              {isSelectedCity(country.name, index) &&
+                                city.address && (
+                                  <div className="mt-2 p-3 bg-white rounded-lg border border-violet-200 shadow text-sm w-full">
+                                    <div className="flex items-start mb-2">
+                                      <Home className="w-4 h-4 mr-2 text-violet-600 mt-1" />
+                                      <p className="text-gray-800 text-sm break-words w-full">
+                                        {city.address}
+                                      </p>
+                                    </div>
+
+                                    {city.contacts &&
+                                      city.contacts.length > 0 && (
                                         <div className="flex items-start mb-2">
-                                          <Home className="w-4 h-4 mr-2 text-red-600 mt-1" />
-                                          <p className="text-gray-800 text-sm break-words w-full">
-                                            {city.address}
-                                          </p>
-                                        </div>
-
-                                        {/* Phone numbers */}
-                                        {city.contacts &&
-                                          city.contacts.length > 0 && (
-                                            <div className="flex items-start mb-2">
-                                              <Phone className="w-4 h-4 mr-2 text-red-600 mt-1" />
-                                              <div className="space-y-1">
-                                                {city.contacts.map(
-                                                  (
-                                                    contact: string,
-                                                    idx: number
-                                                  ) => (
-                                                    <p
-                                                      key={idx}
-                                                      className="text-gray-800 text-sm break-words"
-                                                    >
-                                                      {contact}
-                                                    </p>
-                                                  )
-                                                )}
-                                              </div>
-                                            </div>
-                                          )}
-
-                                        {/* Email */}
-                                        {city.email && (
-                                          <div className="flex items-start">
-                                            <Mail className="w-4 h-4 mr-2 text-red-600 mt-1" />
-                                            <a
-                                              href={`mailto:${city.email}`}
-                                              className="text-red-700 hover:underline text-sm break-words"
-                                            >
-                                              {city.email}
-                                            </a>
+                                          <Phone className="w-4 h-4 mr-2 text-violet-600 mt-1" />
+                                          <div className="space-y-1">
+                                            {city.contacts.map(
+                                              (
+                                                contact: string,
+                                                idx: number
+                                              ) => (
+                                                <p
+                                                  key={idx}
+                                                  className="text-gray-800 text-sm break-words"
+                                                >
+                                                  {contact}
+                                                </p>
+                                              )
+                                            )}
                                           </div>
-                                        )}
+                                        </div>
+                                      )}
+
+                                    {city.email && (
+                                      <div className="flex items-start">
+                                        <Mail className="w-4 h-4 mr-2 text-violet-600 mt-1" />
+                                        <a
+                                          href={`mailto:${city.email}`}
+                                          className="text-violet-700 hover:underline text-sm break-words"
+                                        >
+                                          {city.email}
+                                        </a>
                                       </div>
                                     )}
-                                </div>
-                              )
-                            )}
-                          </div>
+                                  </div>
+                                )}
+                            </div>
+                          ))}
                         </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  );
-                })}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
               </Accordion>
             </div>
           </div>
