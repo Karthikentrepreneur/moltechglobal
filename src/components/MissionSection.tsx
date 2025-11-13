@@ -16,7 +16,7 @@ const MissionSection: React.FC = () => {
     return () => obs.disconnect();
   }, []);
 
-  const vmImg = `${import.meta.env.BASE_URL}vision-mission.png`;
+  const vmImg = `${import.meta.env.BASE_URL}`;
 
   return (
     <section
