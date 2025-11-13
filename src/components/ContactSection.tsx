@@ -58,7 +58,7 @@ const ContactSection: React.FC = () => {
               <ContactCard
                 icon={<Mail className="h-7 w-7" />}
                 title="Email"
-                value="info.au@moltechglobal.com"
+                value="info@moltechglobal.com"
                 href="mailto:info.au@moltechglobal.com"
                 tint="bg-gradient-to-br from-sky-400 to-sky-600"
               />
@@ -73,12 +73,7 @@ const ContactSection: React.FC = () => {
               />
 
               {/* Hours */}
-              <ContactCard
-                icon={<Clock className="h-7 w-7" />}
-                title="Hours"
-                value="Mon–Fri · 9:00–18:00"
-                tint="bg-gradient-to-br from-amber-400 to-amber-600"
-              />
+            
 
             </div>
           </div>
