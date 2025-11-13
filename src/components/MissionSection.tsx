@@ -24,7 +24,7 @@ const MissionSection: React.FC = () => {
       id="vision-mission"
       className="relative w-full px-6 lg:px-16 py-20 overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: "url('/earth-bg.jpg')" // <<--- your background image here
+        backgroundImage: "url('/bg.jpg')" // <<--- your background image here
       }}
     >
       {/* Dark Overlay */}
