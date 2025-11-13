@@ -22,7 +22,7 @@ const MissionSection: React.FC = () => {
       id="vision-mission"
       className="relative w-full px-6 lg:px-20 py-24 overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: "url('/bg.jpg')",
+        backgroundImage: "url('/bg.png')",
       }}
     >
       <div
@@ -30,10 +30,10 @@ const MissionSection: React.FC = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* RIGHT-ALIGNED CONTAINER */}
-        <div className="flex flex-col items-end text-right ml-auto w-full lg:w-1/2">
+        {/* LEFT-ALIGNED CONTAINER */}
+        <div className="flex flex-col items-start text-left w-full lg:w-1/2">
 
-          {/* Eyebrow tag */}
+          {/* Eyebrow Label */}
           <span className="inline-flex rounded-full bg-gray-900/5 border border-gray-900/10 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-gray-700">
             Our Purpose
           </span>
@@ -49,13 +49,13 @@ const MissionSection: React.FC = () => {
 
           {/* Description */}
           <p className="mt-5 text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed max-w-xl drop-shadow-sm">
-            Every drop of used cooking oil we collect moves the world closer to 
-            renewable, low-carbon energy. Sustainability begins with small actions 
+            Moves the world closer to
+            renewable, low-carbon energy. Sustainability begins with small actions
             that create a global impact.
           </p>
 
-          {/* Cards */}
-          <div className="mt-12 w-full grid sm:grid-cols-2 gap-6 justify-end">
+          {/* Cards Row */}
+          <div className="mt-12 w-full grid sm:grid-cols-2 gap-6">
 
             {/* Vision */}
             <div className="rounded-2xl bg-white/70 backdrop-blur-md border border-gray-300 p-7 space-y-4 shadow-lg text-left">
@@ -66,7 +66,7 @@ const MissionSection: React.FC = () => {
                 Vision
               </h3>
               <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                To engage in sustainable bio-space activities that reduce carbon 
+                To engage in sustainable bio-space activities that reduce carbon
                 footprint and protect the environment.
               </p>
             </div>
@@ -80,15 +80,14 @@ const MissionSection: React.FC = () => {
                 Mission
               </h3>
               <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                To scale up sustainable feedstock collection, operate ethically, 
+                To scale up sustainable feedstock collection, operate ethically,
                 promote clean energy, and care for community and nature.
               </p>
             </div>
-
           </div>
 
           {/* Chips */}
-          <div className="mt-10 flex flex-wrap justify-end gap-3 text-xs sm:text-sm text-gray-700 font-medium max-w-xl">
+          <div className="mt-10 flex flex-wrap justify-start gap-3 text-xs sm:text-sm text-gray-700 font-medium max-w-xl">
             <span className="inline-flex items-center rounded-full bg-gray-200 px-4 py-1 border border-gray-300">
               • Lower carbon footprint
             </span>
@@ -99,7 +98,6 @@ const MissionSection: React.FC = () => {
               • Community & environmental care
             </span>
           </div>
-
         </div>
       </div>
     </section>
