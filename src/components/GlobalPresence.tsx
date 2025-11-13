@@ -204,7 +204,7 @@ export default function GlobalPresence() {
       {/* Offices Grid */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {/* Malaysia auto-rotating card */}
             <div className="h-full">
               <div
