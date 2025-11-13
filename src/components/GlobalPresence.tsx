@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 type Office = {
   city: string;
   country: string;
-  type: string;
   address: string;
   phone: string;
   email: string;
@@ -40,11 +39,6 @@ const OfficeCard = ({
           (e.currentTarget as HTMLImageElement).src = "/fallback-office.jpg";
         }}
       />
-      <div className="absolute top-3 left-3">
-        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
-          {office.type}
-        </span>
-      </div>
     </div>
 
     <div className="p-6 flex-1 flex flex-col text-gray-800">
@@ -72,140 +66,138 @@ const OfficeCard = ({
 export default function GlobalPresence() {
   const [currentMalaysianOffice, setCurrentMalaysianOffice] = useState(0);
 
+  const commonEmail = "info@moltechglobal.com";
+
   const malaysianOffices: Office[] = [
     {
       city: "Port Klang",
       country: "Malaysia",
-      type: "Branch Office",
-      address: "18 Jalan Sungai Chandong 12, Pulau Indah, 42000 Pelabuhan Klang",
+      address:
+        "18 Jalan Sungai Chandong 12, Bdr Armada Putra Pulau Indah, 42000 Pelabuhan Klang, Selangor Darul Ehsan, Malaysia",
       phone: "+60 16-985 4705",
-      email: "portklang@global.com",
+      email: commonEmail,
       description: "Strategic hub for Malaysian logistics and supply chain.",
       image: "/malasyia.avif",
     },
   ];
 
   const otherOffices: Office[] = [
-        {
+    {
       city: "Johor",
       country: "Malaysia",
-      type: "Branch Office",
-      address: "No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang",
+      address:
+        "HS(D) 576585 PTD 233430, No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang, Johor",
       phone: "+60 16-959 4075",
-      email: "johor@global.com",
+      email: commonEmail,
       description: "Supporting industrial clients across Johor region.",
       image: "/JOHOR.png",
     },
     {
       city: "Jakarta",
       country: "Indonesia",
-      type: "Regional Office",
-      address: "408, Lina Building, JL.HR Rasuna Said kav B7, Jakarta",
+      address: "408, Lina Building, JL. HR Rasuna Said kav B7, Jakarta",
       phone: "+62 815 1038 5581",
-      email: "indonesia@global.com",
+      email: commonEmail,
       description: "Key Southeast Asia operations office.",
       image: "/indonesia.webp",
     },
     {
       city: "Dammam",
       country: "Saudi Arabia",
-      type: "Regional Office",
-      address: "2817 King Faizal Road, 9403-32233",
+      address:
+        "2817 King Faizal Road, Dammam 9403-32233, Kingdom of Saudi Arabia",
       phone: "+966 13 3430003",
-      email: "dammam@global.com",
+      email: commonEmail,
       description: "Serving Middle East operations and logistics.",
       image: "/dammam.avif",
     },
     {
       city: "Singapore",
       country: "Singapore",
-      type: "Headquarters",
-      address: "Blk 511 Kampong Bahru Rd, #03-01 Keppel Distripark, 099447",
+      address:
+        "Blk 511 Kampong Bahru Road, #03-01 Keppel Distripark, Singapore 099447",
       phone: "+65 65140868",
-      email: "singapore@global.com",
+      email: commonEmail,
       description: "Global headquarters and Asia-Pacific hub.",
       image: "/singapore.jpg",
     },
     {
       city: "Bangkok",
       country: "Thailand",
-      type: "Regional Office",
-      address: "109 CCT Bldg, Surawong Rd, Bangrak, 10500",
+      address:
+        "109 CCT Building, 3rd Floor, Rm.3, Surawong Road, Suriyawongse, Bangrak, Bangkok 10500 109",
       phone: "+60 16-985 4705",
-      email: "bangkok@global.com",
+      email: commonEmail,
       description: "Strategic Thailand hub for operations and trading.",
       image: "/Bangkok.jpg",
     },
     {
       city: "Dubai",
       country: "UAE",
-      type: "Regional Office",
-      address: "Al Qusais Industrial Area 2",
+      address:
+        "Plot #2430152, Al Qusais Industrial Area 2, Dubai, United Arab Emirates",
       phone: "+971 509093357",
-      email: "dubai@global.com",
+      email: commonEmail,
       description: "MENA regional operations and logistics hub.",
       image: "/Dubai.jpeg",
     },
     {
       city: "London",
       country: "United Kingdom",
-      type: "European Office",
-      address: "167-169 Great Portland Street, W1W 5PF",
-      phone: "+44 7305 856612",
-      email: "london@global.com",
+      address:
+        "167-169 Great Portland Street, 5th Floor, London, W1W 5PF, United Kingdom",
+      phone: "+44 (0) 7305 856612",
+      email: commonEmail,
       description: "European business development and client services.",
       image: "/London.jpg",
     },
     {
       city: "New York",
       country: "USA",
-      type: "Americas Office",
-      address: "33 Wood Ave S, Suite 600, Iselin, NJ 08830",
+      address:
+        "New Jersey Branch, 33 Wood Avenue South, Suite 600, Iselin, NJ 08830",
       phone: "+1 732 456 6780",
-      email: "usa@global.com",
+      email: commonEmail,
       description: "North American operations and client services.",
       image: "/newyork.jpg",
     },
     {
-      city: "Sydney",
+      city: "Victoria",
       country: "Australia",
-      type: "Branch Office",
-      address: "Level 10, 20 Martin Place, Sydney NSW 2000",
-      phone: "+61 2 9876 5432",
-      email: "australia@global.com",
+      address: "Suite 5, 7-9 Mallet Road, Tullamarine, Victoria 3043",
+      phone: "+61 388205157",
+      email: commonEmail,
       description: "Supporting clients across Oceania region.",
       image: "/sydney.jpg",
     },
   ];
 
   useEffect(() => {
-    const t = setInterval(() => {
-      setCurrentMalaysianOffice((p) => (p + 1) % malaysianOffices.length);
-    }, 3000);
+    const t = setInterval(
+      () => setCurrentMalaysianOffice((p) => (p + 1) % malaysianOffices.length),
+      3000
+    );
     return () => clearInterval(t);
   }, []);
 
   return (
     <div className="text-gray-900 bg-white">
-      {/* Hero Section */}
       <section className="py-16 text-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h1 className="text-4xl lg:text-5xl font-extrabold mb-4 text-gray-900">
+          <h1 className="text-4xl lg:text-5xl font-extrabold mb-4">
             Global Presence
           </h1>
           <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Serving customers worldwide through our strategically located
-            offices and facilities across Asia, Middle East, Europe,
-            Americas, and Oceania.
+            offices across Asia, Middle East, Europe, Americas, and Oceania.
           </p>
         </div>
       </section>
 
-      {/* Offices Grid */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
-            {/* Malaysia auto-rotating card */}
+            {/* Malaysia auto-rotating */}
             <div className="h-full">
               <div
                 key={currentMalaysianOffice}
@@ -218,17 +210,16 @@ export default function GlobalPresence() {
               </div>
             </div>
 
-            {/* Other offices */}
+            {/* Other Offices */}
             {otherOffices.map((office, i) => (
               <OfficeCard key={`${office.city}-${i}`} office={office} />
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="mt-14 flex justify-center">
             <Link
               to="/global"
-              className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white rounded-full shadow-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
+              className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white rounded-full shadow-lg bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
             >
               Explore Our Global Network
             </Link>
