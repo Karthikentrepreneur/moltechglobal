@@ -1,4 +1,3 @@
-// src/components/MissionSection.tsx
 import React, { useEffect, useRef, useState } from "react";
 
 const MissionSection: React.FC = () => {
@@ -8,10 +7,12 @@ const MissionSection: React.FC = () => {
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+
     const obs = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.15 }
     );
+
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
@@ -30,7 +31,7 @@ const MissionSection: React.FC = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* LEFT-ALIGNED CONTAINER */}
+        {/* LEFT CONTENT COLUMN */}
         <div className="flex flex-col items-start text-left w-full lg:w-1/2">
 
           {/* Eyebrow Label */}
@@ -48,17 +49,24 @@ const MissionSection: React.FC = () => {
           </h2>
 
           {/* Description */}
-          <p className="mt-5 text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed max-w-xl drop-shadow-sm">
-            Moves the world closer to
-            renewable, low-carbon energy. Sustainability begins with small actions
-            that create a global impact.
+          <p className="mt-5 text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed max-w-xl">
+            Moves the world closer to renewable, low-carbon energy.
+            Sustainability begins with small actions that create a global
+            impact.
           </p>
 
           {/* Cards Row */}
           <div className="mt-12 w-full grid sm:grid-cols-2 gap-6">
 
             {/* Vision */}
-            <div className="rounded-2xl bg-white/70 backdrop-blur-md border border-gray-300 p-7 space-y-4 shadow-lg text-left">
+            <div
+              className={`rounded-2xl bg-white border border-gray-200 p-7 space-y-4 shadow-xl transform transition-all duration-700
+              ${
+                isVisible
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 translate-y-6"
+              }`}
+            >
               <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-600/10 text-green-700 text-lg">
                   👁️
@@ -72,7 +80,14 @@ const MissionSection: React.FC = () => {
             </div>
 
             {/* Mission */}
-            <div className="rounded-2xl bg-white/70 backdrop-blur-md border border-gray-300 p-7 space-y-4 shadow-lg text-left">
+            <div
+              className={`rounded-2xl bg-white border border-gray-200 p-7 space-y-4 shadow-xl transform transition-all duration-700 delay-150
+              ${
+                isVisible
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 translate-y-6"
+              }`}
+            >
               <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600/10 text-blue-700 text-lg">
                   🎯
