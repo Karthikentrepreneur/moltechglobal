@@ -316,19 +316,19 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
       });
       setSelectedCityIndexes(initialIndexes);
       
-      // Navigate to the first location on map
+      // Navigate to the first location on 
       navigateToLocation(firstCity.lat, firstCity.lng, firstCity);
     }
   }, []);
 
   const navigateToLocation = (lat: number, lng: number, city: any = null) => {
-    // Find the iframe in the ContactMapContainer
+    // Find the iframe in the ContactContainer
     const iframe = document.querySelector('iframe[title="Interactive Map"]') as HTMLIFrameElement;
     if (iframe) {
       try {
         // Use higher zoom level for city-specific locations
         const zoomLevel = city ? 12 : 9;
-        const baseUrl = "https://www.google.com/maps/d/u/0/embed?mid=1Gy9JUvlSaOBrtQaKI7OoYU2KgFymoXg&ehbc";
+        const baseUrl = "https://www.google.com/maps/d/embed?mid=1G4yw3-VR-EIBj21s8AiMV8WGcJi6cGQ&ehbc=2E312F";
         const newSrc = `${baseUrl}&z=${zoomLevel}&ll=${lat},${lng}&hl=en&ehbc=2E312F&output=embed`;
         iframe.src = newSrc;
         if (city) {
