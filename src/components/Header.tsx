@@ -72,28 +72,45 @@ const Header = () => {
     >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <nav className="flex w-full items-center justify-between">
-          {/* Logo — left corner */}
-          <Link
-            to="/"
-            onClick={(event) => handleNavItemClick(event, navItems[0])}
-            aria-label="Go to top"
-            className="flex select-none flex-col items-start"
-          >
-            <div className="flex items-center gap-2">
+          {/* Logo + One Global logo */}
+          <div className="flex items-center gap-4">
+            {/* Moltech Logo + tagline */}
+            <Link
+              to="/"
+              onClick={(event) => handleNavItemClick(event, navItems[0])}
+              aria-label="Go to top"
+              className="flex select-none flex-col items-start"
+            >
+              <div className="flex items-center gap-2">
+                <img
+                  src="/Moltechlogo.png"
+                  alt="Moltech Logo"
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
+              <span
+                className={`mt-1 select-none text-[10.5px] font-semibold uppercase tracking-[0.18em] ${
+                  isScrolled ? "text-slate-500" : "text-white/80"
+                }`}
+              >
+                Driving Sustainability
+              </span>
+            </Link>
+
+            {/* One Global logo (changes with background) */}
+            <a
+              href="https://www.1ge.sg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center"
+            >
               <img
-                src="/Moltechlogo.png"
-                alt="Moltech Logo"
+                src={isScrolled ? "/group.png" : "/Singapore.png"}
+                alt="One Global Enterprises"
                 className="h-8 w-auto object-contain"
               />
-            </div>
-            <span
-              className={`text-[10.5px] font-semibold tracking-[0.18em] uppercase mt-1 select-none ${
-                isScrolled ? "text-slate-500" : "text-white/80"
-              }`}
-            >
-              Driving Sustainability
-            </span>
-          </Link>
+            </a>
+          </div>
 
           {/* Desktop Nav */}
           <div className="hidden items-center gap-6 lg:flex">
@@ -207,4 +224,3 @@ const Header = () => {
 };
 
 export default Header;
-
