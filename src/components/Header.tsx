@@ -16,7 +16,6 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Detect scroll position
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     handleScroll();
@@ -62,6 +61,11 @@ const Header = () => {
     if (shouldCloseMenu) setIsMobileMenuOpen(false);
   };
 
+  const ventureTextColor = isScrolled ? "text-slate-500" : "text-white/70";
+  const ventureBorderColor = isScrolled
+    ? "border-slate-200"
+    : "border-white/30";
+
   return (
     <header
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
@@ -70,11 +74,11 @@ const Header = () => {
           : "bg-gradient-to-b from-black/50 via-black/10 to-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-        <nav className="flex w-full items-center justify-between">
-          {/* Logo + One Global logo */}
-          <div className="flex items-center gap-4">
-            {/* Moltech Logo + tagline */}
+      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
+        <nav className="flex w-full items-center justify-between gap-4">
+          {/* Left cluster: Moltech logo + tagline + One Global */}
+          <div className="flex items-center gap-4 min-w-0">
+            {/* Moltech logo + tagline */}
             <Link
               to="/"
               onClick={(event) => handleNavItemClick(event, navItems[0])}
@@ -97,23 +101,35 @@ const Header = () => {
               </span>
             </Link>
 
-            {/* One Global logo (changes with background) */}
-            <a
-              href="https://www.1ge.sg/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
+            {/* One Global: desktop / tablet */}
+            <div
+              className={`hidden sm:flex items-center gap-2 pl-3 border-l ${ventureBorderColor}`}
             >
-              <img
-                src={isScrolled ? "/group.png" : "/Singapore.png"}
-                alt="One Global Enterprises"
-                className="h-8 w-auto object-contain"
-              />
-            </a>
+              <span
+                className={`text-[10px] uppercase tracking-[0.16em] font-medium ${ventureTextColor}`}
+              >
+                A venture of
+              </span>
+              <a
+                href="https://www.1ge.sg/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                {/* On hero (transparent) show full strip; after scroll show compact logo */}
+                <img
+                  src={isScrolled ? "/group.png" : "/6958.png"}
+                  alt="1 Global Enterprises, Singapore"
+                  className={`w-auto object-contain ${
+                    isScrolled ? "h-5" : "h-6"
+                  }`}
+                />
+              </a>
+            </div>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden items-center gap-6 lg:flex">
+          <div className="hidden items-center gap-5 lg:flex">
             {navItems.map((item) => {
               if (item.external) {
                 return (
@@ -122,7 +138,7 @@ const Header = () => {
                     href={item.to}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white"
+                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white whitespace-nowrap"
                   >
                     {item.name}
                   </a>
@@ -134,7 +150,7 @@ const Header = () => {
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white"
+                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white whitespace-nowrap"
                   >
                     {item.name}
                   </Link>
@@ -146,7 +162,7 @@ const Header = () => {
                   key={item.to}
                   to={item.to}
                   onClick={(event) => handleNavItemClick(event, item)}
-                  className={linkClasses}
+                  className={`${linkClasses} whitespace-nowrap`}
                 >
                   {item.name}
                 </Link>
@@ -155,7 +171,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Nav */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex-shrink-0">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <button
@@ -170,6 +186,30 @@ const Header = () => {
                 </button>
               </SheetTrigger>
               <SheetContent className="bg-white text-slate-800">
+                {/* Mobile logos */}
+                <div className="mt-4 flex items-center gap-3">
+                  <img
+                    src="/Moltechlogo.png"
+                    alt="Moltech Logo"
+                    className="h-8 w-auto object-contain"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      Driving Sustainability
+                    </span>
+                    <div className="mt-1 flex items-center gap-2">
+                      <span className="text-[10px] uppercase tracking-[0.16em] text-slate-500">
+                        A venture of
+                      </span>
+                      <img
+                        src="/group.png"
+                        alt="1 Global Enterprises, Singapore"
+                        className="h-5 w-auto object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <div className="mt-8 flex flex-col gap-4">
                   {navItems.map((item) => {
                     if (item.external) {
