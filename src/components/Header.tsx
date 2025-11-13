@@ -76,24 +76,25 @@ const Header = () => {
     >
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
         <nav className="flex w-full items-center justify-between gap-4">
-          {/* Left cluster: Moltech logo + tagline + One Global */}
+          
+
+          {/* LEFT: MOLTECH + TAGLINE + ONE GLOBAL */}
           <div className="flex items-center gap-4 min-w-0">
-            {/* Moltech logo + tagline */}
+
+            {/* Moltech */}
             <Link
               to="/"
               onClick={(event) => handleNavItemClick(event, navItems[0])}
               aria-label="Go to top"
               className="flex select-none flex-col items-start"
             >
-              <div className="flex items-center gap-2">
-                <img
-                  src="/Moltechlogo.png"
-                  alt="Moltech Logo"
-                  className="h-8 w-auto object-contain"
-                />
-              </div>
+              <img
+                src="/Moltechlogo.png"
+                alt="Moltech Logo"
+                className="h-8 w-auto object-contain"
+              />
               <span
-                className={`mt-1 select-none text-[10.5px] font-semibold uppercase tracking-[0.18em] ${
+                className={`mt-1 text-[10.5px] font-semibold uppercase tracking-[0.18em] ${
                   isScrolled ? "text-slate-500" : "text-white/80"
                 }`}
               >
@@ -101,7 +102,7 @@ const Header = () => {
               </span>
             </Link>
 
-            {/* One Global: desktop / tablet */}
+            {/* One Global (Transparent → Singapore.png, Scrolled → group.png) */}
             <div
               className={`hidden sm:flex items-center gap-2 pl-3 border-l ${ventureBorderColor}`}
             >
@@ -110,16 +111,16 @@ const Header = () => {
               >
                 A venture of
               </span>
+
               <a
                 href="https://www.1ge.sg/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                {/* On hero (transparent) show full strip; after scroll show compact logo */}
                 <img
-                  src={isScrolled ? "/group.png" : "/6958.png"}
-                  alt="1 Global Enterprises, Singapore"
+                  src={isScrolled ? "/group.png" : "/Singapore.png"}
+                  alt="1 Global Enterprises"
                   className={`w-auto object-contain ${
                     isScrolled ? "h-5" : "h-6"
                   }`}
@@ -127,6 +128,7 @@ const Header = () => {
               </a>
             </div>
           </div>
+
 
           {/* Desktop Nav */}
           <div className="hidden items-center gap-5 lg:flex">
@@ -137,8 +139,7 @@ const Header = () => {
                     key={item.name}
                     href={item.to}
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white whitespace-nowrap"
+                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white shadow-lg hover:shadow-xl"
                   >
                     {item.name}
                   </a>
@@ -150,7 +151,7 @@ const Header = () => {
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white whitespace-nowrap"
+                    className="flex h-10 items-center rounded-full px-5 text-sm font-semibold bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white shadow-lg hover:shadow-xl"
                   >
                     {item.name}
                   </Link>
@@ -170,45 +171,49 @@ const Header = () => {
             })}
           </div>
 
-          {/* Mobile Nav */}
+
+          {/* Mobile */}
           <div className="lg:hidden flex-shrink-0">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <button
-                  className={`grid h-9 w-9 place-items-center rounded-md transition-colors ${
+                  className={`grid h-9 w-9 place-items-center rounded-md ${
                     isScrolled
-                      ? "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
-                      : "border border-white/50 bg-transparent text-white hover:bg-white/10"
+                      ? "border border-slate-200 bg-white text-slate-600"
+                      : "border border-white/50 bg-transparent text-white"
                   }`}
-                  aria-label="Open menu"
                 >
                   <Menu className="h-4 w-4" />
                 </button>
               </SheetTrigger>
+
               <SheetContent className="bg-white text-slate-800">
-                {/* Mobile logos */}
+
+                {/* Mobile Logos */}
                 <div className="mt-4 flex items-center gap-3">
                   <img
                     src="/Moltechlogo.png"
-                    alt="Moltech Logo"
-                    className="h-8 w-auto object-contain"
+                    className="h-8 w-auto"
+                    alt=""
                   />
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    <span className="text-[10px] uppercase font-semibold tracking-[0.18em] text-slate-500">
                       Driving Sustainability
                     </span>
+
                     <div className="mt-1 flex items-center gap-2">
                       <span className="text-[10px] uppercase tracking-[0.16em] text-slate-500">
                         A venture of
                       </span>
                       <img
                         src="/group.png"
-                        alt="1 Global Enterprises, Singapore"
-                        className="h-5 w-auto object-contain"
+                        className="h-5"
+                        alt="1GE"
                       />
                     </div>
                   </div>
                 </div>
+
 
                 <div className="mt-8 flex flex-col gap-4">
                   {navItems.map((item) => {
@@ -218,9 +223,8 @@ const Header = () => {
                           key={item.name}
                           href={item.to}
                           target="_blank"
-                          rel="noopener noreferrer"
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="mt-2 flex h-11 w-full items-center justify-center rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 px-6 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
+                          className="flex h-11 items-center justify-center rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 text-white shadow-lg"
                         >
                           {item.name}
                         </a>
@@ -233,7 +237,7 @@ const Header = () => {
                           key={item.to}
                           to={item.to}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="mt-2 flex h-11 w-full items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 px-6 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
+                          className="flex h-11 items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 text-white shadow-lg"
                         >
                           {item.name}
                         </Link>
@@ -247,7 +251,7 @@ const Header = () => {
                         onClick={(event) =>
                           handleNavItemClick(event, item, true)
                         }
-                        className="text-base text-slate-700 transition-colors hover:text-slate-900"
+                        className="text-base text-slate-700"
                       >
                         {item.name}
                       </Link>
