@@ -20,80 +20,77 @@ const MissionSection: React.FC = () => {
     <section
       ref={sectionRef as React.RefObject<HTMLElement>}
       id="vision-mission"
-      className="relative w-full px-6 lg:px-16 py-24 overflow-hidden bg-cover bg-center"
+      className="relative w-full px-6 lg:px-20 py-24 overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: "url('/bg.jpg')",
+        backgroundImage: "url('/bg.jpg')",  // your new clean bright image
       }}
     >
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/70"></div>
-
       <div
-        className={`relative max-w-4xl mx-auto text-center transition-all duration-700 ${
+        className={`relative max-w-5xl mx-auto text-center transition-all duration-700 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* Eyebrow Heading */}
-        <span className="inline-flex rounded-full bg-emerald-500/10 border border-emerald-400/40 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-emerald-200">
+        {/* Eyebrow Label */}
+        <span className="inline-flex rounded-full bg-gray-900/5 border border-gray-900/10 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-gray-700">
           Our Purpose
         </span>
 
-        {/* Main Heading */}
-        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
+        {/* Heading */}
+        <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900 drop-shadow-sm">
           Building a{" "}
-          <span className="bg-gradient-to-r from-emerald-300 via-lime-300 to-yellow-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
             cleaner, sustainable
           </span>{" "}
           tomorrow
         </h2>
 
         {/* Description */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-white/85 leading-relaxed max-w-3xl mx-auto">
-          Every drop of used cooking oil we collect moves the world a little closer
-          to clean, renewable, low-carbon energy. We believe sustainability begins
-          with small actions that create global impact.
+        <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed max-w-3xl mx-auto drop-shadow-sm">
+          Every drop of used cooking oil we collect moves the world closer
+          to renewable, low-carbon energy. Sustainability begins with small
+          actions that create a global impact.
         </p>
 
-        {/* Vision & Mission Cards */}
-        <div className="mt-14 grid sm:grid-cols-2 gap-6">
+        {/* Vision + Mission Cards */}
+        <div className="mt-14 grid sm:grid-cols-2 gap-8">
           {/* Vision */}
-          <div className="rounded-2xl bg-white/5 backdrop-blur-md border border-white/15 p-7 space-y-4 shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
-            <h3 className="text-2xl font-bold text-white flex items-center justify-center gap-2">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-200 text-lg">
+          <div className="rounded-2xl bg-white/70 backdrop-blur-md border border-gray-300 p-7 space-y-4 shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-900 flex items-center justify-center gap-2">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-600/10 text-green-700 text-lg">
                 👁️
               </span>
               Vision
             </h3>
-            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-              To engage in business and services in the bio-space that reduce
-              carbon footprint and support environmental wellness.
+            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+              To engage in sustainable bio-space activities that reduce
+              carbon footprint and protect the environment.
             </p>
           </div>
 
           {/* Mission */}
-          <div className="rounded-2xl bg-white/5 backdrop-blur-md border border-white/15 p-7 space-y-4 shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
-            <h3 className="text-2xl font-bold text-white flex items-center justify-center gap-2">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/25 text-sky-100 text-lg">
+          <div className="rounded-2xl bg-white/70 backdrop-blur-md border border-gray-300 p-7 space-y-4 shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-900 flex items-center justify-center gap-2">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600/10 text-blue-700 text-lg">
                 🎯
               </span>
               Mission
             </h3>
-            <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-              To scale up sustainable feedstock collection, uphold strong ethical
-              values, promote clean energy, and care for communities and nature.
+            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+              To scale up sustainable feedstock collection, operate ethically,
+              promote clean energy, and care for community and nature.
             </p>
           </div>
         </div>
 
-        {/* Highlight Chips */}
-        <div className="mt-10 flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-white/80">
-          <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-4 py-1 border border-white/10">
+        {/* Highlight chips */}
+        <div className="mt-10 flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-gray-700 font-medium">
+          <span className="inline-flex items-center gap-1 rounded-full bg-gray-200 px-4 py-1 border border-gray-300">
             • Lower carbon footprint
           </span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-4 py-1 border border-white/10">
+          <span className="inline-flex items-center gap-1 rounded-full bg-gray-200 px-4 py-1 border border-gray-300">
             • Sustainable bio-feedstock
           </span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-4 py-1 border border-white/10">
+          <span className="inline-flex items-center gap-1 rounded-full bg-gray-200 px-4 py-1 border border-gray-300">
             • Community & environmental care
           </span>
         </div>
