@@ -1,7 +1,6 @@
 // src/components/AboutSection.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Globe2, ShieldCheck } from "lucide-react";
 
 type Props = { imgSrc?: string };
 
@@ -27,7 +26,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
       ref={ref as React.RefObject<HTMLElement>}
       className="relative overflow-hidden bg-white py-24"
     >
-      {/* background accent */}
+      {/* Soft radial background */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -38,7 +37,6 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
       />
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6">
-        {/* Equal 1:1 Grid */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* LEFT :: Image */}
           <div
@@ -51,6 +49,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
               {!imgLoaded && (
                 <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-gray-200 to-gray-100 rounded-2xl" />
               )}
+
               <img
                 src={imgSrc}
                 alt="Moltech sustainable operations"
@@ -60,26 +59,30 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
                 onLoad={() => setImgLoaded(true)}
                 loading="lazy"
               />
+
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-2xl" />
             </div>
           </div>
 
-          {/* RIGHT :: Text + CTA (kept together) */}
+          {/* RIGHT :: Content */}
           <div
             className={[
               "space-y-7 h-full flex flex-col justify-center",
               visible ? "animate-in-right" : "opacity-0 translate-y-6",
             ].join(" ")}
           >
+            {/* Tagline */}
             <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-xs font-semibold ring-1 ring-blue-200 self-start">
               <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
               Sustainable • Global • Certified
             </div>
 
+            {/* Heading */}
             <h2 className="text-4xl sm:text-5xl md:text-4xl font-extrabold tracking-tight text-[#0F1B3D]">
               About Moltech
             </h2>
 
+            {/* Description */}
             <p className="text-base md:text-lg leading-relaxed text-gray-700">
               Moltech strides in the bio space working on{" "}
               <span className="relative font-semibold text-gray-900 inline-block">
@@ -99,14 +102,27 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
               platform.
             </p>
 
-            {/* CTA buttons (inside the right column) */}
-            <div className="flex flex-wrap items-center gap-3 pt-3">
+            {/* ISCC Logo Under Content (Added Here) */}
+            <div className="pt-2">
+              <div className="mx-auto w-fit bg-white border border-gray-200 shadow-sm rounded-xl p-4">
+                <img
+                  src="/logo-ISCC.png"
+                  alt="ISCC Certification"
+                  className="w-32 sm:w-40 object-contain"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-6">
               <Link
                 to="/about"
                 className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-md transition-all hover:from-blue-700 hover:to-blue-500 hover:shadow-lg"
               >
                 Learn More
               </Link>
+
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center rounded-xl border border-blue-200 bg-white px-6 py-3 text-sm font-semibold tracking-wide text-blue-700 hover:bg-blue-50 transition"
@@ -118,6 +134,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
         </div>
       </div>
 
+      {/* Animations */}
       <style>{`
         .animate-in-left {
           animation: fadeSlideInLeft .7s cubic-bezier(.22,.86,.26,.99) both;
@@ -125,6 +142,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
         .animate-in-right {
           animation: fadeSlideInRight .7s cubic-bezier(.22,.86,.26,.99) both .1s;
         }
+
         @keyframes fadeSlideInLeft {
           0% { opacity: 0; transform: translate3d(-18px, 8px, 0); }
           100% { opacity: 1; transform: translate3d(0,0,0); }
