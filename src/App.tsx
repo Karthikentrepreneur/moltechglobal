@@ -1,7 +1,6 @@
 // src/App.tsx
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 /* ----------------------- Lazy page imports ----------------------- */
 const Index = lazy(() => import("@/pages/Index"));
