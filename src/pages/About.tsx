@@ -84,7 +84,8 @@ const About: React.FC = () => {
       </Helmet>
 
       <Header />
-      <blogs1 />
+      {/* Correctly render Blogs1 if needed */}
+      <Blogs1 />
 
       <main className="bg-white text-[#0F1B3D]">
         {/* ====== HERO HEADER ====== */}
@@ -102,17 +103,7 @@ const About: React.FC = () => {
                 <h1 className="text-white text-4xl md:text-5xl font-extrabold drop-shadow-sm">
                   About Us
                 </h1>
-                <nav aria-label="Breadcrumb" className="mt-3">
-                  <ol className="flex items-center justify-center gap-2 text-sm text-white/90">
-                    <li>
-                      <Link to="/" className="hover:text-white transition-colors">
-                        Home
-                      </Link>
-                    </li>
-                    <li aria-hidden>→</li>
-                    <li className="font-semibold">About Us</li>
-                  </ol>
-                </nav>
+                {/* breadcrumb removed */}
               </div>
             </div>
           </div>
