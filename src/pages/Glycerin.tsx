@@ -43,10 +43,7 @@ const Glycerin: React.FC = () => {
             decoding="async"
           />
           {/* Stronger grey gradient for legibility/consistency */}
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-gray-900/85 via-gray-800/70 to-gray-700/60"
-            aria-hidden
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/85 via-gray-800/70 to-gray-700/60" />
 
           {/* Hero content */}
           <div className="relative z-10 h-full w-full">
@@ -59,7 +56,8 @@ const Glycerin: React.FC = () => {
                   Glycerin
                 </h1>
                 <p className="mt-4 text-base md:text-lg text-white/90">
-                  USP/pharmaceutical and technical grade glycerin with consistent purity and full documentation for diverse applications.
+                  USP/pharmaceutical and technical grade glycerin with consistent purity and full
+                  documentation for diverse applications.
                 </p>
               </div>
             </div>
@@ -68,12 +66,60 @@ const Glycerin: React.FC = () => {
 
         {/* ---------- BELOW-HERO SECTION ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* LEFT: Main Card */}
-            <article className="lg:col-span-2">
+          {/* Product list LEFT, content RIGHT */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* LEFT: Sidebar (Product List only) */}
+            <aside className="space-y-6 md:order-1 order-2">
+              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Product List
+                </h3>
+                <div className="space-y-3">
+                  {products.map((p) => (
+                    <NavLink
+                      key={p.slug}
+                      to={`/products/${p.slug}`}
+                      end
+                      onMouseEnter={() => setHoveredSlug(p.slug)}
+                      onMouseLeave={() => setHoveredSlug(null)}
+                      className={({ isActive }) => {
+                        const highlighted = isActive || hoveredSlug === p.slug;
+                        return [
+                          "flex items-center justify-between rounded-md border transition px-4 py-3 duration-200",
+                          highlighted
+                            ? `${GRAD} text-white border-transparent`
+                            : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
+                        ].join(" ");
+                      }}
+                    >
+                      {({ isActive }) => {
+                        const highlighted = isActive || hoveredSlug === p.slug;
+                        return (
+                          <>
+                            <span className="font-medium">{p.name}</span>
+                            <span
+                              className={[
+                                "inline-flex items-center justify-center w-9 h-9 rounded-full border transition duration-200",
+                                highlighted
+                                  ? "bg-white/15 text-white border-white/20"
+                                  : "bg-white text-gray-700 border-gray-200",
+                              ].join(" ")}
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </span>
+                          </>
+                        );
+                      }}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            </aside>
+
+            {/* RIGHT: Main Card */}
+            <article className="md:col-span-2 md:order-2 order-1">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <div className="px-6 sm:px-8 pt-8">
-                  {/* Image styled like FeedAdditives */}
                   <img
                     src="/chemistry.jpg"
                     alt="Glycerin product"
@@ -103,54 +149,6 @@ const Glycerin: React.FC = () => {
                 </div>
               </div>
             </article>
-
-            {/* RIGHT: Sidebar (Product List only, Search removed) */}
-            <aside className="space-y-6">
-              <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Product List
-                </h3>
-                <div className="space-y-3">
-                  {products.map((p) => (
-                    <NavLink
-                      key={p.slug}
-                      to={`/products/${p.slug}`}
-                      end
-                      onMouseEnter={() => setHoveredSlug(p.slug)}
-                      onMouseLeave={() => setHoveredSlug(null)}
-                      className={({ isActive }) => {
-                        const highlighted = isActive || hoveredSlug === p.slug;
-                        return [
-                          "flex items-center justify-between rounded-md border transition px-4 py-3 duration-200",
-                          highlighted
-                            ? `${GRAD} text-white border-transparent`
-                            : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
-                        ].join(" ");
-                      }}
-                    >
-                      {() => {
-                        const highlighted = hoveredSlug === p.slug;
-                        return (
-                          <>
-                            <span className="font-medium">{p.name}</span>
-                            <span
-                              className={[
-                                "inline-flex items-center justify-center w-9 h-9 rounded-full border transition duration-200",
-                                highlighted
-                                  ? "bg-white/15 text-white border-white/20"
-                                  : "bg-white text-gray-700 border-gray-200",
-                              ].join(" ")}
-                            >
-                              <ArrowRight className="w-4 h-4" />
-                            </span>
-                          </>
-                        );
-                      }}
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-            </aside>
           </div>
         </section>
       </main>
