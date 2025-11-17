@@ -91,7 +91,7 @@ const About: React.FC = () => {
 
         {/* ===== HERO ===== */}
         <section className="relative">
-          <div className="relative h-[40vh] md:h-[52vh] lg:h-[58vh]">
+          <div className="relative h-[30vh] md:h-[32vh] lg:h-[28vh]">
             <Blogs1 />
           </div>
         </section>
