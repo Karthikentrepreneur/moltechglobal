@@ -61,44 +61,11 @@ const BiodieselFeedstocks: React.FC = () => {
         {/* ---------- BELOW HERO ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
 
-          {/* UPDATED GRID → always keeps sidebar on right for md+ screens */}
+          {/* GRID: Product panel (LEFT) + Main content (RIGHT) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {/* LEFT MAIN CONTENT */}
-            <article className="md:col-span-2">
-              <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
-                <div className="px-6 sm:px-8 pt-8">
-                  <img
-                    src="/Biodieselariel.jpg"
-                    alt="UCO logistics"
-                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
-                  />
-                </div>
-
-                <div className="px-6 sm:px-8 pb-8 mt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div
-                      className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
-                    >
-                      <Truck className="w-6 h-6" />
-                    </div>
-
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                      Biodiesel Feedstocks (UCO)
-                    </h2>
-                  </div>
-
-                  <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
-                    {bullets.map((b, i) => (
-                      <li key={i}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </article>
-
-            {/* RIGHT SIDEBAR — Product List */}
-            <aside className="space-y-6">
+            {/* LEFT SIDEBAR — Product List */}
+            <aside className="space-y-6 md:order-1 order-2">
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
 
@@ -143,6 +110,39 @@ const BiodieselFeedstocks: React.FC = () => {
                 </div>
               </div>
             </aside>
+
+            {/* RIGHT MAIN CONTENT */}
+            <article className="md:col-span-2 md:order-2 order-1">
+              <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
+                <div className="px-6 sm:px-8 pt-8">
+                  <img
+                    src="/Biodieselariel.jpg"
+                    alt="UCO logistics"
+                    className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
+                  />
+                </div>
+
+                <div className="px-6 sm:px-8 pb-8 mt-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
+                    >
+                      <Truck className="w-6 h-6" />
+                    </div>
+
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+                      Biodiesel Feedstocks (UCO)
+                    </h2>
+                  </div>
+
+                  <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
+                    {bullets.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </article>
 
           </div>
         </section>
