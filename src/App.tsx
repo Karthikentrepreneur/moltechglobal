@@ -23,12 +23,11 @@ const CollectionFeedstocks = lazy(() => import("@/pages/CollectionFeedstocks"));
 function ScrollToTop() {
   const { pathname } = useLocation();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "instant" as ScrollBehavior, // or "smooth"
+      behavior: "smooth",
     });
   }, [pathname]);
 
@@ -38,7 +37,7 @@ function ScrollToTop() {
 // Small fallback while lazy pages load
 function Fallback() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="animate-pulse text-gray-500">Loading…</div>
     </div>
   );
@@ -75,7 +74,7 @@ const App = () => {
           <Route
             path="*"
             element={
-              <div className="min-h-screen flex items-center justify-center text-gray-600">
+              <div className="min-h-screen flex items-center justify-center text-gray-600 bg-white">
                 Page not found
               </div>
             }
