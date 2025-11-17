@@ -22,38 +22,38 @@ const MissionSection: React.FC = () => {
     <section
       ref={sectionRef as React.RefObject<HTMLElement>}
       id="vision-mission"
-      className="relative w-full px-6 lg:px-24 py-28 bg-[#0F1B3D]"
+      className="relative w-full px-6 lg:px-24 py-28 bg-white"
     >
       <div
-        className={`relative max-w-5xl mx-auto flex flex-col items-center text-center transition-all duration-700 ${
+        className={`relative max-w-6xl mx-auto flex flex-col items-center text-center transition-all duration-700 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* Eyebrow label */}
-        <span className="inline-flex rounded-full bg-white/10 border border-white/20 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-slate-100">
+        {/* Eyebrow Label */}
+        <span className="inline-flex rounded-full bg-gray-100 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-gray-700">
           Our Purpose
         </span>
 
-        {/* Main heading */}
-        <h2 className="mt-6 text-4xl sm:text-5xl font-extrabold text-white leading-snug">
+        {/* Main Heading */}
+        <h2 className="mt-6 text-4xl sm:text-5xl font-extrabold text-[#0F1B3D] leading-snug">
           Building a{" "}
-          <span className="bg-gradient-to-r from-emerald-400 to-green-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
             cleaner, sustainable
           </span>{" "}
           tomorrow
         </h2>
 
         {/* Subtitle */}
-        <p className="mt-6 text-lg sm:text-xl text-slate-100/80 max-w-2xl leading-relaxed">
+        <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl leading-relaxed">
           Moves the world closer to renewable, low-carbon energy. Sustainability
           begins with small actions that create a global impact.
         </p>
 
-        {/* Cards */}
-        <div className="mt-16 w-full grid sm:grid-cols-2 gap-8">
+        {/* Vision & Mission Cards */}
+        <div className="mt-16 w-full grid sm:grid-cols-2 gap-10 place-items-center">
           {/* Vision Card */}
           <div
-            className={`rounded-2xl bg-white p-10 shadow-xl border border-gray-200 transition-all duration-700 ${
+            className={`rounded-2xl bg-white p-10 shadow-xl border border-gray-200 max-w-md transition-all duration-700 ${
               isVisible
                 ? "opacity-100 scale-100 translate-y-0"
                 : "opacity-0 scale-95 translate-y-6"
@@ -74,7 +74,7 @@ const MissionSection: React.FC = () => {
 
           {/* Mission Card */}
           <div
-            className={`rounded-2xl bg-white p-10 shadow-xl border border-gray-200 transition-all duration-700 delay-150 ${
+            className={`rounded-2xl bg-white p-10 shadow-xl border border-gray-200 max-w-md transition-all duration-700 delay-150 ${
               isVisible
                 ? "opacity-100 scale-100 translate-y-0"
                 : "opacity-0 scale-95 translate-y-6"
@@ -95,14 +95,14 @@ const MissionSection: React.FC = () => {
         </div>
 
         {/* Chips */}
-        <div className="mt-12 flex flex-wrap justify-center gap-4 text-sm text-slate-100/90">
-          <span className="inline-flex items-center rounded-full bg-white/10 px-5 py-2 border border-white/20 backdrop-blur-sm">
+        <div className="mt-14 flex flex-wrap justify-center gap-4 text-sm">
+          <span className="inline-flex items-center rounded-full bg-gray-100 px-6 py-2 border text-gray-700 border-gray-200">
             • Lower carbon footprint
           </span>
-          <span className="inline-flex items-center rounded-full bg-white/10 px-5 py-2 border border-white/20 backdrop-blur-sm">
+          <span className="inline-flex items-center rounded-full bg-gray-100 px-6 py-2 border text-gray-700 border-gray-200">
             • Sustainable bio-feedstock
           </span>
-          <span className="inline-flex items-center rounded-full bg-white/10 px-5 py-2 border border-white/20 backdrop-blur-sm">
+          <span className="inline-flex items-center rounded-full bg-gray-100 px-6 py-2 border text-gray-700 border-gray-200">
             • Community & environmental care
           </span>
         </div>
