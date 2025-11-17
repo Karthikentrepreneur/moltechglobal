@@ -26,12 +26,28 @@ export default function GetInTouchCard() {
         </h3>
 
         <form onSubmit={onSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
           {/* Row 1 */}
-          <Input name="name" placeholder="Type your name" required className="h-11" />
-          <Input name="email" type="email" placeholder="Type your email" required className="h-11" />
+          <Input
+            name="name"
+            placeholder="Type your name"
+            required
+            className="h-11"
+          />
+          <Input
+            name="email"
+            type="email"
+            placeholder="Type your email"
+            required
+            className="h-11"
+          />
 
           {/* Row 2 */}
-          <Input name="phone" placeholder="Phone" className="h-11" />
+          <Input
+            name="phone"
+            placeholder="Phone"
+            className="h-11"
+          />
           <select
             name="location"
             defaultValue=""
@@ -40,17 +56,34 @@ export default function GetInTouchCard() {
           >
             <option value="" disabled>Select Location</option>
             {LOCATIONS.map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <option key={c} value={c}>
+                {c}
+              </option>
             ))}
           </select>
+
+          {/* NEW — Purpose Field */}
+          <Input
+            name="purpose"
+            placeholder="Purpose"
+            className="h-11 sm:col-span-2"
+          />
+
           {/* Comment full width */}
           <div className="sm:col-span-2">
-            <Textarea name="comment" placeholder="Comment" rows={6} />
+            <Textarea
+              name="comment"
+              placeholder="Comment"
+              rows={6}
+            />
           </div>
 
-          {/* Submit (left aligned like screenshot) */}
+          {/* Submit Button */}
           <div className="sm:col-span-2">
-            <Button type="submit" className="bg-royal-blue hover:bg-royal-blue/90 text-white px-6">
+            <Button
+              type="submit"
+              className="bg-royal-blue hover:bg-royal-blue/90 text-white px-6"
+            >
               Submit
             </Button>
           </div>
