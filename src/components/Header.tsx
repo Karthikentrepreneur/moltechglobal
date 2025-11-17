@@ -29,12 +29,8 @@ const Header = () => {
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Blog", to: "/blog" },
-    {
-      name: "Tracking",
-      to: "http://ec2-13-229-38-56.ap-southeast-1.compute.amazonaws.com:8081/ords/f?p=107:102:::::P0_GROUP_RID,P0_ID:55,MOLTECH",
-      external: true,
-    },
-    { name: "Contact", to: "/contact", isCta: true },
+    
+    { name: "Contact Us", to: "/contact", isCta: true },
   ];
 
   const offset = 88;
