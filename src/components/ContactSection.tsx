@@ -3,7 +3,7 @@ import React from "react";
 import { Mail, Phone, Clock } from "lucide-react";
 import GetInTouchCard from "@/components/GetInTouchCard";
 
-/* Small card used for Email / Call / Hours */
+/* Small card used for Email / Call */
 const ContactCard = ({
   icon,
   title,
@@ -19,13 +19,14 @@ const ContactCard = ({
 }) => {
   return (
     <div className="flex items-start gap-4 rounded-2xl bg-white/85 backdrop-blur-sm shadow-md border border-white/40 p-5 hover:shadow-lg transition-all duration-300">
-      <div className={`grid h-14 w-14 place-items-center rounded-2xl ${tint} text-white`}>
+      {/* SMALL ICON SIZE */}
+      <div className={`grid h-10 w-10 place-items-center rounded-2xl ${tint} text-white`}>
         {icon}
       </div>
+
       <div className="flex-1">
         <div className="text-base font-semibold text-gray-900">{title}</div>
 
-        {/* If href exists, clickable link — If not, plain text */}
         {href ? (
           <a href={href} className="block text-gray-600 hover:text-gray-900 mt-0.5">
             {value}
@@ -56,24 +57,23 @@ const ContactSection: React.FC = () => {
 
               {/* Email */}
               <ContactCard
-                icon={<Mail className="h-7 w-7" />}
+                icon={<Mail className="h-5 w-5" />}
                 title="Email"
                 value="info@moltechglobal.com"
                 href="mailto:info.au@moltechglobal.com"
                 tint="bg-gradient-to-br from-sky-400 to-sky-600"
               />
 
-              {/* Phone — NOW NO REDIRECTION */}
+              {/* Phone (NO redirection) */}
               <ContactCard
-                icon={<Phone className="h-7 w-7" />}
+                icon={<Phone className="h-5 w-5" />}
                 title="Phone"
                 value="+61 388205157"
-                href={undefined} // removed tel:+ to avoid call redirection
+                href={undefined}
                 tint="bg-gradient-to-br from-indigo-400 to-indigo-600"
               />
 
-              {/* Hours */}
-            
+              {/* REMOVED HOURS / TRANSPORTATION METHOD AS REQUESTED */}
 
             </div>
           </div>
@@ -90,7 +90,6 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Fade */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-50 to-transparent" />
 
       {/* Submit Button Style */}
