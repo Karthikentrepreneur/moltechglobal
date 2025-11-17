@@ -6,7 +6,6 @@ import {
   MapPin,
   Globe,
   Phone,
-  Mail,
   Home,
   ChevronRight,
 } from "lucide-react";
@@ -24,8 +23,6 @@ interface ContactSidebarProps {
   onClose: () => void;
 }
 
-const COMMON_EMAIL = "info@moltechglobal.com";
-
 const countries = [
   {
     code: "sg",
@@ -40,7 +37,6 @@ const countries = [
         address:
           "Blk 511 Kampong Bahru Road, #03-01 Keppel Distripark, Singapore 099447",
         contacts: ["+65 65140868"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -57,7 +53,6 @@ const countries = [
         address:
           "18 Jalan Sungai Chandong 12, Bdr Armada Putra Pulau Indah, 42000 Pelabuhan Klang, Selangor Darul Ehsan, Malaysia",
         contacts: ["+60 16-985 4705"],
-        email: COMMON_EMAIL,
       },
       {
         name: "Johor",
@@ -66,7 +61,6 @@ const countries = [
         address:
           "HS(D) 576585 PTD 233430, No.19A, Jalan Sagai 6, Taman Pasir Putih, 81700 Pasir Gudang, Johor",
         contacts: ["+60 16-959 4075"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -82,7 +76,6 @@ const countries = [
         lng: 106.8456,
         address: "408, Lina Building, JL. HR Rasuna Said kav B7, Jakarta",
         contacts: ["+62 815 1038 5581"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -99,7 +92,6 @@ const countries = [
         address:
           "2817 King Faizal Road, Dammam 9403-32233, Kingdom of Saudi Arabia",
         contacts: ["+966 13 3430003"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -116,7 +108,6 @@ const countries = [
         address:
           "109 CCT Building, 3rd Floor, Rm.3, Surawong Road, Suriyawongse, Bangrak, Bangkok 10500 109",
         contacts: ["+60 16-985 4705"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -133,7 +124,6 @@ const countries = [
         address:
           "Plot #2430152, Al Qusais Industrial Area 2, Dubai, United Arab Emirates",
         contacts: ["+971 509093357"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -150,7 +140,6 @@ const countries = [
         address:
           "167-169 Great Portland Street, 5th Floor, London, W1W 5PF, United Kingdom",
         contacts: ["+44 (0) 7305 856612"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -167,7 +156,6 @@ const countries = [
         address:
           "New Jersey Branch, 33 Wood Avenue South, Suite 600, Iselin, NJ 08830",
         contacts: ["+1 732 456 6780"],
-        email: COMMON_EMAIL,
       },
     ],
   },
@@ -183,13 +171,12 @@ const countries = [
         lng: 144.8503,
         address: "Suite 5, 7-9 Mallet Road, Tullamarine, Victoria 3043",
         contacts: ["+61 388205157"],
-        email: COMMON_EMAIL,
       },
     ],
   },
 ];
 
-// Keep Singapore (Headquarters) first, sort the rest alphabetically
+// Singapore stays at top
 const sortedCountries = [
   countries[0],
   ...countries.slice(1).sort((a, b) => a.name.localeCompare(b.name)),
@@ -209,64 +196,48 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
   }, []);
 
   useEffect(() => {
-    if (sortedCountries.length > 0 && sortedCountries[0].cities.length > 0) {
-      const firstCountry = sortedCountries[0];
-      const firstCity = firstCountry.cities[0];
+    const firstCountry = sortedCountries[0];
+    const firstCity = firstCountry.cities[0];
 
-      // Default: Singapore (Headquarters) expanded + selected
-      setSelectedLocation(firstCity);
-      setExpandedCountry(firstCountry.name);
+    setSelectedLocation(firstCity);
+    setExpandedCountry(firstCountry.name);
 
-      const initialIndexes: { [countryName: string]: number } = {};
-      sortedCountries.forEach((country) => {
-        initialIndexes[country.name] = 0;
-      });
-      setSelectedCityIndexes(initialIndexes);
+    const initialIndexes: any = {};
+    sortedCountries.forEach((country) => (initialIndexes[country.name] = 0));
+    setSelectedCityIndexes(initialIndexes);
 
-      navigateToLocation(firstCity.lat, firstCity.lng, firstCity);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    navigateToLocation(firstCity.lat, firstCity.lng, firstCity);
   }, []);
 
   const navigateToLocation = (lat: number, lng: number, city: any = null) => {
     const iframe = document.querySelector(
       'iframe[title="Interactive Map"]'
     ) as HTMLIFrameElement;
-    if (iframe) {
-      try {
-        const zoomLevel = city ? 12 : 9;
-        const baseUrl =
-          "https://www.google.com/maps/d/embed?mid=1G4yw3-VR-EIBj21s8AiMV8WGcJi6cGQ&ehbc=2E312F";
-        const newSrc = `${baseUrl}&z=${zoomLevel}&ll=${lat},${lng}&hl=en&ehbc=2E312F&output=embed`;
-        iframe.src = newSrc;
-        if (city) {
-          setSelectedLocation(city);
-        }
-      } catch (e) {
-        console.error("Navigation failed:", e);
-      }
-    }
+
+    if (!iframe) return;
+
+    const zoomLevel = city ? 12 : 9;
+    const baseUrl =
+      "https://www.google.com/maps/d/embed?mid=1G4yw3-VR-EIBj21s8AiMV8WGcJi6cGQ&ehbc=2E312F";
+    iframe.src = `${baseUrl}&z=${zoomLevel}&ll=${lat},${lng}&hl=en&output=embed`;
+
+    if (city) setSelectedLocation(city);
   };
 
   const handleCitySelection = (country: any, cityIndex: number) => {
-    setSelectedCityIndexes((prev) => ({
-      ...prev,
-      [country.name]: cityIndex,
-    }));
-
-    const selectedCity = country.cities[cityIndex];
-    navigateToLocation(selectedCity.lat, selectedCity.lng, selectedCity);
+    setSelectedCityIndexes((prev) => ({ ...prev, [country.name]: cityIndex }));
+    const city = country.cities[cityIndex];
+    navigateToLocation(city.lat, city.lng, city);
   };
 
-  const isSelectedCity = (countryName: string, cityIndex: number) => {
-    return selectedCityIndexes[countryName] === cityIndex;
-  };
+  const isSelectedCity = (countryName: string, cityIndex: number) =>
+    selectedCityIndexes[countryName] === cityIndex;
 
   return (
     <>
       {isOpen && isMobile && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm transition-opacity duration-300"
+          className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
           onClick={onClose}
         />
       )}
@@ -274,18 +245,18 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
       <div
         className={`my-3 w-full ${
           isMobile ? "max-w-[95%]" : "max-w-[520px]"
-        } mx-auto px-2 md:px-0`}
+        } mx-auto px-2`}
       >
-        {/* Header – violet gradient */}
+        {/* Header */}
         <div className="flex justify-between items-center px-4 py-3 border-b bg-gradient-to-r from-violet-600 to-violet-700 text-white rounded-t-xl shadow-sm">
           <div className="flex items-center gap-2">
             <Globe className="h-5 w-5" />
             <h2 className="font-bold text-lg">Global Locations</h2>
           </div>
+
           {isMobile && (
             <Button
               variant="ghost"
-              size="sm"
               onClick={onClose}
               className="text-white hover:bg-violet-500/20"
             >
@@ -294,127 +265,87 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
           )}
         </div>
 
-        <ScrollArea className="h-[calc(100vh-10rem)] md:h-[calc(100vh-8rem)] bg-white rounded-b-xl shadow-md">
+        {/* Scroll Area */}
+        <ScrollArea className="h-[calc(100vh-10rem)] bg-white rounded-b-xl shadow-md">
           <div className="p-4">
-            <div className="mt-4 space-y-3">
-              <Accordion
-                type="single"
-                collapsible
-                value={expandedCountry || ""}
-                className="w-full space-y-3"
-              >
-                {sortedCountries.map((country) => (
-                  <AccordionItem
-                    key={country.name}
-                    value={country.name}
-                    className="border border-violet-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all bg-white"
+            <Accordion
+              type="single"
+              collapsible
+              value={expandedCountry || ""}
+              className="space-y-3"
+            >
+              {sortedCountries.map((country) => (
+                <AccordionItem
+                  key={country.name}
+                  value={country.name}
+                  className="border border-violet-100 rounded-lg"
+                >
+                  <AccordionTrigger
+                    onClick={() => {
+                      setExpandedCountry(
+                        expandedCountry === country.name ? null : country.name
+                      );
+                      navigateToLocation(country.lat, country.lng);
+                    }}
+                    className="px-3 py-2 hover:bg-violet-50"
                   >
-                    <AccordionTrigger
-                      onClick={() => {
-                        setExpandedCountry(
-                          expandedCountry === country.name
-                            ? null
-                            : country.name
-                        );
-                        navigateToLocation(country.lat, country.lng);
-                      }}
-                      className="rounded-t-md hover:bg-violet-50 transition-colors px-3 py-2"
-                    >
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={`/${country.code}.svg`}
-                          alt={`${country.name} flag`}
-                          className="w-6 h-6 rounded-sm object-cover shadow-sm"
-                        />
-                        <span className="font-medium">{country.name}</span>
-                      </div>
-                    </AccordionTrigger>
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={`/${country.code}.svg`}
+                        className="w-6 h-6 rounded-sm"
+                      />
+                      <span className="font-medium">{country.name}</span>
+                    </div>
+                  </AccordionTrigger>
 
-                    <AccordionContent className="bg-gradient-to-b from-violet-50/30 to-white px-3 py-2">
-                      <div className="space-y-2">
-                        <div className="space-y-2">
-                          {country.cities.map((city: any, index: number) => (
-                            <div key={index} className="w-full">
-                              <Button
-                                variant="ghost"
-                                className={cn(
-                                  "w-full justify-start text-sm p-2 h-auto rounded-md border transition-all shadow-sm",
-                                  isSelectedCity(country.name, index)
-                                    ? "bg-violet-100 hover:bg-violet-200 border-violet-300 text-violet-800"
-                                    : "bg-white hover:bg-violet-50 border-gray-100 hover:border-violet-200"
-                                )}
-                                onClick={() => {
-                                  handleCitySelection(country, index);
-                                  if (isMobile) {
-                                    setTimeout(
-                                      () =>
-                                        setSelectedLocation({ ...city }),
-                                      50
-                                    );
-                                  }
-                                }}
-                              >
-                                <MapPin className="w-4 h-4 mr-2 text-violet-600 flex-shrink-0" />
-                                <span className="font-medium truncate">
-                                  {city.name}
-                                </span>
-                                <ChevronRight className="w-4 h-4 ml-auto text-violet-300" />
-                              </Button>
+                  <AccordionContent className="px-3 py-2 bg-violet-50/30">
+                    {country.cities.map((city, index) => (
+                      <div key={index} className="w-full">
+                        <Button
+                          variant="ghost"
+                          className={cn(
+                            "w-full justify-start text-sm p-2 rounded-md border shadow-sm",
+                            isSelectedCity(country.name, index)
+                              ? "bg-violet-100 border-violet-300 text-violet-800"
+                              : "bg-white hover:bg-violet-50 border-gray-100"
+                          )}
+                          onClick={() => handleCitySelection(country, index)}
+                        >
+                          <MapPin className="w-4 h-4 mr-2 text-violet-600" />
+                          <span className="font-medium truncate">
+                            {city.name}
+                          </span>
+                          <ChevronRight className="w-4 h-4 ml-auto text-violet-300" />
+                        </Button>
 
-                              {isSelectedCity(country.name, index) &&
-                                city.address && (
-                                  <div className="mt-2 p-3 bg-white rounded-lg border border-violet-200 shadow text-sm w-full">
-                                    <div className="flex items-start mb-2">
-                                      <Home className="w-4 h-4 mr-2 text-violet-600 mt-1" />
-                                      <p className="text-gray-800 text-sm break-words w-full">
-                                        {city.address}
-                                      </p>
-                                    </div>
-
-                                    {city.contacts &&
-                                      city.contacts.length > 0 && (
-                                        <div className="flex items-start mb-2">
-                                          <Phone className="w-4 h-4 mr-2 text-violet-600 mt-1" />
-                                          <div className="space-y-1">
-                                            {city.contacts.map(
-                                              (
-                                                contact: string,
-                                                idx: number
-                                              ) => (
-                                                <p
-                                                  key={idx}
-                                                  className="text-gray-800 text-sm break-words"
-                                                >
-                                                  {contact}
-                                                </p>
-                                              )
-                                            )}
-                                          </div>
-                                        </div>
-                                      )}
-
-                                    {city.email && (
-                                      <div className="flex items-start">
-                                        <Mail className="w-4 h-4 mr-2 text-violet-600 mt-1" />
-                                        <a
-                                          href={`mailto:${city.email}`}
-                                          className="text-violet-700 hover:underline text-sm break-words"
-                                        >
-                                          {city.email}
-                                        </a>
-                                      </div>
-                                    )}
-                                  </div>
-                                )}
+                        {isSelectedCity(country.name, index) && (
+                          <div className="mt-2 p-3 bg-white border border-violet-200 rounded-lg">
+                            <div className="flex items-start mb-2">
+                              <Home className="w-4 h-4 mr-2 text-violet-600 mt-1" />
+                              <p className="text-sm">{city.address}</p>
                             </div>
-                          ))}
-                        </div>
+
+                            {/* Contacts */}
+                            {city.contacts?.length > 0 && (
+                              <div className="flex items-start">
+                                <Phone className="w-4 h-4 mr-2 text-violet-600 mt-1" />
+                                <div className="space-y-1">
+                                  {city.contacts.map((c, i) => (
+                                    <p key={i} className="text-sm">
+                                      {c}
+                                    </p>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </ScrollArea>
       </div>
