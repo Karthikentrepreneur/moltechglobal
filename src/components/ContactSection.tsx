@@ -1,134 +1,104 @@
-// src/components/ContactSection.tsx
-import React from "react";
-import { Mail, Phone } from "lucide-react";
-import GetInTouchCard from "@/components/GetInTouchCard";
+// src/components/GetInTouchCard.tsx
+import React, { useState } from "react";
 
-/* Small card used for Email / Call */
-const ContactCard = ({
-  icon,
-  title,
-  value,
-  href,
-  tint,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  value: string;
-  href?: string;
-  tint: string;
-}) => {
+const GetInTouchCard: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Dummy submit simulation
+    setTimeout(() => {
+      setIsSubmitting(false);
+      (e.target as HTMLFormElement).reset();
+    }, 800);
+  };
+
   return (
-    <div className="flex items-start gap-4 rounded-2xl bg-white shadow-md border border-gray-200 p-5 hover:shadow-lg transition-all duration-300">
-      {/* SMALL ICON */}
-      <div
-        className={`grid h-10 w-10 place-items-center rounded-2xl ${tint} text-white`}
-      >
-        {icon}
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Row 1: Name + Email */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Your full name"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm md:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
 
-      <div className="flex-1">
-        <div className="text-base font-semibold text-gray-900">{title}</div>
-
-        {href ? (
-          <a href={href} className="block text-gray-600 hover:text-gray-900 mt-0.5">
-            {value}
-          </a>
-        ) : (
-          <div className="text-gray-600 mt-0.5">{value}</div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const ContactSection: React.FC = () => {
-  return (
-    <section className="relative bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-
-          {/* LEFT SIDE */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F1B3D]">
-              Contact
-            </h2>
-            <p className="text-slate-600 mt-2">
-              Reach us through your preferred channel. We usually respond within a business day.
-            </p>
-
-            <div className="mt-6 space-y-5">
-              {/* Email */}
-              <ContactCard
-                icon={<Mail className="h-5 w-5" />}
-                title="Email"
-                value="info@moltechglobal.com"
-                href="mailto:info.au@moltechglobal.com"
-                tint="bg-gradient-to-br from-sky-400 to-sky-600"
-              />
-
-              {/* Phone (NO redirection) */}
-              <ContactCard
-                icon={<Phone className="h-5 w-5" />}
-                title="Phone"
-                value="+61 388205157"
-                href={undefined}
-                tint="bg-gradient-to-br from-indigo-400 to-indigo-600"
-              />
-
-              {/* Transportation / Hours REMOVED COMPLETELY */}
-            </div>
-          </div>
-
-          {/* RIGHT SIDE — FORM */}
-          <div className="relative">
-            <div className="rounded-[24px] bg-white p-1 shadow-[0_12px_40px_rgba(0,0,0,0.08)] border border-gray-200">
-              <div className="rounded-[20px] bg-white shadow-lg p-6 md:p-10 contact-form">
-                <GetInTouchCard />
-              </div>
-            </div>
-          </div>
-
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm md:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
         </div>
       </div>
 
-      {/* REMOVED BOTTOM FADE OVERLAY */}
-      {/* CLEAN WHITE SECTION */}
-      
-      {/* Submit Button Style */}
-      <style>{`
-        .contact-form {
-          overflow: visible;
-        }
-        .contact-form button[type="submit"],
-        .contact-form button[data-submit],
-        .contact-form .btn-submit {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: .5rem;
-          width: 100%;
-          margin-top: 1rem;
-          padding: 0.875rem 1rem;
-          border-radius: 0.75rem;
-          border: none;
-          color: #fff !important;
-          background-image: linear-gradient(90deg, #2563eb, #06b6d4);
-          box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
-          transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
-        }
-        .contact-form button[type="submit"]:hover {
-          filter: brightness(1.05);
-          box-shadow: 0 16px 38px rgba(37, 99, 235, 0.34);
-          transform: translateY(-1px);
-        }
-        .contact-form button[type="submit"]:active {
-          transform: translateY(0);
-          box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
-        }
-      `}</style>
-    </section>
+      {/* Row 2: Phone */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Phone
+        </label>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="+61 ..."
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm md:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+      </div>
+
+      {/* Row 3: Subject */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Subject
+        </label>
+        <input
+          type="text"
+          name="subject"
+          placeholder="How can we help you?"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm md:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+      </div>
+
+      {/* Row 4: Message (no transportation method text) */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Message
+        </label>
+        <textarea
+          name="message"
+          rows={5}
+          required
+          placeholder="Type your message here"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm md:text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y"
+        />
+      </div>
+
+      {/* Submit */}
+      <div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-submit inline-flex items-center justify-center"
+          data-submit
+        >
+          {isSubmitting ? "Sending..." : "Send Message"}
+        </button>
+      </div>
+    </form>
   );
 };
 
-export default ContactSection;
+export default GetInTouchCard;
