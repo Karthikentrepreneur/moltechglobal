@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Eye, Target } from "lucide-react";
 
 const MissionSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,20 +22,20 @@ const MissionSection: React.FC = () => {
     <section
       ref={sectionRef as React.RefObject<HTMLElement>}
       id="vision-mission"
-      className="relative w-full px-6 lg:px-20 py-24 overflow-hidden bg-[#0F1B3D]"
+      className="relative w-full px-6 lg:px-24 py-28 bg-[#0F1B3D]"
     >
       <div
-        className={`relative max-w-4xl mx-auto flex flex-col items-center text-center transition-all duration-700 ${
+        className={`relative max-w-5xl mx-auto flex flex-col items-center text-center transition-all duration-700 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* Eyebrow Label */}
-        <span className="inline-flex rounded-full bg-white/5 border border-white/20 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-slate-100">
+        {/* Eyebrow label */}
+        <span className="inline-flex rounded-full bg-white/10 border border-white/20 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-slate-100">
           Our Purpose
         </span>
 
-        {/* Heading */}
-        <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white drop-shadow-sm">
+        {/* Main heading */}
+        <h2 className="mt-6 text-4xl sm:text-5xl font-extrabold text-white leading-snug">
           Building a{" "}
           <span className="bg-gradient-to-r from-emerald-400 to-green-300 bg-clip-text text-transparent">
             cleaner, sustainable
@@ -42,51 +43,51 @@ const MissionSection: React.FC = () => {
           tomorrow
         </h2>
 
-        {/* Description */}
-        <p className="mt-5 text-base sm:text-lg md:text-xl text-slate-100/80 leading-relaxed max-w-2xl">
+        {/* Subtitle */}
+        <p className="mt-6 text-lg sm:text-xl text-slate-100/80 max-w-2xl leading-relaxed">
           Moves the world closer to renewable, low-carbon energy. Sustainability
           begins with small actions that create a global impact.
         </p>
 
-        {/* Cards Row */}
-        <div className="mt-12 w-full grid sm:grid-cols-2 gap-6">
-          {/* Vision */}
+        {/* Cards */}
+        <div className="mt-16 w-full grid sm:grid-cols-2 gap-8">
+          {/* Vision Card */}
           <div
-            className={`rounded-2xl bg-white border border-gray-200 p-7 space-y-4 shadow-xl transform transition-all duration-700
-            ${
+            className={`rounded-2xl bg-white p-10 shadow-xl border border-gray-200 transition-all duration-700 ${
               isVisible
                 ? "opacity-100 scale-100 translate-y-0"
                 : "opacity-0 scale-95 translate-y-6"
             }`}
           >
-            <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-600/10 text-green-700 text-lg">
-                👁️
-              </span>
-              Vision
-            </h3>
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-base text-left">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full bg-green-600/10 flex items-center justify-center text-green-700">
+                <Eye className="h-5 w-5" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Vision</h3>
+            </div>
+
+            <p className="mt-5 text-gray-700 text-base leading-relaxed">
               To engage in sustainable bio-space activities that reduce carbon
               footprint and protect the environment.
             </p>
           </div>
 
-          {/* Mission */}
+          {/* Mission Card */}
           <div
-            className={`rounded-2xl bg-white border border-gray-200 p-7 space-y-4 shadow-xl transform transition-all duration-700 delay-150
-            ${
+            className={`rounded-2xl bg-white p-10 shadow-xl border border-gray-200 transition-all duration-700 delay-150 ${
               isVisible
                 ? "opacity-100 scale-100 translate-y-0"
                 : "opacity-0 scale-95 translate-y-6"
             }`}
           >
-            <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600/10 text-blue-700 text-lg">
-                🎯
-              </span>
-              Mission
-            </h3>
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-base text-left">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full bg-blue-600/10 flex items-center justify-center text-blue-700">
+                <Target className="h-5 w-5" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Mission</h3>
+            </div>
+
+            <p className="mt-5 text-gray-700 text-base leading-relaxed">
               To scale up sustainable feedstock collection, operate ethically,
               promote clean energy, and care for community and nature.
             </p>
@@ -94,14 +95,14 @@ const MissionSection: React.FC = () => {
         </div>
 
         {/* Chips */}
-        <div className="mt-10 flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-slate-100 font-medium max-w-2xl">
-          <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1 border border-white/20">
+        <div className="mt-12 flex flex-wrap justify-center gap-4 text-sm text-slate-100/90">
+          <span className="inline-flex items-center rounded-full bg-white/10 px-5 py-2 border border-white/20 backdrop-blur-sm">
             • Lower carbon footprint
           </span>
-          <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1 border border-white/20">
+          <span className="inline-flex items-center rounded-full bg-white/10 px-5 py-2 border border-white/20 backdrop-blur-sm">
             • Sustainable bio-feedstock
           </span>
-          <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1 border border-white/20">
+          <span className="inline-flex items-center rounded-full bg-white/10 px-5 py-2 border border-white/20 backdrop-blur-sm">
             • Community & environmental care
           </span>
         </div>
