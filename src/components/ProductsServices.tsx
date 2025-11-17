@@ -7,7 +7,7 @@ const ProductsServices = () => {
   const products = [
     {
       icon: Droplets,
-      title: "Biodiesel Feedstocks",
+      title: "Feedstocks collection",
       subtitle:
         "ISCC-certified UCO and high-acidity oils for renewable fuel production",
       image: "/Biodieselariel.jpg",
