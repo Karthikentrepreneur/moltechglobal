@@ -60,7 +60,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
 
           {/* Process / operations pages */}
-          <Route path="/collection-feedstocks" element={<CollectionFeedstocks />} />
+          <Route path="/products/collection-feedstocks" element={<CollectionFeedstocks />} />
 
           {/* Product detail pages */}
           <Route path="/products/biodiesel-feedstocks" element={<BiodieselFeedstocks />} />
