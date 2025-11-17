@@ -58,9 +58,7 @@ const Index = () => {
         </section>
 
         {/* GLOBAL */}
-        <section id="global" className="scroll-mt-24">
-          <GlobalPresence />
-        </section>
+
 
         {/* CONTACT */}
         <section id="contact" className="scroll-mt-24">
