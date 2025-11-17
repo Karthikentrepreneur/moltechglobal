@@ -97,70 +97,7 @@ const About: React.FC = () => {
         </section>
 
         {/* ===== INTRO BLOCK ===== */}
-        <section className="mx-auto max-w-7xl px-6 lg:px-8 py-14">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            <div className="lg:col-span-6">
-              <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(2,6,23,0.10)] ring-1 ring-black/5">
-                <img
-                  
-                  alt=""
-                  className="w-full h-[380px] md:h-[440px] object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-gray-500">
-                About Company
-              </p>
-
-              <h2 className="mt-2 text-4xl sm:text-5xl font-extrabold leading-tight">
-                About Moltech
-              </h2>
-
-              <p className="mt-5 text-[17px] leading-8 text-slate-700">
-                Moltech strides in the bio space working on{" "}
-                <span className="font-semibold text-[#0F1B3D]">clean initiatives and products</span>{" "}
-                that drive the circular economy globally.
-              </p>
-
-              <div className="mt-8 space-y-6">
-                <div className="flex gap-4">
-                  <div className="h-10 w-10 rounded-full bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                    <Globe2 className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Global Presence</div>
-                    <p className="text-sm text-slate-600 mt-1">
-                      Operations across Malaysia, Thailand, Indonesia, UAE, UK, USA.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="h-10 w-10 rounded-full bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                    <ShieldCheck className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Certified & Transparent</div>
-                    <p className="text-sm text-slate-600 mt-1">
-                      ISCC (EU) certified process with strong governance and transparency.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md bg-blue-600 hover:bg-blue-700"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+       
 
         {/* Divider */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
