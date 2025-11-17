@@ -28,6 +28,23 @@ const COMMON_EMAIL = "info@moltechglobal.com";
 
 const countries = [
   {
+    code: "sg",
+    name: "Singapore (Headquarters)",
+    lat: 1.3521,
+    lng: 103.8198,
+    cities: [
+      {
+        name: "Singapore",
+        lat: 1.3521,
+        lng: 103.8198,
+        address:
+          "Blk 511 Kampong Bahru Road, #03-01 Keppel Distripark, Singapore 099447",
+        contacts: ["+65 65140868"],
+        email: COMMON_EMAIL,
+      },
+    ],
+  },
+  {
     code: "my",
     name: "Malaysia",
     lat: 2.9982,
@@ -82,23 +99,6 @@ const countries = [
         address:
           "2817 King Faizal Road, Dammam 9403-32233, Kingdom of Saudi Arabia",
         contacts: ["+966 13 3430003"],
-        email: COMMON_EMAIL,
-      },
-    ],
-  },
-  {
-    code: "sg",
-    name: "Singapore",
-    lat: 1.3521,
-    lng: 103.8198,
-    cities: [
-      {
-        name: "Singapore",
-        lat: 1.3521,
-        lng: 103.8198,
-        address:
-          "Blk 511 Kampong Bahru Road, #03-01 Keppel Distripark, Singapore 099447",
-        contacts: ["+65 65140868"],
         email: COMMON_EMAIL,
       },
     ],
@@ -181,8 +181,7 @@ const countries = [
         name: "Victoria",
         lat: -37.7064,
         lng: 144.8503,
-        address:
-          "Suite 5, 7-9 Mallet Road, Tullamarine, Victoria 3043",
+        address: "Suite 5, 7-9 Mallet Road, Tullamarine, Victoria 3043",
         contacts: ["+61 388205157"],
         email: COMMON_EMAIL,
       },
@@ -190,14 +189,13 @@ const countries = [
   },
 ];
 
-const sortedCountries = [...countries].sort((a, b) =>
-  a.name.localeCompare(b.name)
-);
+// Keep Singapore (Headquarters) first, sort the rest alphabetically
+const sortedCountries = [
+  countries[0],
+  ...countries.slice(1).sort((a, b) => a.name.localeCompare(b.name)),
+];
 
-const ContactSidebar: React.FC<ContactSidebarProps> = ({
-  isOpen,
-  onClose,
-}) => {
+const ContactSidebar: React.FC<ContactSidebarProps> = ({ isOpen, onClose }) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [expandedCountry, setExpandedCountry] = useState<string | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<any | null>(null);
@@ -214,6 +212,8 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
     if (sortedCountries.length > 0 && sortedCountries[0].cities.length > 0) {
       const firstCountry = sortedCountries[0];
       const firstCity = firstCountry.cities[0];
+
+      // Default: Singapore (Headquarters) expanded + selected
       setSelectedLocation(firstCity);
       setExpandedCountry(firstCountry.name);
 
@@ -276,7 +276,7 @@ const ContactSidebar: React.FC<ContactSidebarProps> = ({
           isMobile ? "max-w-[95%]" : "max-w-[520px]"
         } mx-auto px-2 md:px-0`}
       >
-        {/* Header – changed to violet gradient */}
+        {/* Header – violet gradient */}
         <div className="flex justify-between items-center px-4 py-3 border-b bg-gradient-to-r from-violet-600 to-violet-700 text-white rounded-t-xl shadow-sm">
           <div className="flex items-center gap-2">
             <Globe className="h-5 w-5" />
