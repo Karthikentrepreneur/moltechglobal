@@ -53,6 +53,14 @@ const ProductsServices = () => {
       image: "/animalfeed.jpg",
       slug: "feed-additives",
     },
+     {
+      icon: Droplets,
+      title: "Feedstocks Collecion",
+      subtitle:
+        "A clean, compliant way to handle your used cooking oil—end to end.",
+      image: "/feednew.jpeg",
+      slug: "collection-feedstocks",
+    },
   ];
 
   return (
