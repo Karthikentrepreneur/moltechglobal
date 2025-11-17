@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Footer from "../components/blogs1";
 
 /* -------------------- CountUp -------------------- */
 function easeOutCubic(t: number) {
@@ -83,6 +84,7 @@ const About: React.FC = () => {
       </Helmet>
 
       <Header />
+      <blogs1 />
 
       <main className="bg-white text-[#0F1B3D]">
         {/* ====== HERO HEADER ====== */}
