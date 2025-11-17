@@ -12,56 +12,7 @@ export default function Blog() {
       {/* keep main clean; use top padding on hero to clear fixed header */}
       <main className="bg-background">
         {/* Hero */}
-        <section className="pt-28 pb-16 bg-gradient-to-br from-blue-50 to-slate-50">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-              <div>
-                <p className="inline-flex items-center gap-2 text-sm font-medium text-blue-700">
-                  <Leaf className="h-4 w-4" />
-                  Practical sustainability, scaled globally
-                </p>
-                <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-                  Moltech, in a Nutshell
-                </h1>
-                <p className="mt-4 text-lg leading-relaxed text-slate-700">
-                  From Singapore HQ to hubs across Asia, the Middle East, the UK, and the USA,
-                  Moltech links collectors, processors, and customers to turn <em>“waste”</em> into workable, reliable supply.
-                </p>
-                <ul className="mt-6 space-y-2 text-slate-700">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
-                    <span><strong>Renewable feedstocks:</strong> UCO, tyre-derived oils, acid oils, POME.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
-                    <span><strong>Feed & industrial:</strong> Veg-oil feed fats (liquid & dry), fatty alcohols, fatty acid esters, glycerol.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
-                    <span><strong>How we work:</strong> ethics first, quality-obsessed, transparent by design.</span>
-                  </li>
-                </ul>
-
-                <a
-                  href="/contact"
-                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
-                >
-                  Talk to our team <Truck className="h-4 w-4" />
-                </a>
-              </div>
-
-              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                <img
-                  src={moltechSustainability}
-                  alt="Moltech circular-economy and sustainable biorefinery"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Image Feature Grid */}
         <section className="py-16">
