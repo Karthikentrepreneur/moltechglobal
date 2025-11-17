@@ -1,6 +1,7 @@
 // src/App.tsx
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 /* ----------------------- Lazy page imports ----------------------- */
 const Index = lazy(() => import("@/pages/Index"));
@@ -16,13 +17,22 @@ const Global = lazy(() => import("@/pages/Global"));
 const Careers = lazy(() => import("@/pages/Careers"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const Contact = lazy(() => import("@/pages/Contact"));
+const CollectionFeedstocks = lazy(() => import("@/pages/CollectionFeedstocks"));
 
 /* -------------------------- Utilities --------------------------- */
 // Scroll to top on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior }); }, [pathname]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant" as ScrollBehavior, // or "smooth"
+    });
+  }, [pathname]);
+
   return null;
 }
 
@@ -36,8 +46,6 @@ function Fallback() {
 }
 
 /* ---------------------------- App ------------------------------- */
-import { useEffect } from "react";
-
 const App = () => {
   return (
     <Router>
@@ -53,6 +61,9 @@ const App = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
 
+          {/* Process / operations pages */}
+          <Route path="/collection-feedstocks" element={<CollectionFeedstocks />} />
+
           {/* Product detail pages */}
           <Route path="/products/biodiesel-feedstocks" element={<BiodieselFeedstocks />} />
           <Route path="/products/fatty-acids" element={<FattyAcids />} />
@@ -62,7 +73,14 @@ const App = () => {
           <Route path="/products/feed-additives" element={<FeedAdditives />} />
 
           {/* 404 */}
-          <Route path="*" element={<div className="min-h-screen flex items-center justify-center text-gray-600">Page not found</div>} />
+          <Route
+            path="*"
+            element={
+              <div className="min-h-screen flex items-center justify-center text-gray-600">
+                Page not found
+              </div>
+            }
+          />
         </Routes>
       </Suspense>
     </Router>
