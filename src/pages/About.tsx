@@ -14,6 +14,7 @@ import {
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Blogs1 from "../components/Blogs1";
 
 /* -------------------- CountUp -------------------- */
 function easeOutCubic(t: number) {
@@ -91,18 +92,7 @@ const About: React.FC = () => {
         {/* ===== HERO ===== */}
         <section className="relative">
           <div className="relative h-[40vh] md:h-[52vh] lg:h-[58vh]">
-            <img
-              src="/aboutmoltech.jpg"
-              alt="About Moltech"
-              className="absolute inset-0 h-full w-full object-cover opacity-70"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
-
-            <div className="relative z-10 flex h-full items-center justify-center text-center">
-              <h1 className="text-white text-4xl md:text-5xl font-extrabold drop-shadow-lg">
-                About Us
-              </h1>
-            </div>
+            <Blogs1 />
           </div>
         </section>
 
