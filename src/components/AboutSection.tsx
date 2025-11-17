@@ -26,7 +26,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
       ref={ref as React.RefObject<HTMLElement>}
       className="relative overflow-hidden bg-white py-24"
     >
-      {/* Soft radial background */}
+      {/* background accent */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -82,7 +82,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
               About Moltech
             </h2>
 
-            {/* Description */}
+            {/* UPDATED TEXT WITH ISCC CERTIFIED */}
             <p className="text-base md:text-lg leading-relaxed text-gray-700">
               Moltech strides in the bio space working on{" "}
               <span className="relative font-semibold text-gray-900 inline-block">
@@ -95,30 +95,28 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
                   }}
                 />
               </span>{" "}
-              that drive the circular economy. With its strategic presence in
-              Asia, Middle East, United Kingdom and United States of America,
-              Moltech is positioned to cater and harness cross-continental
+              that drive the circular economy. With ISCC-certified operations
+              across Asia, Middle East, United Kingdom and United States of
+              America, Moltech is positioned to harness cross-continental
               potential of renewable and sustainable products on a global
               platform.
             </p>
 
-            {/* ISCC Logo Under Content (Added Here) */}
-            <div className="pt-2">
-              <div className="mx-auto w-fit bg-white border border-gray-200 shadow-sm rounded-xl p-4">
-                <img
-                  src="/logo-ISCC.png"
-                  alt="ISCC Certification"
-                  className="w-32 sm:w-40 object-contain"
-                  loading="lazy"
-                />
-              </div>
+            {/* ISCC LOGO LEFT ALIGNED — NO SHADOW, NO BOX */}
+            <div className="pt-0 flex items-start">
+              <img
+                src="/logo-ISCC.png"
+                alt="ISCC Certification"
+                className="w-40 sm:w-48 object-contain"
+                loading="lazy"
+              />
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-6">
+            {/* Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-4">
               <Link
                 to="/about"
-                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-md transition-all hover:from-blue-700 hover:to-blue-500 hover:shadow-lg"
+                className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-md hover:from-blue-700 hover:to-blue-500 transition"
               >
                 Learn More
               </Link>
@@ -142,7 +140,6 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
         .animate-in-right {
           animation: fadeSlideInRight .7s cubic-bezier(.22,.86,.26,.99) both .1s;
         }
-
         @keyframes fadeSlideInLeft {
           0% { opacity: 0; transform: translate3d(-18px, 8px, 0); }
           100% { opacity: 1; transform: translate3d(0,0,0); }
