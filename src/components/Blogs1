@@ -1,342 +1,114 @@
-// src/pages/About.tsx
-import React, { useEffect, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import {
-  Globe2,
-  ShieldCheck,
-  Users,
-  Box,
-  PartyPopper,
-  Handshake,
-  Telescope,
-  Target,
-} from "lucide-react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Blogs1 from "../components/Blogs1";
+// src/components/Blogs1.tsx
+import React from "react";
+import { Leaf, Globe, ShieldCheck, Truck } from "lucide-react";
+import moltechSustainability from "@/assets/moltech-blog-sustainability.jpg";
 
-/* -------------------- CountUp -------------------- */
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3);
-}
-
-function useInView<T extends HTMLElement>(opts?: IntersectionObserverInit) {
-  const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !("IntersectionObserver" in window)) {
-      setInView(true);
-      return;
-    }
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {
-      threshold: 0.2,
-      ...opts,
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [opts]);
-  return { ref, inView };
-}
-
-const CountUp: React.FC<{
-  to: number;
-  className?: string;
-  duration?: number;
-  suffix?: string;
-}> = ({ to, className, duration = 1200, suffix = "" }) => {
-  const { ref, inView } = useInView<HTMLSpanElement>();
-  const [v, setV] = useState(0);
-  const started = useRef(false);
-  useEffect(() => {
-    if (!inView || started.current) return;
-    started.current = true;
-    let raf = 0,
-      start: number | null = null;
-    const tick = (ts: number) => {
-      if (start === null) start = ts;
-      const t = Math.min((ts - start) / duration, 1);
-      setV(Math.round(easeOutCubic(t) * to));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration]);
+const Blogs1: React.FC = () => {
   return (
-    <span ref={ref} className={className}>
-      {v.toLocaleString()}
-      {suffix}
-    </span>
-  );
-};
-/* ------------------------------------------------ */
+    <section className="bg-background py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Hero-style blog highlight */}
+        <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="inline-flex items-center gap-2 text-sm font-medium text-blue-700">
+              <Leaf className="h-4 w-4" />
+              Practical sustainability, scaled globally
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Moltech, in a Nutshell
+            </h2>
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-slate-700">
+              From Singapore HQ to hubs across Asia, the Middle East, the UK, and the USA,
+              Moltech links collectors, processors, and customers to turn
+              <em> “waste” </em> into workable, reliable supply.
+            </p>
 
-const About: React.FC = () => {
-  return (
-    <>
-      <Helmet>
-        <title>Moltech Blog</title>
-        <meta
-          name="description"
-          content="Insights and stories from Moltech’s work in renewable feedstocks, circular economy, and global bio-space initiatives."
-        />
-      </Helmet>
+            <ul className="mt-6 space-y-2 text-slate-700">
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
+                <span>
+                  <strong>Renewable feedstocks:</strong> UCO, tyre-derived oils, acid oils, POME.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
+                <span>
+                  <strong>Feed & industrial:</strong> Veg-oil feed fats (liquid & dry), fatty
+                  alcohols, fatty acid esters, glycerol.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 block h-2 w-2 rounded-full bg-blue-600" />
+                <span>
+                  <strong>How we work:</strong> ethics first, quality-obsessed, transparent by
+                  design.
+                </span>
+              </li>
+            </ul>
 
-      <Header />
+            <a
+              href="/contact"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700"
+            >
+              Talk to our team <Truck className="h-4 w-4" />
+            </a>
+          </div>
 
-      <main className="bg-white text-[#0F1B3D]">
-        {/* ====== HERO HEADER ====== */}
-        <section aria-label="Blog hero" className="relative">
-          <div className="relative h-[38vh] md:h-[50vh] lg:h-[56vh]">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
             <img
-              src="/aboutmoltech.jpg"
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-70"
-              loading="eager"
+              src={moltechSustainability}
+              alt="Moltech circular-economy and sustainable biorefinery"
+              className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
-            <div className="relative z-10 flex h-full items-center justify-center text-center px-6">
-              <div>
-                {/* changed text: About Us -> Blog */}
-                <h1 className="text-white text-4xl md:text-5xl font-extrabold drop-shadow-sm">
-                  Blog
-                </h1>
-                {/* breadcrumb removed */}
-              </div>
-            </div>
           </div>
-        </section>
-
-        {/* ===== Intro block ===== */}
-        <section className="mx-auto max-w-7xl px-6 lg:px-8 py-10 lg:py-14">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            <div className="lg:col-span-6">
-              <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(2,6,23,0.08)] ring-1 ring-black/5">
-                <img
-                  src="/aboutmoltech.jpg"
-                  alt="Moltech laboratory"
-                  className="w-full h-[380px] md:h-[440px] object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <div className="text-[11px] font-semibold tracking-widest uppercase text-gray-500">
-                About Company
-              </div>
-
-              <h2 className="mt-2 text-4xl sm:text-5xl font-extrabold leading-tight">
-                About Moltech
-              </h2>
-
-              <p className="mt-5 text-[17px] leading-8 text-slate-700">
-                Moltech strides in the bio space working on{" "}
-                <span className="font-semibold text-[#0F1B3D]">
-                  clean initiatives and products
-                </span>{" "}
-                that drive the circular economy. With its strategic presence in Asia,
-                Middle East, United Kingdom and United States of America, Moltech is
-                positioned to cater and harness cross-continental potential of
-                renewable and sustainable products on a global platform.
-              </p>
-
-              <div className="mt-8 space-y-6">
-                <div className="flex gap-4">
-                  <div className="h-10 w-10 rounded-full bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                    <Globe2 className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Global Presence & Collection</div>
-                    <p className="text-sm text-slate-600 mt-1">
-                      Headquartered in Singapore with operations across Malaysia, Thailand,
-                      Indonesia, UAE, UK and USA — enabling reliable sourcing and delivery.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="h-10 w-10 rounded-full bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                    <ShieldCheck className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Certified & Transparent</div>
-                    <p className="text-sm text-slate-600 mt-1">
-                      Certified by ISCC (EU); we operate with strong ethics, quality control
-                      and transparency.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Logo + CTA */}
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md transition-all duration-300 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Our Story ===== */}
-        <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
-          <h3 className="text-3xl md:text-4xl font-extrabold">Our Story</h3>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="space-y-5 text-[16.5px] leading-8 text-slate-700">
-              <p>
-                Moltech operates renewable business units from Malaysia, Thailand, Indonesia,
-                UAE, UK and USA. Being part of a larger group with presence in more than 15
-                countries, we leverage cross-functional support that makes our network robust
-                and ready to scale.
-              </p>
-              <p>
-                We collect and process feedstock for renewable diesel at our own locations:
-                used cooking oil, tyre-derived oils, acid oils and POME. Our feed division
-                supplies vegetable-oil-based formulated feed fats (liquid and dry). For
-                industrial applications we deliver fatty alcohols, fatty acid esters and
-                glycerol.
-              </p>
-              <p>
-                With a global team and effective use of technology, we maintain high standards
-                of ethics, operational excellence, quality control and transparency — making
-                us a reliable partner worldwide.
-              </p>
-              <p className="text-slate-800">
-                Certified by <span className="font-semibold text-[#0F1B3D]">ISCC (EU)</span>.
-              </p>
+        {/* Optional: 3 small blog cards under the hero */}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-sm font-semibold text-blue-700">
+              <Globe className="h-4 w-4" />
+              Global Presence
             </div>
+            <h3 className="mt-2 text-lg font-bold text-slate-900">
+              Local speed, global consistency
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Collection hubs and processing sites across continents keep supply reliable and responsive.
+            </p>
+          </article>
 
-            {/* Image card that fully fills without blanks */}
-            <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(2,6,23,0.08)] ring-1 ring-black/5 relative w-full h-[360px] md:h-[440px]">
-              <img
-                src="/greenworld.jpg"
-                alt="Moltech Global Renewable Map"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                loading="lazy"
-              />
+          <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700">
+              <Leaf className="h-4 w-4" />
+              Renewable Feedstocks
             </div>
-          </div>
-        </section>
+            <h3 className="mt-2 text-lg font-bold text-slate-900">
+              Turning waste into value
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              UCO, tyre-derived oils, acid oils, and POME collected and processed into dependable inputs.
+            </p>
+          </article>
 
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <hr className="border-gray-100" />
+          <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-sm font-semibold text-slate-800">
+              <ShieldCheck className="h-4 w-4" />
+              Quality & Transparency
+            </div>
+            <h3 className="mt-2 text-lg font-bold text-slate-900">
+              Governance built-in
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Ethics-first operations, rigorous QC, and traceability across the chain.
+            </p>
+          </article>
         </div>
-
-        {/* ===== Compact stats row ===== */}
-        <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <Users className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={5} className="text-3xl font-extrabold" />
-                <div className="text-slate-600 text-sm">Years Experience</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <Box className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={10} className="text-3xl font-extrabold" />
-                <div className="text-slate-600 text-sm">Products</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <PartyPopper className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={100} className="text-3xl font-extrabold" suffix="+" />
-                <div className="text-slate-600 text-sm">Employees</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <Handshake className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={1000} className="text-3xl font-extrabold" suffix="+" />
-                <div className="text-slate-600 text-sm">Satisfied Clients</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <hr className="border-gray-100" />
-        </div>
-
-        {/* ===== Vision / Mission ===== */}
-        <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            {/* Vision card */}
-            <div className="relative">
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-16 w-16 rounded-full bg-white/90 shadow-lg grid place-items-center">
-                <div className="absolute inset-0 rounded-full bg-blue-700 -z-10" />
-                <Telescope className="h-8 w-8 text-white" />
-              </div>
-
-              <div className="h-full rounded-2xl bg-blue-700 text-white p-8 pt-16 shadow-[0_20px_60px_rgba(2,6,23,0.15)] flex flex-col min-h-[280px]">
-                <h4 className="text-xl tracking-[0.35em] font-semibold uppercase">
-                  Vision
-                </h4>
-                <p className="mt-4 text-[16.5px] leading-8 text-white/90">
-                  To engage in business and services in the bio-space which contribute to
-                  reduction in carbon footprint and environmental care.
-                </p>
-                <div className="mt-auto" />
-              </div>
-            </div>
-
-            {/* Mission card */}
-            <div className="relative">
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-16 w-16 rounded-full bg-white/90 shadow-lg grid place-items-center">
-                <div className="absolute inset-0 rounded-full bg-emerald-600 -z-10" />
-                <Target className="h-8 w-8 text-white" />
-              </div>
-
-              <div className="h-full rounded-2xl bg-emerald-600 text-white p-8 pt-16 shadow-[0_20px_60px_rgba(2,6,23,0.15)] flex flex-col min-h-[280px] md:min-h-[280px]">
-                <h4 className="text-xl tracking-[0.35em] font-semibold uppercase">
-                  Mission
-                </h4>
-                <ul className="mt-4 list-disc pl-5 space-y-2 text-[16.5px] leading-8">
-                  <li>
-                    Scale up collection and processing of sustainable feedstock for clean
-                    energy.
-                  </li>
-                  <li>Operate with high standards of ethics and good governance.</li>
-                  <li>Care for the community and the environment.</li>
-                </ul>
-                <div className="mt-auto" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== Blog1 Section (rendered properly) ===== */}
-        <section className="mx-auto max-w-7xl px-6 lg:px-8 pb-12">
-          <Blogs1 />
-        </section>
-      </main>
-
-      <Footer />
-    </>
+      </div>
+    </section>
   );
 };
 
-export default About;
-export { About };
+export default Blogs1;
