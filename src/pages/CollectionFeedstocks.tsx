@@ -1,77 +1,68 @@
+// src/pages/CollectionFeedstocks.tsx
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import {
-  Truck,
-  Factory,
-  Recycle,
-  Boxes,
-  MapPin,
-  ClipboardList,
-} from "lucide-react";
+import { Truck, Factory, Recycle, Boxes, MapPin, ClipboardList } from "lucide-react";
 
 /** Steps for the Collection & Feedstocks process */
 const steps = [
   {
     icon: Boxes,
     title: "Store Your Used Cooking Oil",
-    description:
-      "Collect the used oil in our secure, sealed drums—no leaks, no odor.",
+    description: "Collect the used oil in our secure, sealed drums—no leaks, no odor.",
     step: "01",
   },
   {
     icon: MapPin,
     title: "Smart Location Tracking",
-    description:
-      "Your drums are tagged with GPS-based QR codes for full traceability.",
+    description: "Your drums are tagged with GPS-based QR codes for full traceability.",
     step: "02",
   },
   {
     icon: Truck,
     title: "Scheduled Pickup",
-    description:
-      "Our collection team arrives on-time based on your usage pattern.",
+    description: "Our collection team arrives on-time based on your usage pattern.",
     step: "03",
   },
   {
     icon: ClipboardList,
     title: "Digital Verification",
-    description:
-      "Weight, quantity, timestamps & signatures are digitally recorded.",
+    description: "Weight, quantity, timestamps & signatures are digitally recorded.",
     step: "04",
   },
   {
     icon: Factory,
     title: "Feedstock Processing",
-    description:
-      "UCO is transferred to certified biodiesel plants for filtration & conversion.",
+    description: "UCO is transferred to certified biodiesel plants for filtration & conversion.",
     step: "05",
   },
   {
     icon: Recycle,
     title: "Clean Energy Output",
-    description:
-      "Your used oil becomes high-quality biodiesel—reducing pollution & emissions.",
+    description: "Your used oil becomes high-quality biodiesel—reducing pollution & emissions.",
     step: "06",
   },
 ];
 
 const CollectionFeedstocks = () => {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <>
       <Header />
 
-      <main className="pt-20 sm:pt-24">
+      <main className="pt-20 sm:pt-24 bg-white">
         <section className="relative py-10 overflow-x-hidden">
           {/* Background */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10"
+          >
             <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-lime-300/20 blur-3xl" />
             <div className="absolute -bottom-28 -left-20 h-96 w-96 rounded-full bg-green-500/10 blur-3xl" />
             <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-lime-50/60 to-transparent" />
@@ -84,7 +75,7 @@ const CollectionFeedstocks = () => {
                 Collection • Feedstocks • Biodiesel
               </Badge>
 
-              <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold">
+              <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900">
                 Collection &{" "}
                 <span className="bg-gradient-to-r from-green-700 to-emerald-400 bg-clip-text text-transparent">
                   Feedstocks
@@ -92,7 +83,8 @@ const CollectionFeedstocks = () => {
               </h2>
 
               <p className="mt-3 text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-                From kitchen to clean energy—our end-to-end UCO collection and feedstock processing is fully compliant and trackable.
+                From kitchen to clean energy—our end-to-end UCO collection and feedstock
+                processing is fully compliant and trackable.
               </p>
             </div>
 
@@ -117,10 +109,8 @@ const CollectionFeedstocks = () => {
                           <s.icon className="h-8 w-8 text-lime-700" />
                         </div>
 
-                        <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {s.description}
-                        </p>
+                        <h3 className="text-lg font-semibold mb-2 text-gray-900">{s.title}</h3>
+                        <p className="text-sm text-muted-foreground">{s.description}</p>
                         <div className="mt-auto" />
                       </Card>
                     </div>
@@ -147,7 +137,7 @@ const CollectionFeedstocks = () => {
                         <div className="w-10 h-10 rounded-xl bg-lime-50 border border-lime-200 flex items-center justify-center">
                           <s.icon className="h-5 w-5 text-lime-700" />
                         </div>
-                        <h3 className="text-lg font-semibold">{s.title}</h3>
+                        <h3 className="text-lg font-semibold text-gray-900">{s.title}</h3>
                       </div>
 
                       <p className="text-sm text-muted-foreground leading-relaxed">
@@ -162,7 +152,7 @@ const CollectionFeedstocks = () => {
             {/* Final Section */}
             <div className="mt-16 flex justify-center">
               <div className="w-full max-w-3xl rounded-2xl border border-lime-300 backdrop-blur p-8 bg-lime-100 animate-fade-in">
-                <h3 className="text-2xl font-bold mb-4">Why It Matters</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Why It Matters</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <span className="mt-2 h-2 w-2 rounded-full bg-lime-700" />
