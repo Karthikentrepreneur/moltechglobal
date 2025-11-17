@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Footer from "../components/blogs1";
+import blogs1 from "../components/blogs1";
 
 /* -------------------- CountUp -------------------- */
 function easeOutCubic(t: number) {
