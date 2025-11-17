@@ -84,17 +84,7 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
 
             {/* UPDATED TEXT WITH ISCC CERTIFIED */}
             <p className="text-base md:text-lg leading-relaxed text-gray-700">
-              Moltech strides in the bio space working on{" "}
-              <span className="relative font-semibold text-gray-900 inline-block">
-                clean initiatives and products
-                <span
-                  className="absolute left-0 bottom-0 h-[2px] w-full rounded-full"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #3B82F6 0%, #60A5FA 50%, #2563EB 100%)",
-                  }}
-                />
-              </span>{" "}
+              Moltech strides in the bio space working on clean initiatives and products
               that drive the circular economy. With ISCC-certified operations
               across Asia, Middle East, United Kingdom and United States of
               America, Moltech is positioned to harness cross-continental
