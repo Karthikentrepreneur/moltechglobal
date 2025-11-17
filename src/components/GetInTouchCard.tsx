@@ -43,11 +43,6 @@ export default function GetInTouchCard() {
               <option key={c} value={c}>{c}</option>
             ))}
           </select>
-
-          {/* Row 3 */}
-          <Input name="purpose" placeholder="Purpose" className="h-11" />
-          <Input name="transportation" placeholder="Transportation Method" className="h-11" />
-
           {/* Comment full width */}
           <div className="sm:col-span-2">
             <Textarea name="comment" placeholder="Comment" rows={6} />
