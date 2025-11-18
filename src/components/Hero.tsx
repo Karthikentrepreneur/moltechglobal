@@ -64,7 +64,7 @@ const Hero = () => {
     >
       {/* Background Video */}
       <video
-        src="/hre.mp4"
+        src="/hre2.mp4"
         autoPlay
         muted
         loop
