@@ -23,7 +23,7 @@ const MissionSection: React.FC = () => {
       id="vision-mission"
       className="relative w-full px-6 lg:px-20 py-24 overflow-hidden bg-cover bg-center"
       style={{
-        backgroundImage: "url('/bg.png')",
+        backgroundImage: "url('/bg2.png')",
       }}
     >
       <div
