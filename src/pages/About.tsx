@@ -86,7 +86,6 @@ const About: React.FC = () => {
     <>
       <Header />
 
-      {/* FIX: prevent content hiding behind fixed header */}
       <main className="bg-white text-[#0F1B3D] pt-28">
 
         {/* ===== HERO ===== */}
@@ -95,9 +94,6 @@ const About: React.FC = () => {
             <Blogs1 />
           </div>
         </section>
-
-        {/* ===== INTRO BLOCK ===== */}
-       
 
         {/* Divider */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -186,17 +182,8 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* ===== VISION + MISSION (EXACT STYLE) ===== */}
-        <section className="relative overflow-hidden pb-36 md:pb-48">
-          {/* Soil background bottom */}
-          <div className="absolute bottom-0 inset-x-0 h-40 md:h-56">
-            <img
-              src="/soil.jpg"  /* replace with your soil image */
-              className="h-full w-full object-cover"
-              alt=""
-            />
-          </div>
-
+        {/* ===== VISION + MISSION (WITHOUT SOIL IMAGE) ===== */}
+        <section className="relative overflow-hidden pb-20 md:pb-24">
           <div className="relative mx-auto max-w-6xl px-6 lg:px-8 py-14">
             <span className="inline-flex rounded-full border border-slate-300 px-4 py-1 text-xs font-semibold tracking-[0.2em] text-slate-600 bg-white">
               OUR PURPOSE
