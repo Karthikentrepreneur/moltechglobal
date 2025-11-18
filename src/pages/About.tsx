@@ -9,6 +9,8 @@ import {
   Box,
   PartyPopper,
   Handshake,
+  Eye,
+  Target,
 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -89,10 +91,11 @@ const About: React.FC = () => {
 
       <Header />
 
-      <main className="bg-white text-[#0F1B3D]">
+      {/* top padding so hero is not hidden behind fixed header */}
+      <main className="bg-white text-[#0F1B3D] pt-24 md:pt-28">
         {/* ====== HERO HEADER ====== */}
         <section aria-label="About Us hero" className="relative">
-           <Blogs1 />
+          <Blogs1 />
         </section>
 
         {/* ===== Intro block ===== */}
@@ -274,7 +277,7 @@ const About: React.FC = () => {
           <hr className="border-gray-100" />
         </div>
 
-        {/* ===== Purpose + Vision + Mission (new design) ===== */}
+        {/* ===== Purpose + Vision + Mission ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
           {/* Top Label + Heading */}
           <div className="text-center">
@@ -300,8 +303,7 @@ const About: React.FC = () => {
             {/* Vision */}
             <div className="rounded-2xl bg-white p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100">
               <div className="flex items-center gap-3">
-                {/* Replace with your own icon image */}
-                <img src="/vision-icon.png" alt="" className="h-7 w-7" />
+                <Eye className="h-7 w-7 text-emerald-600" />
                 <h3 className="text-xl font-bold">Vision</h3>
               </div>
 
@@ -314,8 +316,7 @@ const About: React.FC = () => {
             {/* Mission */}
             <div className="rounded-2xl bg-white p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100">
               <div className="flex items-center gap-3">
-                {/* Replace with your own icon image */}
-                <img src="/mission-icon.png" alt="" className="h-7 w-7" />
+                <Target className="h-7 w-7 text-sky-600" />
                 <h3 className="text-xl font-bold">Mission</h3>
               </div>
 
