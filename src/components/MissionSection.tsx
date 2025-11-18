@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Eye, Target } from "lucide-react";
 
 const MissionSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,89 +21,98 @@ const MissionSection: React.FC = () => {
     <section
       ref={sectionRef as React.RefObject<HTMLElement>}
       id="vision-mission"
-      className="relative w-full px-6 lg:px-24 py-16 bg-white" // ↓ from py-28
+      className="relative w-full px-6 lg:px-20 py-24 overflow-hidden bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/bg.png')",
+      }}
     >
       <div
-        className={`relative max-w-6xl mx-auto flex flex-col items-center text-center transition-all duration-700 ${
+        className={`relative max-w-7xl mx-auto transition-all duration-700 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* Eyebrow Label */}
-        <span className="inline-flex rounded-full bg-gray-100 px-4 py-1.5 text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-700">
-          Our Purpose
-        </span>
+        {/* LEFT CONTENT COLUMN */}
+        <div className="flex flex-col items-start text-left w-full lg:w-1/2">
 
-        {/* Main Heading */}
-        <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold text-[#0F1B3D] leading-snug">
-          Building a{" "}
-          <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
-            cleaner, sustainable
-          </span>{" "}
-          tomorrow
-        </h2>
+          {/* Eyebrow Label */}
+          <span className="inline-flex rounded-full bg-gray-900/5 border border-gray-900/10 px-5 py-1.5 text-xs font-semibold tracking-[0.22em] uppercase text-gray-700">
+            Our Purpose
+          </span>
 
-        {/* Subtitle */}
-        <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl leading-relaxed">
-          Moves the world closer to renewable, low-carbon energy. Sustainability
-          begins with small actions that create a global impact.
-        </p>
+          {/* Heading */}
+          <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900 drop-shadow-sm">
+            Building a{" "}
+            <span className="bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
+              cleaner, sustainable
+            </span>{" "}
+            tomorrow
+          </h2>
 
-        {/* Vision & Mission Cards */}
-        <div className="mt-10 w-full grid sm:grid-cols-2 gap-6 place-items-center">
-          {/* Vision Card */}
-          <div
-            className={`rounded-2xl bg-white px-8 py-8 shadow-xl border border-gray-200 max-w-md transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 scale-100 translate-y-0"
-                : "opacity-0 scale-95 translate-y-6"
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-full bg-green-600/10 flex items-center justify-center text-green-700">
-                <Eye className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-bold text-gray-900">Vision</h3>
+          {/* Description */}
+          <p className="mt-5 text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed max-w-xl">
+            Moves the world closer to renewable, low-carbon energy.
+            Sustainability begins with small actions that create a global
+            impact.
+          </p>
+
+          {/* Cards Row */}
+          <div className="mt-12 w-full grid sm:grid-cols-2 gap-6">
+
+            {/* Vision */}
+            <div
+              className={`rounded-2xl bg-white border border-gray-200 p-7 space-y-4 shadow-xl transform transition-all duration-700
+              ${
+                isVisible
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 translate-y-6"
+              }`}
+            >
+              <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-600/10 text-green-700 text-lg">
+                  👁️
+                </span>
+                Vision
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                To engage in sustainable bio-space activities that reduce carbon
+                footprint and protect the environment.
+              </p>
             </div>
 
-            <p className="mt-4 text-gray-700 text-[15px] leading-relaxed">
-              To engage in sustainable bio-space activities that reduce carbon
-              footprint and protect the environment.
-            </p>
-          </div>
-
-          {/* Mission Card */}
-          <div
-            className={`rounded-2xl bg-white px-8 py-8 shadow-xl border border-gray-200 max-w-md transition-all duration-700 delay-150 ${
-              isVisible
-                ? "opacity-100 scale-100 translate-y-0"
-                : "opacity-0 scale-95 translate-y-6"
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-full bg-blue-600/10 flex items-center justify-center text-blue-700">
-                <Target className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-bold text-gray-900">Mission</h3>
+            {/* Mission */}
+            <div
+              className={`rounded-2xl bg-white border border-gray-200 p-7 space-y-4 shadow-xl transform transition-all duration-700 delay-150
+              ${
+                isVisible
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 translate-y-6"
+              }`}
+            >
+              <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600/10 text-blue-700 text-lg">
+                  🎯
+                </span>
+                Mission
+              </h3>
+              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+                To scale up sustainable feedstock collection, operate ethically,
+                promote clean energy, and care for community and nature.
+              </p>
             </div>
-
-            <p className="mt-4 text-gray-700 text-[15px] leading-relaxed">
-              To scale up sustainable feedstock collection, operate ethically,
-              promote clean energy, and care for community and nature.
-            </p>
           </div>
-        </div>
 
-        {/* Chips */}
-        <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm">
-          <span className="inline-flex items-center rounded-full bg-gray-100 px-5 py-2 border text-gray-700 border-gray-200">
-            • Lower carbon footprint
-          </span>
-          <span className="inline-flex items-center rounded-full bg-gray-100 px-5 py-2 border text-gray-700 border-gray-200">
-            • Sustainable bio-feedstock
-          </span>
-          <span className="inline-flex items-center rounded-full bg-gray-100 px-5 py-2 border text-gray-700 border-gray-200">
-            • Community & environmental care
-          </span>
+          {/* Chips */}
+          <div className="mt-10 flex flex-wrap justify-start gap-3 text-xs sm:text-sm text-gray-700 font-medium max-w-xl">
+            <span className="inline-flex items-center rounded-full bg-gray-200 px-4 py-1 border border-gray-300">
+              • Lower carbon footprint
+            </span>
+            <span className="inline-flex items-center rounded-full bg-gray-200 px-4 py-1 border border-gray-300">
+              • Sustainable bio-feedstock
+            </span>
+            <span className="inline-flex items-center rounded-full bg-gray-200 px-4 py-1 border border-gray-300">
+              • Community & environmental care
+            </span>
+          </div>
         </div>
       </div>
     </section>
