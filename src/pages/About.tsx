@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Blogs1 from "../components/Blogs1";
 
 /* -------------------- CountUp -------------------- */
 function easeOutCubic(t: number) {
@@ -91,23 +92,7 @@ const About: React.FC = () => {
       <main className="bg-white text-[#0F1B3D]">
         {/* ====== HERO HEADER ====== */}
         <section aria-label="About Us hero" className="relative">
-          <div className="relative h-[38vh] md:h-[50vh] lg:h-[56vh]">
-            <img
-              src="/aboutmoltech.jpg"
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-70"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70" />
-            <div className="relative z-10 flex h-full items-center justify-center text-center px-6">
-              <div>
-                <h1 className="text-white text-4xl md:text-5xl font-extrabold drop-shadow-sm">
-                  About Us
-                </h1>
-                {/* breadcrumb removed */}
-              </div>
-            </div>
-          </div>
+           <Blogs1 />
         </section>
 
         {/* ===== Intro block ===== */}
