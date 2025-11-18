@@ -1,5 +1,5 @@
 // src/pages/HowItWorks.tsx
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -11,7 +11,6 @@ import {
   Receipt,
   Cpu,
   CalendarDays,
-  ArrowRight,
 } from "lucide-react";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
@@ -60,25 +59,11 @@ const steps = [
   },
 ];
 
-const sidebarItems = steps.map((s) => ({
-  slug: s.anchor,
-  label: `${s.step}. ${s.title}`,
-}));
-
 const HowItWorks = () => {
-  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
-
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
-
-  const handleSidebarClick = (slug: string) => {
-    const el = document.getElementById(slug);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <>
@@ -86,9 +71,9 @@ const HowItWorks = () => {
       <main className="pt-20 sm:pt-24 bg-white text-gray-900">
         <section
           id="how-it-works"
-          className="relative py-8 sm:py-10 overflow-x-hidden"
+          className="relative py-10 sm:py-14 overflow-x-hidden"
         >
-          {/* Background accents (blue, like AnimalFeedFats style) */}
+          {/* Background accents */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 -z-10"
@@ -100,163 +85,116 @@ const HowItWorks = () => {
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Header */}
-            <div className="text-center mb-10 sm:mb-14">
+            <div className="text-center mb-12 sm:mb-16">
               <Badge
                 variant="secondary"
-                className="px-3 py-1 text-xs sm:text-sm bg-blue-100 text-blue-800 border border-blue-200"
+                className="px-4 py-1.5 text-xs sm:text-sm bg-blue-100 text-blue-800 border border-blue-200"
               >
                 Simple • Transparent • Impactful
               </Badge>
-              <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+              <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
                 How It{" "}
                 <span className="bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">
                   Works
                 </span>
               </h2>
-              <p className="mt-2 sm:mt-3 text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto">
                 A clean, compliant way to handle your used cooking oil—end to
                 end.
               </p>
             </div>
 
-            {/* Layout: Sidebar + Main content (like AnimalFeedFats) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-              {/* Sidebar (left) */}
-              <aside className="order-2 md:order-1">
-                <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    Process Steps
-                  </h3>
-                  <div className="space-y-3">
-                    {sidebarItems.map((item) => {
-                      const highlighted = hoveredSlug === item.slug;
-                      return (
-                        <button
-                          key={item.slug}
-                          type="button"
-                          onClick={() => handleSidebarClick(item.slug)}
-                          onMouseEnter={() => setHoveredSlug(item.slug)}
-                          onMouseLeave={() => setHoveredSlug(null)}
-                          className={[
-                            "w-full flex items-center justify-between rounded-md border px-4 py-3 text-left text-sm sm:text-base transition duration-200",
-                            highlighted
-                              ? `${GRAD} text-white border-transparent`
-                              : "bg-white text-gray-900 border-gray-200 hover:border-gray-300",
-                          ].join(" ")}
-                        >
-                          <span className="font-medium">{item.label}</span>
-                          <span
-                            className={[
-                              "inline-flex items-center justify-center w-9 h-9 rounded-full border transition duration-200",
-                              highlighted
-                                ? "bg-white/15 text-white border-white/20"
-                                : "bg-white text-gray-700 border-gray-200",
-                            ].join(" ")}
-                          >
-                            <ArrowRight className="w-4 h-4" />
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </aside>
-
-              {/* Main content (right) */}
-              <div className="order-1 md:order-2 md:col-span-2">
-                {/* Desktop timeline */}
-                <div className="hidden lg:block">
-                  <div className="relative">
-                    <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200" />
-                    <div className="grid grid-cols-5 gap-6 items-stretch">
-                      {steps.map((s, i) => (
-                        <div
-                          key={s.step}
-                          id={s.anchor}
-                          className="relative flex flex-col h-full [animation:fadeIn_.6s_ease_forwards] opacity-0"
-                          style={{ animationDelay: `${i * 120}ms` }}
-                        >
-                          <div
-                            className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-6 shadow-[0_8px_24px_rgba(37,99,235,0.35)] ${GRAD}`}
-                          >
-                            {s.step}
-                          </div>
-
-                          <Card className="flex flex-col h-full min-h-[240px] p-6 text-center backdrop-blur border border-blue-100 hover:border-blue-300/60 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 rounded-2xl bg-white">
-                            <div className="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-4 shadow-inner">
-                              <s.icon className="h-8 w-8 text-blue-600" />
-                            </div>
-                            <h3 className="text-lg font-semibold mb-2">
-                              {s.title}
-                            </h3>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                              {s.description}
-                            </p>
-                            <div className="mt-auto" />
-                          </Card>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Mobile vertical timeline */}
-                <div className="lg:hidden space-y-4 sm:space-y-6">
+            {/* Desktop timeline – full width, bigger elements */}
+            <div className="hidden lg:block">
+              <div className="relative">
+                <div className="absolute top-28 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200 rounded-full" />
+                <div className="grid grid-cols-5 gap-8 items-stretch">
                   {steps.map((s, i) => (
-                    <Card
+                    <div
                       key={s.step}
                       id={s.anchor}
-                      className="p-4 sm:p-5 bg-white/90 backdrop-blur border border-blue-100 rounded-2xl [animation:fadeIn_.5s_ease_forwards] opacity-0"
-                      style={{ animationDelay: `${i * 100}ms` }}
+                      className="relative flex flex-col h-full [animation:fadeIn_.6s_ease_forwards] opacity-0"
+                      style={{ animationDelay: `${i * 140}ms` }}
                     >
-                      <div className="flex items-start gap-3 sm:gap-4">
-                        <div className="flex-shrink-0">
-                          <div
-                            className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white font-semibold shadow-[0_6px_20px_rgba(37,99,235,0.35)] ${GRAD}`}
-                          >
-                            {s.step}
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-1.5 sm:mb-2">
-                            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
-                              <s.icon className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
-                            </div>
-                            <h3 className="text-sm sm:text-lg font-semibold">
-                              {s.title}
-                            </h3>
-                          </div>
-                          <p className="text-[13px] sm:text-base text-gray-600 leading-relaxed">
-                            {s.description}
-                          </p>
-                        </div>
+                      <div
+                        className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-8 shadow-[0_10px_30px_rgba(37,99,235,0.4)] ${GRAD}`}
+                      >
+                        {s.step}
                       </div>
-                    </Card>
+
+                      <Card className="flex flex-col h-full min-h-[260px] p-7 text-center backdrop-blur border border-blue-100 hover:border-blue-300/70 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 rounded-2xl bg-white">
+                        <div className="w-20 h-20 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-5 shadow-inner">
+                          <s.icon className="h-10 w-10 text-blue-600" />
+                        </div>
+                        <h3 className="text-xl font-semibold mb-3">
+                          {s.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {s.description}
+                        </p>
+                        <div className="mt-auto" />
+                      </Card>
+                    </div>
                   ))}
                 </div>
+              </div>
+            </div>
 
-                {/* After pickup section */}
-                <div className="mt-16 flex justify-center">
-                  <div className="w-full max-w-3xl flex flex-col h-full rounded-2xl border border-blue-200/60 backdrop-blur p-8 bg-blue-50">
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900">
-                      What Happens After Pickup
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "Sealed drums are transported to authorized recyclers.",
-                        "Full traceability with chain-of-custody records.",
-                        "Recyclers perform testing and processing as per regulations.",
-                        "You retain receipts and compliance notes for your records.",
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-3">
-                          <span className="mt-2 h-2 w-2 rounded-full bg-blue-600" />
-                          <span className="text-gray-700">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-auto" />
+            {/* Mobile / tablet vertical timeline – big cards full width */}
+            <div className="lg:hidden space-y-5 sm:space-y-7">
+              {steps.map((s, i) => (
+                <Card
+                  key={s.step}
+                  id={s.anchor}
+                  className="p-5 sm:p-6 bg-white/95 backdrop-blur border border-blue-100 rounded-2xl [animation:fadeIn_.5s_ease_forwards] opacity-0"
+                  style={{ animationDelay: `${i * 110}ms` }}
+                >
+                  <div className="flex items-start gap-4 sm:gap-5">
+                    <div className="flex-shrink-0 flex flex-col items-center gap-3">
+                      <div
+                        className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-semibold shadow-[0_8px_24px_rgba(37,99,235,0.4)] ${GRAD}`}
+                      >
+                        {s.step}
+                      </div>
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                        <s.icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-base sm:text-xl font-semibold mb-1.5 sm:mb-2">
+                        {s.title}
+                      </h3>
+                      <p className="text-[13px] sm:text-base text-gray-600 leading-relaxed">
+                        {s.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Card>
+              ))}
+            </div>
+
+            {/* After pickup section – big full-width card */}
+            <div className="mt-16 sm:mt-20 flex justify-center">
+              <div className="w-full max-w-4xl flex flex-col h-full rounded-2xl border border-blue-200/70 backdrop-blur p-8 sm:p-10 bg-blue-50/80 shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-5 text-gray-900">
+                  What Happens After Pickup
+                </h3>
+                <ul className="space-y-4 sm:space-y-5">
+                  {[
+                    "Sealed drums are transported to authorized recyclers.",
+                    "Full traceability with chain-of-custody records.",
+                    "Recyclers perform testing and processing as per regulations.",
+                    "You retain receipts and compliance notes for your records.",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 sm:gap-4">
+                      <span className="mt-2 h-2.5 w-2.5 rounded-full bg-blue-600" />
+                      <span className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto" />
               </div>
             </div>
           </div>
