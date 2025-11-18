@@ -2,8 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Globe2,
-  ShieldCheck,
   Users,
   Box,
   PartyPopper,
@@ -105,28 +103,35 @@ const About: React.FC = () => {
           <h3 className="text-3xl md:text-4xl font-extrabold">Our Story</h3>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            {/* LEFT TEXT */}
             <div className="space-y-5 text-[16.5px] leading-8 text-slate-700">
               <p>
-                Moltech operates renewable business units worldwide, leveraging cross-continental opportunities.
+                Moltech operates renewable business units worldwide, leveraging
+                cross-continental opportunities.
               </p>
               <p>
-                We collect, refine, and supply sustainable feedstocks such as UCO, tyre-derived oils, acid oils, and POME.
+                We collect, refine, and supply sustainable feedstocks such as UCO,
+                tyre-derived oils, acid oils, and POME.
               </p>
               <p>
-                Our industrial division delivers fatty alcohols, esters, glycerol, and bio-feed fats.
+                Our industrial division delivers fatty alcohols, esters, glycerol,
+                and bio-feed fats.
               </p>
               <p className="text-slate-800 font-semibold">
                 Certified by ISCC (EU).
               </p>
             </div>
 
-            <div className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 h-[360px] md:h-[440px]">
+            {/* RIGHT IMAGE (FULLY VISIBLE) */}
+            <div className="w-full rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 h-auto">
               <img
                 src="/greenworld.jpg"
                 alt="Moltech Map"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-fill"
               />
             </div>
+
           </div>
         </section>
 
@@ -193,11 +198,11 @@ const About: React.FC = () => {
               Building a{" "}
               <span className="text-emerald-600">cleaner, sustainable</span>{" "}
               tomorrow
-            </h2>
+            </span>
 
             <p className="mt-4 max-w-3xl text-slate-600 text-lg leading-relaxed">
-              Moves the world closer to renewable, low-carbon energy. Sustainability begins
-              with small actions that create a global impact.
+              Moves the world closer to renewable, low-carbon energy. Sustainability
+              begins with small actions that create a global impact.
             </p>
 
             <div className="mt-10 grid md:grid-cols-2 gap-6">
@@ -230,7 +235,6 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Pills */}
             <div className="mt-6 flex flex-wrap gap-3">
               {[
                 "Lower carbon footprint",
