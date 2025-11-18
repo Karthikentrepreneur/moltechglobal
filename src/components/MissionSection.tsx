@@ -49,8 +49,8 @@ const MissionSection: React.FC = () => {
 
           <p className="mt-4 text-base sm:text-lg text-slate-700 leading-relaxed">
             We turn everyday waste into meaningful impact by enabling
-            renewable, low-carbon energy solutions that protect communities and
-            the planet.
+            renewable, low-carbon energy solutions that protect communities
+            and the planet.
           </p>
         </div>
 
@@ -62,12 +62,9 @@ const MissionSection: React.FC = () => {
               : "opacity-0 translate-y-6 md:translate-y-10"
           }`}
         >
-          {/* Vision Content (left) */}
+          {/* Vision Text */}
           <div className="space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-1 text-xs font-semibold text-emerald-800">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-lg">
-                👁️
-              </span>
               Vision
             </div>
 
@@ -76,45 +73,32 @@ const MissionSection: React.FC = () => {
             </h3>
 
             <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-              To engage in sustainable bio-space activities that dramatically
-              reduce carbon footprint, restore ecosystems, and inspire a global
-              shift towards circular, low-waste living.
+              To engage in sustainable bio-space activities that reduce
+              carbon footprint, restore ecosystems, and promote circular,
+              low-waste living.
             </p>
 
             <ul className="mt-3 space-y-2 text-sm sm:text-base text-slate-700">
               <li>• Championing circular use of bio-feedstock.</li>
               <li>• Making renewable fuels accessible and affordable.</li>
-              <li>• Setting a benchmark for responsible industry practices.</li>
+              <li>• Responsible & ethical industry benchmarks.</li>
             </ul>
           </div>
 
-          {/* Vision Image (right) */}
+          {/* Vision IMAGE ONLY */}
           <div className="relative">
-            <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-emerald-300/40 via-emerald-100/10 to-sky-200/50 blur-xl" />
-            <div className="relative rounded-3xl bg-white shadow-xl border border-emerald-100 overflow-hidden">
-              <div className="h-56 sm:h-64 bg-gradient-to-tr from-emerald-600 via-emerald-400 to-lime-400 flex items-center justify-center">
-                <div className="w-40 h-40 rounded-full border-4 border-white/60 bg-white/10 flex items-center justify-center">
-                  <span className="text-white text-5xl">🌍</span>
-                </div>
-              </div>
-              <div className="p-5 sm:p-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-emerald-600 font-semibold">
-                  Vision Snapshot
-                </p>
-                <p className="mt-2 text-sm text-slate-700">
-                  A panoramic, future-ready energy network where cities,
-                  industries, and communities are powered by clean, traceable
-                  biofuels.
-                </p>
-              </div>
-            </div>
+            <img
+              src="/vision.jpg"
+              alt="Vision"
+              className="rounded-3xl shadow-xl w-full object-cover h-64 sm:h-80"
+            />
           </div>
         </div>
 
-        {/* Divider line */}
+        {/* Divider */}
         <div className="mt-14 h-px w-full bg-gradient-to-r from-transparent via-emerald-200 to-transparent" />
 
-        {/* MISSION ROW (zig-zag: image left, content right) */}
+        {/* MISSION ROW (image left, text right) */}
         <div
           className={`mt-14 grid gap-10 md:grid-cols-2 items-center transition-all duration-700 ${
             isVisible
@@ -122,42 +106,18 @@ const MissionSection: React.FC = () => {
               : "opacity-0 translate-y-6 md:translate-y-10"
           }`}
         >
-          {/* Mission Image (left) */}
-          <div className="relative order-1 md:order-1">
-            <div className="absolute -inset-3 rounded-3xl bg-gradient-to-bl from-sky-300/40 via-sky-100/10 to-emerald-200/50 blur-xl" />
-            <div className="relative rounded-3xl bg-white shadow-xl border border-sky-100 overflow-hidden">
-              <div className="h-56 sm:h-64 bg-gradient-to-tr from-sky-500 via-sky-400 to-emerald-400 flex items-center justify-center">
-                <div className="grid grid-cols-3 gap-3 px-6">
-                  <div className="rounded-2xl bg-white/20 backdrop-blur-sm px-3 py-2 text-center text-xs text-white">
-                    Scale feedstock collection
-                  </div>
-                  <div className="rounded-2xl bg-white/20 backdrop-blur-sm px-3 py-2 text-center text-xs text-white">
-                    Ethical operations
-                  </div>
-                  <div className="rounded-2xl bg-white/20 backdrop-blur-sm px-3 py-2 text-center text-xs text-white">
-                    Community care
-                  </div>
-                </div>
-              </div>
-              <div className="p-5 sm:p-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-sky-600 font-semibold">
-                  Mission Snapshot
-                </p>
-                <p className="mt-2 text-sm text-slate-700">
-                  A disciplined network of collection hubs, partners, and
-                  logistics that transforms used cooking oil and other
-                  feedstocks into certified biofuels.
-                </p>
-              </div>
-            </div>
+          {/* Mission IMAGE ONLY */}
+          <div className="relative">
+            <img
+              src="/mission.jpg"
+              alt="Mission"
+              className="rounded-3xl shadow-xl w-full object-cover h-64 sm:h-80"
+            />
           </div>
 
-          {/* Mission Content (right) */}
-          <div className="space-y-5 order-2 md:order-2">
+          {/* Mission Content */}
+          <div className="space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-1 text-xs font-semibold text-sky-800">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-lg">
-                🎯
-              </span>
               Mission
             </div>
 
@@ -166,20 +126,19 @@ const MissionSection: React.FC = () => {
             </h3>
 
             <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-              To scale up sustainable feedstock collection, operate with
-              integrity, promote clean energy adoption, and protect the
-              communities and ecosystems that surround us.
+              To scale sustainable feedstock collection, expand global
+              biofuel adoption, and protect the communities we serve.
             </p>
 
             <ul className="mt-3 space-y-2 text-sm sm:text-base text-slate-700">
-              <li>• Build robust collection networks with traceability.</li>
-              <li>• Partner with businesses and households ethically.</li>
-              <li>• Deliver reliable, certified biofuels to global markets.</li>
+              <li>• Build traceable collection networks.</li>
+              <li>• Partner with businesses ethically.</li>
+              <li>• Deliver certified clean biofuels worldwide.</li>
             </ul>
           </div>
         </div>
 
-        {/* Chips row */}
+        {/* Chips */}
         <div className="mt-14 flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-slate-800 font-medium">
           <span className="inline-flex items-center rounded-full bg-white shadow-sm px-4 py-1.5 border border-emerald-200">
             • Lower carbon footprint
@@ -197,4 +156,3 @@ const MissionSection: React.FC = () => {
 };
 
 export default MissionSection;
-``
