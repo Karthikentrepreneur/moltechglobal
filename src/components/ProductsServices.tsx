@@ -55,7 +55,7 @@ const ProductsServices = () => {
     },
      {
       icon: Droplets,
-      title: "Feedstocks Collecion",
+      title: "Feedstocks Collection",
       subtitle:
         "A clean, compliant way to handle your used cooking oil—end to end.",
       image: "/feednew.jpeg",
