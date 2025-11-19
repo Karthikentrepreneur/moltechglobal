@@ -20,7 +20,7 @@ const Header = () => {
     { name: "About", to: "/about" },
     { name: "Products", to: "/products" },
     { name: "Global Presence", to: "/global" },
-    { name: "Blog", to: "/blog" },
+    { name: "Blogs", to: "/blog" },
     { name: "Contact Us", to: "/contact", isCta: true },
   ];
 
