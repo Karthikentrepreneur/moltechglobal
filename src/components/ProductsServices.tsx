@@ -1,33 +1,17 @@
 // src/components/ProductsServices.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Droplets, Zap, ShoppingBag, Wheat, Beaker, Package } from "lucide-react";
+import { Droplets, Zap, Wheat, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ProductsServices = () => {
   const products = [
     {
       icon: Droplets,
-      title: "Renewable fuel Feedstocks",
+      title: "Renewable Fuel Feedstock",
       subtitle:
-        "ISCC-certified UCO and high-acidity oils for renewable fuel production",
-      image: "/Biodieselariel.jpg",
-      slug: "biodiesel-feedstocks",
-    },
-    {
-      icon: Beaker,
-      title: "Fatty Acids",
-      subtitle:
-        "Specialized fatty acids and waxes for rubber, lubricants, and industrial applications",
-      image: "/biofuel.jpg",
-      slug: "fatty-acids",
-    },
-    {
-      icon: ShoppingBag,
-      title: "Soap Noodles",
-      subtitle:
-        "Base materials for cosmetics, detergents, and toilet soap manufacturing",
-      image: "/soap.jpg",
-      slug: "soap-noodles",
+        "Low-carbon feedstocks including UCO, POME, tallow, and specialty oils for renewable fuels",
+      image: "/Biodieselfeedstocks.jpg",
+      slug: "renewable-fuel-feedstock",
     },
     {
       icon: Wheat,
@@ -38,14 +22,6 @@ const ProductsServices = () => {
       slug: "animal-feed-fats",
     },
     {
-      icon: Zap,
-      title: "Glycerin",
-      subtitle:
-        "Crude and refined glycerine for industrial to pharmaceutical-grade applications",
-      image: "/chemistry.jpg",
-      slug: "glycerin",
-    },
-    {
       icon: Package,
       title: "Feed Additives",
       subtitle:
@@ -54,10 +30,9 @@ const ProductsServices = () => {
       slug: "feed-additives",
     },
      {
-      icon: Droplets,
-      title: "Feedstocks Collection",
-      subtitle:
-        "A clean, compliant way to handle your used cooking oil—end to end.",
+      icon: Zap,
+      title: "Feedstock Collection",
+      subtitle: "ISCC-certified UCO collection with smart pickups and traceable handovers.",
       image: "/feednew.jpeg",
       slug: "collection-feedstocks",
     },

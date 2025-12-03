@@ -71,12 +71,6 @@ const AboutSection: React.FC<Props> = ({ imgSrc = "/aboutmoltech.jpg" }) => {
               visible ? "animate-in-right" : "opacity-0 translate-y-6",
             ].join(" ")}
           >
-            {/* Tagline */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-xs font-semibold ring-1 ring-blue-200 self-start">
-              <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
-              Sustainable • Global • Certified
-            </div>
-
             {/* Heading */}
             <h2 className="text-4xl sm:text-5xl md:text-4xl font-extrabold tracking-tight text-[#0F1B3D]">
               About Moltech

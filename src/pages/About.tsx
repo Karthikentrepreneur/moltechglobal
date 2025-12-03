@@ -1,82 +1,16 @@
 // src/pages/About.tsx
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   Globe2,
   ShieldCheck,
-  Users,
-  Box,
-  PartyPopper,
-  Handshake,
   Eye,
   Target,
 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Blogs1 from "../components/Blogs1";
-
-/* -------------------- CountUp -------------------- */
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3);
-}
-
-function useInView<T extends HTMLElement>(opts?: IntersectionObserverInit) {
-  const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !("IntersectionObserver" in window)) {
-      setInView(true);
-      return;
-    }
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {
-      threshold: 0.2,
-      ...opts,
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [opts]);
-
-  return { ref, inView };
-}
-
-const CountUp: React.FC<{
-  to: number;
-  className?: string;
-  duration?: number;
-  suffix?: string;
-}> = ({ to, className, duration = 1200, suffix = "" }) => {
-  const { ref, inView } = useInView<HTMLSpanElement>();
-  const [v, setV] = useState(0);
-  const started = useRef(false);
-
-  useEffect(() => {
-    if (!inView || started.current) return;
-    started.current = true;
-    let raf = 0,
-      start: number | null = null;
-
-    const tick = (ts: number) => {
-      if (start === null) start = ts;
-      const t = Math.min((ts - start) / duration, 1);
-      setV(Math.round(easeOutCubic(t) * to));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration]);
-
-  return (
-    <span ref={ref} className={className}>
-      {v.toLocaleString()}
-      {suffix}
-    </span>
-  );
-};
-/* ------------------------------------------------ */
 
 const About: React.FC = () => {
   return (
@@ -187,28 +121,38 @@ const About: React.FC = () => {
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="space-y-5 text-[16.5px] leading-8 text-slate-700">
               <p>
-                Moltech operates renewable business units from Malaysia,
-                Thailand, Indonesia, UAE, UK and USA. Being part of a larger
-                group with presence in more than 15 countries, we leverage
-                cross-functional support that makes our network robust and ready
-                to scale.
+                Moltech began with a clear mission: to support the global
+                transition toward cleaner energy by sourcing sustainable
+                feedstocks for renewable fuel production. What started as a
+                focused trading operation has grown into a multi-country network
+                supplying ISCC-certified materials to biodiesel, HVO, SAF,
+                biogas, and bunker-fuel producers worldwide.
               </p>
               <p>
-                We collect and process feedstock for renewable diesel at our own
-                locations: used cooking oil, tyre-derived oils, acid oils and
-                POME. Our feed division supplies vegetable-oil-based formulated
-                feed fats (liquid and dry). For industrial applications we
-                deliver fatty alcohols, fatty acid esters and glycerol.
+                Over the years, our capabilities have expanded significantly,
+                with a current trading volume of 15–20 KT per month and a
+                continually diversifying portfolio of waste- and residue-based
+                feedstocks. As the industry evolves, we remain committed to
+                developing supply chains that reduce carbon intensity,
+                strengthen traceability, and promote responsible sourcing.
               </p>
               <p>
-                With a global team and effective use of technology, we maintain
-                high standards of ethics, operational excellence, quality
-                control and transparency — making us a reliable partner
-                worldwide.
-              </p>
-              <p className="text-slate-800">
-                Certified by{" "}
-                <span className="font-semibold text-[#0F1B3D]">ISCC (EU)</span>.
+                Our affiliation with
+                {" "}
+                <a
+                  href="https://www.1ge.sg/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-[#0F1B3D] underline decoration-2 decoration-blue-500"
+                >
+                  1 Global Enterprises
+                </a>
+                {" "}
+                gives us the infrastructure, digital systems, and global reach
+                needed to operate efficiently across multiple markets. Together,
+                we are building a future where sustainable feedstock supply
+                chains are reliable, transparent, and ready to meet the growing
+                demand for low-carbon fuels.
               </p>
             </div>
 
@@ -223,59 +167,6 @@ const About: React.FC = () => {
             </div>
           </div>
         </section>
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <hr className="border-gray-100" />
-        </div>
-
-        {/* ===== Compact stats row ===== */}
-        <section className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <Users className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={5} className="text-3xl font-extrabold" />
-                <div className="text-slate-600 text-sm">Years Experience</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <Box className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={10} className="text-3xl font-extrabold" />
-                <div className="text-slate-600 text-sm">Products</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <PartyPopper className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={100} className="text-3xl font-extrabold" suffix="+" />
-                <div className="text-slate-600 text-sm">Employees</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-xl bg-slate-100 grid place-items-center text-[#0F1B3D]">
-                <Handshake className="h-6 w-6" />
-              </div>
-              <div>
-                <CountUp to={1000} className="text-3xl font-extrabold" suffix="+" />
-                <div className="text-slate-600 text-sm">Satisfied Clients</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <hr className="border-gray-100" />
-        </div>
 
         {/* ===== Purpose + Vision + Mission ===== */}
         <section className="mx-auto max-w-7xl px-6 lg:px-8 py-16">

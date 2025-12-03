@@ -9,24 +9,24 @@ const MESSAGES: Message[] = [
       "To reduce carbon footprint and greenhouse gas emissions with products that create a balanced eco system. Effective use of technology for full traceability are applied as per EU Sustainability directives.",
   },
   {
-    title: "BIODIESEL FEEDSTOCK",
+    title: "RENEWABLE FUEL FEEDSTOCK",
     description:
-      "Origination of sustainable feed stocks using technology, skilled manpower and an in-house global logistics platform makes us the preferred choice of generators and oil refineries.",
+      "Origination of low-carbon feedstocks such as UCO, POME, tallow, and specialty oils with full traceability for biodiesel, HVO, and SAF production.",
   },
   {
-    title: "GLYCERIN & FATTY ACIDS",
+    title: "ANIMAL FEED FATS",
     description:
-      "Moltech supplies high-quality fatty acids and refined glycerin for industrial use in rubber, paints, and lubricants. Crude glycerin (65–85%) and refined grades (99.5%+) ensure purity and performance across applications.",
+      "High-energy nutritional fats crafted to improve feed efficiency, palatability, and overall animal performance across livestock diets.",
   },
   {
-    title: "Animal Feed Fats",
+    title: "FEED ADDITIVES",
     description:
-      "Fats play a vital role in animal health and feed efficiency. Moltech’s proprietary liquid and dry fat formulations enhance absorption and energy density for optimal performance.",
+      "Functional additives and tailored premixes that support nutrient absorption, metabolic function, and immune response for healthier herds and flocks.",
   },
   {
-    title: "SOAP NOODLES",
+    title: "FEEDSTOCK COLLECTION",
     description:
-      "Moltech offers a wide variety of Soap Noodles of different qualities as per the customer's requirements.",
+      "ISCC-certified collection network with smart pickups, live tracking, and transparent documentation for used cooking oil generators.",
   },
   {
     title: "FEED ADDITIVES",

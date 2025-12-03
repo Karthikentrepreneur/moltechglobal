@@ -102,6 +102,19 @@ const HowItWorks = () => {
                 A clean, compliant way to handle your used cooking oil—end to
                 end.
               </p>
+              <p className="mt-3 text-sm sm:text-base text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                We have ISCC-certified collection points in Singapore, Malaysia,
+                Dubai, and Thailand.
+                {" "}
+                <a
+                  href="https://www.superenergy.sg/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-700 underline decoration-2 decoration-blue-500"
+                >
+                  Learn more about SuperEnergy.
+                </a>
+              </p>
             </div>
 
             {/* Desktop timeline – full width, bigger elements */}

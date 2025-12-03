@@ -5,8 +5,8 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Products", href: "/products" },
+  { label: "Feedstock Collection", href: "/products/collection-feedstocks" },
   { label: "Global Presence", href: "/global" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
 ];
 

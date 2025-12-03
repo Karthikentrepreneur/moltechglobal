@@ -1,31 +1,61 @@
-// src/pages/BiodieselFeedstocks.tsx
+// src/pages/RenewableFuelFeedstock.tsx
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { ArrowRight, Truck } from "lucide-react";
+import { ArrowRight, Droplets } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
 
-const BiodieselFeedstocks: React.FC = () => {
+const RenewableFuelFeedstock: React.FC = () => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
-  const bullets = [
-    "ISCC Certified Used Cooking Oil (UCO) with full traceability documentation",
-    "High-acidity vegetable oil wastes processed to refinery-ready specifications",
-    "Applications: transportation biodiesel, sustainable aviation fuel (SAF), heating, and power generation",
-    "FFA range: 0.5-15% with moisture content <0.1% and minimal impurities",
-    "Packaging options: IBC totes, steel drums, and bulk tanker shipments",
-    "Global pickup network with export documentation and flexible Incoterms",
+  const overview =
+    "Renewable fuel feedstocks are sustainably sourced organic materials used in the production of low-carbon fuels such as biodiesel, HVO, and SAF. These inputs help reduce greenhouse-gas emissions, support circular-economy models, and enable cleaner energy pathways across global supply chains.";
+
+  const feedstocks = [
+    {
+      title: "Used Cooking Oil (UCO)",
+      description:
+        "UCO is collected from food-service operations and households after frying processes. Its natural fatty-acid profile makes it a preferred input for biodiesel, HVO, and SAF production, contributing to waste-to-energy circularity.",
+    },
+    {
+      title: "Cardanol (from Cashew Nut Shell Liquid)",
+      description:
+        "Cardanol is a phenolic oil extracted from cashew nut shells. It serves as a unique, bio-based component with high stability and is increasingly explored in renewable fuel upgrading and chemical applications due to its low carbon intensity.",
+    },
+    {
+      title: "Palm Oil Mill Effluent (POME)",
+      description:
+        "POME is a by-product of palm oil processing, containing residual oils that can be recovered and refined. When upgraded, POME-based oils offer a compliant, low-CI feedstock option for advanced biofuels.",
+    },
+    {
+      title: "Tallow",
+      description:
+        "Tallow is rendered animal fat, typically sourced from the meat-processing industry. Its high energy content and favourable conversion characteristics make it suitable for HVO/SAF production, particularly in HEFA pathways.",
+    },
+    {
+      title: "Soapstock Acid Oil",
+      description:
+        "Soapstock Acid Oil is derived from the refining of vegetable oils. After acidulation, it yields an energy-rich feedstock commonly used in biodiesel manufacturing, offering an economical pathway for valorising refinery by-products.",
+    },
+    {
+      title: "Bio-heating Oil",
+      description:
+        "Bio-heating Oil delivers a renewable alternative for boilers and industrial burners, providing dependable heat output with a lower carbon footprint than conventional heating fuels.",
+    },
+    {
+      title: "Condensate",
+      description:
+        "Condensate streams recovered from processing are blended to meet renewable specifications, supplying refiners with a flexible, low-carbon input for downstream conversion.",
+    },
   ];
 
   const products = [
-    { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
-    { name: "Fatty Acids", slug: "fatty-acids" },
-    { name: "Soap Noodles", slug: "soap-noodles" },
+    { name: "Renewable Fuel Feedstock", slug: "renewable-fuel-feedstock" },
     { name: "Animal Feed Fats", slug: "animal-feed-fats" },
-    { name: "Glycerin", slug: "glycerin" },
-    { name: "Feed Additivies", slug: "feed-additives" },
+    { name: "Feed Additives", slug: "feed-additives" },
+    { name: "Feedstock Collection", slug: "collection-feedstocks" },
   ];
 
   return (
@@ -33,12 +63,11 @@ const BiodieselFeedstocks: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-
         {/* ---------- HERO ---------- */}
         <section className="relative h-[35vh] md:h-[45vh] lg:h-[50vh]">
           <img
-            src="/a.jpg"
-            alt="Biodiesel feedstocks background"
+            src="/Biodieselariel.jpg"
+            alt="Renewable fuel feedstocks logistics"
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
             decoding="async"
@@ -48,11 +77,10 @@ const BiodieselFeedstocks: React.FC = () => {
           <div className="relative z-10 flex items-center justify-center h-full text-center px-6">
             <div className="max-w-4xl">
               <h1 className="text-3xl md:text-4xl font-extrabold text-white">
-                Biodiesel Feedstocks (UCO)
+                Renewable Fuel Feedstock
               </h1>
               <p className="mt-4 text-base md:text-lg text-white/95">
-                ISCC-compliant UCO feedstocks with global logistics, traceability, and stable
-                quality for renewable diesel and SAF production.
+                Sustainably sourced inputs that keep biodiesel, HVO, and SAF pathways supplied with low-carbon material.
               </p>
             </div>
           </div>
@@ -60,10 +88,7 @@ const BiodieselFeedstocks: React.FC = () => {
 
         {/* ---------- BELOW HERO ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-
-          {/* GRID: Product panel (LEFT) + Main content (RIGHT) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
             {/* LEFT SIDEBAR — Product List */}
             <aside className="space-y-6 md:order-1 order-2">
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
@@ -116,34 +141,38 @@ const BiodieselFeedstocks: React.FC = () => {
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <div className="px-6 sm:px-8 pt-8">
                   <img
-                    src="/Biodieselariel.jpg"
-                    alt="UCO logistics"
+                    src="/Biodieselfeedstocks.jpg"
+                    alt="Renewable feedstock storage"
                     className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
                   />
                 </div>
 
-                <div className="px-6 sm:px-8 pb-8 mt-6">
-                  <div className="flex items-center gap-4 mb-4">
+                <div className="px-6 sm:px-8 pb-8 mt-6 space-y-6">
+                  <div className="flex items-center gap-4">
                     <div
                       className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
                     >
-                      <Truck className="w-6 h-6" />
+                      <Droplets className="w-6 h-6" />
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                      Biodiesel Feedstocks (UCO)
+                      Renewable Fuel Feedstock
                     </h2>
                   </div>
 
-                  <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
-                    {bullets.map((b, i) => (
-                      <li key={i}>{b}</li>
+                  <p className="text-gray-700 leading-relaxed text-base md:text-lg">{overview}</p>
+
+                  <div className="space-y-5">
+                    {feedstocks.map((item) => (
+                      <div key={item.title} className="rounded-xl border border-gray-200 p-4 sm:p-5 bg-gray-50">
+                        <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                        <p className="mt-2 text-sm sm:text-base text-gray-700 leading-relaxed">{item.description}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </article>
-
           </div>
         </section>
       </main>
@@ -153,5 +182,5 @@ const BiodieselFeedstocks: React.FC = () => {
   );
 };
 
-export default BiodieselFeedstocks;
-export { BiodieselFeedstocks };
+export default RenewableFuelFeedstock;
+export { RenewableFuelFeedstock };

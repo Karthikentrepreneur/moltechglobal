@@ -19,8 +19,8 @@ const Header = () => {
     { name: "Home", to: "/", sectionId: "home" },
     { name: "About", to: "/about" },
     { name: "Products", to: "/products" },
+    { name: "Feedstock Collection", to: "/products/collection-feedstocks" },
     { name: "Global Presence", to: "/global" },
-    { name: "Blogs", to: "/blog" },
     { name: "Contact Us", to: "/contact", isCta: true },
   ];
 
