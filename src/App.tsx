@@ -9,6 +9,7 @@ const ProductsGrid = lazy(() => import("@/pages/ProductsGrid"));
 const RenewableFuelFeedstock = lazy(() => import("@/pages/RenewableFuelFeedstock"));
 const AnimalFeedFats = lazy(() => import("@/pages/AnimalFeedFats"));
 const FeedAdditives = lazy(() => import("@/pages/FeedAdditives"));
+const Glycerin = lazy(() => import("@/pages/Glycerin"));
 const Global = lazy(() => import("@/pages/Global"));
 const Careers = lazy(() => import("@/pages/Careers"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/products" element={<ProductsGrid />} />
           <Route path="/global" element={<Global />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/products/glycerin" element={<Glycerin />} />
           <Route path="/contact" element={<Contact />} />
 
           {/* Process / operations pages */}
