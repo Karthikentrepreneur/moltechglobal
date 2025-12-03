@@ -15,7 +15,7 @@ const Blogs1: React.FC = () => {
               Practical sustainability, scaled globally
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Moltech, in a Nutshell
+              Who We Are
             </h2>
             <p className="mt-4 text-base md:text-lg leading-relaxed text-slate-700">
               From Singapore HQ to hubs across Asia, the Middle East, the UK, and the USA,

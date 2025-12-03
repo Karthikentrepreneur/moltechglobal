@@ -6,15 +6,11 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 const Index = lazy(() => import("@/pages/Index"));
 const About = lazy(() => import("@/pages/About"));
 const ProductsGrid = lazy(() => import("@/pages/ProductsGrid"));
-const BiodieselFeedstocks = lazy(() => import("@/pages/BiodieselFeedstocks"));
-const FattyAcids = lazy(() => import("@/pages/FattyAcids"));
-const SoapNoodles = lazy(() => import("@/pages/SoapNoodles"));
+const RenewableFuelFeedstock = lazy(() => import("@/pages/RenewableFuelFeedstock"));
 const AnimalFeedFats = lazy(() => import("@/pages/AnimalFeedFats"));
-const Glycerin = lazy(() => import("@/pages/Glycerin"));
 const FeedAdditives = lazy(() => import("@/pages/FeedAdditives"));
 const Global = lazy(() => import("@/pages/Global"));
 const Careers = lazy(() => import("@/pages/Careers"));
-const Blog = lazy(() => import("@/pages/Blog"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const CollectionFeedstocks = lazy(() => import("@/pages/CollectionFeedstocks"));
 
@@ -56,18 +52,14 @@ const App = () => {
           <Route path="/products" element={<ProductsGrid />} />
           <Route path="/global" element={<Global />} />
           <Route path="/careers" element={<Careers />} />
-          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
 
           {/* Process / operations pages */}
           <Route path="/products/collection-feedstocks" element={<CollectionFeedstocks />} />
 
           {/* Product detail pages */}
-          <Route path="/products/biodiesel-feedstocks" element={<BiodieselFeedstocks />} />
-          <Route path="/products/fatty-acids" element={<FattyAcids />} />
-          <Route path="/products/soap-noodles" element={<SoapNoodles />} />
+          <Route path="/products/renewable-fuel-feedstock" element={<RenewableFuelFeedstock />} />
           <Route path="/products/animal-feed-fats" element={<AnimalFeedFats />} />
-          <Route path="/products/glycerin" element={<Glycerin />} />
           <Route path="/products/feed-additives" element={<FeedAdditives />} />
 
           {/* 404 */}

@@ -10,22 +10,17 @@ const GRAD = "bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500";
 const AnimalFeedFats: React.FC = () => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
-  const bullets = [
-    "Proprietary liquid fat formulation with enhanced absorption rates for improved FCR",
-    "Dry fats and rumen bypass technology using 99% purity calcium salts of fatty acids",
-    "Calcium salts designed for dairy applications to support milk yield and fat content",
-    "Technical specifications: Purity percentage, calcium content, particle size distribution, and shelf life",
-    "Usage guidelines: Optimal inclusion rates and mixing compatibility with feed systems",
-    "Value benefits: Energy density optimization, improved feed conversion, and enhanced animal performance",
+  const paragraphs = [
+    "Animal feed fats are high-energy nutritional additives used across livestock, poultry, and aquaculture diets to enhance growth performance, improve feed efficiency, and support overall animal health. These fats—derived from vegetable oils, animal by-products, or blended sources—provide a concentrated form of energy that helps balance feed formulations and meet the dietary needs of modern farming systems.",
+    "Rich in essential fatty acids, feed-grade fats play a vital role in improving nutrient absorption, aiding metabolic function, and supporting immune response. Their inclusion in feed not only boosts caloric density but also improves pellet durability, reduces dust, and enhances feed palatability.",
+    "With growing demand for more efficient and sustainable animal production, high-quality feed fats offer a practical, cost-effective solution for farmers seeking better feed conversion ratios, healthier livestock, and improved overall productivity.",
   ];
 
   const products = [
-    { name: "Biodiesel FeedStocks", slug: "biodiesel-feedstocks" },
-    { name: "Fatty Acids", slug: "fatty-acids" },
-    { name: "Soap Noodles", slug: "soap-noodles" },
+    { name: "Renewable Fuel Feedstock", slug: "renewable-fuel-feedstock" },
     { name: "Animal Feed Fats", slug: "animal-feed-fats" },
-    { name: "Glycerin", slug: "glycerin" },
-    { name: "Feed Additivies", slug: "feed-additives" },
+    { name: "Feed Additives", slug: "feed-additives" },
+    { name: "Feedstock Collection", slug: "collection-feedstocks" },
   ];
 
   return (
@@ -58,8 +53,9 @@ const AnimalFeedFats: React.FC = () => {
                   Animal Feed Fats
                 </h1>
                 <p className="mt-4 text-base md:text-lg text-white/95">
-                  High-energy density formulations and calcium-salt bypass fats
-                  for superior animal nutrition and feed conversion efficiency.
+                  High-energy fats that boost feed efficiency, palatability, and
+                  overall animal health across livestock, poultry, and
+                  aquaculture diets.
                 </p>
               </div>
             </div>
@@ -141,11 +137,11 @@ const AnimalFeedFats: React.FC = () => {
                     </h2>
                   </div>
 
-                  <ul className="list-disc pl-5 space-y-3 text-gray-700 max-w-3xl">
-                    {bullets.map((b, i) => (
-                      <li key={i}>{b}</li>
+                  <div className="space-y-4 text-gray-700 leading-relaxed">
+                    {paragraphs.map((p, i) => (
+                      <p key={i}>{p}</p>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </article>
