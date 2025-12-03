@@ -28,6 +28,13 @@ const ProductsServices = () => {
         "Functional additives and custom premixes to optimize animal health and performance",
       image: "/animalfeed.jpg",
       slug: "feed-additives",
+    },{
+      icon: Zap,
+      title: "Glycerin",
+      subtitle:
+        "Crude and refined glycerine for industrial to pharmaceutical-grade applications",
+      image: "/chemistry.jpg",
+      slug: "glycerin",
     },
      {
       icon: Zap,
