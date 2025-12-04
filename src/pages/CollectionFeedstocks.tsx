@@ -86,15 +86,6 @@ const HowItWorks = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <div className="text-center mb-12 sm:mb-16">
-              {/* ISCC logo before the content */}
-              <div className="flex justify-center mb-5">
-                <img
-                  src="/logo-ISCC.png"
-                  alt="ISCC Certified"
-                  className="h-10 sm:h-12 w-auto"
-                />
-              </div>
-
               <Badge
                 variant="secondary"
                 className="px-4 py-1.5 text-xs sm:text-sm bg-blue-100 text-blue-800 border border-blue-200"
@@ -202,9 +193,9 @@ const HowItWorks = () => {
               ))}
             </div>
 
-            {/* After pickup section – big full-width card */}
+            {/* After pickup section – big full-width card with ISCC logo bottom-right */}
             <div className="mt-16 sm:mt-20 flex justify-center">
-              <div className="w-full max-w-4xl flex flex-col h-full rounded-2xl border border-blue-200/70 backdrop-blur p-8 sm:p-10 bg-blue-50/80 shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
+              <div className="w-full max-w-4xl relative flex flex-col h-full rounded-2xl border border-blue-200/70 backdrop-blur p-8 sm:p-10 bg-blue-50/80 shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
                 <h3 className="text-2xl sm:text-3xl font-bold mb-5 text-gray-900">
                   What Happens After Pickup
                 </h3>
@@ -223,6 +214,14 @@ const HowItWorks = () => {
                     </li>
                   ))}
                 </ul>
+
+                {/* ISCC logo bottom-right */}
+                <img
+                  src="/logo-ISCC.png"
+                  alt="ISCC Certified"
+                  className="absolute bottom-4 right-4 h-10 sm:h-12 opacity-90"
+                />
+
                 <div className="mt-auto" />
               </div>
             </div>
