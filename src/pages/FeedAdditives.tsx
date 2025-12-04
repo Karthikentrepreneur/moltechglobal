@@ -127,7 +127,7 @@ const FeedAdditives: React.FC = () => {
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
-                      Feed Additives
+                     Animal Feed Additives
                     </h2>
                   </div>
 
