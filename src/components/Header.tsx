@@ -18,8 +18,7 @@ const Header = () => {
   const navItems = [
     { name: "Home", to: "/", sectionId: "home" },
     { name: "About", to: "/about" },
-    { name: "Products", to: "/products" },
-    { name: "Feedstock Collection", to: "/products/collection-feedstocks" },
+    { name: "Products & Services", to: "/products" },
     { name: "Global Presence", to: "/global" },
     { name: "Contact Us", to: "/contact", isCta: true },
   ];
