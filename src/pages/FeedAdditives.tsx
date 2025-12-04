@@ -11,15 +11,14 @@ const FeedAdditives: React.FC = () => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   const paragraphs = [
-    "Animal feed additives are high-energy nutritional ingredients designed to enhance growth performance, improve feed efficiency, and support overall animal health across livestock, poultry, and aquaculture diets. Blended from vegetable oils, animal by-products, or specialized sources, these inputs balance formulations while meeting modern dietary needs.",
-    "Packed with essential fatty acids and functional nutrients, feed-grade additives strengthen nutrient absorption, assist metabolic function, and bolster immune response. Their inclusion can also improve pellet durability, reduce dust, and heighten feed palatability.",
-    "As producers pursue efficient and sustainable animal nutrition, high-quality feed additives provide a practical, cost-effective path to better feed conversion ratios, healthier livestock, and improved productivity.",
+    "Animal feed additives are <strong>specialised ingredients</strong> incorporated into livestock, poultry, and aquaculture diets to enhance nutrition, improve animal health, and optimise production efficiency. These additives go beyond basic feed components, providing targeted benefits that support modern, high-performance farming systems.",
+    "Feed additives include a wide range of functional products such as vitamins and <strong>minerals, enzymes, probiotics, amino acids, antioxidants, and growth enhancers</strong>. Each plays a specific role—from improving digestion and nutrient uptake to strengthening immunity, reducing feed costs, and supporting overall well-being.",
   ];
 
   const products = [
     { name: "Renewable Fuel Feedstock", slug: "renewable-fuel-feedstock" },
     { name: "Animal Feed Fats", slug: "animal-feed-fats" },
-    { name: "Feed Additives", slug: "feed-additives" },
+    { name: "Animal Feed Additives", slug: "feed-additives" },
     { name: "Glycerin", slug: "glycerin" },
     { name: "Feedstock Collection", slug: "collection-feedstocks" },
   ];
