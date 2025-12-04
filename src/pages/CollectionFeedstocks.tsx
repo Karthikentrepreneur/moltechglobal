@@ -86,6 +86,15 @@ const HowItWorks = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <div className="text-center mb-12 sm:mb-16">
+              {/* ISCC logo before the content */}
+              <div className="flex justify-center mb-5">
+                <img
+                  src="/logo-ISCC.png"
+                  alt="ISCC Certified"
+                  className="h-10 sm:h-12 w-auto"
+                />
+              </div>
+
               <Badge
                 variant="secondary"
                 className="px-4 py-1.5 text-xs sm:text-sm bg-blue-100 text-blue-800 border border-blue-200"
@@ -103,9 +112,16 @@ const HowItWorks = () => {
                 end.
               </p>
               <p className="mt-3 text-sm sm:text-base text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                We have ISCC-certified collection points in Singapore, Malaysia,
-                Dubai, and Thailand.
-                {" "}
+                We have ISCC-certified collection points in{" "}
+                <a
+                  href="https://www.superenergy.sg/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-700 underline decoration-2 decoration-blue-500"
+                >
+                  Singapore
+                </a>
+                , Malaysia, Dubai, and Thailand.{" "}
                 <a
                   href="https://www.superenergy.sg/"
                   target="_blank"
