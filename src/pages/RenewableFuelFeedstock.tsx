@@ -90,8 +90,9 @@ const RenewableFuelFeedstock: React.FC = () => {
         {/* ---------- BELOW HERO ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* LEFT SIDEBAR — Product List */}
+            {/* LEFT SIDEBAR — Product List + extra content */}
             <aside className="space-y-6 md:order-1 order-2">
+              {/* Product list card */}
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product List</h3>
 
@@ -135,6 +136,22 @@ const RenewableFuelFeedstock: React.FC = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Extra sidebar content to use white space */}
+              <div className="rounded-xl border border-blue-50 bg-white/90 p-6 shadow-[0_6px_18px_rgba(15,23,42,0.05)] space-y-3">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-blue-600/10">
+                  <Droplets className="w-5 h-5 text-blue-700" />
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900">
+                  Key benefits of renewable feedstocks
+                </h4>
+                <ul className="mt-2 space-y-1 text-sm text-gray-700 leading-relaxed list-disc list-inside">
+                  <li>Lower lifecycle greenhouse-gas emissions.</li>
+                  <li>Supports circular economy through waste-to-energy use.</li>
+                  <li>Compatible with biodiesel, HVO, and SAF pathways.</li>
+                  <li>Flexible sourcing from multiple sustainable inputs.</li>
+                </ul>
+              </div>
             </aside>
 
             {/* RIGHT MAIN CONTENT */}
@@ -161,7 +178,6 @@ const RenewableFuelFeedstock: React.FC = () => {
                     </h2>
                   </div>
 
-                  {/* ONLY THIS PART IS BOLD */}
                   <p
                     className="text-gray-700 leading-relaxed text-base md:text-lg"
                     dangerouslySetInnerHTML={{ __html: overview }}
@@ -169,9 +185,16 @@ const RenewableFuelFeedstock: React.FC = () => {
 
                   <div className="space-y-5">
                     {feedstocks.map((item) => (
-                      <div key={item.title} className="rounded-xl border border-gray-200 p-4 sm:p-5 bg-gray-50">
-                        <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
-                        <p className="mt-2 text-sm sm:text-base text-gray-700 leading-relaxed">{item.description}</p>
+                      <div
+                        key={item.title}
+                        className="rounded-xl border border-gray-200 p-4 sm:p-5 bg-gray-50"
+                      >
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm sm:text-base text-gray-700 leading-relaxed">
+                          {item.description}
+                        </p>
                       </div>
                     ))}
                   </div>
