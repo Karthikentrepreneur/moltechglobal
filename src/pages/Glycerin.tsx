@@ -22,7 +22,7 @@ const Glycerin: React.FC = () => {
   const products = [
     { name: "Renewable Fuel Feedstock", slug: "renewable-fuel-feedstock" },
     { name: "Animal Feed Fats", slug: "animal-feed-fats" },
-    { name: "Feed Additives", slug: "feed-additives" },
+    { name: "Animal Feed Additives", slug: "feed-additives" },
     { name: "Glycerin", slug: "glycerin" },
     { name: "Feedstock Collection", slug: "collection-feedstocks" },
   ];
