@@ -35,7 +35,7 @@ const MESSAGES: Message[] = [
   },
 ];
 
-const SLIDE_MS = 10020;
+const SLIDE_MS = 10030;
 const FADE_MS = 500;
 
 const Hero = () => {
