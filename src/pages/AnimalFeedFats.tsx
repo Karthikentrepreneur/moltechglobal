@@ -29,7 +29,7 @@ const AnimalFeedFats: React.FC = () => {
       <Header />
 
       <main className="bg-white text-gray-900 pt-0">
-        {/* ---------- HERO (medium size with darker grey gradient) ---------- */}
+        {/* ---------- HERO SECTION ---------- */}
         <section className="relative h-[35vh] md:h-[45vh] lg:h-[50vh]">
           <img
             src="/s.jpg"
@@ -39,10 +39,7 @@ const AnimalFeedFats: React.FC = () => {
             decoding="async"
           />
 
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-gray-900/85 via-gray-800/70 to-gray-700/60"
-            aria-hidden
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/85 via-gray-800/70 to-gray-700/60" />
 
           <div className="relative z-10 h-full w-full">
             <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-6 text-center lg:px-8">
@@ -63,16 +60,17 @@ const AnimalFeedFats: React.FC = () => {
           </div>
         </section>
 
-        {/* ---------- BELOW-HERO SECTION ---------- */}
+        {/* ---------- BELOW HERO ---------- */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-          {/* Product list LEFT, content RIGHT */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* LEFT: Sidebar (Product List only) */}
+            
+            {/* LEFT SIDEBAR */}
             <aside className="space-y-6 md:order-1 order-2">
               <div className="bg-gray-50 rounded-xl p-6 shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Product List
                 </h3>
+
                 <div className="space-y-3">
                   {products.map((p) => (
                     <NavLink
@@ -91,31 +89,26 @@ const AnimalFeedFats: React.FC = () => {
                         ].join(" ");
                       }}
                     >
-                      {({ isActive }) => {
-                        const highlighted = isActive || hoveredSlug === p.slug;
-                        return (
-                          <>
-                            <span className="font-medium">{p.name}</span>
-                            <span
-                              className={[
-                                "inline-flex items-center justify-center w-9 h-9 rounded-full border transition duration-200",
-                                highlighted
-                                  ? "bg-white/15 text-white border-white/20"
-                                  : "bg-white text-gray-700 border-gray-200",
-                              ].join(" ")}
-                            >
-                              <ArrowRight className="w-4 h-4" />
-                            </span>
-                          </>
-                        );
-                      }}
+                      <>
+                        <span className="font-medium">{p.name}</span>
+                        <span
+                          className={[
+                            "inline-flex items-center justify-center w-9 h-9 rounded-full border transition duration-200",
+                            hoveredSlug === p.slug || false
+                              ? "bg-white/15 text-white border-white/20"
+                              : "bg-white text-gray-700 border-gray-200",
+                          ].join(" ")}
+                        >
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </>
                     </NavLink>
                   ))}
                 </div>
               </div>
             </aside>
 
-            {/* RIGHT: Main card with image and bullets */}
+            {/* RIGHT CONTENT */}
             <article className="md:col-span-2 md:order-2 order-1">
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <div className="px-6 sm:px-8 pt-8">
@@ -131,18 +124,20 @@ const AnimalFeedFats: React.FC = () => {
                     <div
                       className={`inline-flex items-center justify-center w-12 h-12 rounded-md ${GRAD} text-white`}
                     >
-                      <Wheat className="w-6 h-6" aria-hidden />
+                      <Wheat className="w-6 h-6" />
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
                       Animal Feed Fats
                     </h2>
                   </div>
 
+                  {/* PARAGRAPHS WITH BOLD SUPPORT */}
                   <div className="space-y-4 text-gray-700 leading-relaxed">
                     {paragraphs.map((p, i) => (
-                      <p key={i}>{p}</p>
+                      <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
                     ))}
                   </div>
+
                 </div>
               </div>
             </article>
