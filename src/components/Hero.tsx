@@ -18,11 +18,11 @@ const MESSAGES: Message[] = [
     description:
       "High-energy nutritional fats crafted to improve feed efficiency, palatability, and overall animal performance across livestock diets.",
   },
-  {
-    title: "FEED ADDITIVES",
-    description:
-      "Functional additives and tailored premixes that support nutrient absorption, metabolic function, and immune response for healthier herds and flocks.",
-  },
+ {
+  title: "GLYCERIN",
+  description:
+    "Moltech supplies high-quality glycerin tailored for diverse industrial applications. Available in crude (65–85%) and refined grades (99.5%+), our glycerin delivers consistent purity for use in pharmaceuticals, cosmetics, food processing, and chemical manufacturing.",
+},
   {
     title: "FEEDSTOCK COLLECTION",
     description:
