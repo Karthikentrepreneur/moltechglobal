@@ -161,7 +161,11 @@ const RenewableFuelFeedstock: React.FC = () => {
                     </h2>
                   </div>
 
-                  <p className="text-gray-700 leading-relaxed text-base md:text-lg">{overview}</p>
+                  {/* ONLY THIS PART IS BOLD */}
+                  <p
+                    className="text-gray-700 leading-relaxed text-base md:text-lg"
+                    dangerouslySetInnerHTML={{ __html: overview }}
+                  />
 
                   <div className="space-y-5">
                     {feedstocks.map((item) => (
