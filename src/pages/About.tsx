@@ -130,7 +130,7 @@ const About: React.FC = () => {
               </p>
               <p>
                 Over the years, our capabilities have expanded significantly,
-                with a current trading volume of 15–20 KT per month and a
+                with a current trading volume of <strong>15–20 KT per month </strong> and a
                 continually diversifying portfolio of waste- and residue-based
                 feedstocks. As the industry evolves, we remain committed to
                 developing supply chains that reduce carbon intensity,
@@ -143,7 +143,7 @@ const About: React.FC = () => {
                   href="https://www.1ge.sg/"
                   target="_blank"
                   rel="noreferrer"
-                  className="font-semibold text-[#0F1B3D] underline decoration-2 decoration-blue-500"
+                  className="font-semibold text-[#0F1B3D] decoration-2 decoration-blue-500"
                 >
                   1 Global Enterprises
                 </a>
