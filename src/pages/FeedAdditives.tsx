@@ -17,11 +17,11 @@ const FeedAdditives: React.FC = () => {
   ];
 
   const products = [
-    { name: "Biodiesel FeedStocks", slug: "renewable-fuel-feedstock" },
-    { name: "Fatty Acids", slug: "fatty-acids" },
+    { name: "Renewable Fuel Feedstock", slug: "renewable-fuel-feedstock" },
     { name: "Animal Feed Fats", slug: "animal-feed-fats" },
+    { name: "Feed Additives", slug: "feed-additives" },
     { name: "Glycerin", slug: "glycerin" },
-    { name: "Feed Additivies", slug: "feed-additives" },
+    { name: "Feedstock Collection", slug: "collection-feedstocks" },
   ];
 
   return (
