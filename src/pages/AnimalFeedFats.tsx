@@ -11,7 +11,7 @@ const AnimalFeedFats: React.FC = () => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   const paragraphs = [
-    "Animal feed fats are high-energy nutritional additives used across livestock, poultry, and aquaculture diets to enhance growth performance, improve feed efficiency, and support overall animal health. These fats—derived from vegetable oils, animal by-products, or blended sources—provide a concentrated form of energy that helps balance feed formulations and meet the dietary needs of modern farming systems.",
+    "Animal feed fats are high-energy nutritional additives used across livestock, poultry, and aquaculture diets to enhance growth performance, improve feed efficiency, and support overall animal health. These fats derived from vegetable oils, animal by-products, or blended sources provide a concentrated form of energy that helps balance feed formulations and meet the dietary needs of modern farming systems.",
     "Rich in essential fatty acids, feed-grade fats play a vital role in improving nutrient absorption, aiding metabolic function, and supporting immune response. Their inclusion in feed not only boosts caloric density but also improves pellet durability, reduces dust, and enhances feed palatability.",
     "With growing demand for more efficient and sustainable animal production, high-quality feed fats offer a practical, cost-effective solution for farmers seeking better feed conversion ratios, healthier livestock, and improved overall productivity.",
   ];
