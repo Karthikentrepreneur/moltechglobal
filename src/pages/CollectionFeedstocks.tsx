@@ -113,14 +113,7 @@ const HowItWorks = () => {
                   Singapore
                 </a>
                 , Malaysia, Dubai, and Thailand.{" "}
-                <a
-                  href="https://www.superenergy.sg/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-700 underline decoration-2 decoration-blue-500"
-                >
-                  Learn more about SuperEnergy.
-                </a>
+
               </p>
             </div>
 
@@ -216,11 +209,7 @@ const HowItWorks = () => {
                 </ul>
 
                 {/* ISCC logo bottom-right */}
-                <img
-                  src="/logo-ISCC.png"
-                  alt="ISCC Certified"
-                  className="absolute bottom-4 right-4 h-10 sm:h-12 opacity-90"
-                />
+               
 
                 <div className="mt-auto" />
               </div>
