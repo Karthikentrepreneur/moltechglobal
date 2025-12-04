@@ -12,7 +12,7 @@ const FeedAdditives: React.FC = () => {
 
   const paragraphs = [
     "Animal feed additives are <strong>specialised ingredients</strong> incorporated into livestock, poultry, and aquaculture diets to enhance nutrition, improve animal health, and optimise production efficiency. These additives go beyond basic feed components, providing targeted benefits that support modern, high-performance farming systems.",
-    "Feed additives include a wide range of functional products such as vitamins and <strong>minerals, enzymes, probiotics, amino acids, antioxidants, and growth enhancers</strong>. Each plays a specific role—from improving digestion and nutrient uptake to strengthening immunity, reducing feed costs, and supporting overall well-being.",
+    "Feed additives include a wide range of functional products such as vitamins and <strong>minerals, enzymes, probiotics, amino acids, antioxidants, and growth enhancers</strong>. Each plays a specific role from improving digestion and nutrient uptake to strengthening immunity, reducing feed costs, and supporting overall well-being.",
   ];
 
   const products = [
