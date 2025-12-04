@@ -11,7 +11,7 @@ const RenewableFuelFeedstock: React.FC = () => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   const overview =
-    "Renewable fuel feedstocks are sustainably sourced organic materials used in the production of low-carbon fuels such as biodiesel, HVO, and SAF. These inputs help reduce greenhouse-gas emissions, support circular-economy models, and enable cleaner energy pathways across global supply chains.";
+    "Renewable fuel feedstocks are <strong> sustainably sourced organic materials </strong> used in the production of low-carbon fuels such as biodiesel, HVO, and SAF. These inputs help reduce greenhouse-gas emissions, support circular-economy models, and enable cleaner energy pathways across global supply chains.";
 
   const feedstocks = [
     {
