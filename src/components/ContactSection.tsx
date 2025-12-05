@@ -29,7 +29,10 @@ const ContactCard = ({
         <div className="text-base font-semibold text-gray-900">{title}</div>
 
         {href ? (
-          <a href={href} className="block text-gray-600 hover:text-gray-900 mt-0.5">
+          <a
+            href={href}
+            className="block text-gray-600 hover:text-gray-900 mt-0.5"
+          >
             {value}
           </a>
         ) : (
@@ -44,16 +47,15 @@ const ContactSection: React.FC = () => {
   return (
     <section className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-
           {/* LEFT SIDE */}
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F1B3D]">
               Contact
             </h2>
             <p className="text-slate-600 mt-2">
-              Reach us through your preferred channel. We usually respond within a business day.
+              Reach us through your preferred channel. We usually respond within
+              a business day.
             </p>
 
             <div className="mt-6 space-y-5">
@@ -68,6 +70,7 @@ const ContactSection: React.FC = () => {
 
               {/* Phone */}
 
+          </div>
 
           {/* RIGHT SIDE — FORM */}
           <div className="relative">
@@ -77,7 +80,6 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
