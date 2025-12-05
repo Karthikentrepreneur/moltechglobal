@@ -1,9 +1,9 @@
 // src/components/ContactSection.tsx
 import React from "react";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import GetInTouchCard from "@/components/GetInTouchCard";
 
-/* Small card used for Email / Call */
+/* Small card used for Email */
 const ContactCard = ({
   icon,
   title,
@@ -48,6 +48,7 @@ const ContactSection: React.FC = () => {
     <section className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+
           {/* LEFT SIDE */}
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F1B3D]">
@@ -59,22 +60,13 @@ const ContactSection: React.FC = () => {
             </p>
 
             <div className="mt-6 space-y-5">
-              {/* Email */}
+              {/* Email ONLY */}
               <ContactCard
                 icon={<Mail className="h-5 w-5" />}
                 title="Email"
                 value="info@moltechglobal.com"
                 href="mailto:info@moltechglobal.com"
                 tint="bg-gradient-to-br from-sky-400 to-sky-600"
-              />
-
-              {/* Phone (NUMBER REMOVED) */}
-              <ContactCard
-                icon={<Phone className="h-5 w-5" />}
-                title="Phone"
-                value=""
-                href=""
-                tint="bg-gradient-to-br from-emerald-400 to-emerald-600"
               />
             </div>
           </div>
@@ -87,6 +79,7 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
