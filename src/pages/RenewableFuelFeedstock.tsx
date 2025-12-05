@@ -44,11 +44,7 @@ const RenewableFuelFeedstock: React.FC = () => {
       description:
         "Bio-heating Oil delivers a renewable alternative for boilers and industrial burners, providing dependable heat output with a lower carbon footprint than conventional heating fuels.",
     },
-    {
-      title: "Condensate",
-      description:
-        "Condensate streams recovered from processing are blended to meet renewable specifications, supplying refiners with a flexible, low-carbon input for downstream conversion.",
-    },
+
   ];
 
   const products = [
