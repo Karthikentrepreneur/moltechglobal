@@ -67,14 +67,7 @@ const ContactSection: React.FC = () => {
               />
 
               {/* Phone */}
-              <ContactCard
-                icon={<Phone className="h-5 w-5" />}
-                title="Phone"
-                value="+61 388205157"
-                tint="bg-gradient-to-br from-indigo-400 to-indigo-600"
-              />
-            </div>
-          </div>
+
 
           {/* RIGHT SIDE — FORM */}
           <div className="relative">
