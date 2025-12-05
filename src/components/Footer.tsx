@@ -4,8 +4,7 @@ import { ChevronUp, Mail, ChevronLeft, ChevronRight } from "lucide-react";
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Products", href: "/products" },
-  { label: "Feedstock Collection", href: "/products/collection-feedstocks" },
+  { label: "Products & Services", href: "/products" },
   { label: "Global Presence", href: "/global" },
   { label: "Contact Us", href: "/contact" },
 ];
