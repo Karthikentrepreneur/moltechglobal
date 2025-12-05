@@ -159,7 +159,7 @@ const RenewableFuelFeedstock: React.FC = () => {
               <div className="rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-white">
                 <div className="px-6 sm:px-8 pt-8">
                   <img
-                    src="/Biodieselfeedstocks.jpg"
+                    src="/Biodieselariel.jpg"
                     alt="Renewable feedstock storage"
                     className="w-full h-[420px] object-cover rounded-2xl border border-gray-200 shadow-md"
                   />
