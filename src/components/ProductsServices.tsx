@@ -10,7 +10,7 @@ const ProductsServices = () => {
       title: "Renewable Fuel Feedstock",
       subtitle:
         "Low-carbon feedstocks including UCO, POME, tallow, and specialty oils for renewable fuels",
-      image: "/Biodieselfeedstocks.jpg",
+      image: "/Biodieselariel.jpg",
       slug: "renewable-fuel-feedstock",
     },
     {
