@@ -68,8 +68,15 @@ const ContactSection: React.FC = () => {
                 tint="bg-gradient-to-br from-sky-400 to-sky-600"
               />
 
-              {/* Phone */}
-
+              {/* Phone (NUMBER REMOVED) */}
+              <ContactCard
+                icon={<Phone className="h-5 w-5" />}
+                title="Phone"
+                value=""
+                href=""
+                tint="bg-gradient-to-br from-emerald-400 to-emerald-600"
+              />
+            </div>
           </div>
 
           {/* RIGHT SIDE — FORM */}
@@ -85,9 +92,7 @@ const ContactSection: React.FC = () => {
 
       {/* Submit Button Style */}
       <style>{`
-        .contact-form {
-          overflow: visible;
-        }
+        .contact-form { overflow: visible; }
         .contact-form button[type="submit"],
         .contact-form button[data-submit],
         .contact-form .btn-submit {
